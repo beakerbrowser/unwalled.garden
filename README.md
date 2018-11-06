@@ -6,22 +6,25 @@ A collection of schemas used by Beaker.
 
 ## Schemas
 
-### Data Sources `walled.garden/data-source.json`
+### Data Sources
 
-- Description: Sites in your personal database.
-- Schema: [data-source.json](./data-source.json)
+ - URL: `walled.garden/data-source.json`
+ - Description: Sites in your personal database.
+ - Schema: [data-source.json](./data-source.json)
 
 These objects are stored in the private dat. They indicate which sites the user wants to index and to include in their applications.
 
-### Published Dats `walled.garden/published-dat.json`
+### Published Dats
 
+ - URL: `walled.garden/published-dat.json`
  - Description: Dats published publicly.
  - Schema: [published-dat.json](./published-dat.json)
 
 Typically used in the public dat to announce personally-created dats.
 
-### Website Descriptions `walled.garden/website-description.json`
+### Website Descriptions
 
+ - URL: `walled.garden/website-description.json`
  - Description: Descriptions of sites around the Web.
  - Schema: [website-description.json](./website-description.json)
 
@@ -29,8 +32,9 @@ Website Descriptions are used to build the identity layer of the Web-of-Trust. T
 
 These objects include a name and relationship with the description's publisher. For instance, a website about cats might publish a Website Description about `dat://alice.com` that says "This is Alice Allison, she authored me." Another example, a website for a company might publish a Website Description about `dat://bob.com` which says "This is Bob Roberts, he is CEO of this company."
 
-### Website Warnings `walled.garden/website-warning.json`
+### Website Warnings
 
+ - URL: `walled.garden/website-warning.json`
  - Description: Warnings about sites around the Web.
  - Schema: [website-warning.json](./website-warning.json)
 
