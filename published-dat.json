@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "dat://unwalled.garden/published-dat.json",
+  "type": "object",
+  "title": "Published Dats",
+  "description": "Dats published publicly.",
+  "required": [
+    "schema",
+    "url",
+    "title"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "title": "The record's schema",
+      "const": "unwalled.garden/published-dat.json"
+    },
+    "url": {
+      "type": "string",
+      "title": "The dat's URL",
+      "format": "uri",
+      "examples": [
+        "dat://beakerbrowser.com"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "title": "The dat's title"
+    },
+    "description": {
+      "type": "string",
+      "title": "The dat's description"
+    },
+    "type": {
+      "type": "array",
+      "title": "The dat's type(s)",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
