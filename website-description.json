@@ -27,9 +27,9 @@
       "type": "string",
       "title": "The website's title"
     },
-    "description": {
+    "relationship": {
       "type": "string",
-      "title": "The website's description"
+      "title": "The website's relationship with the publisher of this description"
     }
   },
   "additionalProperties": false
