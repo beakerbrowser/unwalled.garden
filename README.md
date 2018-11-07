@@ -14,13 +14,30 @@ A collection of schemas used by Beaker.
 
 These objects are stored in the private dat. They indicate which sites the user wants to index and to include in their applications.
 
+```json
+{
+  "schema": "unwalled.garden/data-source.json",
+  "href": "dat://beakerbrowser.com"
+}
+```
+
 ### Published Dats
 
  - URL: `walled.garden/published-dat.json`
  - Description: Dats published publicly.
  - Schema: [published-dat.json](./published-dat.json)
 
-Typically used in the public dat to announce personally-created dats.
+Typically used in the public dat to announce personally-created dats. The public key hostname is typically used instead of a DNS hostname.
+
+```json
+{
+  "schema": "unwalled.garden/published-dat.json",
+  "href": "dat://87ed2e3b160f261a032af03921a3bd09227d0a4cde73466c17114816cae43336",
+  "title": "Beaker Browser",
+  "description": "An experimental p2p Web browser",
+  "type": ["website"]
+}
+```
 
 ### Bookmarks
 
@@ -30,15 +47,33 @@ Typically used in the public dat to announce personally-created dats.
 
 Bookmark objects are used directly by the browser to create public and private bookmarks.
 
+```json
+{
+  "schema": "unwalled.garden/bookmark.json",
+  "href": "dat://beakerbrowser.com",
+  "title": "Beaker Browser",
+  "tags": ["browser", "p2p", "web"]
+}
+```
+
 ### Website Descriptions
 
  - URL: `walled.garden/website-description.json`
  - Description: Descriptions of sites around the Web.
  - Schema: [website-description.json](./website-description.json)
 
-Website Descriptions are used to build the identity layer of the Web-of-Trust. The known descriptions are accumulated in a site's profile to help a user evaluate whether the site can be trusted.
+Website Descriptions are used to build the identity layer of the Web-of-Trust. The known descriptions are accumulated in a site's profile to help a user evaluate whether the site can be trusted. For dat sites, the public key hostname is typically used instead of a DNS hostname.
 
-These objects include a name and relationship with the description's publisher. For instance, a website about cats might publish a Website Description about `dat://alice.com` that says "This is Alice Allison, she authored me." Another example, a website for a company might publish a Website Description about `dat://bob.com` which says "This is Bob Roberts, he is CEO of this company."
+These objects include a title and relationship with the description's publisher. For instance, a website about cats might publish a Website Description about `dat://alice.com` that says "This is Alice Allison, she authored me." Another example, a website for a company might publish a Website Description about `dat://bob.com` which says "This is Bob Roberts, he is CEO of this company."
+
+```json
+{
+  "schema": "unwalled.garden/website-description.json",
+  "href": "dat://87ed2e3b160f261a032af03921a3bd09227d0a4cde73466c17114816cae43336",
+  "title": "Beaker Browser",
+  "relationship": "I work on this project!"
+}
+```
 
 ### Website Warnings
 
@@ -47,6 +82,14 @@ These objects include a name and relationship with the description's publisher. 
  - Schema: [website-warning.json](./website-warning.json)
 
 Website Warnings are used to augment the identity layer of the Web-of-Trust. They give users a way to warn about sites which are dangerous or misleading. The warnings are prominently displayed in a site's profile.
+
+```json
+{
+  "schema": "unwalled.garden/website-warning.json",
+  "href": "dat://87ed2e3b160f261a032af03921a3bd09227d0a4cde73466c17114816cae43335",
+  "text": "This is not the real Beaker Browser site!"
+}
+```
 
 ## Potential future schemas
 
