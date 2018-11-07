@@ -1,19 +1,19 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "dat://unwalled.garden/website-warning.json",
+  "$id": "dat://unwalled.garden/warning.json",
   "type": "object",
-  "title": "Website Warnings",
+  "title": "Warnings",
   "description": "Warnings about sites around the Web.",
   "required": [
     "schema",
     "href",
-    "text"
+    "warning"
   ],
   "properties": {
     "schema": {
       "type": "string",
       "title": "The record's schema",
-      "const": "unwalled.garden/website-warning.json"
+      "const": "unwalled.garden/warning.json"
     },
     "href": {
       "type": "string",
@@ -23,9 +23,9 @@
         "dat://beakerbrowser.com"
       ]
     },
-    "text": {
+    "warning": {
       "type": "string",
-      "title": "A description of the warning"
+      "title": "A human-readable description of the warning"
     }
   },
   "additionalProperties": false

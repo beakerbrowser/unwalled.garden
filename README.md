@@ -75,17 +75,17 @@ The default behavior of a verification is to add a checkmark to the site, and so
 }
 ```
 
-### Website Warnings
+### Warnings
 
- - URL: `walled.garden/website-warning.json`
- - Description: Warnings about sites around the Web.
- - Schema: [website-warning.json](./website-warning.json)
+ - URL: `walled.garden/warning.json`
+ - Description: Warnings about sites and people around the Web.
+ - Schema: [warning.json](./warning.json)
 
-Website Warnings are used to augment the identity layer of the Web-of-Trust. They give users a way to warn about sites which are dangerous or misleading. The warnings are prominently displayed in a site's profile.
+Warnings are used to augment the identity layer of the Web-of-Trust. They give users a way to warn about sites which are dangerous or misleading. The warnings are prominently displayed in a site's profile.
 
 ```json
 {
-  "schema": "unwalled.garden/website-warning.json",
+  "schema": "unwalled.garden/warning.json",
   "href": "dat://87ed2e3b160f261a032af03921a3bd09227d0a4cde73466c17114816cae43335",
   "text": "This is not the real Beaker Browser site!"
 }
