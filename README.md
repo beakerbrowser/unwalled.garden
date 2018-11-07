@@ -22,6 +22,14 @@ These objects are stored in the private dat. They indicate which sites the user 
 
 Typically used in the public dat to announce personally-created dats.
 
+### Bookmarks
+
+ - URL: `walled.garden/bookmark.json`
+ - Description: Saved links from around the Web.
+ - Schema: [bookmark.json](./bookmark.json)
+
+Bookmark objects are used directly by the browser to create public and private bookmarks.
+
 ### Website Descriptions
 
  - URL: `walled.garden/website-description.json`

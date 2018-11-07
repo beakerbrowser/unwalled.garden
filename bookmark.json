@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "dat://unwalled.garden/bookmark.json",
+  "type": "object",
+  "title": "Bookmarks",
+  "description": "Saved links from around the Web.",
+  "required": [
+    "schema",
+    "href",
+    "title"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "title": "The record's schema",
+      "const": "unwalled.garden/bookmark.json"
+    },
+    "href": {
+      "type": "string",
+      "title": "The bookmark's target URL",
+      "format": "uri",
+      "examples": [
+        "dat://beakerbrowser.com"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "title": "The bookmark's title"
+    },
+    "tags": {
+      "type": "array",
+      "title": "Tags for categorizing the bookmark",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
