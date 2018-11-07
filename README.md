@@ -6,18 +6,23 @@ A collection of schemas used by Beaker.
 
 ## Schemas
 
-### Data Sources
+### Contacts
 
- - URL: `walled.garden/data-source.json`
- - Description: Sites in your personal database.
- - Schema: [data-source.json](./data-source.json)
+ - URL: `walled.garden/contact.json`
+ - Description: People, orgs, and sites in your personal contacts list.
+ - Schema: [contact.json](./contact.json)
 
-These objects are stored in the private dat. They indicate which sites the user wants to index and to include in their applications.
 
 ```json
 {
-  "schema": "unwalled.garden/data-source.json",
-  "href": "dat://beakerbrowser.com"
+  "schema": "unwalled.garden/contact.json",
+  "contactType": "business",
+  "href": "dat://foolabs.com",
+  "icon": "dat-foolabs-com.ico",
+  "thumbnail": "dat-foolabs-com.jpg",
+  "title": "Foo Labs, Inc.",
+  "description": "Researching the future of online digital synergies.",
+  "groups": ["My Employer", "Companies"]
 }
 ```
 
@@ -81,7 +86,7 @@ The default behavior of a verification is to add a checkmark to the site, and so
  - Description: Warnings about sites and people around the Web.
  - Schema: [warning.json](./warning.json)
 
-Warnings are used to augment the identity layer of the Web-of-Trust. They give users a way to warn about sites which are dangerous or misleading. The warnings are prominently displayed in a site's profile.
+Warnings are used to build the identity layer of the Web-of-Trust. They give users a way to warn about sites which are dangerous or misleading. The warnings are prominently displayed in a site's profile.
 
 ```json
 {
@@ -93,4 +98,4 @@ Warnings are used to augment the identity layer of the Web-of-Trust. They give u
 
 ## Potential future schemas
 
- - **Website Redirect Notices.** A suggested redirect from one site to another. Useful for when a site's private key has been lost. Let's you suggest the correct place to go instead.
+ - **Redirect Notices.** A suggested redirect from one site to another. Useful for when a site's private key has been lost. Let's you suggest the correct place to go instead.
