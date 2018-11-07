@@ -1,19 +1,19 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "dat://unwalled.garden/website-description.json",
+  "$id": "dat://unwalled.garden/identity-verification.json",
   "type": "object",
-  "title": "Website Descriptions",
-  "description": "Descriptions of sites around the Web.",
+  "title": "Identity Verifications",
+  "description": "The checkmarks next to sites' and people's names that verify who they are.",
   "required": [
     "schema",
     "href",
-    "title"
+    "identity"
   ],
   "properties": {
     "schema": {
       "type": "string",
       "title": "The record's schema",
-      "const": "unwalled.garden/website-description.json"
+      "const": "unwalled.garden/identity-verification.json"
     },
     "href": {
       "type": "string",
@@ -23,13 +23,13 @@
         "dat://beakerbrowser.com"
       ]
     },
-    "title": {
+    "identity": {
       "type": "string",
-      "title": "The website's title"
+      "title": "The website's title or name"
     },
-    "relationship": {
+    "notes": {
       "type": "string",
-      "title": "The website's relationship with the publisher of this description"
+      "title": "An explanation of how this identity was verified"
     }
   },
   "additionalProperties": false

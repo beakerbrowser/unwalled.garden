@@ -56,22 +56,22 @@ Bookmark objects are used directly by the browser to create public and private b
 }
 ```
 
-### Website Descriptions
+### Identity Verifications
 
- - URL: `walled.garden/website-description.json`
- - Description: Descriptions of sites around the Web.
- - Schema: [website-description.json](./website-description.json)
+ - URL: `walled.garden/identity-verification.json`
+ - Description: The checkmarks next to sites' and people's names that verify who they are.
+ - Schema: [identity-verification.json](./identity-verification.json)
 
-Website Descriptions are used to build the identity layer of the Web-of-Trust. The known descriptions are accumulated in a site's profile to help a user evaluate whether the site can be trusted. For dat sites, the public key hostname is typically used instead of a DNS hostname.
+Identity Verifications are used to build the identity layer of the Web-of-Trust. The verifications are accumulated in a site's profile to help a user evaluate whether the site can be trusted.
 
-These objects include a title and relationship with the description's publisher. For instance, a website about cats might publish a Website Description about `dat://alice.com` that says "This is Alice Allison, she authored me." Another example, a website for a company might publish a Website Description about `dat://bob.com` which says "This is Bob Roberts, he is CEO of this company."
+The default behavior of a verification is to add a checkmark to the site, and so it is a broad indication of trust. The user can then view the verifications individually to see the asserted identity and the notes on the verification. This means it's possible that a verification could assert a different identity than the site does, which users should view as suspicious.
 
 ```json
 {
-  "schema": "unwalled.garden/website-description.json",
-  "href": "dat://87ed2e3b160f261a032af03921a3bd09227d0a4cde73466c17114816cae43336",
-  "title": "Beaker Browser",
-  "relationship": "I work on this project!"
+  "schema": "unwalled.garden/identity-verification.json",
+  "hostname": "87ed2e3b160f261a032af03921a3bd09227d0a4cde73466c17114816cae43336",
+  "identity": "Beaker Browser",
+  "notes": "I work on this project and can confirm this is the official site."
 }
 ```
 
