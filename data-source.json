@@ -6,7 +6,7 @@
   "description": "Sites in your personal database.",
   "required": [
     "schema",
-    "url"
+    "href"
   ],
   "properties": {
     "schema": {
@@ -14,7 +14,7 @@
       "title": "The record's schema",
       "const": "unwalled.garden/data-source.json"
     },
-    "url": {
+    "href": {
       "type": "string",
       "title": "The data source URL",
       "format": "uri",

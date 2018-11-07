@@ -6,7 +6,7 @@
   "description": "Warnings about sites around the Web.",
   "required": [
     "schema",
-    "url",
+    "href",
     "text"
   ],
   "properties": {
@@ -15,7 +15,7 @@
       "title": "The record's schema",
       "const": "unwalled.garden/website-warning.json"
     },
-    "url": {
+    "href": {
       "type": "string",
       "title": "The website's URL",
       "format": "uri",

@@ -6,7 +6,7 @@
   "description": "Dats published publicly.",
   "required": [
     "schema",
-    "url",
+    "href",
     "title"
   ],
   "properties": {
@@ -15,7 +15,7 @@
       "title": "The record's schema",
       "const": "unwalled.garden/published-dat.json"
     },
-    "url": {
+    "href": {
       "type": "string",
       "title": "The dat's URL",
       "format": "uri",
