@@ -26,24 +26,6 @@ A collection of schemas used by Beaker.
 }
 ```
 
-### Published Dats
-
- - URL: `walled.garden/published-dat.json`
- - Description: Dats published publicly.
- - Schema: [published-dat.json](./published-dat.json)
-
-Typically used in the public dat to announce personally-created dats. The public key hostname is typically used instead of a DNS hostname.
-
-```json
-{
-  "schema": "unwalled.garden/published-dat.json",
-  "href": "dat://87ed2e3b160f261a032af03921a3bd09227d0a4cde73466c17114816cae43336",
-  "title": "Beaker Browser",
-  "description": "An experimental p2p Web browser",
-  "type": ["website"]
-}
-```
-
 ### Bookmarks
 
  - URL: `walled.garden/bookmark.json`
