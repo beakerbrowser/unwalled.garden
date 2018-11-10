@@ -12,7 +12,7 @@
   "properties": {
     "schema": {
       "type": "string",
-      "title": "The record's schema",
+      "title": "The object's schema",
       "const": "unwalled.garden/warning.json"
     },
     "datKey": {
