@@ -14,6 +14,8 @@ A collection of schemas used by Beaker.
 
 Should contain only dats with the `user-profile` type.
 
+Contacts are used to help build the identity layer of the Web-of-Trust. The contacts are accumulated in a site's profile to help a user evaluate whether the site can be trusted.
+
 ```json
 {
   "schema": "unwalled.garden/contact.json",
@@ -40,25 +42,6 @@ Bookmark objects are used directly by the browser to create public and private b
   "href": "dat://beakerbrowser.com",
   "title": "Beaker Browser",
   "tags": ["browser", "p2p", "web"]
-}
-```
-
-### Identity Verifications
-
- - URL: `walled.garden/identity-verification.json`
- - Description: The checkmarks next to sites' and people's names that verify who they are.
- - Schema: [identity-verification.json](./identity-verification.json)
-
-Identity Verifications are used to build the identity layer of the Web-of-Trust. The verifications are accumulated in a site's profile to help a user evaluate whether the site can be trusted.
-
-The default behavior of a verification is to add a checkmark to the site, and so it is a broad indication of trust. The user can then view the verifications individually to see the asserted identity and the notes on the verification. This means it's possible that a verification could assert a different identity than the site does, which users should view as suspicious.
-
-```json
-{
-  "schema": "unwalled.garden/identity-verification.json",
-  "hostname": "87ed2e3b160f261a032af03921a3bd09227d0a4cde73466c17114816cae43336",
-  "identity": "Beaker Browser",
-  "notes": "I work on this project and can confirm this is the official site."
 }
 ```
 
