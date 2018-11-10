@@ -15,11 +15,6 @@
       "title": "The record's schema",
       "const": "unwalled.garden/contact.json"
     },
-    "contactType": {
-      "type": "string",
-      "title": "The type of contact (person, business, org, etc)",
-      "enum": ["person", "business", "organization", "community", "other"]
-    },
     "href": {
       "type": "string",
       "title": "The contact's URL",

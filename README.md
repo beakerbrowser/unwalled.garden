@@ -12,11 +12,11 @@ A collection of schemas used by Beaker.
  - Description: People, orgs, and sites in your personal contacts list.
  - Schema: [contact.json](./contact.json)
 
+Should contain only dats with the `user-profile` type.
 
 ```json
 {
   "schema": "unwalled.garden/contact.json",
-  "contactType": "business",
   "href": "dat://foolabs.com",
   "icon": "dat-foolabs-com.ico",
   "thumbnail": "dat-foolabs-com.jpg",
