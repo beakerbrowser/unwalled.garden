@@ -6,7 +6,7 @@
   "description": "People, orgs, and sites in your personal contacts list.",
   "required": [
     "schema",
-    "href",
+    "datKey",
     "title"
   ],
   "properties": {
@@ -15,12 +15,19 @@
       "title": "The record's schema",
       "const": "unwalled.garden/contact.json"
     },
-    "href": {
+    "datKey": {
       "type": "string",
-      "title": "The contact's URL",
-      "format": "uri",
+      "title": "The contact's dat key",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "domains": {
+      "type": "array",
+      "title": "The DNS domain name(s) where the contact can be found",
+      "items": {
+        "type": "string"
+      },
       "examples": [
-        "dat://beakerbrowser.com"
+        ["beakerbrowser.com"]
       ]
     },
     "icon": {

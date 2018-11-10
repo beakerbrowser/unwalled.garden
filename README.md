@@ -12,14 +12,15 @@ A collection of schemas used by Beaker.
  - Description: People, orgs, and sites in your personal contacts list.
  - Schema: [contact.json](./contact.json)
 
-Should contain only dats with the `user-profile` type.
+Contacts are used to help build the identity layer of the Web-of-Trust. The contacts are accumulated in a site's profile to help a user evaluate whether the site can be trusted. Contacts are also used during search to help users find each other.
 
-Contacts are used to help build the identity layer of the Web-of-Trust. The contacts are accumulated in a site's profile to help a user evaluate whether the site can be trusted.
+Contacts should refer only to dats with the `user-profile` type.
 
 ```json
 {
   "schema": "unwalled.garden/contact.json",
-  "href": "dat://foolabs.com",
+  "datKey": "a53dc009ee2b74b6782cac56db17754b4c450354c437d68391b3bfbddb76c221",
+  "domains": ["foolabs.com"],
   "icon": "dat-foolabs-com.ico",
   "thumbnail": "dat-foolabs-com.jpg",
   "title": "Foo Labs, Inc.",
@@ -56,8 +57,8 @@ Warnings are used to build the identity layer of the Web-of-Trust. They give use
 ```json
 {
   "schema": "unwalled.garden/warning.json",
-  "href": "dat://87ed2e3b160f261a032af03921a3bd09227d0a4cde73466c17114816cae43335",
-  "text": "This is not the real Beaker Browser site!"
+  "datKey": "a53dc009ee2b74b6782cac56db17754b4c450354c437d68391b3bfbddb76c221",
+  "warning": "This is not the real Beaker Browser site!"
 }
 ```
 
