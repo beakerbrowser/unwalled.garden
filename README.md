@@ -6,15 +6,41 @@ A collection of schemas used by Beaker.
 
 ## Schemas
 
+### Profile
+
+ - URL: `walled.garden/profile.json`
+ - Description: Profile information.
+ - Schema: [profile.json](./profile.json)
+
+Additional profile information about the user/site. There should only ever be one "profile" record published: `self.json`.
+
+```json
+{
+  "schema": "unwalled.garden/profile.json",
+  "facts": [
+    ["Location", "Phoenix"],
+    ["Birthdate", "Jan 1, 1970"],
+    ["Favorite Icecream", "Rocky road"]
+  ],
+  "links": [
+    {
+      "href": "dat://beakerbrowser.com",
+      "title": "Beaker Browser",
+      "description": "An experimental p2p browser"
+    }
+  ]
+}
+```
+
 ### Contacts
 
  - URL: `walled.garden/contact.json`
  - Description: People, orgs, and sites in your personal contacts list.
  - Schema: [contact.json](./contact.json)
 
-Contacts are used to help build the identity layer of the Web-of-Trust. The contacts are accumulated in a site's profile to help a user evaluate whether the site can be trusted. Contacts are also used during search to help users find each other.
+Contacts are your personal network of people & sites. Their data (bookmarks, comments, blog posts, music, etc) is automatically integrated into your applications.
 
-Contacts should refer only to dats with the `user-profile` type.
+Contacts are used to help build the identity layer of the Web-of-Trust. The contacts are accumulated in a site's profile to help a user evaluate whether the site can be trusted. Contacts are also used during search to help users find each other.
 
 ```json
 {
