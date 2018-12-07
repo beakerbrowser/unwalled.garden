@@ -5,14 +5,14 @@
   "title": "Warnings",
   "description": "Warnings about sites around the Web.",
   "required": [
-    "schema",
+    "type",
     "datKey",
     "warning"
   ],
   "properties": {
-    "schema": {
+    "type": {
       "type": "string",
-      "title": "The object's schema",
+      "title": "The object's type",
       "const": "unwalled.garden/warning"
     },
     "datKey": {

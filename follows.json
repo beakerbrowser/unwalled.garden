@@ -5,13 +5,13 @@
   "title": "Follows",
   "description": " A list of data subscriptions.",
   "required": [
-    "schema",
+    "type",
     "urls"
   ],
   "properties": {
-    "schema": {
+    "type": {
       "type": "string",
-      "title": "The object's schema",
+      "title": "The object's type",
       "const": "unwalled.garden/follows"
     },
     "urls": {

@@ -5,21 +5,15 @@
   "title": "Post",
   "description": "A short broadcast.",
   "required": [
-    "schema",
+    "type",
     "content",
     "createdAt"
   ],
   "properties": {
-    "schema": {
-      "type": "string",
-      "title": "The object's schema",
-      "const": "unwalled.garden/post"
-    },
     "type": {
       "type": "string",
-      "title": "The post's type",
-      "enum": ["text"],
-      "default": "text"
+      "title": "The object's type",
+      "const": "unwalled.garden/post"
     },
     "content": {
       "type": "string",

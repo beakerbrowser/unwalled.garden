@@ -10,9 +10,9 @@
     "title"
   ],
   "properties": {
-    "schema": {
+    "type": {
       "type": "string",
-      "title": "The object's schema",
+      "title": "The object's type",
       "const": "unwalled.garden/bookmark"
     },
     "href": {

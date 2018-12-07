@@ -5,14 +5,14 @@
   "title": "Contacts",
   "description": "People, orgs, and sites in your personal contacts list.",
   "required": [
-    "schema",
+    "type",
     "datKey",
     "title"
   ],
   "properties": {
-    "schema": {
+    "type": {
       "type": "string",
-      "title": "The object's schema",
+      "title": "The object's type",
       "const": "unwalled.garden/contact"
     },
     "datKey": {

@@ -29,7 +29,7 @@ Follows are used to declare a data subscription. It indicates trust in the targe
 
 ```json
 {
-  "schema": "unwalled.garden/follows",
+  "type": "unwalled.garden/follows",
   "urls": ["dat://beakerbrowser.com", "dat://alice.com", "dat://bob.com"]
 }
 ```
@@ -46,7 +46,7 @@ The filenames of the posts should use the [ISO 8601](https://tools.ietf.org/html
 
 ```json
 {
-  "schema": "unwalled.garden/post",
+  "type": "unwalled.garden/post",
   "content": "Hello, world!",
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
@@ -67,7 +67,7 @@ Bookmark objects are used directly by the browser to create public and private b
 
 ```json
 {
-  "schema": "unwalled.garden/bookmark",
+  "type": "unwalled.garden/bookmark",
   "href": "dat://beakerbrowser.com",
   "title": "Beaker Browser",
   "tags": ["browser", "p2p", "web"]
@@ -83,7 +83,7 @@ Warnings are used to build the identity layer of the Web-of-Trust. They give use
 
 ```json
 {
-  "schema": "unwalled.garden/warning",
+  "type": "unwalled.garden/warning",
   "href": "dat://a53dc009ee2b74b6782cac56db17754b4c450354c437d68391b3bfbddb76c221",
   "warning": "This is not the real Beaker Browser site!"
 }
