@@ -4,60 +4,63 @@
 
 A collection of schemas used by Beaker.
 
-## Schemas
+## Site Schemas
 
-### Profile
+### User
 
- - URL: `walled.garden/profile.json`
- - Description: Profile information.
- - Schema: [profile.json](./profile.json)
+ - URL: `unwalled.garden/user`
+ - Schema: [user.json](./user.json)
 
-Additional profile information about the user/site. There should only ever be one "profile" record published: `self.json`.
+This is the schema of user-profile sites which are created automatically by Beaker. It produces the following file/folder structure:
+
+```
+/data/follows.json   - A unwalled.garden/follows
+/data/posts          - Contains unwalled.garden/post
+```
+
+## JSON Schemas
+
+### Follows
+
+ - URL: `unwalled.garden/follows`
+ - Description: A list of data subscriptions.
+ - Schema: [follows.json](./follows.json)
+
+Follows are used to declare a data subscription. It indicates trust in the target entity as a source of information.
 
 ```json
 {
-  "schema": "unwalled.garden/profile.json",
-  "facts": [
-    ["Location", "Phoenix"],
-    ["Birthdate", "Jan 1, 1970"],
-    ["Favorite Icecream", "Rocky road"]
-  ],
-  "links": [
-    {
-      "href": "dat://beakerbrowser.com",
-      "title": "Beaker Browser",
-      "description": "An experimental p2p browser"
-    }
-  ]
+  "schema": "unwalled.garden/follows",
+  "urls": ["dat://beakerbrowser.com", "dat://alice.com", "dat://bob.com"]
 }
 ```
 
-### Contacts
+### Posts
 
- - URL: `walled.garden/contact.json`
- - Description: People, orgs, and sites in your personal contacts list.
- - Schema: [contact.json](./contact.json)
+ - URL: `unwalled.garden/post`
+ - Description: A short broadcast.
+ - Schema: [post.json](./post.json)
 
-Contacts are your personal network of people & sites. Their data (bookmarks, comments, blog posts, music, etc) is automatically integrated into your applications.
-
-Contacts are used to help build the identity layer of the Web-of-Trust. The contacts are accumulated in a site's profile to help a user evaluate whether the site can be trusted. Contacts are also used during search to help users find each other.
+Posts are the main content that comprise news feeds.
 
 ```json
 {
-  "schema": "unwalled.garden/contact.json",
-  "datKey": "a53dc009ee2b74b6782cac56db17754b4c450354c437d68391b3bfbddb76c221",
-  "domains": ["foolabs.com"],
-  "icon": "dat-foolabs-com.ico",
-  "thumbnail": "dat-foolabs-com.jpg",
-  "title": "Foo Labs, Inc.",
-  "description": "Researching the future of online digital synergies.",
-  "groups": ["My Employer", "Companies"]
+  "schema": "unwalled.garden/post",
+  "type": "text",
+  "content": "Hello, world!",
+  "createdAt": "Thu Dec 06 2018 20:17:38 GMT-0600 (Central Standard Time)"
 }
 ```
+
+## Potential future schemas
+
+### Redirect Notices
+
+A suggested redirect from one site to another. Useful for when a site's private key has been lost. Let's you suggest the correct place to go instead.
 
 ### Bookmarks
 
- - URL: `walled.garden/bookmark.json`
+ - URL: `unwalled.garden/bookmark`
  - Description: Saved links from around the Web.
  - Schema: [bookmark.json](./bookmark.json)
 
@@ -65,7 +68,7 @@ Bookmark objects are used directly by the browser to create public and private b
 
 ```json
 {
-  "schema": "unwalled.garden/bookmark.json",
+  "schema": "unwalled.garden/bookmark",
   "href": "dat://beakerbrowser.com",
   "title": "Beaker Browser",
   "tags": ["browser", "p2p", "web"]
@@ -74,7 +77,7 @@ Bookmark objects are used directly by the browser to create public and private b
 
 ### Warnings
 
- - URL: `walled.garden/warning.json`
+ - URL: `unwalled.garden/warning`
  - Description: Warnings about sites and people around the Web.
  - Schema: [warning.json](./warning.json)
 
@@ -82,12 +85,8 @@ Warnings are used to build the identity layer of the Web-of-Trust. They give use
 
 ```json
 {
-  "schema": "unwalled.garden/warning.json",
-  "datKey": "a53dc009ee2b74b6782cac56db17754b4c450354c437d68391b3bfbddb76c221",
+  "schema": "unwalled.garden/warning",
+  "href": "dat://a53dc009ee2b74b6782cac56db17754b4c450354c437d68391b3bfbddb76c221",
   "warning": "This is not the real Beaker Browser site!"
 }
 ```
-
-## Potential future schemas
-
- - **Redirect Notices.** A suggested redirect from one site to another. Useful for when a site's private key has been lost. Let's you suggest the correct place to go instead.

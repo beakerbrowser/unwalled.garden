@@ -13,7 +13,7 @@
     "schema": {
       "type": "string",
       "title": "The object's schema",
-      "const": "unwalled.garden/bookmark.json"
+      "const": "unwalled.garden/bookmark"
     },
     "href": {
       "type": "string",

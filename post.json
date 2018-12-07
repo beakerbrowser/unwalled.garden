@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "dat://unwalled.garden/post.json",
+  "type": "object",
+  "title": "Post",
+  "description": "A short broadcast.",
+  "required": [
+    "schema",
+    "content",
+    "createdAt"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "title": "The object's schema",
+      "const": "unwalled.garden/post"
+    },
+    "type": {
+      "type": "string",
+      "title": "The post's type",
+      "enum": ["text"],
+      "default": "text"
+    },
+    "content": {
+      "type": "string",
+      "title": "The post's content",
+      "maxLength": 280
+    },
+    "createdAt": {
+      "type": "date-time",
+      "title": "The time of this post's creation"
+    },
+    "updatedAt": {
+      "type": "date-time",
+      "title": "The time of this post's last edit"
+    }
+  },
+  "additionalProperties": false
+}
