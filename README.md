@@ -8,10 +8,9 @@ A collection of schemas used by Beaker.
 
 ### User
 
- - URL: `unwalled.garden/user`
- - Schema: [user.json](./user.json)
+ - Schema: [`unwalled.garden/user`](./user.json)
 
-This is the schema of user-profile sites which are created automatically by Beaker. It produces the following file/folder structure:
+This is the schema of user sites which are created automatically by Beaker. It produces the following file/folder structure:
 
 ```
 /data/follows.json   - A unwalled.garden/follows
