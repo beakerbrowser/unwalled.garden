@@ -25,6 +25,7 @@ This is the schema of user-profile sites which are created automatically by Beak
  - URL: `unwalled.garden/follows`
  - Description: A list of data subscriptions.
  - Schema: [follows.json](./follows.json)
+ - Path: `/data/follows.json`
 
 Follows are used to declare a data subscription. It indicates trust in the target entity as a source of information.
 
@@ -40,14 +41,17 @@ Follows are used to declare a data subscription. It indicates trust in the targe
  - URL: `unwalled.garden/post`
  - Description: A short broadcast.
  - Schema: [post.json](./post.json)
+ - Path: `/data/posts/{createdAt}.json`
 
 Posts are the main content that comprise news feeds.
+
+The filenames of the posts should use the [ISO 8601](https://tools.ietf.org/html/rfc3339)-encoded `createdAt` value, which can be generated using Javascripts's `Date` object `toISOString()` function.
 
 ```json
 {
   "schema": "unwalled.garden/post",
   "content": "Hello, world!",
-  "createdAt": "Thu Dec 06 2018 20:17:38 GMT-0600 (Central Standard Time)"
+  "createdAt": "2018-12-07T02:52:11.947Z"
 }
 ```
 
