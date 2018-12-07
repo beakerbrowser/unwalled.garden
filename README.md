@@ -22,9 +22,8 @@ This is the schema of user-profile sites which are created automatically by Beak
 
 ### Follows
 
- - URL: `unwalled.garden/follows`
  - Description: A list of data subscriptions.
- - Schema: [follows.json](./follows.json)
+ - Schema: [`unwalled.garden/follows`](./follows.json)
  - Path: `/data/follows.json`
 
 Follows are used to declare a data subscription. It indicates trust in the target entity as a source of information.
@@ -38,9 +37,8 @@ Follows are used to declare a data subscription. It indicates trust in the targe
 
 ### Posts
 
- - URL: `unwalled.garden/post`
  - Description: A short broadcast.
- - Schema: [post.json](./post.json)
+ - Schema: [`unwalled.garden/post`](./post.json)
  - Path: `/data/posts/{createdAt}.json`
 
 Posts are the main content that comprise news feeds.
@@ -63,9 +61,8 @@ A suggested redirect from one site to another. Useful for when a site's private 
 
 ### Bookmarks
 
- - URL: `unwalled.garden/bookmark`
  - Description: Saved links from around the Web.
- - Schema: [bookmark.json](./bookmark.json)
+ - Schema: [`unwalled.garden/bookmark`](./bookmark.json)
 
 Bookmark objects are used directly by the browser to create public and private bookmarks.
 
@@ -80,9 +77,8 @@ Bookmark objects are used directly by the browser to create public and private b
 
 ### Warnings
 
- - URL: `unwalled.garden/warning`
  - Description: Warnings about sites and people around the Web.
- - Schema: [warning.json](./warning.json)
+ - Schema: [`unwalled.garden/warning`](./warning.json)
 
 Warnings are used to build the identity layer of the Web-of-Trust. They give users a way to warn about sites which are dangerous or misleading. The warnings are prominently displayed in a site's profile.
 
