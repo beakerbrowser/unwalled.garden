@@ -46,7 +46,6 @@ Posts are the main content that comprise news feeds.
 ```json
 {
   "schema": "unwalled.garden/post",
-  "type": "text",
   "content": "Hello, world!",
   "createdAt": "Thu Dec 06 2018 20:17:38 GMT-0600 (Central Standard Time)"
 }
