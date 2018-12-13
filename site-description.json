@@ -15,9 +15,18 @@
       "title": "The object's type",
       "const": "unwalled.garden/site-description"
     },
-    "site": {
+    "subject": {
+      "type": "string",
+      "format": "uri",
+      "examples": [
+        "dat://beakerbrowser.com"
+      ]
+    },
+    "metadata": {
       "type": "object",
-      "required": ["title"],
+      "required": [
+        "title"
+      ],
       "properties": {
         "title": {
           "type": "string"
@@ -30,11 +39,11 @@
           "items": {
             "type": "string"
           }
-        },
-        "thumbnail": {
-          "type": "string"
         }
       }
+    },
+    "thumbnail": {
+      "type": "string"
     },
     "createdAt": {
       "type": "date-time",
