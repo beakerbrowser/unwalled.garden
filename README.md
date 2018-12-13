@@ -70,7 +70,6 @@ These records describe other sites. Any time a user publishes a reference to ano
     "description": "Chief of Data Ontologies at Blue Link Labs, Inc",
     "type": ["user", "unwalled.garden/user"]
   },
-  "thumbnail": "aristotle.com.jpg",
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
 ```

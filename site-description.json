@@ -42,9 +42,6 @@
         }
       }
     },
-    "thumbnail": {
-      "type": "string"
-    },
     "createdAt": {
       "type": "date-time",
       "title": "The time of this description's creation"
