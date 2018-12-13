@@ -13,8 +13,9 @@ A collection of schemas used by Beaker.
 This is the schema of user sites which are created automatically by Beaker. It produces the following file/folder structure:
 
 ```
-/data/follows.json   - A unwalled.garden/follows
-/data/posts          - Contains unwalled.garden/post
+/data/follows.json   - unwalled.garden/follows
+/data/posts/         - unwalled.garden/post
+/data/known_sites/   - unwalled.garden/site-description
 ```
 
 ## JSON Schemas
@@ -48,6 +49,27 @@ The filenames of the posts should use the [ISO 8601](https://tools.ietf.org/html
 {
   "type": "unwalled.garden/post",
   "content": "Hello, world!",
+  "createdAt": "2018-12-07T02:52:11.947Z"
+}
+```
+
+### Site Description
+
+ - Description: Metadata which describes a website.
+ - Schema: [`unwalled.garden/site-description`](./site-description.json)
+ - Path: `/data/known_sites/{hostname}.json`
+
+These records describe other sites. Any time a user publishes a reference to another site, they should write a record to this folder with the latest description of that site. This helps provide a trusted index of metadata about the Web. This also makes it possible for followers to quickly visualize the referenced site using the recorded description.
+
+```json
+{
+  "type": "unwalled.garden/site-description",
+  "site": {
+    "title": "Aristotle",
+    "description": "Chief of Data Ontologies at Blue Link Labs, Inc",
+    "type": ["user", "unwalled.garden/user"],
+    "thumbnail": "aristotle.com.jpg"
+  },
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
 ```

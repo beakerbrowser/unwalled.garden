@@ -16,6 +16,11 @@
           "title": "Posts",
           "extensions": ["json"],
           "jsonSchema": "http://unwalled.garden/post.json"
+        },
+        "known_users": {
+          "title": "Known Users",
+          "extensions": ["json", "png", "jpg", "jpeg"],
+          "jsonSchema": "http://unwalled.garden/known-user-description.json"
         }
       }
     }
