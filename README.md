@@ -14,9 +14,23 @@ This is the schema of user sites which are created automatically by Beaker. It p
 
 ```
 /data/follows.json   - unwalled.garden/follows
+/data/sites.json     - unwalled.garden/published-sites
 /data/posts/         - unwalled.garden/post
-/data/known_sites/   - unwalled.garden/site-description
+/data/known_sites/   - Cached site metadata
 ```
+
+#### `known_sites`
+
+Any time a user publishes a reference to another site, they should add a folder to this folder with a capture of the referenced site's dat.json and thumbnail. This makes it possible for readers to quickly visualize referenced sites using the recorded description.
+
+The structure of `known_sites` captures should be:
+
+```
+/data/known_sites/{hostname}/dat.json
+/data/known_sites/{hostname}/thumb.jpg
+```
+
+So, for instance, a capture of beakerbrowser.com would be placed in `/data/known_sites/beakerbrowser.com`. If referencing a public key URL, the pubkey should be used as the hostname.
 
 ## JSON Schemas
 
@@ -26,12 +40,36 @@ This is the schema of user sites which are created automatically by Beaker. It p
  - Schema: [`unwalled.garden/follows`](./follows.json)
  - Path: `/data/follows.json`
 
-Follows are used to declare a data subscription. It indicates trust in the target entity as a source of information.
+Follows are used to declare a data subscription. It indicates trust in the target entity as a source of information. Metadata about the followed sites can be found in `/data/known_sites`.
 
 ```json
 {
   "type": "unwalled.garden/follows",
   "urls": ["dat://beakerbrowser.com", "dat://alice.com", "dat://bob.com"]
+}
+```
+
+### Published sites
+
+ - Description: Sites published by the user.
+ - Schema: [`unwalled.garden/published-sites`](./published-sites.json)
+ - Path: `/data/sites.json`
+
+Users publish sites for their users to crawl and index. The "published sites" record provides collections defined by site types. (All sites in a collection should match the type of the collection.) Metadata about the published sites can be found in `/data/known_sites`.
+
+```json
+{
+  "type": "unwalled.garden/published-sites",
+  "collections": [
+    {
+      "type": ["web-page"],
+      "urls": ["dat://4c450354c436c221acac56db17754b53dc009ee2b747d68391b3bfbddb7b6782"]
+    },
+    {
+      "type": ["image-collection", "unwalled.garden/image-collection"],
+      "urls": ["dat://a53dc009ee2b74b6782cac56db17754b4c450354c437d68391b3bfbddb76c221"]
+    }
+  ]
 }
 ```
 
@@ -49,27 +87,6 @@ The filenames of the posts should use the [ISO 8601](https://tools.ietf.org/html
 {
   "type": "unwalled.garden/post",
   "content": "Hello, world!",
-  "createdAt": "2018-12-07T02:52:11.947Z"
-}
-```
-
-### Site Description
-
- - Description: Metadata which describes a website.
- - Schema: [`unwalled.garden/site-description`](./site-description.json)
- - Path: `/data/known_sites/{hostname}.json`
-
-These records describe other sites. Any time a user publishes a reference to another site, they should write a record to this folder with the latest description of that site. This helps provide a trusted index of metadata about the Web. This also makes it possible for followers to quickly visualize the referenced site using the recorded description.
-
-```json
-{
-  "type": "unwalled.garden/site-description",
-  "subject": "dat://aristotle.com",
-  "metadata": {
-    "title": "Aristotle",
-    "description": "Chief of Data Ontologies at Blue Link Labs, Inc",
-    "type": ["user", "unwalled.garden/user"]
-  },
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
 ```
