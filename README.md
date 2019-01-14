@@ -55,20 +55,14 @@ Follows are used to declare a data subscription. It indicates trust in the targe
  - Schema: [`unwalled.garden/published-sites`](./published-sites.json)
  - Path: `/data/sites.json`
 
-Users publish sites for their followers to crawl and index. The "published sites" record provides collections defined by site types. (All sites in a collection should match the type of the collection.) Metadata about the published sites can be found in `/data/known_sites`.
+Users publish sites for their followers to crawl and index. The "published sites" record provides a list of sites which are officially "published." Metadata about the published sites can be found in `/data/known_sites`.
 
 ```json
 {
   "type": "unwalled.garden/published-sites",
-  "collections": [
-    {
-      "type": ["web-page"],
-      "urls": ["dat://4c450354c436c221acac56db17754b53dc009ee2b747d68391b3bfbddb7b6782"]
-    },
-    {
-      "type": ["image-collection", "unwalled.garden/image-collection"],
-      "urls": ["dat://a53dc009ee2b74b6782cac56db17754b4c450354c437d68391b3bfbddb76c221"]
-    }
+  "urls": [
+    "dat://4c450354c436c221acac56db17754b53dc009ee2b747d68391b3bfbddb7b6782",
+    "dat://a53dc009ee2b74b6782cac56db17754b4c450354c437d68391b3bfbddb76c221"
   ]
 }
 ```
