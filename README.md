@@ -18,18 +18,6 @@ You can find the [full list of site schemas here](#full-list-of-site-schemas).
 
 You can find the [full list of json schemas here](#full-list-of-json-schemas). 
 
-## Governance
-
-Unwalled.garden is governed by a [BDFL](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life), [Paul Frazee](https://github.com/pfrazee). This model of governance will continue until he is overthrown by violent revolution, which is highly encouraged.
-
-The rules for governance in the unwalled.garden are as follows:
-
- 1. Open [issues](/issues) or [pull requests](/pulls) to discuss changes, problems, and ideas.
- 2. As unwalled.garden is a decentralized network, breaking changes are not allowed. Significant changes to behavior or function will require backwards-compatibility hacks.
- 4. The [Beaker browser](https://github.com/beakerbrowser/beaker) acts as a reference implementation of unwalled.garden. It must always support the `master` branch of unwalled.garden.
- 3. Pull requests should be made to the `pending` branch. The `pending` branch will be merged into `master` when the reference implementation has been published with full support for the changes.
- 5. All PRs require the BDFL's final approval before merging. PRs may be rejected for any reason.
-
 ## Full list of site schemas
 
 ### Publishers
@@ -66,3 +54,17 @@ The rules for governance in the unwalled.garden are as follows:
 
  - [Published sites](./json/published-sites.md)<br>unwalled.garden/json/published-sites
  - [Link](./json/link.md)<br>unwalled.garden/json/link
+
+
+## Governance
+
+The rules for governance are as follows:
+
+ 1. Open [issues](/issues) or [pull requests](/pulls) to discuss changes, problems, and ideas.
+ 2. Pull requests should be made to the `develop` branch.
+ 3. As unwalled.garden is a decentralized network, breaking changes are not allowed.
+ 4. All PRs require the BDFL's final approval before merging.
+
+The current [BDFL](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) is [Paul Frazee](https://github.com/pfrazee).
+
+The current reference implementation is the [Beaker browser](https://github.com/beakerbrowser/beaker). The `develop` branch will be merged into `master` when the reference implementation has been published with appropriate support for the changes.
