@@ -12,14 +12,14 @@ You can find the [full list of site schemas here](#full-list-of-site-schemas).
 
 ## JSON schemas
 
-[JSON schemas (json-schema.org)](https://json-schema.org/) are a description of a JSON file. Dat sites include multiple JSON files which follow these schemas.
+[JSON schemas](https://json-schema.org/) are a description of a JSON file. Dat sites include multiple JSON files which follow these schemas.
 
 You can find the [full list of json schemas here](#full-list-of-json-schemas). 
 
 ## Full list of site schemas
 
- - [Agents (unwalled.garden/site/agent)](./site/agent.md)
- - [Channels (unwalled.garden/site/channel)](./site/channels.md)
+ - [Agents](./site/agent.md)<br>unwalled.garden/site/agent
+ - [Channels](./site/channels.md)<br>unwalled.garden/site/channel
  - Media collections
    - Photo album (unwalled.garden/site/photo-album)
    - Music album (unwalled.garden/site/music-album)
@@ -39,7 +39,7 @@ You can find the [full list of json schemas here](#full-list-of-json-schemas).
 ## Full list of json schemas
 
  - Used by Agents
-   - [Subscriptions (unwalled.garden/json/subscriptions)](./json/subscriptions.md)
+   - [**Subscriptions**](./json/subscriptions.md)<br>unwalled.garden/json/subscriptions
  - Used by Agents and Channels
-   - [Published sites (unwalled.garden/json/published-sites)](./json/published-sites.md)
-   - [Link (unwalled.garden/json/link)](./json/link.md)
+   - [**Published sites**](./json/published-sites.md)<br>unwalled.garden/json/published-sites
+   - [**Link**](./json/link.md)<br>unwalled.garden/json/link
