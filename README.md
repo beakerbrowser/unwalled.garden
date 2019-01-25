@@ -4,17 +4,31 @@
 
 A collection of schemas used by Beaker.
 
-## Site schemas
+## About
+
+### Site schemas
 
 Site schemas are a description of the file-structure of a website. Dat sites indicate their compliance by declaring their URL in the `type` field of the dat.json.
 
 You can find the [full list of site schemas here](#full-list-of-site-schemas). 
 
-## JSON schemas
+### JSON schemas
 
 [JSON schemas](https://json-schema.org/) are a description of a JSON file. Dat sites include multiple JSON files which follow these schemas.
 
 You can find the [full list of json schemas here](#full-list-of-json-schemas). 
+
+## Governance
+
+Unwalled.garden is governed by a [BDFL](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life), [Paul Frazee](https://github.com/pfrazee). This model of governance will continue until he is overthrown by violent revolution, which is highly encouraged.
+
+The rules for governance in the unwalled.garden are as follows:
+
+ 1. Open [issues](/issues) or [pull requests](/pulls) to discuss changes, problems, and ideas.
+ 2. As unwalled.garden is a decentralized network, breaking changes are not allowed. Significant changes to behavior or function will require backwards-compatibility hacks.
+ 4. The [Beaker browser](https://github.com/beakerbrowser/beaker) acts as a reference implementation of unwalled.garden. It must always support the `master` branch of unwalled.garden.
+ 3. Pull requests should be made to the `pending` branch. The `pending` branch will be merged into `master` when the reference implementation has been published with full support for the changes.
+ 5. All PRs require the BDFL's final approval before merging. PRs may be rejected for any reason.
 
 ## Full list of site schemas
 
