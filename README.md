@@ -4,20 +4,6 @@
 
 A collection of schemas used by Beaker.
 
-## About
-
-### Site schemas
-
-Site schemas are a description of the file-structure of a website. Dat sites indicate their compliance by declaring their URL in the `type` field of the dat.json.
-
-You can find the [full list of site schemas here](#full-list-of-site-schemas). 
-
-### JSON schemas
-
-[JSON schemas](https://json-schema.org/) are a description of a JSON file. Dat sites include multiple JSON files which follow these schemas.
-
-You can find the [full list of json schemas here](#full-list-of-json-schemas). 
-
 ## Full list of site schemas
 
 ### Publishers
