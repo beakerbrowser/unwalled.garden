@@ -21,25 +21,25 @@ You can find the [full list of json schemas here](#full-list-of-json-schemas).
  - [Agents](./site/agent.md)<br>unwalled.garden/site/agent
  - [Channels](./site/channels.md)<br>unwalled.garden/site/channel
  - Media collections
-   - Photo album (unwalled.garden/site/photo-album)
-   - Music album (unwalled.garden/site/music-album)
-   - Music playlist (unwalled.garden/site/music-playlist)
-   - Video playlist (unwalled.garden/site/video-playlist)
-   - Files (unwalled.garden/site/files)
+   - Photo album<br>unwalled.garden/site/photo-album
+   - Music album<br>unwalled.garden/site/music-album
+   - Music playlist<br>unwalled.garden/site/music-playlist
+   - Video playlist<br>unwalled.garden/site/video-playlist
+   - Files<br>unwalled.garden/site/files
  - Media items
-   - Template (unwalled.garden/site/template)
-   - ES module (unwalled.garden/site/es-module)
-   - Photo (unwalled.garden/site/photo)
-   - Video (unwalled.garden/site/video)
-   - Song (unwalled.garden/site/song)
-   - Podcast episode (unwalled.garden/site/podcast-episode)
-   - Blog post (unwalled.garden/site/blog-post)
-   - File (unwalled.garden/site/file)
+   - Template<br>unwalled.garden/site/template
+   - ES module<br>unwalled.garden/site/es-module
+   - Photo<br>unwalled.garden/site/photo
+   - Video<br>unwalled.garden/site/video
+   - Song<br>unwalled.garden/site/song
+   - Podcast episode<br>unwalled.garden/site/podcast-episode
+   - Blog post<br>unwalled.garden/site/blog-post
+   - File<br>unwalled.garden/site/file
 
 ## Full list of json schemas
 
  - Used by Agents
-   - [**Subscriptions**](./json/subscriptions.md)<br>unwalled.garden/json/subscriptions
+   - [Subscriptions](./json/subscriptions.md)<br>unwalled.garden/json/subscriptions
  - Used by Agents and Channels
-   - [**Published sites**](./json/published-sites.md)<br>unwalled.garden/json/published-sites
-   - [**Link**](./json/link.md)<br>unwalled.garden/json/link
+   - [Published sites](./json/published-sites.md)<br>unwalled.garden/json/published-sites
+   - [Link](./json/link.md)<br>unwalled.garden/json/link
