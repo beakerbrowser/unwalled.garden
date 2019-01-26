@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "dat://unwalled.garden/post.json",
+  "$id": "dat://unwalled.garden/micro-post.json",
   "type": "object",
-  "title": "Post",
-  "description": "A short broadcast.",
+  "title": "Micro Post",
+  "description": "A short text post.",
   "required": [
     "type",
     "content",
@@ -13,7 +13,7 @@
     "type": {
       "type": "string",
       "title": "The object's type",
-      "const": "unwalled.garden/post"
+      "const": "unwalled.garden/micro-post"
     },
     "content": {
       "type": "string",
@@ -21,11 +21,13 @@
       "maxLength": 280
     },
     "createdAt": {
-      "type": "date-time",
+      "type": "string",
+      "format": "date-time",
       "title": "The time of this post's creation"
     },
     "updatedAt": {
-      "type": "date-time",
+      "type": "string",
+      "format": "date-time",
       "title": "The time of this post's last edit"
     }
   },

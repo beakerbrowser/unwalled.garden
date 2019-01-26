@@ -2,122 +2,198 @@
 
 ![Draft](https://img.shields.io/badge/Draft-In%20progress-yellow.svg) ![Not implemented](https://img.shields.io/badge/Status-Not%20implemented-red.svg)
 
-A collection of schemas used by Beaker.
+Schemas for a p2p social-media network built on the Dat Web.
 
-## Site Schemas
+## How it works
 
-### User
+ - Every user has their own Dat website.
+ - Users publish posts, comments, and other kinds of content on their sites.
+ - Users follow each other to sync their content.
+ - Follows are public, creating a social graph.
 
- - Schema: [`unwalled.garden/user`](./user.json)
+In practice, unwalled.garden is only a set of schemas and specs. It must be implemented by applications. The reference implementation is [Beaker](https://github.com/beakerbrowser/beaker).
 
-This is the schema of user sites which are created automatically by Beaker. It produces the following file/folder structure:
+### Supported use-cases
+
+Unwalled.garden has schemas for multiple different use cases:
+
+ - News feeds
+ - Link aggregators
+ - Blogging
+ - Music players
+ - Video players
+ - Podcast players
+ - General file-sharing
+
+### Site types
+
+Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
+
+#### User sites
+
+User sites follow the following file-structure:
 
 ```
-/data/follows.json   - unwalled.garden/follows
-/data/sites.json     - unwalled.garden/published-sites
-/data/posts/         - unwalled.garden/post
-/data/known_sites/   - Cached site metadata
+/data/follows.json      - A unwalled.garden/follows record
+/data/micro-feed/       - Contains unwalled.garden/micro-post records
+/data/link-feed/        - Contains unwalled.garden/link-post records
+/data/comments/         - Contains unwalled.garden/comment records
+/data/votes/            - Contains vote records (see "the votes folder")
+/data/published-sites/  - Contains unwalled.garden/published-site records
+/data/known-sites/      - Contains cached copies of referenced sites' metadata
 ```
 
-#### `known_sites`
+#### Channel sites
 
-Any time a user publishes a reference to another site, they should add a folder to this folder with a capture of the referenced site's dat.json and thumbnail. This makes it possible for readers to quickly visualize referenced sites using the recorded description.
-
-The structure of `known_sites` captures should be:
+Channel sites are followable streams of content. They follow the following file-structure:
 
 ```
-/data/known_sites/{hostname}/dat.json
-/data/known_sites/{hostname}/thumb.jpg
+/data/content-feed/     - Contains unwalled.garden/content records
+/media/                 - Contains the media files
 ```
 
-So, for instance, a capture of beakerbrowser.com would be placed in `/data/known_sites/beakerbrowser.com`. If referencing a public key URL, the pubkey should be used as the hostname.
+#### Media sites
 
-## JSON Schemas
+Media sites are individual pieces of content. They follow the following file-structure:
 
-### Follows
-
- - Description: A list of data subscriptions.
- - Schema: [`unwalled.garden/follows`](./follows.json)
- - Path: `/data/follows.json`
-
-Follows are used to declare a data subscription. It indicates trust in the target entity as a source of information. Metadata about the followed sites can be found in `/data/known_sites`.
-
-```json
-{
-  "type": "unwalled.garden/follows",
-  "urls": ["dat://beakerbrowser.com", "dat://alice.com", "dat://bob.com"]
-}
+```
+/data/content.json      - A unwalled.garden/content record
+/media/                 - Contains the media files
 ```
 
-### Published sites
+## The full site-type listing
 
- - Description: Sites published by the user.
- - Schema: [`unwalled.garden/published-sites`](./published-sites.json)
- - Path: `/data/sites.json`
+ - Users
+   - [Person](./person.md)
+   - [Organization](./organization.md)
+   - [Bot](./bot.md)
+   - [Project](./project.md)
+   - [Place](./place.md)
+ - Channels
+   - [Blog](./channel/blog.md)
+   - [Podcast](./channel/podcast.md)
+   - [Music](./channel/music.md)
+   - [Video](./channel/video.md)
+   - [Photo](./channel/photo.md)
+ - Media
+   - [Article](./media/article.md)
+   - [Photo-album](./media/photo-album.md)
+   - [Photo](./media/photo.md)
+   - [Music-album](./media/music-album.md)
+   - [Music-playlist](./media/music-playlist.md)
+   - [Song](./media/song.md)
+   - [Podcast-episode](./media/podcast-episode.md)
+   - [Video-playlist](./media/video-playlist.md)
+   - [Video](./media/video.md)
+   - [File-set](./media/file-set.md)
+   - [File](./media/file.md)
 
-Users publish sites for their followers to crawl and index. The "published sites" record provides a list of sites which are officially "published." Metadata about the published sites can be found in `/data/known_sites`.
+### The full record-type listing
 
-```json
-{
-  "type": "unwalled.garden/published-sites",
-  "urls": [
-    "dat://4c450354c436c221acac56db17754b53dc009ee2b747d68391b3bfbddb7b6782",
-    "dat://a53dc009ee2b74b6782cac56db17754b4c450354c437d68391b3bfbddb76c221"
-  ]
-}
+ - [Follows](./follows.md)
+ - [Micro post](./micro-post.md)
+ - [Link post](./link-post.md)
+ - [Published site](./published-site.md)
+ - [Comment](./comment.md)
+ - [Content](./content.md)
+
+## Folder patterns
+
+### The \*-feed folders
+
+Feed folders contain records that are published over time. Examples include [micro posts](./micro-post.md) and [link posts](./link-post.md) for users, and [content](./content.md) for channels.
+
+Records in feed folders are named by their creation time. This makes them easy to read chronologically. Example listing:
+
+```
+/data/micro-feed/2019-01-26T16:32:55.109Z.json
+/data/micro-feed/2019-01-26T17:55:31.856Z.json
+/data/micro-feed/2019-01-26T17:58:05.118Z.json
 ```
 
-### Posts
+### The published-sites folder
 
- - Description: A short broadcast.
- - Schema: [`unwalled.garden/post`](./post.json)
- - Path: `/data/posts/{createdAt}.json`
+The published-sites folder lists the sites created by a user. It contains the [published site](./published-site.md) record.
 
-Posts are the main content that comprise news feeds.
+Records in the published-sites folder are named by the hostname of the sites they reference. This makes it easy to look up the record for a given site. Example listing:
 
-The filenames of the posts should use the [ISO 8601](https://tools.ietf.org/html/rfc3339)-encoded `createdAt` value, which can be generated using Javascripts's `Date` object `toISOString()` function.
-
-```json
-{
-  "type": "unwalled.garden/post",
-  "content": "Hello, world!",
-  "createdAt": "2018-12-07T02:52:11.947Z"
-}
+```
+/data/published-sites/43dfc9f23fdded8cc7c01c71c0702a0529130af0258e7fb30bf5a0a3f73d69b3.json
 ```
 
-## Potential future schemas
+### The known-sites folder
 
-### Redirect Notices
+The "known-sites" folder contains copies of metadata from sites reference by the containing site. It is used to reduce the number of network lookups. For instance, when bob's site announces that it follows alice, bob's site will write a copy of alice's metadata in its known-sites. Bob's followers can then reference the cached metadata.
 
-A suggested redirect from one site to another. Useful for when a site's private key has been lost. Let's you suggest the correct place to go instead.
+The structure of the known-sites folder is as follows:
 
-### Bookmarks
-
- - Description: Saved links from around the Web.
- - Schema: [`unwalled.garden/bookmark`](./bookmark.json)
-
-Bookmark objects are used directly by the browser to create public and private bookmarks.
-
-```json
-{
-  "type": "unwalled.garden/bookmark",
-  "href": "dat://beakerbrowser.com",
-  "title": "Beaker Browser",
-  "tags": ["browser", "p2p", "web"]
-}
+```
+/data/known-sites/{hostname}/dat.json
+/data/known-sites/{hostname}/favicon.ico
+/data/known-sites/{hostname}/thumb.jpg
+/data/known-sites/{hostname}/...
 ```
 
-### Warnings
+Generally speaking, only the dat.json and a few image assets should be included.
 
- - Description: Warnings about sites and people around the Web.
- - Schema: [`unwalled.garden/warning`](./warning.json)
+### The comments folder
 
-Warnings are used to build the identity layer of the Web-of-Trust. They give users a way to warn about sites which are dangerous or misleading. The warnings are prominently displayed in a site's profile.
+The comments folder contains comments created by the user. It contains the [comment](./comment.md) record.
 
-```json
-{
-  "type": "unwalled.garden/warning",
-  "href": "dat://a53dc009ee2b74b6782cac56db17754b4c450354c437d68391b3bfbddb76c221",
-  "warning": "This is not the real Beaker Browser site!"
-}
+The structure of the comments folder is as follows:
+
 ```
+/data/comments/{slugified-url}/{creation-time}.json
+```
+
+An example:
+
+```
+/data/comments/beakerbrowser-com-docs/2019-01-26T16:32:55.109Z.json
+```
+
+You can find the algorithm for slugifying URLs in [slugify-url.js](slugify-url.js).
+
+### The votes folder
+
+Votes are a special kind of content-free record. The files encode their information entirely in the filename (the files themselves are empty).
+
+The structure of the votes folder is as follows:
+
+```
+/data/votes/{slugified-url}.{up|down}
+```
+
+An example:
+
+```
+/data/comments/beakerbrowser-com-docs.up
+```
+
+## Governance
+
+The rules for governance are as follows:
+
+ 1. Open [issues](/issues) or [pull requests](/pulls) to discuss changes, problems, and ideas.
+ 2. Pull requests should be made to the `develop` branch.
+ 3. As unwalled.garden is a decentralized network, breaking changes are not allowed.
+ 4. All PRs require the BDFL's final approval before merging.
+
+The current [BDFL](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) is [Paul Frazee](https://github.com/pfrazee).
+
+The current reference implementation is [Beaker](https://github.com/beakerbrowser/beaker). The `develop` branch will be merged into `master` when the reference implementation has been published with appropriate support for the changes.
+
+## FAQ
+
+### How do users differ from channels?
+
+Users and channels are both followable, however channels are usually published by users as a place to put topic-specific content. For instance, a user might create multiple `podcast` channels to cover many different topics.
+
+Here's the technical ways the channels differ from users:
+
+ - Channels can only publish certain types of content. 
+ - Channels can not follow sites.
+
+### How do channels differ from media sites?
+
+Channels and media both represent content. However, channels publish content over time and therefore can be followed, while media sites contain all of their content at the time of publishing (though media sites may be versioned).
