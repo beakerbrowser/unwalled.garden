@@ -4,7 +4,7 @@
 
 The unwalled.garden for a p2p social-media network built on the Dat Web.
 
-How it works:
+## How it works
 
  - Every user has their own Dat website.
  - Users publish links, comments, and other kinds of content on their sites.
@@ -13,7 +13,7 @@ How it works:
 
 In practice, unwalled.garden is only a set of schemas and specs. It must be implemented by applications on the Dat Web. The reference implementation is the [Beaker](https://github.com/beakerbrowser/beaker).
 
-## Site types
+### Site types
 
 The Dat Web is "semantic," meaning that the information is machine-readable and typed. Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
 
@@ -27,51 +27,101 @@ Generally speaking, the user types publish content on their own sites or on chan
 
 ### The full site-type listing
 
- - **Users**
-   - [Person](./person.md). A human user.<br><sup>unwalled.garden/person</sup>
-   - [Organization](./organization.md). A business, group, government agency, or non-profit.<br><sup>unwalled.garden/organization</sup>
-   - [Bot](./bot.md). A non-human user.<br><sup>unwalled.garden/bot</sup>
-   - [Project](./project.md). A goal-oriented group.<br><sup>unwalled.garden/project</sup>
-   - [Place](./place.md). A location in the world.<br><sup>unwalled.garden/place</sup>
- - **Channels**
-   - [Blog](./channel/blog.md). Publishes blog-post files.<br><sup>unwalled.garden/channel/blog</sup>
-   - [Podcast](./channel/podcast.md). Publishes podcast files.<br><sup>unwalled.garden/channel/podcast</sup>
-   - [Music](./channel/music.md). Publishes music files.<br><sup>unwalled.garden/channel/music</sup>
-   - [Video](./channel/video.md). Publishes video files.<br><sup>unwalled.garden/channel/video</sup>
-   - [Photo](./channel/photo.md). Publishes image files.<br><sup>unwalled.garden/channel/photo</sup>
- - **Media**
-   - [Article](./media/article.md). A single document file.<br><sup>unwalled.garden/media/article</sup>
-   - [Photo-album](./media/photo-album.md). A collection of image files.<br><sup>unwalled.garden/media/photo-album</sup>
-   - [Photo](./media/photo.md). A single image file.<br><sup>unwalled.garden/media/photo</sup>
-   - [Music-album](./media/music-album.md). A collection of music files.<br><sup>unwalled.garden/media/music-album</sup>
-   - [Music-playlist](./media/music-playlist.md). A collection of music files.<br><sup>unwalled.garden/media/music-playlist</sup>
-   - [Song](./media/song.md). A single music file.<br><sup>unwalled.garden/media/song</sup>
-   - [Podcast-episode](./media/podcast-episode.md). A single podcast file.<br><sup>unwalled.garden/media/podcast-episode</sup>
-   - [Video-playlist](./media/video-playlist.md). A collection of video files.<br><sup>unwalled.garden/media/video-playlist</sup>
-   - [Video](./media/video.md). A single video file.<br><sup>unwalled.garden/media/video</sup>
-   - [File-set](./media/file-set.md). A collection of files of any type.<br><sup>unwalled.garden/media/file-set</sup>
-   - [File](./media/file.md). A single file of any type.<br><sup>unwalled.garden/media/file</sup>
+ - Users
+   - Person
+     - A human user.
+     - [unwalled.garden/person](./person.md)
+   - Organization
+     - A business, group, government agency, or non-profit.
+     - [unwalled.garden/organization](./organization.md)
+   - Bot
+     - A non-human user.
+     - [unwalled.garden/bot](./bot.md)
+   - Project
+     - A goal-oriented group.
+     - [unwalled.garden/project](./project.md)
+   - Place
+     - A location in the world.
+     - [unwalled.garden/place](./place.md)
+ - Channels
+   - Blog
+     - Publishes blog-posts.
+     - [unwalled.garden/channel/blog](./channel/blog.md)
+   - Podcast
+     - Publishes podcast episodes.
+     - [unwalled.garden/channel/podcast](./channel/podcast.md)
+   - Music channel
+     - Publishes music.
+     - [unwalled.garden/channel/music](./channel/music.md)
+   - Video channel
+     - Publishes videos.
+     - [unwalled.garden/channel/video](./channel/video.md)
+   - Photo channel
+     - Publishes images.
+     - [unwalled.garden/channel/photo](./channel/photo.md)
+ - Media
+   - Article
+     - A single document.
+     - [unwalled.garden/media/article](./media/article.md)
+   - Photo-album
+     - A collection of images.
+     - [unwalled.garden/media/photo-album](./media/photo-album.md)
+   - Photo
+     - A single image.
+     - [unwalled.garden/media/photo](./media/photo.md)
+   - Music-album
+     - A collection of songs.
+     - [unwalled.garden/media/music-album](./media/music-album.md)
+   - Music-playlist
+     - A collection of songs.
+     - [unwalled.garden/media/music-playlist](./media/music-playlist.md)
+   - Song
+     - A single song.
+     - [unwalled.garden/media/song](./media/song.md)
+   - Podcast episode
+     - A single podcast episode.
+     - [unwalled.garden/media/podcast-episode](./media/podcast-episode.md)
+   - Video playlist
+     - A collection of videos.
+     - [unwalled.garden/media/video-playlist](./media/video-playlist.md)
+   - Video
+     - A single video.
+     - [unwalled.garden/media/video](./media/video.md)
+   - File-set
+     - A collection of files of any type.
+     - [unwalled.garden/media/file-set](./media/file-set.md)
+   - File
+     - A single file of any type.
+     - [unwalled.garden/media/file](./media/file.md)
 
-## JSON types
+### JSON types
 
 Sites often publish data-records in the form of JSON. These records are typed and must conform to a JSON-schema.
 
-Published by user sites:
-
- - [Follows](./record/follows.md). The list of sites followed by a user.<br><sup>unwalled.garden/record/follows</sup>
- - [Post](./record/post.md). A microblog post.<br><sup>unwalled.garden/record/post</sup>
- - [Comment](./record/comment.md). A threaded comment on some URL.<br><sup>unwalled.garden/record/comment</sup>
- - [Vote](./record/vote.md). An up or down vote on some URL.<br><sup>unwalled.garden/record/vote</sup>
- - [Link](./record/link.md). A link published by a user.<br><sup>unwalled.garden/record/link</sup>
- - [Published site](./record/published-site.md). A site published by a user.<br><sup>unwalled.garden/record/published-sites</sup>
-
-Published by channel sites:
-
- - [Content feed](./record/content-feed.md). A feed of published content.<br><sup>unwalled.garden/record/content-feed</sup>
-
-Published by media sites:
-
- - [Content](./record/content.md). A listing of published content.<br><sup>unwalled.garden/record/content</sup>
+ - Follows
+   - The list of sites followed by a user.
+   - [unwalled.garden/record/follows](./record/follows.md)
+ - Post
+   - A microblog post.
+   - [unwalled.garden/record/post](./record/post.md)
+ - Comment
+   - A threaded comment on some URL.
+   - [unwalled.garden/record/comment](./record/comment.md)
+ - Vote
+   - An up or down vote on some URL.
+   - [unwalled.garden/record/vote](./record/vote.md)
+ - Link
+   - A link published by a user.
+   - [unwalled.garden/record/link](./record/link.md)
+ - Published site
+   - A site published by a user.
+   - [unwalled.garden/record/published-sites](./record/published-site.md)
+ - Content feed
+   - A feed of published content.
+   - [unwalled.garden/record/content-feed](./record/content-feed.md)
+ - Content
+   - A listing of published content.
+   - [unwalled.garden/record/content](./record/content.md)
 
 ## Site-type patterns
 
@@ -135,7 +185,8 @@ The rules for governance are as follows:
 
 The current [BDFL](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) is [Paul Frazee](https://github.com/pfrazee).
 
-The current reference implementation is [Beaker](https://github.com/beakerbrowser/beaker). The `develop` branch will be merged into `master` when the reference implementation has been published with appropriate support for the changes.
+The current reference implementation is [Beaker](https://github.com/beakerbrowser/beaker)
+   - The `develop` branch will be merged into `master` when the reference implementation has been published with appropriate support for the changes.
 
 ## FAQ
 
