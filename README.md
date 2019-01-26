@@ -7,15 +7,29 @@ The unwalled.garden for a p2p social-media network built on the Dat Web.
 ## How it works
 
  - Every user has their own Dat website.
- - Users publish links, comments, and other kinds of content on their sites.
+ - Users publish posts, comments, and other kinds of content on their sites.
  - Users follow each other to sync their content.
  - Follows are public, creating a social graph.
 
 In practice, unwalled.garden is only a set of schemas and specs. It must be implemented by applications. The reference implementation is [Beaker](https://github.com/beakerbrowser/beaker).
 
+### Supported use-cases
+
+Unwalled.garden has schemas for multiple different use cases:
+
+ - News feeds (see: [micro-post](./micro-post.md))
+ - Link aggregators (see: [link-post](./link-post.md))
+ - Blogging
+ - Music players
+ - Video players
+ - Podcast players
+ - General file-sharing
+
+The schemas will be expanded over time to fit more use-cases.
+
 ### Site types
 
-The Dat Web is "semantic," meaning that the information is machine-readable and typed. Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
+Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
 
 Unwalled.garden currently uses 3 patterns of site types:
 
@@ -23,21 +37,21 @@ Unwalled.garden currently uses 3 patterns of site types:
  - Channels, followable streams of content.
  - Media, individual pieces of content.
 
-Generally speaking, the users publish content on their own sites or on channel and media sites. The channel and media sites act as separate containers of content.
+Generally speaking, the users publish content on their own sites or on channel or media sites. The channel and media sites act as separate containers of content.
 
-Sites publish data-records in the form of JSON. These records are typed and must conform to their own JSON-schemas.
+Sites publish data-records in the form of JSON which is also typed.
 
 ### User sites
 
 User sites follow the following file-structure:
 
 ```
-/data/follows.json      - A unwalled.garden/record/follows record
-/data/posts/            - Contains unwalled.garden/record/post records
-/data/comments/         - Contains unwalled.garden/record/comments records
-/data/votes/            - Contains unwalled.garden/record/votes records
-/data/links/            - Contains unwalled.garden/record/link records
-/data/published-sites/  - Contains unwalled.garden/record/published-site records
+/data/follows.json      - A unwalled.garden/follows record
+/data/micro-feed/       - Contains unwalled.garden/micro-post records
+/data/link-feed/        - Contains unwalled.garden/link-post records
+/data/comments/         - Contains unwalled.garden/comment records
+/data/votes/            - Contains vote records (see "the votes folder")
+/data/published-sites/  - Contains unwalled.garden/published-site records
 /data/known-sites/      - Contains cached copies of referenced sites' metadata
 ```
 
@@ -46,7 +60,7 @@ User sites follow the following file-structure:
 Channel sites follow the following file-structure:
 
 ```
-/data/content-feed/     - Contains unwalled.garden/record/content-feed records
+/data/content-feed/     - Contains unwalled.garden/content records
 /media/                 - Contains the media files
 ```
 
@@ -55,7 +69,7 @@ Channel sites follow the following file-structure:
 Media sites follow the following file-structure:
 
 ```
-/data/content.json      - A unwalled.garden/record/content record
+/data/content.json      - A unwalled.garden/content record
 /media/                 - Contains the media files
 ```
 
@@ -88,16 +102,38 @@ Media sites follow the following file-structure:
 
 ### The full record-type listing
 
- - [Follows](./record/follows.md)
- - [Post](./record/post.md)
- - [Comment](./record/comment.md)
- - [Vote](./record/vote.md)
- - [Link](./record/link.md)
- - [Published site](./record/published-site.md)
- - [Content feed](./record/content-feed.md)
- - [Content](./record/content.md)
+ - [Follows](./follows.md)
+ - [Micro post](./micro-post.md)
+ - [Link post](./link-post.md)
+ - [Comment](./comment.md)
+ - [Published site](./published-site.md)
+ - [Content](./content.md)
 
-## The known-sites folder
+## Folder patterns
+
+### The *-feed folders
+
+Feed folders contain records that are published over time. Examples include [micro posts](./micro-post.md) and [link posts](./link-post.md) for users, and [content](./content.md) for channels.
+
+Records in feed folders are named by their creation time. This makes them easy to read chronologically. Example listing:
+
+```
+/data/micro-feed/2019-01-26T16:32:55.109Z.json
+/data/micro-feed/2019-01-26T17:55:31.856Z.json
+/data/micro-feed/2019-01-26T17:58:05.118Z.json
+```
+
+### The published-sites folder
+
+The published-sites folder lists the sites created by a user. It contains the [published site](./published-site.md) record.
+
+Records in the published-sites folder are named by the hostname of the sites they reference. This makes it easy to look up the record for a given site. Example listing:
+
+```
+/data/published-sites/43dfc9f23fdded8cc7c01c71c0702a0529130af0258e7fb30bf5a0a3f73d69b3.json
+```
+
+### The known-sites folder
 
 The "known-sites" folder contains copies of metadata from sites reference by the containing site. It is used to reduce the number of network lookups. For instance, when bob's site announces that it follows alice, bob's site will write a copy of alice's metadata in its known-sites. Bob's followers can then reference the cached metadata.
 
@@ -111,6 +147,40 @@ The structure of the known-sites folder is as follows:
 ```
 
 Generally speaking, only the dat.json and a few image assets should be included.
+
+### The comments folder
+
+The comments folder contains comments created by the user. It contains the [comment](./comment.md) record.
+
+The structure of the comments folder is as follows:
+
+```
+/data/comments/{slugified-url}/{creation-time}.json
+```
+
+An example:
+
+```
+/data/comments/beakerbrowser-com-docs/2019-01-26T16:32:55.109Z.json
+```
+
+You can find the algorithm for slugifying URLs in [slugify-url.js](slugify-url.js).
+
+### The votes folder
+
+Votes are a special kind of content-free record. The files encode their information entirely in the filename -- the filenames themselves are empty.
+
+The structure of the votes folder is as follows:
+
+```
+/data/votes/{slugified-url}.{up|down}
+```
+
+An example:
+
+```
+/data/comments/beakerbrowser-com-docs.up
+```
 
 ## Governance
 
@@ -133,7 +203,7 @@ Users and channels are both followable, however channels are usually published b
 
 Here's the technical ways the channels differ from users:
 
- - Channels can only publish certain types of content, as determined by the `channelType`. 
+ - Channels can only publish certain types of content. 
  - Channels can not follow sites.
 
 ### How do channels differ from media sites?
