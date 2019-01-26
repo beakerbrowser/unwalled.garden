@@ -27,11 +27,7 @@ Generally speaking, the users publish content on their own sites or on channel a
 
 Sites publish data-records in the form of JSON. These records are typed and must conform to their own JSON-schemas.
 
-## Site patterns
-
-The site types follow one of the following 3 patterns.
-
-### Site pattern: User
+### User sites
 
 User sites follow the following file-structure:
 
@@ -45,7 +41,7 @@ User sites follow the following file-structure:
 /data/known-sites/      - Contains cached copies of referenced sites' metadata
 ```
 
-### Site pattern: Channel
+### Channel sites
 
 Channel sites follow the following file-structure:
 
@@ -54,7 +50,7 @@ Channel sites follow the following file-structure:
 /media/                 - Contains the media files
 ```
 
-### Site pattern: Media
+### Media sites
 
 Media sites follow the following file-structure:
 
