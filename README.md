@@ -17,31 +17,19 @@ In practice, unwalled.garden is only a set of schemas and specs. It must be impl
 
 Unwalled.garden has schemas for multiple different use cases:
 
- - News feeds (see: [micro-post](./micro-post.md))
- - Link aggregators (see: [link-post](./link-post.md))
+ - News feeds
+ - Link aggregators
  - Blogging
  - Music players
  - Video players
  - Podcast players
  - General file-sharing
 
-The schemas will be expanded over time to fit more use-cases.
-
 ### Site types
 
 Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
 
-Unwalled.garden currently uses 3 patterns of site types:
-
- - Users, the participants on the network.
- - Channels, followable streams of content.
- - Media, individual pieces of content.
-
-Generally speaking, the users publish content on their own sites or on channel or media sites. The channel and media sites act as separate containers of content.
-
-Sites publish data-records in the form of JSON which is also typed.
-
-### User sites
+#### User sites
 
 User sites follow the following file-structure:
 
@@ -55,18 +43,18 @@ User sites follow the following file-structure:
 /data/known-sites/      - Contains cached copies of referenced sites' metadata
 ```
 
-### Channel sites
+#### Channel sites
 
-Channel sites follow the following file-structure:
+Channel sites are followable streams of content. They follow the following file-structure:
 
 ```
 /data/content-feed/     - Contains unwalled.garden/content records
 /media/                 - Contains the media files
 ```
 
-### Media sites
+#### Media sites
 
-Media sites follow the following file-structure:
+Media sites are individual pieces of content. They follow the following file-structure:
 
 ```
 /data/content.json      - A unwalled.garden/content record
@@ -168,7 +156,7 @@ You can find the algorithm for slugifying URLs in [slugify-url.js](slugify-url.j
 
 ### The votes folder
 
-Votes are a special kind of content-free record. The files encode their information entirely in the filename -- the filenames themselves are empty.
+Votes are a special kind of content-free record. The files encode their information entirely in the filename (the files themselves are empty).
 
 The structure of the votes folder is as follows:
 
