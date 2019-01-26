@@ -99,7 +99,7 @@ Media sites are individual pieces of content. They follow the following file-str
 
 ## Folder patterns
 
-### The *-feed folders
+### The \*-feed folders
 
 Feed folders contain records that are published over time. Examples include [micro posts](./micro-post.md) and [link posts](./link-post.md) for users, and [content](./content.md) for channels.
 
