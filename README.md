@@ -11,21 +11,59 @@ The unwalled.garden for a p2p social-media network built on the Dat Web.
  - Users follow each other to sync their content.
  - Follows are public, creating a social graph.
 
-In practice, unwalled.garden is only a set of schemas and specs. It must be implemented by applications on the Dat Web. The reference implementation is the [Beaker](https://github.com/beakerbrowser/beaker).
+In practice, unwalled.garden is only a set of schemas and specs. It must be implemented by applications. The reference implementation is [Beaker](https://github.com/beakerbrowser/beaker).
 
 ### Site types
 
 The Dat Web is "semantic," meaning that the information is machine-readable and typed. Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
 
-Unwalled.garden currently uses 3 varieties of site types:
+Unwalled.garden currently uses 3 patterns of site types:
 
  - Users, the participants on the network.
  - Channels, followable streams of content.
  - Media, individual pieces of content.
 
-Generally speaking, the user types publish content on their own sites or on channel sites and media sites. The channel and media sites act as separate containers of content.
+Generally speaking, the users publish content on their own sites or on channel and media sites. The channel and media sites act as separate containers of content.
 
-The full site-type listing:
+Sites publish data-records in the form of JSON. These records are typed and must conform to their own JSON-schemas.
+
+## Site patterns
+
+The site types follow one of the following 3 patterns.
+
+### Site pattern: User
+
+User sites follow the following file-structure:
+
+```
+/data/follows.json      - A unwalled.garden/record/follows record
+/data/posts/            - Contains unwalled.garden/record/post records
+/data/comments/         - Contains unwalled.garden/record/comments records
+/data/votes/            - Contains unwalled.garden/record/votes records
+/data/links/            - Contains unwalled.garden/record/link records
+/data/published-sites/  - Contains unwalled.garden/record/published-site records
+/data/known-sites/      - Contains cached copies of referenced sites' metadata
+```
+
+### Site pattern: Channel
+
+Channel sites follow the following file-structure:
+
+```
+/data/content-feed/     - Contains unwalled.garden/record/content-feed records
+/media/                 - Contains the media files
+```
+
+### Site pattern: Media
+
+Media sites follow the following file-structure:
+
+```
+/data/content.json      - A unwalled.garden/record/content record
+/media/                 - Contains the media files
+```
+
+## The full site-type listing
 
  - Users
    - [Person](./person.md)
@@ -52,11 +90,7 @@ The full site-type listing:
    - [File-set](./media/file-set.md)
    - [File](./media/file.md)
 
-### Record types
-
-Sites publish data-records in the form of JSON. These records are typed and must conform to a JSON-schema.
-
-The full record-type listing:
+### The full record-type listing
 
  - [Follows](./record/follows.md)
  - [Post](./record/post.md)
@@ -66,42 +100,6 @@ The full record-type listing:
  - [Published site](./record/published-site.md)
  - [Content feed](./record/content-feed.md)
  - [Content](./record/content.md)
-
-## Site-type patterns
-
-The site types follow one of the following 3 patterns. Read the individual types' descriptions to see the exact details of the type.
-
-### Site-type pattern: User
-
-User sites follow the following file-structure:
-
-```
-/data/follows.json      - A unwalled.garden/record/follows
-/data/posts/            - Contains unwalled.garden/record/post
-/data/comments/         - Contains unwalled.garden/record/comments
-/data/votes/            - Contains unwalled.garden/record/votes
-/data/links/            - Contains unwalled.garden/record/link
-/data/published-sites/  - Contains unwalled.garden/record/published-site
-/data/known-sites/      - Contains cached copies of referenced sites' metadata
-```
-
-### Site-type pattern: Channel
-
-Channel sites follow the following file-structure:
-
-```
-/data/content-feed/     - Contains unwalled.garden/record/content-feed
-/media/                 - Contains the media files
-```
-
-### Site-type pattern: Media
-
-Media sites follow the following file-structure:
-
-```
-/data/content.json      - Contains unwalled.garden/record/content
-/media/                 - Contains the media files
-```
 
 ## The known-sites folder
 
@@ -129,8 +127,7 @@ The rules for governance are as follows:
 
 The current [BDFL](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) is [Paul Frazee](https://github.com/pfrazee).
 
-The current reference implementation is [Beaker](https://github.com/beakerbrowser/beaker)
-   - The `develop` branch will be merged into `master` when the reference implementation has been published with appropriate support for the changes.
+The current reference implementation is [Beaker](https://github.com/beakerbrowser/beaker). The `develop` branch will be merged into `master` when the reference implementation has been published with appropriate support for the changes.
 
 ## FAQ
 
