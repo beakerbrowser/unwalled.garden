@@ -25,103 +25,47 @@ Unwalled.garden currently uses 3 varieties of site types:
 
 Generally speaking, the user types publish content on their own sites or on channel sites and media sites. The channel and media sites act as separate containers of content.
 
-### The full site-type listing
+The full site-type listing:
 
  - Users
-   - Person
-     - A human user.
-     - [unwalled.garden/person](./person.md)
-   - Organization
-     - A business, group, government agency, or non-profit.
-     - [unwalled.garden/organization](./organization.md)
-   - Bot
-     - A non-human user.
-     - [unwalled.garden/bot](./bot.md)
-   - Project
-     - A goal-oriented group.
-     - [unwalled.garden/project](./project.md)
-   - Place
-     - A location in the world.
-     - [unwalled.garden/place](./place.md)
+   - [Person](./person.md)
+   - [Organization](./organization.md)
+   - [Bot](./bot.md)
+   - [Project](./project.md)
+   - [Place](./place.md)
  - Channels
-   - Blog
-     - Publishes blog-posts.
-     - [unwalled.garden/channel/blog](./channel/blog.md)
-   - Podcast
-     - Publishes podcast episodes.
-     - [unwalled.garden/channel/podcast](./channel/podcast.md)
-   - Music channel
-     - Publishes music.
-     - [unwalled.garden/channel/music](./channel/music.md)
-   - Video channel
-     - Publishes videos.
-     - [unwalled.garden/channel/video](./channel/video.md)
-   - Photo channel
-     - Publishes images.
-     - [unwalled.garden/channel/photo](./channel/photo.md)
+   - [Blog](./channel/blog.md)
+   - [Podcast](./channel/podcast.md)
+   - [Music](./channel/music.md)
+   - [Video](./channel/video.md)
+   - [Photo](./channel/photo.md)
  - Media
-   - Article
-     - A single document.
-     - [unwalled.garden/media/article](./media/article.md)
-   - Photo-album
-     - A collection of images.
-     - [unwalled.garden/media/photo-album](./media/photo-album.md)
-   - Photo
-     - A single image.
-     - [unwalled.garden/media/photo](./media/photo.md)
-   - Music-album
-     - A collection of songs.
-     - [unwalled.garden/media/music-album](./media/music-album.md)
-   - Music-playlist
-     - A collection of songs.
-     - [unwalled.garden/media/music-playlist](./media/music-playlist.md)
-   - Song
-     - A single song.
-     - [unwalled.garden/media/song](./media/song.md)
-   - Podcast episode
-     - A single podcast episode.
-     - [unwalled.garden/media/podcast-episode](./media/podcast-episode.md)
-   - Video playlist
-     - A collection of videos.
-     - [unwalled.garden/media/video-playlist](./media/video-playlist.md)
-   - Video
-     - A single video.
-     - [unwalled.garden/media/video](./media/video.md)
-   - File-set
-     - A collection of files of any type.
-     - [unwalled.garden/media/file-set](./media/file-set.md)
-   - File
-     - A single file of any type.
-     - [unwalled.garden/media/file](./media/file.md)
+   - [Article](./media/article.md)
+   - [Photo-album](./media/photo-album.md)
+   - [Photo](./media/photo.md)
+   - [Music-album](./media/music-album.md)
+   - [Music-playlist](./media/music-playlist.md)
+   - [Song](./media/song.md)
+   - [Podcast-episode](./media/podcast-episode.md)
+   - [Video-playlist](./media/video-playlist.md)
+   - [Video](./media/video.md)
+   - [File-set](./media/file-set.md)
+   - [File](./media/file.md)
 
-### JSON types
+### Record types
 
-Sites often publish data-records in the form of JSON. These records are typed and must conform to a JSON-schema.
+Sites publish data-records in the form of JSON. These records are typed and must conform to a JSON-schema.
 
- - Follows
-   - The list of sites followed by a user.
-   - [unwalled.garden/record/follows](./record/follows.md)
- - Post
-   - A microblog post.
-   - [unwalled.garden/record/post](./record/post.md)
- - Comment
-   - A threaded comment on some URL.
-   - [unwalled.garden/record/comment](./record/comment.md)
- - Vote
-   - An up or down vote on some URL.
-   - [unwalled.garden/record/vote](./record/vote.md)
- - Link
-   - A link published by a user.
-   - [unwalled.garden/record/link](./record/link.md)
- - Published site
-   - A site published by a user.
-   - [unwalled.garden/record/published-sites](./record/published-site.md)
- - Content feed
-   - A feed of published content.
-   - [unwalled.garden/record/content-feed](./record/content-feed.md)
- - Content
-   - A listing of published content.
-   - [unwalled.garden/record/content](./record/content.md)
+The full record-type listing:
+
+ - [Follows](./record/follows.md)
+ - [Post](./record/post.md)
+ - [Comment](./record/comment.md)
+ - [Vote](./record/vote.md)
+ - [Link](./record/link.md)
+ - [Published site](./record/published-site.md)
+ - [Content feed](./record/content-feed.md)
+ - [Content](./record/content.md)
 
 ## Site-type patterns
 
