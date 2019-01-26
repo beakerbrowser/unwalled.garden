@@ -93,8 +93,8 @@ Media sites are individual pieces of content. They follow the following file-str
  - [Follows](./follows.md)
  - [Micro post](./micro-post.md)
  - [Link post](./link-post.md)
- - [Comment](./comment.md)
  - [Published site](./published-site.md)
+ - [Comment](./comment.md)
  - [Content](./content.md)
 
 ## Folder patterns
