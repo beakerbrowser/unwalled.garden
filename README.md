@@ -28,29 +28,29 @@ Generally speaking, the user types publish content on their own sites or on chan
 ### The full site-type listing
 
  - **Users**
-   - [Person](./person.md). A human user.<br>unwalled.garden/person
-   - [Organization](./organization.md). A business, group, government agency, or non-profit.<br>unwalled.garden/organization
-   - [Bot](./bot.md). A non-human user.<br>unwalled.garden/bot
-   - [Project](./project.md). A goal-oriented group.<br>unwalled.garden/project
-   - [Place](./place.md). A location in the world.<br>unwalled.garden/place
+   - [Person](./person.md). A human user.<br><sup>unwalled.garden/person</sup>
+   - [Organization](./organization.md). A business, group, government agency, or non-profit.<br><sup>unwalled.garden/organization</sup>
+   - [Bot](./bot.md). A non-human user.<br><sup>unwalled.garden/bot</sup>
+   - [Project](./project.md). A goal-oriented group.<br><sup>unwalled.garden/project</sup>
+   - [Place](./place.md). A location in the world.<br><sup>unwalled.garden/place</sup>
  - **Channels**
-   - [Blog](./channel/blog.md). Publishes blog-post files.<br>unwalled.garden/channel/blog
-   - [Podcast](./channel/podcast.md). Publishes podcast files.<br>unwalled.garden/channel/podcast
-   - [Music](./channel/music.md). Publishes music files.<br>unwalled.garden/channel/music
-   - [Video](./channel/video.md). Publishes video files.<br>unwalled.garden/channel/video
-   - [Photo](./channel/photo.md). Publishes image files.<br>unwalled.garden/channel/photo
+   - [Blog](./channel/blog.md). Publishes blog-post files.<br><sup>unwalled.garden/channel/blog</sup>
+   - [Podcast](./channel/podcast.md). Publishes podcast files.<br><sup>unwalled.garden/channel/podcast</sup>
+   - [Music](./channel/music.md). Publishes music files.<br><sup>unwalled.garden/channel/music</sup>
+   - [Video](./channel/video.md). Publishes video files.<br><sup>unwalled.garden/channel/video</sup>
+   - [Photo](./channel/photo.md). Publishes image files.<br><sup>unwalled.garden/channel/photo</sup>
  - **Media**
-   - [Article](./media/article.md). A single document file.<br>unwalled.garden/media/article
-   - [Photo-album](./media/photo-album.md). A collection of image files.<br>unwalled.garden/media/photo-album
-   - [Photo](./media/photo.md). A single image file.<br>unwalled.garden/media/photo
-   - [Music-album](./media/music-album.md). A collection of music files.<br>unwalled.garden/media/music-album
-   - [Music-playlist](./media/music-playlist.md). A collection of music files.<br>unwalled.garden/media/music-playlist
-   - [Song](./media/song.md). A single music file.<br>unwalled.garden/media/song
-   - [Podcast-episode](./media/podcast-episode.md). A single podcast file.<br>unwalled.garden/media/podcast-episode
-   - [Video-playlist](./media/video-playlist.md). A collection of video files.<br>unwalled.garden/media/video-playlist
-   - [Video](./media/video.md). A single video file.<br>unwalled.garden/media/video
-   - [File-set](./media/file-set.md). A collection of files of any type.<br>unwalled.garden/media/file-set
-   - [File](./media/file.md). A single file of any type.<br>unwalled.garden/media/file
+   - [Article](./media/article.md). A single document file.<br><sup>unwalled.garden/media/article</sup>
+   - [Photo-album](./media/photo-album.md). A collection of image files.<br><sup>unwalled.garden/media/photo-album</sup>
+   - [Photo](./media/photo.md). A single image file.<br><sup>unwalled.garden/media/photo</sup>
+   - [Music-album](./media/music-album.md). A collection of music files.<br><sup>unwalled.garden/media/music-album</sup>
+   - [Music-playlist](./media/music-playlist.md). A collection of music files.<br><sup>unwalled.garden/media/music-playlist</sup>
+   - [Song](./media/song.md). A single music file.<br><sup>unwalled.garden/media/song</sup>
+   - [Podcast-episode](./media/podcast-episode.md). A single podcast file.<br><sup>unwalled.garden/media/podcast-episode</sup>
+   - [Video-playlist](./media/video-playlist.md). A collection of video files.<br><sup>unwalled.garden/media/video-playlist</sup>
+   - [Video](./media/video.md). A single video file.<br><sup>unwalled.garden/media/video</sup>
+   - [File-set](./media/file-set.md). A collection of files of any type.<br><sup>unwalled.garden/media/file-set</sup>
+   - [File](./media/file.md). A single file of any type.<br><sup>unwalled.garden/media/file</sup>
 
 ## JSON types
 
@@ -58,20 +58,20 @@ Sites often publish data-records in the form of JSON. These records are typed an
 
 Published by user sites:
 
- - [Follows](./record/follows.md). The list of sites followed by a user.<br>unwalled.garden/record/follows
- - [Post](./record/post.md). A microblog post.<br>unwalled.garden/record/post
- - [Comment](./record/comment.md). A threaded comment on some URL.<br>unwalled.garden/record/comment
- - [Vote](./record/vote.md). An up or down vote on some URL.<br>unwalled.garden/record/vote
- - [Link](./record/link.md). A link published by a user.<br>unwalled.garden/record/link
- - [Published site](./record/published-site.md). A site published by a user.<br>unwalled.garden/record/published-sites
+ - [Follows](./record/follows.md). The list of sites followed by a user.<br><sup>unwalled.garden/record/follows</sup>
+ - [Post](./record/post.md). A microblog post.<br><sup>unwalled.garden/record/post</sup>
+ - [Comment](./record/comment.md). A threaded comment on some URL.<br><sup>unwalled.garden/record/comment</sup>
+ - [Vote](./record/vote.md). An up or down vote on some URL.<br><sup>unwalled.garden/record/vote</sup>
+ - [Link](./record/link.md). A link published by a user.<br><sup>unwalled.garden/record/link</sup>
+ - [Published site](./record/published-site.md). A site published by a user.<br><sup>unwalled.garden/record/published-sites</sup>
 
 Published by channel sites:
 
- - [Content feed](./record/content-feed.md). A feed of published content.<br>unwalled.garden/record/content-feed
+ - [Content feed](./record/content-feed.md). A feed of published content.<br><sup>unwalled.garden/record/content-feed</sup>
 
 Published by media sites:
 
- - [Content](./record/content.md). A listing of published content.<br>unwalled.garden/record/conten
+ - [Content](./record/content.md). A listing of published content.<br><sup>unwalled.garden/record/content</sup>
 
 ## Site-type patterns
 
