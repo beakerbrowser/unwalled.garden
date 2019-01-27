@@ -29,6 +29,8 @@ Unwalled.garden has schemas for multiple different use cases:
 
 Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
 
+New to dat? [Read this quick primer.](./dat-primer.md)
+
 #### User sites
 
 User sites follow the following file-structure:
@@ -101,7 +103,7 @@ Media sites are individual pieces of content. They follow the following file-str
 
 ### The \*-feed folders
 
-Feed folders contain records that are published over time. Examples include [micro posts](./micro-post.md) and [link posts](./link-post.md) for users, and [content](./content.md) for channels.
+Feed folders contain records that are published over time. Those records are [micro posts](./micro-post.md) and [link posts](./link-post.md) for users, and [content](./content.md) for channels.
 
 Records in feed folders are named by their creation time. This makes them easy to read chronologically. Example listing:
 
@@ -115,10 +117,10 @@ Records in feed folders are named by their creation time. This makes them easy t
 
 The published-sites folder lists the sites created by a user. It contains the [published site](./published-site.md) record.
 
-Records in the published-sites folder are named by the hostname of the sites they reference. This makes it easy to look up the record for a given site. Example listing:
+Records in the published-sites folder are named by the hostname of the sites they reference.
 
 ```
-/data/published-sites/43dfc9f23fdded8cc7c01c71c0702a0529130af0258e7fb30bf5a0a3f73d69b3.json
+/data/published-sites/{hostname}.json
 ```
 
 ### The known-sites folder
