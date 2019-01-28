@@ -172,6 +172,8 @@ An example:
 /data/comments/beakerbrowser-com-docs.up
 ```
 
+If two conflicting votes are present (both a ".up" and ".down" file) then readers should interpret the vote as nullified.
+
 ## Governance
 
 The rules for governance are as follows:
