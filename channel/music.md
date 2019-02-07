@@ -7,6 +7,6 @@
 File-structure:
 
 ```
-/data/content-feed/     - Contains unwalled.garden/content records
-/media/                 - Contains the media files
+/data/feed/     - Contains unwalled.garden/content records
+/media/         - Contains the media files
 ```

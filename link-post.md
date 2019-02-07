@@ -3,7 +3,7 @@
  - JSON Record
  - Description: A published link to some content.
  - Schema: [`unwalled.garden/link-post`](./link-post.json)
- - Path: `/data/link-feed/{createdAt}.json`
+ - Path: `/data/feed/{createdAt}.json`
 
 Link-posts are a way to publish pointers to content. They are primarily used to populate unwalled.garden's global search index. Followers aggregate each others' links to create their own private search. Aggregator apps can also use recently-published links as the basis of a discussion board, similar to Reddit or Hacker News.
 

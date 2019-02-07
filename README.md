@@ -11,6 +11,8 @@ Schemas for a p2p social-media network built on the Dat Web.
  - Users follow each other to sync their content.
  - Follows are public, creating a social graph.
 
+You can think of it as a souped-up RSS: users publish records as files on their sites, then sync the files regularly to receive updates.
+
 In practice, unwalled.garden is only a set of schemas and specs. It must be implemented by applications. The reference implementation is [Beaker](https://github.com/beakerbrowser/beaker).
 
 ### Supported use-cases
@@ -25,6 +27,8 @@ Unwalled.garden has schemas for multiple different use cases:
  - Podcast players
  - General file-sharing
 
+It also provides social schemas for following, commenting, voting, and more.
+
 ### Site types
 
 Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
@@ -37,8 +41,7 @@ User sites follow the following file-structure:
 
 ```
 /data/follows.json      - A unwalled.garden/follows record
-/data/micro-feed/       - Contains unwalled.garden/micro-post records
-/data/link-feed/        - Contains unwalled.garden/link-post records
+/data/feed/             - Contains unwalled.garden/micro-post, unwalled.garden/link-post, unwalled.garden/content records
 /data/comments/         - Contains unwalled.garden/comment records
 /data/votes/            - Contains vote records (see "the votes folder")
 /data/published-sites/  - Contains unwalled.garden/published-site records
@@ -50,7 +53,7 @@ User sites follow the following file-structure:
 Channel sites are followable streams of content. They follow the following file-structure:
 
 ```
-/data/content-feed/     - Contains unwalled.garden/content records
+/data/feed/             - Contains unwalled.garden/content records
 /media/                 - Contains the media files
 ```
 
@@ -94,23 +97,23 @@ Media sites are individual pieces of content. They follow the following file-str
 
  - [Follows](./follows.md)
  - [Micro post](./micro-post.md)
+ - [Content](./content.md)
  - [Link post](./link-post.md)
  - [Published site](./published-site.md)
  - [Comment](./comment.md)
- - [Content](./content.md)
 
 ## Folder patterns
 
-### The \*-feed folders
+### The feed folder
 
-Feed folders contain records that are published over time. Those records are [micro posts](./micro-post.md) and [link posts](./link-post.md) for users, and [content](./content.md) for channels.
+Feed folder contains records that are published over time. Those records are [micro posts](./micro-post.md), [link posts](./link-post.md), and [content records](./content.md).
 
 Records in feed folders are named by their creation time. This makes them easy to read chronologically. Example listing:
 
 ```
-/data/micro-feed/2019-01-26T16:32:55.109Z.json
-/data/micro-feed/2019-01-26T17:55:31.856Z.json
-/data/micro-feed/2019-01-26T17:58:05.118Z.json
+/data/feed/2019-01-26T16:32:55.109Z.json
+/data/feed/2019-01-26T17:55:31.856Z.json
+/data/feed/2019-01-26T17:58:05.118Z.json
 ```
 
 ### The published-sites folder

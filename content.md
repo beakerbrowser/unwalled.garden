@@ -3,7 +3,7 @@
  - JSON Record
  - Description: A description of media content.
  - Schema: [`unwalled.garden/content`](./content.json)
- - Path: `/data/content.json` or `/data/content/{createdAt}.json`
+ - Path: `/data/content.json` or `/data/feed/{createdAt}.json`
 
 Content records describe the media contained in a media or channel site.
 

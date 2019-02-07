@@ -3,7 +3,7 @@
  - JSON Record
  - Description: A short text post.
  - Schema: [`unwalled.garden/micro-post`](./micro-post.json)
- - Path: `/data/posts/{createdAt}.json`
+ - Path: `/data/feed/{createdAt}.json`
 
 Micro-posts are a short text document which may contain embedded media such as photos, video, and audio. They are aggregated in "news feed" applications which are similar to Twitter.
 
