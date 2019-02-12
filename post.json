@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "dat://unwalled.garden/post.json",
+  "type": "object",
+  "title": "Post",
+  "description": "A broadcasted piece of content.",
+  "oneOf": [
+    {
+      "required": ["type", "postType", "content", "createdAt"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "The object's type",
+          "const": "unwalled.garden/post"
+        },
+        "postType": {
+          "type": "string",
+          "title": "The post's sub-type",
+          "const": "text"
+        },
+        "content": {
+          "type": "object",
+          "required": ["body"],
+          "properties": {
+            "body": {
+              "type": "string",
+              "title": "The post's content",
+              "maxLength": 280
+            }
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "The time of this post's creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "The time of this post's last edit"
+        }
+      }
+    },
+    {
+      "required": ["type", "postType", "content", "createdAt"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "The object's type",
+          "const": "unwalled.garden/post"
+        },
+        "postType": {
+          "type": "string",
+          "title": "The post's sub-type",
+          "const": "link"
+        },
+        "content": {
+          "type": "object",
+          "required": ["href", "title"],
+          "properties": {
+            "href": {
+              "type": "string",
+              "title": "The link's target URL",
+              "format": "uri",
+              "examples": ["dat://beakerbrowser.com"]
+            },
+            "title": {
+              "type": "string",
+              "title": "The title of the link",
+              "examples": ["Check out this cool browser!"]
+            },
+            "thumbnail": {
+              "type": "string",
+              "title": "A path to an image for the link. (Must be located on the record-author's site.)"
+            }
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "The time of this post's creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "The time of this post's last edit"
+        }
+      }
+    }
+  ]
+}

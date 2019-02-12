@@ -7,44 +7,63 @@ Schemas for a p2p social-media network built on the Dat Web.
 ## How it works
 
  - Every user has their own Dat website.
- - Users publish posts, comments, and other kinds of content on their sites.
+ - Users publish status-updates, comments, and other kinds of content on their sites.
  - Users follow each other to sync their content.
  - Follows are public, creating a social graph.
 
+<<<<<<< Updated upstream
 In practice, unwalled.garden is only a set of schemas and specs. It must be implemented by applications. The reference implementation is [Beaker](https://github.com/beakerbrowser/beaker).
 
 ### Supported use-cases
 
 Unwalled.garden has schemas for multiple different use cases:
+=======
+You can think of it as a souped-up RSS: users publish records as files on their sites, then sync the files regularly to receive updates. This is used to power news feeds, link aggregators, comments sections, search engines, and more.
 
- - News feeds
- - Link aggregators
- - Blogging
- - Music players
- - Video players
- - Podcast players
- - General file-sharing
+New to dat? [Read this quick primer.](./dat-primer.md)
+>>>>>>> Stashed changes
 
+## Schema listing
+
+<<<<<<< Updated upstream
 ### Site types
+=======
+ - JSON-Record types
+   - [Comment](./comment.md) `unwalled.garden/comment`
+   - [Follows](./follows.md) `unwalled.garden/follows`
+   - [Post](./post.md) `unwalled.garden/post`
+
+## Site type
+>>>>>>> Stashed changes
 
 Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
 
-New to dat? [Read this quick primer.](./dat-primer.md)
+A dat can declare the unwalled.garden schemas usage by including `unwalled.garden/site` in its types.
 
-#### User sites
+```json
+{
+  "title": "My great website",
+  "type": ["unwalled.garden/site"]
+}
+```
 
-User sites follow the following file-structure:
+## Folder structure
 
 ```
+<<<<<<< Updated upstream
 /data/follows.json      - A unwalled.garden/follows record
 /data/micro-feed/       - Contains unwalled.garden/micro-post records
 /data/link-feed/        - Contains unwalled.garden/link-post records
+=======
+/data/follows.json      - An unwalled.garden/follows record
+/data/feed/             - Contains unwalled.garden/post records
+>>>>>>> Stashed changes
 /data/comments/         - Contains unwalled.garden/comment records
 /data/votes/            - Contains vote records (see "the votes folder")
-/data/published-sites/  - Contains unwalled.garden/published-site records
 /data/known-sites/      - Contains cached copies of referenced sites' metadata
 ```
 
+<<<<<<< Updated upstream
 #### Channel sites
 
 Channel sites are followable streams of content. They follow the following file-structure:
@@ -104,23 +123,18 @@ Media sites are individual pieces of content. They follow the following file-str
 ### The \*-feed folders
 
 Feed folders contain records that are published over time. Those records are [micro posts](./micro-post.md) and [link posts](./link-post.md) for users, and [content](./content.md) for channels.
+=======
+### The feed folder
 
-Records in feed folders are named by their creation time. This makes them easy to read chronologically. Example listing:
+The feed folder contains [post](./post.md) records which are published over time. Those files are named by their creation time. This makes them easy to read chronologically.
+>>>>>>> Stashed changes
+
+Example listing:
 
 ```
 /data/micro-feed/2019-01-26T16:32:55.109Z.json
 /data/micro-feed/2019-01-26T17:55:31.856Z.json
 /data/micro-feed/2019-01-26T17:58:05.118Z.json
-```
-
-### The published-sites folder
-
-The published-sites folder lists the sites created by a user. It contains the [published site](./published-site.md) record.
-
-Records in the published-sites folder are named by the hostname of the sites they reference.
-
-```
-/data/published-sites/{hostname}.json
 ```
 
 ### The known-sites folder
@@ -136,7 +150,7 @@ The structure of the known-sites folder is as follows:
 /data/known-sites/{hostname}/...
 ```
 
-Generally speaking, only the dat.json and a few image assets should be included.
+Generally speaking, only the dat.json and a few image assets (thumbnail, favicon) should be included.
 
 ### The comments folder
 
@@ -186,18 +200,3 @@ The rules for governance are as follows:
 The current [BDFL](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) is [Paul Frazee](https://github.com/pfrazee).
 
 The current reference implementation is [Beaker](https://github.com/beakerbrowser/beaker). The `develop` branch will be merged into `master` when the reference implementation has been published with appropriate support for the changes.
-
-## FAQ
-
-### How do users differ from channels?
-
-Users and channels are both followable, however channels are usually published by users as a place to put topic-specific content. For instance, a user might create multiple `podcast` channels to cover many different topics.
-
-Here's the technical ways the channels differ from users:
-
- - Channels can only publish certain types of content. 
- - Channels can not follow sites.
-
-### How do channels differ from media sites?
-
-Channels and media both represent content. However, channels publish content over time and therefore can be followed, while media sites contain all of their content at the time of publishing (though media sites may be versioned).
