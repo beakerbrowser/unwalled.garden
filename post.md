@@ -43,3 +43,8 @@ Example link post:
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
 ```
+
+Additional notes:
+
+ - Text-post body text is limited to 280 characters.
+ - Link-post title is limited to 280 characters.

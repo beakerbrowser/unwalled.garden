@@ -24,7 +24,7 @@
           "properties": {
             "body": {
               "type": "string",
-              "title": "The post's content",
+              "title": "The post's text body",
               "maxLength": 280
             }
           }
@@ -67,6 +67,7 @@
             "title": {
               "type": "string",
               "title": "The title of the link",
+              "maxLength": 280,
               "examples": ["Check out this cool browser!"]
             },
             "thumbnail": {
