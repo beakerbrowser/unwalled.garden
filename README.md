@@ -7,7 +7,7 @@ Schemas for a p2p social-media network built on the Dat Web.
 ## How it works
 
  - Every user has their own Dat website.
- - Users publish status-updates, comments, and other kinds of content on their sites.
+ - Users publish posts, comments, and other kinds of content on their sites.
  - Users follow each other to sync their content.
  - Follows are public, creating a social graph.
 
