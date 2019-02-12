@@ -15,13 +15,6 @@ You can think of it as a souped-up RSS: users publish records as files on their 
 
 New to dat? [Read this quick primer.](./dat-primer.md)
 
-## Schema listing
-
- - JSON-Record types
-   - [Comment](./comment.md) `unwalled.garden/comment`
-   - [Follows](./follows.md) `unwalled.garden/follows`
-   - [Post](./post.md) `unwalled.garden/post`
-
 ## Site type
 
 Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
@@ -34,6 +27,13 @@ A dat can declare the unwalled.garden schemas usage by including `unwalled.garde
   "type": ["unwalled.garden/site"]
 }
 ```
+
+## Schema listing
+
+ - JSON-Record types
+   - [Comment](./comment.md) `unwalled.garden/comment`
+   - [Follows](./follows.md) `unwalled.garden/follows`
+   - [Post](./post.md) `unwalled.garden/post`
 
 ## Folder structure
 

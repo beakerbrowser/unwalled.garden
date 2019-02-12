@@ -13,4 +13,4 @@ File-structure:
 /data/known-sites/      - Contains cached copies of referenced sites' metadata
 ```
 
-[Read more](/)
+[Read more](/README.md)
