@@ -11,30 +11,18 @@ Schemas for a p2p social-media network built on the Dat Web.
  - Users follow each other to sync their content.
  - Follows are public, creating a social graph.
 
-<<<<<<< Updated upstream
-In practice, unwalled.garden is only a set of schemas and specs. It must be implemented by applications. The reference implementation is [Beaker](https://github.com/beakerbrowser/beaker).
-
-### Supported use-cases
-
-Unwalled.garden has schemas for multiple different use cases:
-=======
 You can think of it as a souped-up RSS: users publish records as files on their sites, then sync the files regularly to receive updates. This is used to power news feeds, link aggregators, comments sections, search engines, and more.
 
 New to dat? [Read this quick primer.](./dat-primer.md)
->>>>>>> Stashed changes
 
 ## Schema listing
 
-<<<<<<< Updated upstream
-### Site types
-=======
  - JSON-Record types
    - [Comment](./comment.md) `unwalled.garden/comment`
    - [Follows](./follows.md) `unwalled.garden/follows`
    - [Post](./post.md) `unwalled.garden/post`
 
 ## Site type
->>>>>>> Stashed changes
 
 Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
 
@@ -50,84 +38,16 @@ A dat can declare the unwalled.garden schemas usage by including `unwalled.garde
 ## Folder structure
 
 ```
-<<<<<<< Updated upstream
-/data/follows.json      - A unwalled.garden/follows record
-/data/micro-feed/       - Contains unwalled.garden/micro-post records
-/data/link-feed/        - Contains unwalled.garden/link-post records
-=======
 /data/follows.json      - An unwalled.garden/follows record
 /data/feed/             - Contains unwalled.garden/post records
->>>>>>> Stashed changes
 /data/comments/         - Contains unwalled.garden/comment records
 /data/votes/            - Contains vote records (see "the votes folder")
 /data/known-sites/      - Contains cached copies of referenced sites' metadata
 ```
 
-<<<<<<< Updated upstream
-#### Channel sites
-
-Channel sites are followable streams of content. They follow the following file-structure:
-
-```
-/data/content-feed/     - Contains unwalled.garden/content records
-/media/                 - Contains the media files
-```
-
-#### Media sites
-
-Media sites are individual pieces of content. They follow the following file-structure:
-
-```
-/data/content.json      - A unwalled.garden/content record
-/media/                 - Contains the media files
-```
-
-## The full site-type listing
-
- - Users
-   - [Person](./person.md)
-   - [Organization](./organization.md)
-   - [Bot](./bot.md)
-   - [Project](./project.md)
-   - [Place](./place.md)
- - Channels
-   - [Blog](./channel/blog.md)
-   - [Podcast](./channel/podcast.md)
-   - [Music](./channel/music.md)
-   - [Video](./channel/video.md)
-   - [Photo](./channel/photo.md)
- - Media
-   - [Article](./media/article.md)
-   - [Photo-album](./media/photo-album.md)
-   - [Photo](./media/photo.md)
-   - [Music-album](./media/music-album.md)
-   - [Music-playlist](./media/music-playlist.md)
-   - [Song](./media/song.md)
-   - [Podcast-episode](./media/podcast-episode.md)
-   - [Video-playlist](./media/video-playlist.md)
-   - [Video](./media/video.md)
-   - [File-set](./media/file-set.md)
-   - [File](./media/file.md)
-
-### The full record-type listing
-
- - [Follows](./follows.md)
- - [Micro post](./micro-post.md)
- - [Link post](./link-post.md)
- - [Published site](./published-site.md)
- - [Comment](./comment.md)
- - [Content](./content.md)
-
-## Folder patterns
-
-### The \*-feed folders
-
-Feed folders contain records that are published over time. Those records are [micro posts](./micro-post.md) and [link posts](./link-post.md) for users, and [content](./content.md) for channels.
-=======
 ### The feed folder
 
 The feed folder contains [post](./post.md) records which are published over time. Those files are named by their creation time. This makes them easy to read chronologically.
->>>>>>> Stashed changes
 
 Example listing:
 
