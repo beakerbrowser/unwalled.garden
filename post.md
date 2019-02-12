@@ -7,7 +7,7 @@
 
 Posts are pieces of content which is broadcasted to followers. They are meant to be aggregated into "feed" applications and indexed for search.
 
-There are multiple post types which are revealed by the `content.type` field:
+There are multiple post types which are revealed by the `postType` field:
 
  - `'text'`: A short micro-blog post (similar to Twitter).
  - `'link'`: A link to some content (similar to Reddit).
