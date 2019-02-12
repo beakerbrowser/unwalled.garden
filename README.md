@@ -31,6 +31,8 @@ A dat can declare the unwalled.garden schemas usage by including `unwalled.garde
 ## File structure
 
 ```
+/dat.json               - The standard dat metadata file
+/thumb.(jpg|png)        - A 256x256 thumbnail picture
 /data/follows.json      - An unwalled.garden/follows record
 /data/feed/             - Contains unwalled.garden/post records
 /data/comments/         - Contains unwalled.garden/comment records
