@@ -33,8 +33,14 @@
       ]
     },
     "content": {
-      "type": "string",
-      "title": "The comment's content"
+      "type": "object",
+      "required": ["body"],
+      "properties": {
+        "body": {
+          "type": "string",
+          "title": "The post's text content"
+        }
+      }
     },
     "createdAt": {
       "type": "string",

@@ -11,119 +11,50 @@ Schemas for a p2p social-media network built on the Dat Web.
  - Users follow each other to sync their content.
  - Follows are public, creating a social graph.
 
-You can think of it as a souped-up RSS: users publish records as files on their sites, then sync the files regularly to receive updates.
-
-In practice, unwalled.garden is only a set of schemas and specs. It must be implemented by applications. The reference implementation is [Beaker](https://github.com/beakerbrowser/beaker).
-
-### Supported use-cases
-
-Unwalled.garden has schemas for multiple different use cases:
-
- - News feeds
- - Link aggregators
- - Blogging
- - Music players
- - Video players
- - Podcast players
- - General file-sharing
-
-It also provides social schemas for following, commenting, voting, and more.
-
-### Site types
-
-Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
+You can think of it as a souped-up RSS: users publish records as files on their sites, then sync the files regularly to receive updates. This is used to power news feeds, link aggregators, comments sections, search engines, and more.
 
 New to dat? [Read this quick primer.](./dat-primer.md)
 
-#### User sites
+## Schema listing
 
-User sites follow the following file-structure:
+ - JSON-Record types
+   - [Comment](./comment.md) `unwalled.garden/comment`
+   - [Follows](./follows.md) `unwalled.garden/follows`
+   - [Post](./post.md) `unwalled.garden/post`
+
+## Site type
+
+Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
+
+A dat can declare the unwalled.garden schemas usage by including `unwalled.garden/site` in its types.
+
+```json
+{
+  "title": "My great website",
+  "type": ["unwalled.garden/site"]
+}
+```
+
+## Folder structure
 
 ```
-/data/follows.json      - A unwalled.garden/follows record
-/data/feed/             - Contains unwalled.garden/micro-post, unwalled.garden/link-post, unwalled.garden/content records
+/data/follows.json      - An unwalled.garden/follows record
+/data/feed/             - Contains unwalled.garden/post records
 /data/comments/         - Contains unwalled.garden/comment records
 /data/votes/            - Contains vote records (see "the votes folder")
-/data/published-sites/  - Contains unwalled.garden/published-site records
 /data/known-sites/      - Contains cached copies of referenced sites' metadata
 ```
 
-#### Channel sites
-
-Channel sites are followable streams of content. They follow the following file-structure:
-
-```
-/data/feed/             - Contains unwalled.garden/content records
-/media/                 - Contains the media files
-```
-
-#### Media sites
-
-Media sites are individual pieces of content. They follow the following file-structure:
-
-```
-/data/content.json      - A unwalled.garden/content record
-/media/                 - Contains the media files
-```
-
-## The full site-type listing
-
- - Users
-   - [Person](./person.md)
-   - [Organization](./organization.md)
-   - [Bot](./bot.md)
-   - [Project](./project.md)
-   - [Place](./place.md)
- - Channels
-   - [Blog](./channel/blog.md)
-   - [Podcast](./channel/podcast.md)
-   - [Music](./channel/music.md)
-   - [Video](./channel/video.md)
-   - [Photo](./channel/photo.md)
- - Media
-   - [Article](./media/article.md)
-   - [Photo-album](./media/photo-album.md)
-   - [Photo](./media/photo.md)
-   - [Music-album](./media/music-album.md)
-   - [Music-playlist](./media/music-playlist.md)
-   - [Song](./media/song.md)
-   - [Podcast-episode](./media/podcast-episode.md)
-   - [Video-playlist](./media/video-playlist.md)
-   - [Video](./media/video.md)
-   - [File-set](./media/file-set.md)
-   - [File](./media/file.md)
-
-### The full record-type listing
-
- - [Follows](./follows.md)
- - [Micro post](./micro-post.md)
- - [Content](./content.md)
- - [Link post](./link-post.md)
- - [Published site](./published-site.md)
- - [Comment](./comment.md)
-
-## Folder patterns
-
 ### The feed folder
 
-Feed folder contains records that are published over time. Those records are [micro posts](./micro-post.md), [link posts](./link-post.md), and [content records](./content.md).
+The feed folder contains [post](./post.md) records which are published over time. Those files are named by their creation time. This makes them easy to read chronologically.
 
-Records in feed folders are named by their creation time. This makes them easy to read chronologically. Example listing:
+Example listing:
 
 ```
 /data/feed/2019-01-26T16:32:55.109Z.json
 /data/feed/2019-01-26T17:55:31.856Z.json
 /data/feed/2019-01-26T17:58:05.118Z.json
-```
-
-### The published-sites folder
-
-The published-sites folder lists the sites created by a user. It contains the [published site](./published-site.md) record.
-
-Records in the published-sites folder are named by the hostname of the sites they reference.
-
-```
-/data/published-sites/{hostname}.json
 ```
 
 ### The known-sites folder
@@ -139,7 +70,7 @@ The structure of the known-sites folder is as follows:
 /data/known-sites/{hostname}/...
 ```
 
-Generally speaking, only the dat.json and a few image assets should be included.
+Generally speaking, only the dat.json and a few image assets (thumbnail, favicon) should be included.
 
 ### The comments folder
 
@@ -189,18 +120,3 @@ The rules for governance are as follows:
 The current [BDFL](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) is [Paul Frazee](https://github.com/pfrazee).
 
 The current reference implementation is [Beaker](https://github.com/beakerbrowser/beaker). The `develop` branch will be merged into `master` when the reference implementation has been published with appropriate support for the changes.
-
-## FAQ
-
-### How do users differ from channels?
-
-Users and channels are both followable, however channels are usually published by users as a place to put topic-specific content. For instance, a user might create multiple `podcast` channels to cover many different topics.
-
-Here's the technical ways the channels differ from users:
-
- - Channels can only publish certain types of content. 
- - Channels can not follow sites.
-
-### How do channels differ from media sites?
-
-Channels and media both represent content. However, channels publish content over time and therefore can be followed, while media sites contain all of their content at the time of publishing (though media sites may be versioned).
