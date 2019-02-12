@@ -28,14 +28,7 @@ A dat can declare the unwalled.garden schemas usage by including `unwalled.garde
 }
 ```
 
-## Schema listing
-
- - JSON-Record types
-   - [Comment](./comment.md) `unwalled.garden/comment`
-   - [Follows](./follows.md) `unwalled.garden/follows`
-   - [Post](./post.md) `unwalled.garden/post`
-
-## Folder structure
+## File structure
 
 ```
 /data/follows.json      - An unwalled.garden/follows record
@@ -44,6 +37,15 @@ A dat can declare the unwalled.garden schemas usage by including `unwalled.garde
 /data/votes/            - Contains vote records (see "the votes folder")
 /data/known-sites/      - Contains cached copies of referenced sites' metadata
 ```
+
+## Schema listing
+
+ - JSON-Record types
+   - [Comment](./comment.md) `unwalled.garden/comment`
+   - [Follows](./follows.md) `unwalled.garden/follows`
+   - [Post](./post.md) `unwalled.garden/post`
+
+## Folder patterns
 
 ### The feed folder
 
