@@ -108,7 +108,7 @@ The structure of the votes folder is as follows:
 An example:
 
 ```
-/data/comments/beakerbrowser-com-docs.up
+/data/votes/beakerbrowser-com-docs.up
 ```
 
 If two conflicting votes are present (both a ".up" and ".down" file) then readers should interpret the vote as nullified.
