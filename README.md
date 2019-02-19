@@ -11,28 +11,16 @@ Schemas for a p2p social-media network built on the Dat Web.
  - Users follow each other to sync their content.
  - Follows are public, creating a social graph.
 
-You can think of it as a souped-up RSS: users publish records as files on their sites, then sync the files regularly to receive updates. This is used to power news feeds, link aggregators, comments sections, search engines, and more.
+You can think of it as a souped-up RSS: users publish records as files on their sites, then sync the files regularly to receive updates. This is used to power news feeds, aggregators, comments sections, search engines, and more.
 
 New to dat? [Read this quick primer.](./dat-primer.md)
-
-## Site type
-
-Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
-
-A dat can declare the unwalled.garden schemas usage by including `unwalled.garden/site` in its types.
-
-```json
-{
-  "title": "My great website",
-  "type": ["unwalled.garden/site"]
-}
-```
 
 ## File structure
 
 ```
 /dat.json               - The standard dat metadata file
-/thumb.(jpg|png)        - A 256x256 thumbnail picture
+/thumb.(jpg|png)        - A 256x256 thumbnail photo (avatar)
+/cover.(jpg|png)        - A high-resolution landscape-ratio cover photo
 /data/follows.json      - An unwalled.garden/follows record
 /data/feed/             - Contains unwalled.garden/post records
 /data/comments/         - Contains unwalled.garden/comment records
@@ -74,7 +62,7 @@ The structure of the known-sites folder is as follows:
 /data/known-sites/{hostname}/...
 ```
 
-Generally speaking, only the dat.json and a few image assets (thumbnail, favicon) should be included.
+Generally speaking, only the dat.json and a few image assets (thumbnail, cover-photo, favicon) should be included.
 
 ### The comments folder
 
@@ -107,7 +95,7 @@ The structure of the votes folder is as follows:
 An example:
 
 ```
-/data/comments/beakerbrowser-com-docs.up
+/data/votes/beakerbrowser-com-docs.up
 ```
 
 If two conflicting votes are present (both a ".up" and ".down" file) then readers should interpret the vote as nullified.
