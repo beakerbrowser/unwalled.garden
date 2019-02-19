@@ -15,19 +15,6 @@ You can think of it as a souped-up RSS: users publish records as files on their 
 
 New to dat? [Read this quick primer.](./dat-primer.md)
 
-## Site type
-
-Every Dat website has a type which is declared in their `dat.json` file. The type determines site meaning, behavior, and file-structure.
-
-A dat can declare the unwalled.garden schemas usage by including `unwalled.garden/site` in its types.
-
-```json
-{
-  "title": "My great website",
-  "type": ["unwalled.garden/site"]
-}
-```
-
 ## File structure
 
 ```
