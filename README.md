@@ -32,7 +32,8 @@ A dat can declare the unwalled.garden schemas usage by including `unwalled.garde
 
 ```
 /dat.json               - The standard dat metadata file
-/thumb.(jpg|png)        - A 256x256 thumbnail picture
+/thumb.(jpg|png)        - A 256x256 thumbnail photo (avatar)
+/cover.(jpg|png)        - A high-resolution landscape-ratio cover photo
 /data/follows.json      - An unwalled.garden/follows record
 /data/feed/             - Contains unwalled.garden/post records
 /data/comments/         - Contains unwalled.garden/comment records
@@ -74,7 +75,7 @@ The structure of the known-sites folder is as follows:
 /data/known-sites/{hostname}/...
 ```
 
-Generally speaking, only the dat.json and a few image assets (thumbnail, favicon) should be included.
+Generally speaking, only the dat.json and a few image assets (thumbnail, cover-photo, favicon) should be included.
 
 ### The comments folder
 
