@@ -15,6 +15,19 @@ You can think of it as a souped-up RSS: users publish records as files on their 
 
 New to dat? [Read this quick primer.](./dat-primer.md)
 
+## API
+
+[Read the API docs here](./api.md).
+
+```js
+import {feed, followgraph} from 'dat://unwalled.garden'
+
+await feed.addPost({content: {body: 'Hello, world!'}})
+await followgraph.follow('dat://beakerbrowser.com')
+```
+
+Requires [Beaker browser 0.9+](https://beakerbrowser.com).
+
 ## File structure
 
 ```
