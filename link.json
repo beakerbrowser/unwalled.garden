@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "dat://unwalled.garden/link.json",
+  "type": "object",
+  "title": "Link",
+  "description": "A shared link to some URL.",
+  "required": ["type", "content", "createdAt"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "title": "The object's type",
+      "const": "unwalled.garden/link"
+    },
+    "content": {
+      "type": "object",
+      "required": ["href", "title"],
+      "properties": {
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "examples": [
+            "dat://beakerbrowser.com"
+          ],
+          "title": "The time of this link's creation"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 280
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 280
+        },
+        "keywords": {
+          "type": "string",
+          "maxLength": 280
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "title": "The time of this link's creation"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "title": "The time of this link's last edit"
+    }
+  }
+}

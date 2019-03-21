@@ -7,7 +7,7 @@
 
 Posts are pieces of content which is broadcasted to followers. They are meant to be aggregated into "feed" applications similar to Twitter.
 
-To support fast queries, the filenames of posts should use the [ISO 8601](https://tools.ietf.org/html/rfc3339)-encoded `createdAt` value, which can be generated using Javascripts's `Date` object `toISOString()` function. This enables consumers to read posts in a date range and ordered by date without any prior indexing.
+the filenames of posts should use the [ISO 8601](https://tools.ietf.org/html/rfc3339)-encoded `createdAt` value, which can be generated using Javascripts's `Date` object `toISOString()` function. This enables consumers to read posts in a date range and ordered by date without any prior indexing.
 
 Example text post:
 
