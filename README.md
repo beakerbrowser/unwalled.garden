@@ -62,6 +62,18 @@ Example listing:
 /data/feed/2019-01-26T17:58:05.118Z.json
 ```
 
+### The bookmarks folder
+
+The bookmarks folder contains [bookmark](./bookmark.md) records which are published over time. Those files are named by their creation time. This makes them easy to read chronologically.
+
+Example listing:
+
+```
+/data/bookmarks/2019-01-26T16:32:55.109Z.json
+/data/bookmarks/2019-01-26T17:55:31.856Z.json
+/data/bookmarks/2019-01-26T17:58:05.118Z.json
+```
+
 ### The known-sites folder
 
 The "known-sites" folder contains copies of metadata from sites reference by the containing site. It is used to reduce the number of network lookups. For instance, when bob's site announces that it follows alice, bob's site will write a copy of alice's metadata in its known-sites. Bob's followers can then reference the cached metadata.
