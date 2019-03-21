@@ -28,7 +28,7 @@
         },
         "description": {
           "type": "string",
-          "maxLength": 280
+          "maxLength": 560
         },
         "tags": {
           "type": "string",
