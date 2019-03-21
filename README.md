@@ -62,16 +62,16 @@ Example listing:
 /data/feed/2019-01-26T17:58:05.118Z.json
 ```
 
-### The links folder
+### The bookmarks folder
 
-The links folder contains [link](./link.md) records which are published over time. Those files are named by their creation time. This makes them easy to read chronologically.
+The bookmarks folder contains [bookmark](./bookmark.md) records which are published over time. Those files are named by their creation time. This makes them easy to read chronologically.
 
 Example listing:
 
 ```
-/data/links/2019-01-26T16:32:55.109Z.json
-/data/links/2019-01-26T17:55:31.856Z.json
-/data/links/2019-01-26T17:58:05.118Z.json
+/data/bookmarks/2019-01-26T16:32:55.109Z.json
+/data/bookmarks/2019-01-26T17:55:31.856Z.json
+/data/bookmarks/2019-01-26T17:58:05.118Z.json
 ```
 
 ### The known-sites folder

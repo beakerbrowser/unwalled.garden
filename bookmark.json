@@ -1,15 +1,15 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "dat://unwalled.garden/link.json",
+  "$id": "dat://unwalled.garden/bookmark.json",
   "type": "object",
-  "title": "Link",
-  "description": "A shared link to some URL.",
+  "title": "Bookmark",
+  "description": "A saved/shared link to some URL.",
   "required": ["type", "content", "createdAt"],
   "properties": {
     "type": {
       "type": "string",
       "title": "The object's type",
-      "const": "unwalled.garden/link"
+      "const": "unwalled.garden/bookmark"
     },
     "content": {
       "type": "object",
@@ -20,8 +20,7 @@
           "format": "uri",
           "examples": [
             "dat://beakerbrowser.com"
-          ],
-          "title": "The time of this link's creation"
+          ]
         },
         "title": {
           "type": "string",
@@ -31,7 +30,7 @@
           "type": "string",
           "maxLength": 280
         },
-        "keywords": {
+        "tags": {
           "type": "string",
           "maxLength": 280
         }
@@ -39,13 +38,11 @@
     },
     "createdAt": {
       "type": "string",
-      "format": "date-time",
-      "title": "The time of this link's creation"
+      "format": "date-time"
     },
     "updatedAt": {
       "type": "string",
-      "format": "date-time",
-      "title": "The time of this link's last edit"
+      "format": "date-time"
     }
   }
 }
