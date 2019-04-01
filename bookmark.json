@@ -20,7 +20,8 @@
           "format": "uri",
           "examples": [
             "dat://beakerbrowser.com"
-          ]
+          ],
+          "maxLength": 10000
         },
         "title": {
           "type": "string",
@@ -31,8 +32,11 @@
           "maxLength": 560
         },
         "tags": {
-          "type": "string",
-          "maxLength": 280
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 100
+          }
         }
       }
     },

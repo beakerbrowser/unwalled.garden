@@ -18,7 +18,7 @@ Example link:
     "href": "dat://beakerbrowser.com",
     "title": "Beaker Browser",
     "description": "An experimental peer-to-peer Web browser by Paul Frazee. Built using the dat protocol.",
-    "tags": "p2p web dat"
+    "tags": ["p2p", "web", "dat"]
   },
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
