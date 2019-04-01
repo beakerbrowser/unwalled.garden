@@ -20,10 +20,10 @@ New to dat? [Read this quick primer.](./dat-primer.md)
 [Read the API docs here](./api.md).
 
 ```js
-import {feed, followgraph} from 'dat://unwalled.garden'
+import {posts, graph} from 'dat://unwalled.garden'
 
-await feed.addPost({content: {body: 'Hello, world!'}})
-await followgraph.follow('dat://beakerbrowser.com')
+await posts.addPost({content: {body: 'Hello, world!'}})
+await graph.follow('dat://beakerbrowser.com')
 ```
 
 Requires [Beaker browser 0.9+](https://beakerbrowser.com).
@@ -35,7 +35,7 @@ Requires [Beaker browser 0.9+](https://beakerbrowser.com).
 /thumb.(jpg|png)        - A 256x256 thumbnail photo (avatar)
 /cover.(jpg|png)        - A high-resolution landscape-ratio cover photo
 /data/follows.json      - An unwalled.garden/follows record
-/data/feed/             - Contains unwalled.garden/post records
+/data/posts/            - Contains unwalled.garden/post records
 /data/comments/         - Contains unwalled.garden/comment records
 /data/votes/            - Contains vote records (see "the votes folder")
 /data/known-sites/      - Contains cached copies of referenced sites' metadata
@@ -50,16 +50,16 @@ Requires [Beaker browser 0.9+](https://beakerbrowser.com).
 
 ## Folder patterns
 
-### The feed folder
+### The posts folder
 
-The feed folder contains [post](./post.md) records which are published over time. Those files are named by their creation time. This makes them easy to read chronologically.
+The posts folder contains [post](./post.md) records which are published over time. Those files are named by their creation time. This makes them easy to read chronologically.
 
 Example listing:
 
 ```
-/data/feed/2019-01-26T16:32:55.109Z.json
-/data/feed/2019-01-26T17:55:31.856Z.json
-/data/feed/2019-01-26T17:58:05.118Z.json
+/data/posts/2019-01-26T16:32:55.109Z.json
+/data/posts/2019-01-26T17:55:31.856Z.json
+/data/posts/2019-01-26T17:58:05.118Z.json
 ```
 
 ### The bookmarks folder
