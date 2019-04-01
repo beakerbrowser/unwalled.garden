@@ -32,8 +32,11 @@
           "maxLength": 560
         },
         "tags": {
-          "type": "string",
-          "maxLength": 280
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 100
+          }
         }
       }
     },
