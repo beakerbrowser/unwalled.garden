@@ -13,12 +13,12 @@
   "properties": {
     "type": {
       "type": "string",
-      "title": "The object's type",
+      "description": "The object's type",
       "const": "unwalled.garden/comment"
     },
     "topic": {
       "type": "string",
-      "title": "What this comment is about",
+      "description": "What this comment is about",
       "format": "uri",
       "examples": [
         "dat://beakerbrowser.com"
@@ -26,7 +26,7 @@
     },
     "replyTo": {
       "type": "string",
-      "title": "What this comment is replying to",
+      "description": "What this comment is replying to",
       "format": "uri",
       "examples": [
         "dat://beakerbrowser.com"
@@ -38,19 +38,19 @@
       "properties": {
         "body": {
           "type": "string",
-          "title": "The post's text content"
+          "description": "The post's text content"
         }
       }
     },
     "createdAt": {
       "type": "string",
       "format": "date-time",
-      "title": "The time of this post's creation"
+      "description": "The time of this post's creation"
     },
     "updatedAt": {
       "type": "string",
       "format": "date-time",
-      "title": "The time of this post's last edit"
+      "description": "The time of this post's last edit"
     }
   },
   "additionalProperties": false
