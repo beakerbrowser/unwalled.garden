@@ -28,4 +28,5 @@ Additional notes:
 
  - The title and tags are limited to 280 characters.
  - The description is limited to 560 characters.
- - The tags field is used to help improve search and discovery. It is a list of searchable words separated by spaces.
+ - The tags field is used to help improve search and discovery. It is a list of searchable words.
+ - Tags must match the regex `^[A-Za-z][A-Za-z0-9-_?]*$` and are limited to 100 characters.
