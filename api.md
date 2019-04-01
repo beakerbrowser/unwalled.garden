@@ -5,18 +5,18 @@ The Unwalled.Garden API is an accessible toolkit for building social apps.
 Requires [Beaker browser 0.9+](https://beakerbrowser.com).
 
 ```js
-import {feed, followgraph} from 'dat://unwalled.garden'
+import {posts, followgraph} from 'dat://unwalled.garden'
 
-feed.query({
+posts.query({
   filters: {authors},
   offset,
   limit,
   reverse
 })
-feed.getPost(postUrl)
-feed.addPost({content: {body}})
-feed.editPost(postUrl, {content: {body}})
-feed.deletePost(postUrl)
+posts.getPost(postUrl)
+posts.addPost({content: {body}})
+posts.editPost(postUrl, {content: {body}})
+posts.deletePost(postUrl)
 
 followgraph.listFollowers(siteUrl, {filters: {followedBy}, limit, offset})
 followgraph.listFollows(siteUrl, {filters: {followedBy}, limit, offset})
@@ -25,11 +25,11 @@ followgraph.follow(siteUrl)
 followgraph.unfollow(siteUrl)
 ```
 
-## `feed`
+## `posts`
 
-### `FeedPost`
+### `Post`
 
-The values returned by feed functions will fit the following object shape:
+The values returned by posts functions will fit the following object shape:
 
   - `url` string - The URL of the post.
   - `content` Object
@@ -43,43 +43,43 @@ The values returned by feed functions will fit the following object shape:
     - `description` string
     - `type` string[]
 
-### `feed.query(opts)`
+### `posts.query(opts)`
 
 Get a list of posts, ordered by the posts' claimed creation dates.
 
   - `opts` Object
     - `filters` Object
-      - `authors` string|string[] - A URL or set of URLs of authors to filter the feed down to.
+      - `authors` string|string[] - A URL or set of URLs of authors to filter the listing down to.
     - `offset=0` number
     - `limit` number
     - `reverse` boolean
-  - Returns `Promise<FeedPost[]>`
+  - Returns `Promise<Post[]>`
 
 By default, all crawled posts will be included in the output. If you want to only show posts by sites that the user follows, use the `followgraph` API to get the followed sites and pass their URLs into the `authors` filter.
 
-### `feed.getPost(postUrl)`
+### `posts.getPost(postUrl)`
 
 Get an individual post by its URL.
 
   - `postUrl` string - The URL of the post you want to read.
-  - Returns `Promise<FeedPost>`
+  - Returns `Promise<Post>`
 
-### `feed.addPost(post)`
+### `posts.addPost(post)`
 
 Add a post to the current user's site.
 
   - `post` Object
     - `content` Object
       - `body` string - The text body of the post. Limited to 280 characters in length.
-  - Returns `Promise<FeedPost>`
+  - Returns `Promise<Post>`
 
 Example usage:
 
 ```js
-var myPost = await feed.addPost({content: {body: 'Hello, world!'}})
+var myPost = await posts.addPost({content: {body: 'Hello, world!'}})
 ```
 
-### `feed.editPost(postUrl, post)`
+### `posts.editPost(postUrl, post)`
 
 Edit a post on the current user's site.
 
@@ -87,15 +87,15 @@ Edit a post on the current user's site.
   - `post` Object
     - `content` Object
       - `body` string - The text body of the post. Limited to 280 characters in length.
-  - Returns `Promise<FeedPost>`
+  - Returns `Promise<Post>`
 
 Example usage:
 
 ```js
-myPost = await feed.addPost(myPost.url, {content: {body: 'Hello, world!!'}})
+myPost = await posts.addPost(myPost.url, {content: {body: 'Hello, world!!'}})
 ```
 
-### `feed.deletePost(postUrl)`
+### `posts.deletePost(postUrl)`
 
 Delete a post on the current user's site.
 

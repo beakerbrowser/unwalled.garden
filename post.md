@@ -3,7 +3,7 @@
  - JSON Record
  - Description: A broadcasted piece of content.
  - Schema: [`unwalled.garden/post`](./post.json)
- - Path: `/data/feed/{createdAt}.json`
+ - Path: `/data/posts/{createdAt}.json`
 
 Posts are pieces of content which is broadcasted to followers. They are meant to be aggregated into "feed" applications similar to Twitter.
 
