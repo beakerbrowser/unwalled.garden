@@ -4,10 +4,10 @@
  * 
  * ## Example usage:
  * 
- * import {posts, followgraph} from 'dat://unwalled.garden'
+ * import {posts, graph} from 'dat://unwalled.garden'
  *
  * posts.addPost({content: {body: 'Hello, world!'}})
- * followgraph.follow('dat://beakerbrowser.com')
+ * graph.follow('dat://beakerbrowser.com')
  *
  * ## What is this?
  * 
@@ -36,4 +36,4 @@
  * open the possibility that these APIs could move into userland.
  */
 export const posts = navigator.importSystemAPI('unwalled-garden-posts')
-export const followgraph = navigator.importSystemAPI('unwalled-garden-followgraph')
+export const graph = navigator.importSystemAPI('unwalled-garden-graph')

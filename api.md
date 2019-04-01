@@ -5,7 +5,7 @@ The Unwalled.Garden API is an accessible toolkit for building social apps.
 Requires [Beaker browser 0.9+](https://beakerbrowser.com).
 
 ```js
-import {posts, followgraph} from 'dat://unwalled.garden'
+import {posts, graph} from 'dat://unwalled.garden'
 
 posts.query({
   filters: {authors},
@@ -18,11 +18,11 @@ posts.addPost({content: {body}})
 posts.editPost(postUrl, {content: {body}})
 posts.deletePost(postUrl)
 
-followgraph.listFollowers(siteUrl, {filters: {followedBy}, limit, offset})
-followgraph.listFollows(siteUrl, {filters: {followedBy}, limit, offset})
-followgraph.isAFollowingB(siteUrlA, siteUrlB)
-followgraph.follow(siteUrl)
-followgraph.unfollow(siteUrl)
+graph.listFollowers(siteUrl, {filters: {followedBy}, limit, offset})
+graph.listFollows(siteUrl, {filters: {followedBy}, limit, offset})
+graph.isAFollowingB(siteUrlA, siteUrlB)
+graph.follow(siteUrl)
+graph.unfollow(siteUrl)
 ```
 
 ## `posts`
@@ -55,7 +55,7 @@ Get a list of posts, ordered by the posts' claimed creation dates.
     - `reverse` boolean
   - Returns `Promise<Post[]>`
 
-By default, all crawled posts will be included in the output. If you want to only show posts by sites that the user follows, use the `followgraph` API to get the followed sites and pass their URLs into the `authors` filter.
+By default, all crawled posts will be included in the output. If you want to only show posts by sites that the user follows, use the `graph` API to get the followed sites and pass their URLs into the `authors` filter.
 
 ### `posts.getPost(postUrl)`
 
@@ -102,18 +102,18 @@ Delete a post on the current user's site.
   - `postUrl` string - The URL of the post you want to delete.
   - Returns `Promise<void>`
 
-## `followgraph`
+## `graph`
 
 ### `Site`
 
-The values returned by followgraph functions will fit the following object shape:
+The values returned by graph functions will fit the following object shape:
 
   - `url` string
   - `title` string
   - `description` string
   - `type` string[]
 
-### `followgraph.listFollowers(siteUrl, opts)`
+### `graph.listFollowers(siteUrl, opts)`
 
 List the sites known to follow the given URL. (Will only include sites which have been crawled by the local user.)
 
@@ -125,7 +125,7 @@ List the sites known to follow the given URL. (Will only include sites which hav
     - `limit` number
   - Returns `Promise<Site[]>`
 
-### `followgraph.listFollows(siteUrl, opts)`
+### `graph.listFollows(siteUrl, opts)`
 
 List the sites followed by the given URL.
 
@@ -137,7 +137,7 @@ List the sites followed by the given URL.
     - `limit` number
   - Returns `Promise<Site[]>`
 
-### `followgraph.isAFollowingB(siteUrlA, siteUrlB)`
+### `graph.isAFollowingB(siteUrlA, siteUrlB)`
 
 Checks whether one site follows the other.
 
@@ -145,14 +145,14 @@ Checks whether one site follows the other.
   - `siteUrlB` string - The URL of the site which will be looked for in the "follows."
   - Returns `Promise<boolean>`
 
-### `followgraph.follow(siteUrl)`
+### `graph.follow(siteUrl)`
 
 Add a follow to the current user's site.
 
   - `siteUrl` string - The URL of the site to follow.
   - Returns `Promise<void>`
 
-### `followgraph.unfollow(siteUrl)`
+### `graph.unfollow(siteUrl)`
 
 Remove a follow from the current user's site.
 

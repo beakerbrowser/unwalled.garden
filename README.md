@@ -20,10 +20,10 @@ New to dat? [Read this quick primer.](./dat-primer.md)
 [Read the API docs here](./api.md).
 
 ```js
-import {posts, followgraph} from 'dat://unwalled.garden'
+import {posts, graph} from 'dat://unwalled.garden'
 
 await posts.addPost({content: {body: 'Hello, world!'}})
-await followgraph.follow('dat://beakerbrowser.com')
+await graph.follow('dat://beakerbrowser.com')
 ```
 
 Requires [Beaker browser 0.9+](https://beakerbrowser.com).
