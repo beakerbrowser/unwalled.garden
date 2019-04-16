@@ -36,6 +36,7 @@ Requires [Beaker browser 0.9+](https://beakerbrowser.com).
 /cover.(jpg|png)        - A high-resolution landscape-ratio cover photo
 /data/follows.json      - An unwalled.garden/follows record
 /data/posts/            - Contains unwalled.garden/post records
+/data/reactions/        - Contains unwalled.garden/reaction records
 /data/comments/         - Contains unwalled.garden/comment records
 /data/votes/            - Contains vote records (see "the votes folder")
 /data/known-sites/      - Contains cached copies of referenced sites' metadata
@@ -47,6 +48,7 @@ Requires [Beaker browser 0.9+](https://beakerbrowser.com).
    - [Comment](./comment.md) `unwalled.garden/comment`
    - [Follows](./follows.md) `unwalled.garden/follows`
    - [Post](./post.md) `unwalled.garden/post`
+   - [Reaction](./reaction.md) `unwalled.garden/reaction`
 
 ## Folder patterns
 
@@ -88,6 +90,24 @@ The structure of the known-sites folder is as follows:
 ```
 
 Generally speaking, only the dat.json and a few image assets (thumbnail, cover-photo, favicon) should be included.
+
+### The reactions folder
+
+The reactions folder contains reactions created by the user. It contains the [reaction](./reaction.md) record.
+
+The structure of the comments folder is as follows:
+
+```
+/data/reactions/{slugified-url}.json
+```
+
+An example:
+
+```
+/data/reactions/beakerbrowser-com-docs.json
+```
+
+You can find the algorithm for slugifying URLs in [slugify-url.js](slugify-url.js).
 
 ### The comments folder
 
