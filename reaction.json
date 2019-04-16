@@ -7,7 +7,7 @@
   "required": [
     "type",
     "topic",
-    "content"
+    "emojis"
   ],
   "properties": {
     "type": {
@@ -23,9 +23,12 @@
         "dat://beakerbrowser.com"
       ]
     },
-    "content": {
-      "type": "string",
-      "description": "The reaction emoji. Must be a supported emoji."
+    "emojis": {
+      "type": "array",
+      "description": "The reaction emojis. Must contain supported emojis.",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "additionalProperties": false
