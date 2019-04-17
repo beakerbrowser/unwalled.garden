@@ -4,7 +4,7 @@ var endingDashes = /([-]+$)/g
 function slugifyUrl (str) {
   try {
     let url = new URL(str)
-    str = url.hostname + url.pathname + url.search + url.hash
+    str = url.protocol + url.hostname + url.pathname + url.search + url.hash
   } catch (e) {
     // ignore
   }

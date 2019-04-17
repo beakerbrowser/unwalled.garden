@@ -104,7 +104,7 @@ The structure of the comments folder is as follows:
 An example:
 
 ```
-/data/reactions/beakerbrowser-com-docs.json
+/data/reactions/dat-beakerbrowser-com-docs.json
 ```
 
 You can find the algorithm for slugifying URLs in [slugify-url.js](slugify-url.js).
@@ -122,7 +122,7 @@ The structure of the comments folder is as follows:
 An example:
 
 ```
-/data/comments/beakerbrowser-com-docs/2019-01-26T16:32:55.109Z.json
+/data/comments/dat-beakerbrowser-com-docs/2019-01-26T16:32:55.109Z.json
 ```
 
 You can find the algorithm for slugifying URLs in [slugify-url.js](slugify-url.js).
@@ -140,7 +140,7 @@ The structure of the votes folder is as follows:
 An example:
 
 ```
-/data/votes/beakerbrowser-com-docs.up
+/data/votes/dat-beakerbrowser-com-docs.up
 ```
 
 If two conflicting votes are present (both a ".up" and ".down" file) then readers should interpret the vote as nullified.
