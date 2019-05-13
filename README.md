@@ -2,7 +2,7 @@
 
 ![Draft](https://img.shields.io/badge/Draft-In%20progress-yellow.svg) ![Not implemented](https://img.shields.io/badge/Status-Not%20implemented-red.svg)
 
-Schemas for a p2p social-media network built on the Dat Web.
+Schemas and APIs for social applications on the Dat Web.
 
 ## How it works
 
@@ -17,10 +17,10 @@ New to dat? [Read this quick primer.](./dat-primer.md)
 
 ## API
 
-[Read the API docs here](./api.md).
+[Read the API docs here](./docs/readme.md).
 
 ```js
-import {posts, graph} from 'dat://unwalled.garden'
+import {posts, graph} from 'dat://unwalled.garden/index.js'
 
 await posts.addPost({content: {body: 'Hello, world!'}})
 await graph.follow('dat://beakerbrowser.com')
