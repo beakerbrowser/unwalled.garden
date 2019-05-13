@@ -52,6 +52,16 @@ Requires [Beaker browser 0.9+](https://beakerbrowser.com).
    - [Reaction](./reaction.md) `unwalled.garden/reaction`
    - [Recommendation](./recommendation.md) `unwalled.garden/recommendation`
 
+## Site-type listing
+
+ - Users
+   - [Person](./person.md) `unwalled.garden/person`
+ - Media
+   - [Website](./website.md) `unwalled.garden/website`
+ - Software
+   - [Application](./application.md) `unwalled.garden/application`
+   - [Module](./module.md) `unwalled.garden/module`
+
 ## Folder patterns
 
 ### The posts folder
