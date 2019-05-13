@@ -37,6 +37,7 @@ Requires [Beaker browser 0.9+](https://beakerbrowser.com).
 /data/follows.json      - An unwalled.garden/follows record
 /data/posts/            - Contains unwalled.garden/post records
 /data/reactions/        - Contains unwalled.garden/reaction records
+/data/recommendations/  - Contains unwalled.garden/recommendation records
 /data/comments/         - Contains unwalled.garden/comment records
 /data/votes/            - Contains vote records (see "the votes folder")
 /data/known-sites/      - Contains cached copies of referenced sites' metadata
@@ -49,6 +50,7 @@ Requires [Beaker browser 0.9+](https://beakerbrowser.com).
    - [Follows](./follows.md) `unwalled.garden/follows`
    - [Post](./post.md) `unwalled.garden/post`
    - [Reaction](./reaction.md) `unwalled.garden/reaction`
+   - [Recommendation](./recommendation.md) `unwalled.garden/recommendation`
 
 ## Folder patterns
 

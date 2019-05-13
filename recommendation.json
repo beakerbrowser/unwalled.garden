@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "dat://unwalled.garden/recommendation.json",
+  "type": "object",
+  "title": "Recommendation",
+  "description": "A broadcasted recommendation for some resource.",
+  "required": [
+    "type",
+    "category",
+    "href"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "unwalled.garden/recommendation"
+    },
+    "category": {
+      "type": "string",
+      "description": "What kind of resource is being recommended",
+      "examples": [
+        "unwalled.garden/website"
+      ]
+    },
+    "href": {
+      "type": "string",
+      "description": "What resource is being recommended",
+      "format": "uri",
+      "examples": [
+        "dat://beakerbrowser.com"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
