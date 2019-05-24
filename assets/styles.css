@@ -1,0 +1,184 @@
+body {
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+
+  --pink: #E91E63;
+  --green: #8BC34A;
+}
+
+main {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+ul {
+  line-height: 1.4;
+  padding-inline-start: 20px;
+}
+
+li > ul {
+  margin-top: 0.2rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+pre {
+  white-space: pre-wrap;
+  padding: 12px 20px;
+}
+
+code {
+  font-size: initial;
+}
+
+:not(pre) > code {
+  color: #E91E63;
+}
+
+pre > code {
+  font-size: 0.9rem;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #000;
+  margin: 2rem 0;
+}
+
+var {
+  font-style: normal;
+  color: #E91E63;
+  font-size: 0.8rem;
+  padding: 1px 4px;
+  border-radius: 2px;
+  border: 1px solid #f1c8d6;
+}
+
+.notice {
+  background: #FFEB3B;
+  padding: 1rem;
+  color: #564e0a;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.page {
+  display: flex;
+}
+
+.page nav {
+  margin: 0 20px 0 10px;
+  font-size: 0.9rem;
+}
+
+.page nav h1 {
+  margin: 17px 0;
+}
+
+.page nav ul {
+  list-style: none;
+}
+
+.page main {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.page p {
+  line-height: 1.4;
+}
+
+.col2,
+.col4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.col4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.hero {
+  text-align: center;
+  padding: 10rem 0;
+  margin-bottom: 1rem;
+}
+
+.card {
+  border: 1px solid gray;
+  border-radius: 2px;
+  font-size: 0.85rem;
+}
+
+.card-header,
+.card-section,
+.card-footer {
+  display: block;
+  padding: 1rem;
+  margin: 0;
+}
+
+.card-header {
+  font-size: 1rem;
+}
+
+.card-header,
+.card-section {
+  border-bottom: 1px solid #ddd;
+}
+
+.card.code {
+  display: flex;
+  flex-direction: column;
+}
+
+.card.code pre {
+  flex: 1;
+  font-size: 1rem;
+  background: #fafafa;
+  color: #444;
+  border: 0;
+  white-space: pre;
+}
+
+.faq {
+  max-width: 35rem;
+  margin: 0 auto;
+  font-size: 0.85rem;
+}
+
+.faq > div {
+  margin: 4rem 0;
+}
+
+@media (max-width: 800px) {
+  .col2,
+  .col4 {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 1fr;
+  }
+  .col4 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .faq {
+    max-width: 500px;
+  }
+  .card.code pre {
+    white-space: pre-wrap;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page main {
+    margin-left: 100px;
+  }
+}

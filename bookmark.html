@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/assets/syntax.css">
+  </head>
+  <body class="page">
+    <nav>
+      <h1><a href="/">Unwalled.Garden</a></h1>
+      <ul>
+        <li>Docs
+          <ul>
+            <li><a href="/docs/how-does-it-work">How it works</a></li>
+            <li><a href="/docs/examples/one">Example 1</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+  <li>APIs
+    <ul>
+      <li><a href="/docs/api/bookmarks">Bookmarks</a></li>
+      <li><a href="/docs/api/graph">Graph</a></li>
+      <li><a href="/docs/api/posts">Posts</a></li>
+      <li><a href="/docs/api/profiles">Profiles</a></li>
+      <li><a href="/docs/api/reactions">Reactions</a></li>
+      <li><a href="/docs/api/search">Search</a></li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>Site types
+    <ul>
+      <li><a href="/application">Application</a></li>
+      <li><a href="/module">Module</a></li>
+      <li><a href="/person">Person</a></li>
+      <li><a href="/website">Website</a></li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>JSON types
+    <ul>
+      <li><a href="/bookmark">Bookmark</a></li>
+      <li><a href="/comment">Comment</a></li>
+      <li><a href="/follows">Follows</a></li>
+      <li><a href="/post">Post</a></li>
+      <li><a href="/reaction">Reaction</a></li>
+      <li><a href="/recommendation">Recommendation</a></li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>Links
+    <ul>
+      <li><a href="https://github.com/beakerbrowser/unwalled.garden">Github Repo</a></li>
+      <li><a href="https://beakerbrowser.com">Beaker Browser</a></li>
+      <li><a href="https://dat.foundation">Dat protocol</a></li>
+    </ul>
+  </li>
+</ul>
+    </nav>
+    <main><h2>Bookmark</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+<hr>
+<ul>
+<li><strong>Type</strong>: JSON Record</li>
+<li><strong>Description</strong>: A saved/shared link to some URL.</li>
+<li><strong>Schema</strong>: <a href="./bookmark.json">unwalled.garden/bookmark</a></li>
+<li><strong>Path</strong>: /data/bookmarks/{createdAt}.json</li>
+</ul>
+<hr>
+<p>Bookmarks are references to locations on the Web which are shared with followers. They are meant to be indexed for search and discovery.</p>
+<p>The filenames of bookmarks should use the <a href="https://tools.ietf.org/html/rfc3339">ISO 8601</a>-encoded <code>createdAt</code> value, which can be generated using Javascripts’s <code>Date</code> object <code>toISOString()</code> function. This enables consumers to read links in a date range and ordered by date without any prior indexing.</p>
+<p>Example link:</p>
+<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/bookmark"</span>,
+  <span class="hljs-attr">"content"</span>: {
+    <span class="hljs-attr">"href"</span>: <span class="hljs-string">"dat://beakerbrowser.com"</span>,
+    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Beaker Browser"</span>,
+    <span class="hljs-attr">"description"</span>: <span class="hljs-string">"An experimental peer-to-peer Web browser. Built using the dat protocol."</span>,
+    <span class="hljs-attr">"tags"</span>: [<span class="hljs-string">"p2p"</span>, <span class="hljs-string">"web"</span>, <span class="hljs-string">"dat"</span>]
+  },
+  <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-07T02:52:11.947Z"</span>
+}
+</code></pre>
+<p>Additional notes:</p>
+<ul>
+<li>The title and tags are limited to 280 characters.</li>
+<li>The description is limited to 560 characters.</li>
+<li>The tags field is used to help improve search and discovery. It is a list of searchable words.</li>
+<li>Tags must match the regex <code>^[A-Za-z][A-Za-z0-9-_?]*$</code> and are limited to 100 characters.</li>
+</ul>
+</main>
+  </body>
+</html>

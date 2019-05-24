@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/assets/syntax.css">
+  </head>
+  <body>
+    <main>
+      <div class="hero">
+        <h1>Unwalled.Garden</h1>
+        <p>An open protocol for building social Web applications.</p>
+        <p>Part of the <a href="https://beakerbrowser.com" title="Beaker Browser">Beaker browser</a> project.</p>
+      </div>
+      <div class="col2">
+        <div class="card how-does-it-work">
+          <div class="card-section">
+            Every user is a website.
+          </div>
+          <div class="card-section">
+            Every record is a file.
+          </div>
+          <div class="card-section">
+            Users follow each other's sites to sync their files.
+          </div>
+          <a href="/docs/how-does-it-work" class="card-footer">
+            &raquo; How it works.
+          </a>
+        </div>
+        <div class="card code">
+          <pre class="card-section">
+<span class="hljs-keyword">import</span> {posts, graph} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+
+<span class="hljs-keyword">await</span> graph.follow(<span class="hljs-string">'dat://beakerbrowser.com'</span>)
+<span class="hljs-keyword">await</span> posts.add(<span class="hljs-string">'Hello, world!'</span>)
+
+
+<span class="hljs-comment">/*
+ The API wraps the filesystem
+ to provide an easy-to-use interface.
+*/</span></pre>
+        </div>
+      </div>
+      <div class="col4">
+        $NAV
+      </div>
+      <div class="faq">
+        <h2>FAQ</h2>
+        <div>
+          <h3>How does unwalled.garden work?</h3>
+          <p><a href="/docs/how-does-it-work">Read the explainer here.</a></p>
+        </div>
+        <div>
+          <h3>How can I use unwalled.garden?</h3>
+          <p>Unwalled.Garden is currently implemented in the <a href="https://beakerbrowser.com">Beaker browser</a>. You need version 0.9 or later.</p>
+        </div>
+        <div>
+          <h3>Does unwalled.garden work outside of Beaker?</h3>
+          <p>Not currently.</p>
+        </div>
+        <div>
+          <h3>Can unwalled.garden be used with HTTP?</h3>
+          <p>There are no technical barriers to using HTTP, but we haven't completed that implementation yet. We currently use the <a href="https://dat.foundation">Dat protocol</a> because it allows users to publish websites from their own device using p2p networking.</p>
+        </div>
+        <div>
+          <h3>Can I use my own schemas?</h3>
+          <p>Not yet, but the schemas are identified by URLs and so it will eventually be possible for other namespaces to interoperate with unwalled.garden.</p>
+        </div>
+        <div>
+          <h3>Can I add schemas to Unwalled.Garden?</h3>
+          <p>You can request new schemas and debate existing ones at the <a href="https://github.com/beakerbrowser/unwalled.garden">Github Repo</a>.</p>
+        </div>
+        <div>
+          <h3>Who decides which schemas are included?</h3>
+          <p>For now, <a href="https://twitter.com/pfrazee">Paul Frazee</a> is running the schema definitions as part of his work on the <a href="https://beakerbrowser.com" title="Beaker Browser">Beaker browser</a>.</p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
