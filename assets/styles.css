@@ -59,6 +59,18 @@ var {
   border: 1px solid #f1c8d6;
 }
 
+aside {
+  background: #CDDC39;
+  padding: 1rem;
+  border-left: 1rem solid #94a01c;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.74);
+}
+
+aside > :last-child {
+  margin-bottom: 0;
+}
+
 .notice {
   background: #FFEB3B;
   padding: 1rem;

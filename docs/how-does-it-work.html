@@ -12,6 +12,7 @@
         <li>Docs
           <ul>
             <li><a href="/docs/how-does-it-work">How it works</a></li>
+            <li><a href="/docs/dat-primer">The Dat protocol</a></li>
             <li><a href="/docs/examples/one">Example 1</a></li>
           </ul>
         </li>
@@ -60,7 +61,60 @@
   </li>
 </ul>
     </nav>
-    <main><h1>How does Unwalled.Garden work?</h1>
+    <main><h2>How does Unwalled.Garden work?</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+<h3>Souped-up RSS</h3>
+<p>Unwalled.Garden is a kind of “Souped up <a href="https://en.wikipedia.org/wiki/RSS">RSS</a>.” Every user has a website; they publish their content as files; they subscribe to each others’ sites; and that’s it! It’s conceptually similar to Twitter but as a files protocol.</p>
+<p>While RSS was primarily for blogging, Unwalled.Garden includes a variety of data types for many kinds of use-cases. These data types are spread across many JSON files which live at pre-defined paths. Desktop or mobile clients sync the files into a database which they can query to run their application.</p>
+<aside>
+The Unwalled.Garden has three principles:
+<ol>
+<li>Every user is a website.</li>
+<li>Every record is a file.</li>
+<li>Users follow each other’s sites to sync their files.</li>
+</ol>
+<p>Everything about the network flows from these principles.</p>
+</aside>
+<p>The schemas are simple, obvious, and syntax-free. A record usually looks like this:</p>
+<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/post"</span>,
+  <span class="hljs-attr">"content"</span>: {
+    <span class="hljs-attr">"body"</span>: <span class="hljs-string">"Hello, world!"</span>
+  },
+  <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2019-05-21T21:27:45.471Z"</span>
+}
+</code></pre>
+<p>The file structure of sites looks something like this:</p>
+<pre><code>/dat.json
+/data/follows.json
+/data/posts/2019-05-21T21:27:45.466Z.json
+/data/posts/2019-05-22T15:54:05.204Z.json
+/data/reactions/dat-beakerbrowser.com.json
+/index.html
+/index.css
+</code></pre>
+<p>The network is currently designed for the <a href="https://dat.foundation">Dat protocol</a> (read an <a href="./dat-primer">introduction primer here</a>) but it can theoretically be expanded to include HTTP as well.</p>
+<h3>Browser integration</h3>
+<p><a href="https://beakerbrowser.com">Beaker Browser 0.9</a> implements Unwalled.Garden as part of the browser. It is able to display followed users in the URL bar and dynamically load applications based on the site or file that’s been browsed to.</p>
+<p>Beaker also includes a batteries-included API which is loaded from the <a href="dat://unwalled.garden">dat://unwalled.garden</a> website. These APIs wrap the Dat filesystem and Beaker’s internal indexes.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {posts, reactions, comments} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<span class="hljs-keyword">var</span> post = <span class="hljs-keyword">await</span> posts.add(<span class="hljs-string">'Hello, world!'</span>)
+<span class="hljs-keyword">await</span> comments.add(post.url, <span class="hljs-string">'Great post, alice!'</span>)
+<span class="hljs-keyword">await</span> reactions.add(post.url, <span class="hljs-string">'👍'</span>)
+<span class="hljs-keyword">var</span> feed = <span class="hljs-keyword">await</span> posts.query({<span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>})
+</code></pre>
+<p>The browser automatically creates a personal website for the user on first load. The personal site acts as the user profile and is where the user’s content is published. The URL of the site acts as their global ID.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {profiles, graph} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<span class="hljs-keyword">await</span> profiles.getCurrentUser()
+<span class="hljs-keyword">await</span> graph.follow(<span class="hljs-string">'dat://beakerbrowser.com'</span>)
+</code></pre>
+<p>The indexes include full-text search for querying the user’s personal network.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {search} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<span class="hljs-keyword">await</span> search.query({
+  <span class="hljs-attr">query</span>: <span class="hljs-string">'Beaker'</span>,
+  <span class="hljs-attr">filters</span>: {<span class="hljs-attr">datasets</span>: <span class="hljs-string">'unwalled.garden/post'</span>}
+})
+</code></pre>
+<p>Beaker will track its APIs with the latest Unwalled.Garden standards. More implementations of the APIs will be created as the network matures.</p>
 </main>
   </body>
 </html>
