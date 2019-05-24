@@ -60,11 +60,11 @@ var {
 }
 
 aside {
-  background: #CDDC39;
+  background: #efd7f3;
   padding: 1rem;
-  border-left: 1rem solid #94a01c;
+  border-left: 1rem solid #CE93D8;
   border-radius: 4px;
-  color: rgba(0, 0, 0, 0.74);
+  color: #510b5d;
 }
 
 aside > :last-child {
