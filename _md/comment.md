@@ -1,37 +1,77 @@
-## Comment
+## Comment `unwalled.garden/comment`
 
 ---
 
- - **Type**: JSON Record
+ - File type
  - **Description**: A text post about some resource.
- - **Schema**: [unwalled.garden/comment](./comment.json)
- - **Path**: /data/comments/{slugified-url}/{createdAt}.json
+ - **Path**: `/.data/unwalled.garden/comments/*.json`
 
 ---
 
-Comments are short text posts which are "about" some URL. Comments are threaded, meaning that they have a root topic and a parent comment which they may be replying to, forming a tree structure.
+### Metadata
 
-Comments are published under a folder which is the slugified URL. You can find the algorithm for slugifying URLs in [slugify-url.js](slugify-url.js). The filename of comments should use the [ISO 8601](https://tools.ietf.org/html/rfc3339)-encoded `createdAt` value, which can be generated using Javascripts's `Date` object `toISOString()` function.
+|Key|Value|
+|-|-|
+|`type`|`unwalled.garden/comment`|
 
-A standard comment:
+### Examples
 
 ```json
 {
-  "type": "unwalled.garden/comment",
   "topic": "dat://beakerbrowser.com/docs",
-  "content": {"body": "These docs need some work!"},
+  "body": "These docs need some work!",
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
 ```
 
-A reply comment:
+```json
+{
+  "topic": "dat://beakerbrowser.com/docs",
+  "replyTo": "dat://bob.com/.data/unwalled.garden/comments/2018-12-07T02:52:11.947Z.json",
+  "body": "I think the docs are perfect just the way they are!",
+  "createdAt": "2018-12-07T04:15:44.722Z"
+}
+```
+
+### Schema
 
 ```json
 {
-  "type": "unwalled.garden/comment",
-  "topic": "dat://beakerbrowser.com/docs",
-  "replyTo": "dat://bob.com/data/comments/beaker-browser-com-docs/2018-12-07T02:52:11.947Z.json",
-  "content": {"body": "I think the docs are perfect just the way they are!"},
-  "createdAt": "2018-12-07T04:15:44.722Z"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "dat://unwalled.garden/comment.json",
+  "type": "object",
+  "title": "Comment",
+  "description": "A text post about some resource.",
+  "required": [
+    "topic",
+    "body",
+    "createdAt"
+  ],
+  "properties": {
+    "topic": {
+      "type": "string",
+      "description": "What this comment is about",
+      "format": "uri"
+    },
+    "replyTo": {
+      "type": "string",
+      "description": "What this comment is replying to",
+      "format": "uri"
+    },
+    "body": {
+      "type": "string",
+      "description": "The post's text content"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time of this post's creation"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time of this post's last edit"
+    }
+  }
 }
 ```

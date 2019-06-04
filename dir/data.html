@@ -60,28 +60,60 @@
   </li>
 </ul>
     </nav>
-    <main><h2>Bookmarks API</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
-<p>Read and create bookmarks for links around the Web. Bookmarks can be private or public.</p>
+    <main><h2>Data directory <code>unwalled.garden/dir/data</code></h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {bookmarks} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
-
-<span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> bookmarks.list({
-  <span class="hljs-attr">filters</span>: {authors, tags, visibility},
-  sortBy,
-  offset,
-  limit,
-  reverse
-})
-<span class="hljs-keyword">await</span> bookmarks.get(href)
-
-<span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> bookmarks.add({href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.edit(href, {href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.remove(href)
-</code></pre>
+<ul>
+<li>Folder type</li>
+<li><strong>Description</strong>: Contains the unwalled.garden record files.</li>
+<li><strong>Path</strong>: <code>/.data/unwalled.garden</code></li>
+</ul>
 <hr>
-<p>TODO</p>
+<h3>Metadata</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>unwalled.garden/dir/data</code></td>
+</tr>
+</tbody>
+</table>
+<h3>File structure</h3>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/bookmarks/*.json</code></td>
+<td><a href="/bookmark">Bookmark</a></td>
+</tr>
+<tr>
+<td><code>/comments/*.json</code></td>
+<td><a href="/comment">Comment</a></td>
+</tr>
+<tr>
+<td><code>/follows.json</code></td>
+<td><a href="/follows">Follows</a></td>
+</tr>
+<tr>
+<td><code>/posts/*.json</code></td>
+<td><a href="/post">Post</a></td>
+</tr>
+<tr>
+<td><code>/reactions/*.json</code></td>
+<td><a href="/reaction">Reaction</a></td>
+</tr>
+</tbody>
+</table>
 </main>
   </body>
   <script type="module" src="/assets/admin.js"></script>

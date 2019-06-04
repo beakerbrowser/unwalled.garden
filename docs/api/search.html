@@ -9,19 +9,24 @@
     <nav>
       <h1><a href="/">Unwalled.Garden</a></h1>
       <ul>
-        <li>Docs
-          <ul>
-            <li><a href="/docs/how-does-it-work">How it works</a></li>
-            <li><a href="/docs/dat-primer">The Dat protocol</a></li>
-            <li><a href="/docs/examples/one">Example 1</a></li>
-          </ul>
-        </li>
-      </ul>
+    <li>Docs
       <ul>
+        <li><a href="/docs/how-does-it-work">How it works</a></li>
+        <li><a href="/docs/mission">Mission</a></li>
+        <li><a href="/docs/dat-primer">Dat protocol</a><ul>
+          <li><a href="/docs/metadata">Metadata</a></li>
+          <li><a href="/docs/mounts">Mounts</a></li>
+        </ul></li>
+        <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
+        <!-- <li><a href="/docs/examples/one">Example 1</a></li> -->
+      </ul>
+    </li>
+  </ul>
+<ul>
   <li>APIs
     <ul>
       <li><a href="/docs/api/bookmarks">Bookmarks</a></li>
-      <li><a href="/docs/api/graph">Graph</a></li>
+      <li><a href="/docs/api/follows">Follows</a></li>
       <li><a href="/docs/api/posts">Posts</a></li>
       <li><a href="/docs/api/profiles">Profiles</a></li>
       <li><a href="/docs/api/reactions">Reactions</a></li>
@@ -30,24 +35,18 @@
   </li>
 </ul>
 <ul>
-  <li>Site types
-    <ul>
-      <li><a href="/application">Application</a></li>
-      <li><a href="/module">Module</a></li>
-      <li><a href="/person">Person</a></li>
-      <li><a href="/website">Website</a></li>
-    </ul>
-  </li>
-</ul>
-<ul>
-  <li>JSON types
+  <li>Schemas
     <ul>
       <li><a href="/bookmark">Bookmark</a></li>
       <li><a href="/comment">Comment</a></li>
       <li><a href="/follows">Follows</a></li>
+      <li><a href="/person">Person</a></li>
       <li><a href="/post">Post</a></li>
       <li><a href="/reaction">Reaction</a></li>
-      <li><a href="/recommendation">Recommendation</a></li>
+      <li>dir/<ul>
+        <li><a href="/dir/data">Data</a></li>
+        <li><a href="/dir/refs">Refs</a></li>
+      </ul></li>
     </ul>
   </li>
 </ul>
@@ -67,10 +66,9 @@
 <pre><code class="language-js"><span class="hljs-keyword">import</span> {search} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> search.query({
+<span class="hljs-keyword">await</span> search.list({
   query,
-  <span class="hljs-attr">filters</span>: {datasets, since},
-  hops,
+  <span class="hljs-attr">filters</span>: {type, since, trust},
   offset,
   limit
 })

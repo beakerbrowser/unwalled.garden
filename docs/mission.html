@@ -60,28 +60,47 @@
   </li>
 </ul>
     </nav>
-    <main><h2>Bookmarks API</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
-<p>Read and create bookmarks for links around the Web. Bookmarks can be private or public.</p>
-<hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {bookmarks} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
-
-<span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> bookmarks.list({
-  <span class="hljs-attr">filters</span>: {authors, tags, visibility},
-  sortBy,
-  offset,
-  limit,
-  reverse
-})
-<span class="hljs-keyword">await</span> bookmarks.get(href)
-
-<span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> bookmarks.add({href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.edit(href, {href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.remove(href)
-</code></pre>
-<hr>
-<p>TODO</p>
+    <main><h2>Mission</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+<p>Our mission is to create an open social platform that’s native to the Web. We want our applications to be hackable and our social networks to be designed by users.</p>
+<p>The principles behind our mission are:</p>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple</td>
+<td>The protocol should be easy to understand and implement.</td>
+</tr>
+<tr>
+<td>Free (as in Freedom)</td>
+<td>Users should retain ownership of their networks.</td>
+</tr>
+<tr>
+<td>Interoperable</td>
+<td>Users should be able to introduce their own schemas.</td>
+</tr>
+<tr>
+<td>Files-oriented</td>
+<td>Data should be easy to examine and understand.</td>
+</tr>
+<tr>
+<td>Decentralized</td>
+<td>Users should never be tied to a service.</td>
+</tr>
+<tr>
+<td>Local-first</td>
+<td>Applications should be able to run without an internet connection.</td>
+</tr>
+<tr>
+<td>Private</td>
+<td>Users should control where their information goes.</td>
+</tr>
+</tbody>
+</table>
 </main>
   </body>
   <script type="module" src="/assets/admin.js"></script>

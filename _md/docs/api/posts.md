@@ -8,8 +8,8 @@ Read and create broadcasted content. Posts are typically integrated into a feed 
 import {posts} from 'dat://unwalled.garden/index.js'
 
 // read
-await posts.query({
-  filters: {authors},
+await posts.list({
+  filters: {authors, trust},
   offset,
   limit,
   reverse

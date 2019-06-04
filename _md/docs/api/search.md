@@ -8,10 +8,9 @@ Run search queries on the locally-indexed data.
 import {search} from 'dat://unwalled.garden/index.js'
 
 // read
-await search.query({
+await search.list({
   query,
-  filters: {datasets, since},
-  hops,
+  filters: {type, since, trust},
   offset,
   limit
 })

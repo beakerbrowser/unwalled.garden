@@ -9,19 +9,24 @@
     <nav>
       <h1><a href="/">Unwalled.Garden</a></h1>
       <ul>
-        <li>Docs
-          <ul>
-            <li><a href="/docs/how-does-it-work">How it works</a></li>
-            <li><a href="/docs/dat-primer">The Dat protocol</a></li>
-            <li><a href="/docs/examples/one">Example 1</a></li>
-          </ul>
-        </li>
-      </ul>
+    <li>Docs
       <ul>
+        <li><a href="/docs/how-does-it-work">How it works</a></li>
+        <li><a href="/docs/mission">Mission</a></li>
+        <li><a href="/docs/dat-primer">Dat protocol</a><ul>
+          <li><a href="/docs/metadata">Metadata</a></li>
+          <li><a href="/docs/mounts">Mounts</a></li>
+        </ul></li>
+        <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
+        <!-- <li><a href="/docs/examples/one">Example 1</a></li> -->
+      </ul>
+    </li>
+  </ul>
+<ul>
   <li>APIs
     <ul>
       <li><a href="/docs/api/bookmarks">Bookmarks</a></li>
-      <li><a href="/docs/api/graph">Graph</a></li>
+      <li><a href="/docs/api/follows">Follows</a></li>
       <li><a href="/docs/api/posts">Posts</a></li>
       <li><a href="/docs/api/profiles">Profiles</a></li>
       <li><a href="/docs/api/reactions">Reactions</a></li>
@@ -30,24 +35,18 @@
   </li>
 </ul>
 <ul>
-  <li>Site types
-    <ul>
-      <li><a href="/application">Application</a></li>
-      <li><a href="/module">Module</a></li>
-      <li><a href="/person">Person</a></li>
-      <li><a href="/website">Website</a></li>
-    </ul>
-  </li>
-</ul>
-<ul>
-  <li>JSON types
+  <li>Schemas
     <ul>
       <li><a href="/bookmark">Bookmark</a></li>
       <li><a href="/comment">Comment</a></li>
       <li><a href="/follows">Follows</a></li>
+      <li><a href="/person">Person</a></li>
       <li><a href="/post">Post</a></li>
       <li><a href="/reaction">Reaction</a></li>
-      <li><a href="/recommendation">Recommendation</a></li>
+      <li>dir/<ul>
+        <li><a href="/dir/data">Data</a></li>
+        <li><a href="/dir/refs">Refs</a></li>
+      </ul></li>
     </ul>
   </li>
 </ul>
@@ -73,9 +72,6 @@
 </blockquote>
 <p>Dat is a highly flexible protocol. It can sync many kinds of data, including event logs and key-value databases. However, the most common usecase is to share filesets which are called “hyperdrives.”</p>
 <p>Applications like the <a href="https://beakerbrowser.com">Beaker Browser</a> use hyperdrives as websites. Users can browse to the hyperdrives and view the HTML/CSS/JS just like any HTTP website. Because anybody can create a hyperdrive by simply creating a new public key, users on the Dat Web can freely create and publish their own websites.</p>
-<h3>How unwalled.garden uses Dat</h3>
-<p>The unwalled.garden spec is a collection of site &amp; file schemas which are used on the Dat Web. The <a href="https://beakerbrowser.com">Beaker Browser</a> includes APIs to interact with these schemas.</p>
-<p>The hyperdrives act as a shared global filesystem for the Dat Web. By reading &amp; writing files with these schemas, applications are able to integrate with each other on the Dat Web.</p>
 </main>
   </body>
   <script type="module" src="/assets/admin.js"></script>

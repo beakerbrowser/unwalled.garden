@@ -1,36 +1,71 @@
-## Bookmark
+## Bookmark `unwalled.garden/bookmark`
 
 ---
 
- - **Type**: JSON Record
+ - File type
  - **Description**: A saved/shared link to some URL.
- - **Schema**: [unwalled.garden/bookmark](./bookmark.json)
- - **Path**: /data/bookmarks/{createdAt}.json
+ - **Path**: `/.data/unwalled.garden/bookmarks/*.json`
 
 ---
 
-Bookmarks are references to locations on the Web which are shared with followers. They are meant to be indexed for search and discovery.
+### Metadata
 
-The filenames of bookmarks should use the [ISO 8601](https://tools.ietf.org/html/rfc3339)-encoded `createdAt` value, which can be generated using Javascripts's `Date` object `toISOString()` function. This enables consumers to read links in a date range and ordered by date without any prior indexing.
+|Key|Value|
+|-|-|
+|`type`|`unwalled.garden/bookmark`|
 
-Example link:
+### Example
 
 ```json
 {
-  "type": "unwalled.garden/bookmark",
-  "content": {
-    "href": "dat://beakerbrowser.com",
-    "title": "Beaker Browser",
-    "description": "An experimental peer-to-peer Web browser. Built using the dat protocol.",
-    "tags": ["p2p", "web", "dat"]
-  },
+  "href": "dat://beakerbrowser.com",
+  "title": "Beaker Browser",
+  "description": "An experimental peer-to-peer Web browser. Built using the dat protocol.",
+  "tags": ["p2p", "web", "dat"],
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
 ```
 
-Additional notes:
+### Schema
 
- - The title and tags are limited to 280 characters.
- - The description is limited to 560 characters.
- - The tags field is used to help improve search and discovery. It is a list of searchable words.
- - Tags must match the regex `^[A-Za-z][A-Za-z0-9-_?]*$` and are limited to 100 characters.
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "dat://unwalled.garden/bookmark.json",
+  "type": "object",
+  "title": "Bookmark",
+  "description": "A saved/shared link to some URL.",
+  "required": ["href", "title", "createdAt"],
+  "properties": {
+    "href": {
+      "type": "string",
+      "format": "uri",
+      "maxLength": 10000
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 280
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 560
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 100,
+        "pattern": "^[A-Za-z][A-Za-z0-9-_?]*$"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
+```

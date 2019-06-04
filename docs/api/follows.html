@@ -26,7 +26,7 @@
   <li>APIs
     <ul>
       <li><a href="/docs/api/bookmarks">Bookmarks</a></li>
-      <li><a href="/docs/api/graph">Graph</a></li>
+      <li><a href="/docs/api/follows">Follows</a></li>
       <li><a href="/docs/api/posts">Posts</a></li>
       <li><a href="/docs/api/profiles">Profiles</a></li>
       <li><a href="/docs/api/reactions">Reactions</a></li>
@@ -67,16 +67,16 @@
 
 <span class="hljs-comment">// read</span>
 <span class="hljs-keyword">await</span> follows.list({
-  <span class="hljs-attr">filters</span>: {src, dst, trust},
+  <span class="hljs-attr">filters</span>: {url, authors, trust},
   offset,
   limit,
   reverse
 })
-<span class="hljs-keyword">await</span> follows.get(srcUrl, dstUrl)
+<span class="hljs-keyword">await</span> follows.get(author, url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> follows.add(dstUrl)
-<span class="hljs-keyword">await</span> follows.remove(dstUrl)
+<span class="hljs-keyword">await</span> follows.add(url)
+<span class="hljs-keyword">await</span> follows.remove(url)
 </code></pre>
 <hr>
 <h3><code>Site</code></h3>

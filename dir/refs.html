@@ -60,28 +60,47 @@
   </li>
 </ul>
     </nav>
-    <main><h2>Bookmarks API</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
-<p>Read and create bookmarks for links around the Web. Bookmarks can be private or public.</p>
+    <main><h2>Refs directory <code>unwalled.garden/dir/refs</code></h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {bookmarks} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
-
-<span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> bookmarks.list({
-  <span class="hljs-attr">filters</span>: {authors, tags, visibility},
-  sortBy,
-  offset,
-  limit,
-  reverse
-})
-<span class="hljs-keyword">await</span> bookmarks.get(href)
-
-<span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> bookmarks.add({href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.edit(href, {href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.remove(href)
-</code></pre>
+<ul>
+<li>Folder type</li>
+<li><strong>Description</strong>: A collection of mounted dat sites which are referenced by the records.</li>
+<li><strong>Path</strong>: <code>/.refs</code></li>
+</ul>
 <hr>
-<p>TODO</p>
+<h3>Notes</h3>
+<p>The “Refs” directory contains mounts to Dat sites which a reader might want to access in order to render content. It should contain mounts to all <a href="/follows">followed sites</a>.</p>
+<p>The names of the mounts MUST be the public key of the mounted site. A DNS shortname can not be used. This is to avoid incorrect DNS mappings.</p>
+<h3>Metadata</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>unwalled.garden/dir/refs</code></td>
+</tr>
+</tbody>
+</table>
+<h3>File structure</h3>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>Mount to a Dat hyperdrive.</td>
+</tr>
+</tbody>
+</table>
 </main>
   </body>
   <script type="module" src="/assets/admin.js"></script>

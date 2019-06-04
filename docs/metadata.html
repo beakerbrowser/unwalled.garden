@@ -60,28 +60,33 @@
   </li>
 </ul>
     </nav>
-    <main><h2>Bookmarks API</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
-<p>Read and create bookmarks for links around the Web. Bookmarks can be private or public.</p>
-<hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {bookmarks} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
-
-<span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> bookmarks.list({
-  <span class="hljs-attr">filters</span>: {authors, tags, visibility},
-  sortBy,
-  offset,
-  limit,
-  reverse
-})
-<span class="hljs-keyword">await</span> bookmarks.get(href)
-
-<span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> bookmarks.add({href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.edit(href, {href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.remove(href)
-</code></pre>
-<hr>
-<p>TODO</p>
+    <main><h2>File &amp; folder metadata</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+<p>Dat supports custom metadata on its files and folders. This metadata is read using a <code>stats()</code> call.</p>
+<p>Unwalled.Garden uses 3 common metadata values:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>A URL that indicates the definition of the file/folder.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>A nice-looking name for the file/folder.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>A longer description of the file/folder purpose.</td>
+</tr>
+</tbody>
+</table>
+<p>The most common field is <code>type</code>, used to describe the schemas of files and folders.</p>
+<p>When set on the root folder, the metadata describes the entire dat/site. For example: the <a href="/person">Person</a> type describes the site as a person, uses the title as the person’s name, and uses the description as the person’s bio.</p>
 </main>
   </body>
   <script type="module" src="/assets/admin.js"></script>

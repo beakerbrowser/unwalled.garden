@@ -60,28 +60,36 @@
   </li>
 </ul>
     </nav>
-    <main><h2>Bookmarks API</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
-<p>Read and create bookmarks for links around the Web. Bookmarks can be private or public.</p>
+    <main><h2>Application</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {bookmarks} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
-
-<span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> bookmarks.list({
-  <span class="hljs-attr">filters</span>: {authors, tags, visibility},
-  sortBy,
-  offset,
-  limit,
-  reverse
-})
-<span class="hljs-keyword">await</span> bookmarks.get(href)
-
-<span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> bookmarks.add({href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.edit(href, {href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.remove(href)
-</code></pre>
+<ul>
+<li>Site type</li>
+<li><strong>Description</strong>: An installable Web application.</li>
+</ul>
 <hr>
 <p>TODO</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code></td>
+<td><a href="/application">Application</a></td>
+</tr>
+<tr>
+<td><code>/.data/unwalled.garden</code></td>
+<td><a href="/dir/data">Data directory</a></td>
+</tr>
+<tr>
+<td><code>/.refs</code></td>
+<td><a href="/dir/data">Refs directory</a></td>
+</tr>
+</tbody>
+</table>
 </main>
   </body>
   <script type="module" src="/assets/admin.js"></script>

@@ -60,28 +60,20 @@
   </li>
 </ul>
     </nav>
-    <main><h2>Bookmarks API</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
-<p>Read and create bookmarks for links around the Web. Bookmarks can be private or public.</p>
-<hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {bookmarks} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
-
-<span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> bookmarks.list({
-  <span class="hljs-attr">filters</span>: {authors, tags, visibility},
-  sortBy,
-  offset,
-  limit,
-  reverse
-})
-<span class="hljs-keyword">await</span> bookmarks.get(href)
-
-<span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> bookmarks.add({href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.edit(href, {href, title, description, tags, visibility})
-<span class="hljs-keyword">await</span> bookmarks.remove(href)
+    <main><h2>Dat Mounts</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+<p>Dat has the ability to “mount” dats into each other as subfolders. This is similar to a symlink.</p>
+<p>Bob could, for instance, mount the Unwalled.Garden site to his own site:</p>
+<pre><code>dat://bob.com/sites/ug -&gt; dat://unwalled.garden/
 </code></pre>
-<hr>
-<p>TODO</p>
+<p>Reading from a mounted folder is similar to reading a subfolder. Reading <code>/sites/ug/index.html</code> from Bob’s site would give you the content of <code>dat://unwalled.garden/index.html</code>.</p>
+<p>Mounts have a performance benefit in Dat: because mount data can be transfered over an existing connection, it can be faster to read than loading the dat separately. We use that property to distribute metadata efficiently in the <a href="/dir/refs">refs directory</a>.</p>
+<pre><code>URL                                                  | Type
+-------------------------------------------------------------------------------
+dat://bob.com/.refs                                  | unwalled.garden/refs-dir
+dat://bob.com/.refs/alice.com -&gt; dat://alice.com     | unwalled.garden/person
+dat://bob.com/.refs/carla.com -&gt; dat://carla.com     | unwalled.garden/person
+</code></pre>
+<p>A reader uses the <code>.refs</code> folder to lookup information about sites which are referenced in JSON records. A common example is listing “followed” users’ profiles: after fetching the <a href="/follows">follows file</a>, a reader can iterate through the sites in <code>.refs</code> to fetch their names, bios, and pictures.</p>
 </main>
   </body>
   <script type="module" src="/assets/admin.js"></script>

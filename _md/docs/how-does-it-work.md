@@ -1,10 +1,10 @@
-## How does Unwalled.Garden work!?
+## How does Unwalled.Garden work?
 
 ### Souped-up RSS
 
-Unwalled.Garden is a kind of "Souped up [RSS](https://en.wikipedia.org/wiki/RSS)." Every user has a website; they publish their content as files; they subscribe to each others' sites; and that's it! It's conceptually similar to Twitter but as a files protocol.
+Unwalled.Garden is a kind of "Souped up [RSS](https://en.wikipedia.org/wiki/RSS)." Every user has a website; they publish their content as files; they subscribe to each others' sites; and that's it!
 
-While RSS was primarily for blogging, Unwalled.Garden includes a variety of data types for many kinds of use-cases. These data types are spread across many JSON files which live at pre-defined paths. Desktop or mobile clients sync the files into a database which they can query to run their application.
+While RSS was primarily for blogging, Unwalled.Garden includes data types for many kinds of use-cases. These data types are spread across many JSON files which have pre-defined schemas.
 
 <aside>
 The Unwalled.Garden has three principles:
@@ -16,51 +16,62 @@ The Unwalled.Garden has three principles:
 Everything about the network flows from these principles.
 </aside>
 
-The schemas are simple, obvious, and syntax-free. A record usually looks like this:
+### Schemas
+
+Unwalled.Garden is built for the [Dat protocol](https://dat.foundation) (read an [introduction primer here](./dat-primer)) but it can be adapted to use HTTP as well.
+
+The type schemas are simple, obvious, and syntax-free. A "post" record looks like this:
 
 ```json
 {
-  "type": "unwalled.garden/post",
-  "content": {
-    "body": "Hello, world!"
-  },
+  "body": "Hello, world!",
   "createdAt": "2019-05-21T21:27:45.471Z"
 }
 ```
 
-The file structure of sites looks something like this:
+The schema types are stored in [metadata fields](/docs/metadata) on files and folders. We identify the types using URLs such as:
+
+ - [unwalled.garden/post](/post)
+ - [unwalled.garden/comment](/comment)
+ - [unwalled.garden/reaction](/reaction)
+ - [unwalled.garden/person](/person)
+ - etc
+
+All files are expected to fall under predefined paths which are typically under `.data/unwalled.garden`. An example site might look like this:
 
 ```
-/dat.json
-/data/follows.json
-/data/posts/2019-05-21T21:27:45.466Z.json
-/data/posts/2019-05-22T15:54:05.204Z.json
-/data/reactions/dat-beakerbrowser.com.json
-/index.html
-/index.css
+URL                                                  | Type
+-------------------------------------------------------------------------------
+dat://bob.com                                        | unwalled.garden/person
+dat://bob.com/.data/unwalled.garden                  | unwalled.garden/dir/data
+dat://bob.com/.data/unwalled.garden/posts/hello.json | unwalled.garden/post
+dat://bob.com/.data/unwalled.garden/reactions/1.json | unwalled.garden/reaction
+dat://bob.com/.data/unwalled.garden/comments/1.json  | unwalled.garden/comment
 ```
 
-The network is currently designed for the [Dat protocol](https://dat.foundation) (read an [introduction primer here](./dat-primer)) but it can theoretically be expanded to include HTTP as well.
+Bob's site identifies as a [Person](/person) and it includes a [Post](/post), [Reaction](/reaction), and [Comment](/comment). A reader will crawl the website looking for these files to sync into its local database.
+
+<aside>
+JSON files go in pre-defined paths. Clients crawl the sites to find files they're interested in.
+</aside>
 
 ### Browser integration
 
-[Beaker Browser 0.9](https://beakerbrowser.com) implements Unwalled.Garden as part of the browser. It is able to display followed users in the URL bar and dynamically load applications based on the site or file that's been browsed to.
-
-Beaker also includes a batteries-included API which is loaded from the [dat://unwalled.garden](dat://unwalled.garden) website. These APIs wrap the Dat filesystem and Beaker's internal indexes.
+[Beaker Browser 0.9](https://beakerbrowser.com) implements Unwalled.Garden as part of the browser. It supports a high-level API which is loaded from the [dat://unwalled.garden](dat://unwalled.garden) website. These APIs wrap the Dat filesystem and Beaker's internal indexes.
 
 ```js
 import {posts, reactions, comments} from 'dat://unwalled.garden/index.js'
+var feed = await posts.query({reverse: true, limit: 10})
 var post = await posts.add('Hello, world!')
-await comments.add(post.url, 'Great post, alice!')
+await comments.add(post.url, 'Great post by me!')
 await reactions.add(post.url, '👍')
-var feed = await posts.query({limit: 10})
 ```
 
-The browser automatically creates a personal website for the user on first load. The personal site acts as the user profile and is where the user's content is published. The URL of the site acts as their global ID.
+The browser automatically creates a personal website for the user on first load. The personal site acts as the user profile and is where the user's content is published.
 
 ```js
 import {profiles, graph} from 'dat://unwalled.garden/index.js'
-await profiles.getCurrentUser()
+var me = await profiles.getCurrentUser()
 await graph.follow('dat://beakerbrowser.com')
 ```
 
@@ -70,7 +81,7 @@ The indexes include full-text search for querying the user's personal network.
 import {search} from 'dat://unwalled.garden/index.js'
 await search.query({
   query: 'Beaker',
-  filters: {datasets: 'unwalled.garden/post'}
+  filters: {schemas: 'unwalled.garden/post'}
 })
 ```
 

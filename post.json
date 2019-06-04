@@ -4,23 +4,12 @@
   "type": "object",
   "title": "Post",
   "description": "A broadcasted piece of content.",
-  "required": ["type", "content", "createdAt"],
+  "required": ["body", "createdAt"],
   "properties": {
-    "type": {
+    "body": {
       "type": "string",
-      "description": "The object's type",
-      "const": "unwalled.garden/post"
-    },
-    "content": {
-      "type": "object",
-      "required": ["body"],
-      "properties": {
-        "body": {
-          "type": "string",
-          "description": "The post's text body",
-          "maxLength": 280
-        }
-      }
+      "description": "The post's text body",
+      "maxLength": 1000000
     },
     "createdAt": {
       "type": "string",

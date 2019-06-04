@@ -43,10 +43,24 @@
       </div>
       <div class="col4">
         <ul>
+    <li>Docs
+      <ul>
+        <li><a href="/docs/how-does-it-work">How it works</a></li>
+        <li><a href="/docs/mission">Mission</a></li>
+        <li><a href="/docs/dat-primer">Dat protocol</a><ul>
+          <li><a href="/docs/metadata">Metadata</a></li>
+          <li><a href="/docs/mounts">Mounts</a></li>
+        </ul></li>
+        <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
+        <!-- <li><a href="/docs/examples/one">Example 1</a></li> -->
+      </ul>
+    </li>
+  </ul>
+<ul>
   <li>APIs
     <ul>
       <li><a href="/docs/api/bookmarks">Bookmarks</a></li>
-      <li><a href="/docs/api/graph">Graph</a></li>
+      <li><a href="/docs/api/follows">Follows</a></li>
       <li><a href="/docs/api/posts">Posts</a></li>
       <li><a href="/docs/api/profiles">Profiles</a></li>
       <li><a href="/docs/api/reactions">Reactions</a></li>
@@ -55,24 +69,18 @@
   </li>
 </ul>
 <ul>
-  <li>Site types
-    <ul>
-      <li><a href="/application">Application</a></li>
-      <li><a href="/module">Module</a></li>
-      <li><a href="/person">Person</a></li>
-      <li><a href="/website">Website</a></li>
-    </ul>
-  </li>
-</ul>
-<ul>
-  <li>JSON types
+  <li>Schemas
     <ul>
       <li><a href="/bookmark">Bookmark</a></li>
       <li><a href="/comment">Comment</a></li>
       <li><a href="/follows">Follows</a></li>
+      <li><a href="/person">Person</a></li>
       <li><a href="/post">Post</a></li>
       <li><a href="/reaction">Reaction</a></li>
-      <li><a href="/recommendation">Recommendation</a></li>
+      <li>dir/<ul>
+        <li><a href="/dir/data">Data</a></li>
+        <li><a href="/dir/refs">Refs</a></li>
+      </ul></li>
     </ul>
   </li>
 </ul>
@@ -94,11 +102,7 @@
         </div>
         <div>
           <h3>How can I use unwalled.garden?</h3>
-          <p>Unwalled.Garden is currently implemented in the <a href="https://beakerbrowser.com">Beaker browser</a>. You need version 0.9 or later.</p>
-        </div>
-        <div>
-          <h3>Does unwalled.garden work outside of Beaker?</h3>
-          <p>Not currently.</p>
+          <p>You can't just yet! Unwalled.Garden is being implemented in the upcoming <a href="https://beakerbrowser.com">Beaker Browser 0.9</a> release.</p>
         </div>
         <div>
           <h3>Can unwalled.garden be used with HTTP?</h3>
@@ -106,7 +110,7 @@
         </div>
         <div>
           <h3>Can I use my own schemas?</h3>
-          <p>Not yet, but the schemas are identified by URLs and so it will eventually be possible for other namespaces to interoperate with unwalled.garden.</p>
+          <p>Schemas are identified by URLs and so it will be possible for other namespaces to interoperate with unwalled.garden.</p>
         </div>
         <div>
           <h3>Can I add schemas to Unwalled.Garden?</h3>

@@ -71,6 +71,21 @@ aside > :last-child {
   margin-bottom: 0;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+table th {
+  text-align: left;
+  background: #eee;
+}
+
+table td,
+table th {
+  border: 1px solid #555;
+  padding: 4px 10px;
+}
+
 .notice {
   background: #FFEB3B;
   padding: 1rem;

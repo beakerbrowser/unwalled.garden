@@ -1,30 +1,54 @@
-## Post
+## Post `unwalled.garden/post`
 
 ---
 
- - **Type**: JSON Record
+ - File type
  - **Description**: A broadcasted piece of content.
- - **Schema**: [unwalled.garden/post](./post.json)
- - **Path**: /data/posts/{createdAt}.json
+ - **Path**: `/.data/unwalled.garden/posts/*.json`
 
 ---
 
-Posts are pieces of content which is broadcasted to followers. They are meant to be aggregated into "feed" applications similar to Twitter.
+### Metadata
 
-the filenames of posts should use the [ISO 8601](https://tools.ietf.org/html/rfc3339)-encoded `createdAt` value, which can be generated using Javascripts's `Date` object `toISOString()` function. This enables consumers to read posts in a date range and ordered by date without any prior indexing.
+|Key|Value|
+|-|-|
+|`type`|`unwalled.garden/post`|
 
-Example text post:
+### Example
 
 ```json
 {
-  "type": "unwalled.garden/post",
-  "content": {
-    "body": "Hello, world!"
-  },
+  "body": "Hello, world!",
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
 ```
 
-Additional notes:
+### Schema
 
- - The body text is limited to 280 characters.
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "dat://unwalled.garden/post.json",
+  "type": "object",
+  "title": "Post",
+  "description": "A broadcasted piece of content.",
+  "required": ["body", "createdAt"],
+  "properties": {
+    "body": {
+      "type": "string",
+      "description": "The post's text body",
+      "maxLength": 1000000
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time of this post's creation"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time of this post's last edit"
+    }
+  }
+}
+```

@@ -1,33 +1,31 @@
-## Graph API
+## Follows API
 
-Read and modify social relationships between sites.
+Read and create follow relationships between sites.
 
 ---
 
 ```js
-import {graph} from 'dat://unwalled.garden/index.js'
+import {follows} from 'dat://unwalled.garden/index.js'
 
 // read
-await graph.query({
-  filters: {authors},
+await follows.list({
+  filters: {url, authors, trust},
   offset,
   limit,
   reverse
 })
-await graph.listFollowers(siteUrl, opts)
-await graph.listFollows(siteUrl, opts)
-await graph.isAFollowingB(siteUrlA, siteUrlB)
+await follows.get(author, url)
 
 // write
-await graph.follow(siteUrl)
-await graph.unfollow(siteUrl)
+await follows.add(url)
+await follows.remove(url)
 ```
 
 ---
 
 ### `Site`
 
-The values returned by graph functions will fit the following object shape:
+The values returned by follow functions will fit the following object shape:
 
   - <var>url</var> `string`
   - <var>title</var> `string`
@@ -36,7 +34,7 @@ The values returned by graph functions will fit the following object shape:
 
 ---
 
-### `graph.listFollowers(siteUrl, opts)`
+### `follows.listFollowers(siteUrl, opts)`
 
 List the sites known to follow the given URL. (Will only include sites which have been crawled by the local user.)
 
@@ -50,7 +48,7 @@ List the sites known to follow the given URL. (Will only include sites which hav
 
 ---
 
-### `graph.listFollows(siteUrl, opts)`
+### `follows.listFollows(siteUrl, opts)`
 
 List the sites followed by the given URL.
 
@@ -64,7 +62,7 @@ List the sites followed by the given URL.
 
 ---
 
-### `graph.isAFollowingB(siteUrlA, siteUrlB)`
+### `follows.isAFollowingB(siteUrlA, siteUrlB)`
 
 Checks whether one site follows the other.
 
@@ -74,7 +72,7 @@ Checks whether one site follows the other.
 
 ---
 
-### `graph.follow(siteUrl)`
+### `follows.follow(siteUrl)`
 
 Add a follow to the current user's site.
 
@@ -83,7 +81,7 @@ Add a follow to the current user's site.
 
 ---
 
-### `graph.unfollow(siteUrl)`
+### `follows.unfollow(siteUrl)`
 
 Remove a follow from the current user's site.
 
