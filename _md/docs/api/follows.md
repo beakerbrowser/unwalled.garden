@@ -9,81 +9,119 @@ import {follows} from 'dat://unwalled.garden/index.js'
 
 // read
 await follows.list({
-  filters: {url, authors, trust},
+  query: {authors, subjects, visibility},
+  sortBy,
   offset,
   limit,
   reverse
 })
-await follows.get(author, url)
+await follows.get(author, subject)
 
 // write
-await follows.add(url)
-await follows.remove(url)
+await follows.add(subject, {visibility})
+await follows.edit(subject, {visibility})
+await follows.remove(subject)
 ```
 
 ---
 
-### `Site`
+### Follow
 
 The values returned by follow functions will fit the following object shape:
 
-  - <var>url</var> `string`
-  - <var>title</var> `string`
-  - <var>description</var> `string`
-  - <var>type</var> `string[]`
+|Attribute|Type|Usage|
+|-|-|-|
+|author</var>|`Object`|The site doing the following|
+|&emsp;url</var>|`string`||
+|&emsp;title</var>|`string`||
+|&emsp;description</var>|`string`||
+|&emsp;type</var>|`string`||
+|subject</var>|`Object`|The site being followed|
+|&emsp;url</var>|`string`||
+|&emsp;title</var>|`string`||
+|&emsp;description</var>|`string`||
+|&emsp;type</var>|`string`||
+|visibility</var>|`string`|The [visibility](/docs/common-fields#visibility) of the "follow" record|
 
 ---
 
-### `follows.listFollowers(siteUrl, opts)`
+### list(opts)
 
-List the sites known to follow the given URL. (Will only include sites which have been crawled by the local user.)
+List follows by authors and/or subjects.
 
-  - <var>siteUrl</var> `string` <small>The URL of the site to get followers of.</small>
-  - <var>opts</var> `Object`
-    - <var>filters</var> `Object`
-      - <var>followedBy</var> `string` <small>Filters the results to sites which are followed by this URL.</small>
-    - <var>offset</var> `number`
-    - <var>limit</var> `number`
-  - Returns `Promise<Site[]>`
+|Param|Type|Default|Usage|
+|-|-|-|-|
+|opts|`Object`|||
+|&emsp;query|`Object`|||
+|&emsp;&emsp;authors|`string|string[]`||Site URLs|
+|&emsp;&emsp;subjects|`string|string[]`||Site URLs|
+|&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
+|&emsp;sortBy|`string`|`'subject'`|One of: `'subject'`|
+|&emsp;offset|`number`|0||
+|&emsp;limit|`number`|||
+|&emsp;reverse|`boolean`|`false`||
 
----
-
-### `follows.listFollows(siteUrl, opts)`
-
-List the sites followed by the given URL.
-
-  - <var>siteUrl</var> `string` <small>The URL of the site to get follows of.</small>
-  - <var>opts</var> `Object`
-    - <var>filters</var> `Object`
-      - <var>followedBy</var> `string` <small>Filters the results to sites which are followed by this URL.</small>
-    - <var>offset</var> `number`
-    - <var>limit</var> `number`
-  - Returns `Promise<Site[]>`
+|Returns|
+|-|
+|`Promise<Follow[]>`|
 
 ---
 
-### `follows.isAFollowingB(siteUrlA, siteUrlB)`
+### get(author, subject)
 
-Checks whether one site follows the other.
+Get a follow by author and subject.
 
-  - <var>siteUrlA</var> `string` <small>The URL of the site which will have its "follows" queried.</small>
-  - <var>siteUrlB</var> `string` <small>The URL of the site which will be looked for in the "follows."</small>
-  - Returns `Promise<boolean>`
+|Param|Type|Default|Usage|
+|-|-|-|-|
+|author|`string`||Site URL (required)|
+|subject|`string`||Site URL (required)|
+
+|Returns|
+|-|
+|`Promise<Follow>`|
 
 ---
 
-### `follows.follow(siteUrl)`
+### add(subject, opts)
 
 Add a follow to the current user's site.
 
-  - <var>siteUrl</var> `string` <small>The URL of the site to follow.</small>
-  - Returns `Promise<void>`
+|Param|Type|Default|Usage|
+|-|-|-|-|
+|subject|`string`||Site URL (required)|
+|opts|`Object`|||
+|&emsp;[visibility](/docs/common-fields#visibility)|`string`|`'public'`|One of: `'public'`, `'private'`|
+
+|Returns|
+|-|
+|`Promise<void>`|
 
 ---
 
-### `follows.unfollow(siteUrl)`
+### edit(subject, opts)
+
+Edit a follow on the current user's site.
+
+|Param|Type|Default|Usage|
+|-|-|-|-|
+|subject|`string`||Site URL (required)|
+|opts|`Object`|||
+|&emsp;[visibility](/docs/common-fields#visibility)|`string`|`'public'`|One of: `'public'`, `'private'`|
+
+|Returns|
+|-|
+|`Promise<void>`|
+
+---
+
+### remove(subject)
 
 Remove a follow from the current user's site.
 
-  - <var>siteUrl</var> `string` <small>The URL of the site to unfollow.</small>
-  - Returns `Promise<void>`
+|Param|Type|Default|Usage|
+|-|-|-|-|
+|subject|`string`||Site URL (required)|
+
+|Returns|
+|-|
+|`Promise<void>`|

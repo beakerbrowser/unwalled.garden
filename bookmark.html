@@ -5,20 +5,22 @@
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
   </head>
-  <body class="page">
-    <nav>
-      <h1><a href="/">Unwalled.Garden</a></h1>
-      <ul>
+  <body>
+    <h1><a href="/">Unwalled.Garden</a></h1>
+    <div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+    <div class="page">
+      <nav>
+        <ul>
     <li>Docs
       <ul>
         <li><a href="/docs/how-does-it-work">How it works</a></li>
-        <li><a href="/docs/mission">Mission</a></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
           <li><a href="/docs/metadata">Metadata</a></li>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
+        <li><a href="/docs/browser-integration">Browser integration</a></li>
+        <li><a href="/docs/common-fields">Common fields</a></li>
         <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
-        <!-- <li><a href="/docs/examples/one">Example 1</a></li> -->
       </ul>
     </li>
   </ul>
@@ -30,7 +32,6 @@
       <li><a href="/docs/api/posts">Posts</a></li>
       <li><a href="/docs/api/profiles">Profiles</a></li>
       <li><a href="/docs/api/reactions">Reactions</a></li>
-      <li><a href="/docs/api/search">Search</a></li>
     </ul>
   </li>
 </ul>
@@ -43,7 +44,7 @@
       <li><a href="/person">Person</a></li>
       <li><a href="/post">Post</a></li>
       <li><a href="/reaction">Reaction</a></li>
-      <li>dir/<ul>
+      <li>dir<ul>
         <li><a href="/dir/data">Data</a></li>
         <li><a href="/dir/refs">Refs</a></li>
       </ul></li>
@@ -59,8 +60,8 @@
     </ul>
   </li>
 </ul>
-    </nav>
-    <main><h2>Bookmark <code>unwalled.garden/bookmark</code></h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+      </nav>
+      <main><h2>Bookmark <code>unwalled.garden/bookmark</code></h2>
 <hr>
 <ul>
 <li>File type</li>
@@ -68,7 +69,7 @@
 <li><strong>Path</strong>: <code>/.data/unwalled.garden/bookmarks/*.json</code></li>
 </ul>
 <hr>
-<h3>Metadata</h3>
+<h4>Metadata</h4>
 <table>
 <thead>
 <tr>
@@ -83,7 +84,7 @@
 </tr>
 </tbody>
 </table>
-<h3>Example</h3>
+<h4>Example</h4>
 <pre><code class="language-json">{
   <span class="hljs-attr">"href"</span>: <span class="hljs-string">"dat://beakerbrowser.com"</span>,
   <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Beaker Browser"</span>,
@@ -92,7 +93,7 @@
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-07T02:52:11.947Z"</span>
 }
 </code></pre>
-<h3>Schema</h3>
+<h4>Schema</h4>
 <pre><code class="language-json">{
   <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/draft-07/schema#"</span>,
   <span class="hljs-attr">"$id"</span>: <span class="hljs-string">"dat://unwalled.garden/bookmark.json"</span>,
@@ -134,6 +135,7 @@
 }
 </code></pre>
 </main>
+    </div>
   </body>
   <script type="module" src="/assets/admin.js"></script>
 </html>

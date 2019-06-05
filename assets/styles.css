@@ -1,8 +1,14 @@
 body {
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, Cantarell, "Oxygen Sans", "Helvetica Neue", sans-serif;
 
   --pink: #E91E63;
   --green: #8BC34A;
+}
+
+code,
+pre {
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
 }
 
 main {
@@ -32,31 +38,28 @@ pre {
   padding: 12px 20px;
 }
 
-code {
-  font-size: initial;
-}
-
 :not(pre) > code {
-  color: #E91E63;
+  /* color: #E91E63; */
+  color: #555;
 }
 
-pre > code {
-  font-size: 0.9rem;
+code {
+  font-size: 0.8rem;
 }
 
 hr {
   border: 0;
-  border-top: 1px solid #000;
+  border-top: 1px solid #ccc;
   margin: 2rem 0;
 }
 
 var {
   font-style: normal;
-  color: #E91E63;
+  color: #555;
   font-size: 0.8rem;
   padding: 1px 4px;
   border-radius: 2px;
-  border: 1px solid #f1c8d6;
+  border: 1px solid #bbb;
 }
 
 aside {
@@ -73,25 +76,37 @@ aside > :last-child {
 
 table {
   border-collapse: collapse;
+  margin: 1em 0;
 }
 
 table th {
   text-align: left;
-  background: #eee;
+  font-size: 80%;
+  background: none;
+  font-weight: normal;
+  color: gray;  
 }
 
 table td,
 table th {
-  border: 1px solid #555;
+  border: 0;
   padding: 4px 10px;
 }
 
+h1 {
+  margin: 28px;
+}
+
 .notice {
-  background: #FFEB3B;
-  padding: 1rem;
-  color: #564e0a;
-  border-radius: 4px;
+  background: #eee;
+  padding: 1em 30px;
+  color: gray;
   font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.notice a {
+  color: inherit;
 }
 
 .page {
@@ -117,7 +132,8 @@ table th {
 }
 
 .page p {
-  line-height: 1.4;
+  line-height: 1.5;
+  margin: 1.6em 0;
 }
 
 .col2,
@@ -168,7 +184,6 @@ table th {
 
 .card.code pre {
   flex: 1;
-  font-size: 1rem;
   background: #fafafa;
   color: #444;
   border: 0;
@@ -208,4 +223,10 @@ table th {
   .page main {
     margin-left: 100px;
   }
+}
+
+.admin-controls {
+  position: fixed;
+  top: 5px;
+  right: 5px;
 }

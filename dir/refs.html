@@ -5,20 +5,22 @@
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
   </head>
-  <body class="page">
-    <nav>
-      <h1><a href="/">Unwalled.Garden</a></h1>
-      <ul>
+  <body>
+    <h1><a href="/">Unwalled.Garden</a></h1>
+    <div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+    <div class="page">
+      <nav>
+        <ul>
     <li>Docs
       <ul>
         <li><a href="/docs/how-does-it-work">How it works</a></li>
-        <li><a href="/docs/mission">Mission</a></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
           <li><a href="/docs/metadata">Metadata</a></li>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
+        <li><a href="/docs/browser-integration">Browser integration</a></li>
+        <li><a href="/docs/common-fields">Common fields</a></li>
         <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
-        <!-- <li><a href="/docs/examples/one">Example 1</a></li> -->
       </ul>
     </li>
   </ul>
@@ -30,7 +32,6 @@
       <li><a href="/docs/api/posts">Posts</a></li>
       <li><a href="/docs/api/profiles">Profiles</a></li>
       <li><a href="/docs/api/reactions">Reactions</a></li>
-      <li><a href="/docs/api/search">Search</a></li>
     </ul>
   </li>
 </ul>
@@ -43,7 +44,7 @@
       <li><a href="/person">Person</a></li>
       <li><a href="/post">Post</a></li>
       <li><a href="/reaction">Reaction</a></li>
-      <li>dir/<ul>
+      <li>dir<ul>
         <li><a href="/dir/data">Data</a></li>
         <li><a href="/dir/refs">Refs</a></li>
       </ul></li>
@@ -59,8 +60,8 @@
     </ul>
   </li>
 </ul>
-    </nav>
-    <main><h2>Refs directory <code>unwalled.garden/dir/refs</code></h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+      </nav>
+      <main><h2>Refs directory <code>unwalled.garden/dir/refs</code></h2>
 <hr>
 <ul>
 <li>Folder type</li>
@@ -102,6 +103,7 @@
 </tbody>
 </table>
 </main>
+    </div>
   </body>
   <script type="module" src="/assets/admin.js"></script>
 </html>

@@ -5,20 +5,22 @@
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
   </head>
-  <body class="page">
-    <nav>
-      <h1><a href="/">Unwalled.Garden</a></h1>
-      <ul>
+  <body>
+    <h1><a href="/">Unwalled.Garden</a></h1>
+    <div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+    <div class="page">
+      <nav>
+        <ul>
     <li>Docs
       <ul>
         <li><a href="/docs/how-does-it-work">How it works</a></li>
-        <li><a href="/docs/mission">Mission</a></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
           <li><a href="/docs/metadata">Metadata</a></li>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
+        <li><a href="/docs/browser-integration">Browser integration</a></li>
+        <li><a href="/docs/common-fields">Common fields</a></li>
         <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
-        <!-- <li><a href="/docs/examples/one">Example 1</a></li> -->
       </ul>
     </li>
   </ul>
@@ -30,7 +32,6 @@
       <li><a href="/docs/api/posts">Posts</a></li>
       <li><a href="/docs/api/profiles">Profiles</a></li>
       <li><a href="/docs/api/reactions">Reactions</a></li>
-      <li><a href="/docs/api/search">Search</a></li>
     </ul>
   </li>
 </ul>
@@ -43,7 +44,7 @@
       <li><a href="/person">Person</a></li>
       <li><a href="/post">Post</a></li>
       <li><a href="/reaction">Reaction</a></li>
-      <li>dir/<ul>
+      <li>dir<ul>
         <li><a href="/dir/data">Data</a></li>
         <li><a href="/dir/refs">Refs</a></li>
       </ul></li>
@@ -59,8 +60,8 @@
     </ul>
   </li>
 </ul>
-    </nav>
-    <main><h2>A Quick Primer on Dat</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+      </nav>
+      <main><h2>A Quick Primer on Dat</h2>
 <p><a href="https://dat.foundation">Dat</a> is a peer-to-peer protocol for publishing files. It uses cryptography to sign and verify all information. Like BitTorrent, users can “seed” data to help keep it online and contribute bandwidth.</p>
 <p>Each “dat” is given a public key address which looks like this:</p>
 <blockquote>
@@ -73,6 +74,7 @@
 <p>Dat is a highly flexible protocol. It can sync many kinds of data, including event logs and key-value databases. However, the most common usecase is to share filesets which are called “hyperdrives.”</p>
 <p>Applications like the <a href="https://beakerbrowser.com">Beaker Browser</a> use hyperdrives as websites. Users can browse to the hyperdrives and view the HTML/CSS/JS just like any HTTP website. Because anybody can create a hyperdrive by simply creating a new public key, users on the Dat Web can freely create and publish their own websites.</p>
 </main>
+    </div>
   </body>
   <script type="module" src="/assets/admin.js"></script>
 </html>

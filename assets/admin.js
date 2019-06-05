@@ -1,7 +1,6 @@
 const ASSETS_DIRECTORY_PATH = '/assets'
 const MARKDOWN_DIRECTORY_PATH = '/_md'
 const OUTPUT_DIRECTORY_PATH = '/'
-const SITEWIDE_NOTICE = `Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.`
 
 const self = new DatArchive(window.location)
 var watchStream
@@ -149,7 +148,6 @@ async function generateHTML (md, mdPath, htmlPath, layoutHtml) {
   let mdfile = await self.readFile(mdPath, 'utf8')
   let html = layoutHtml
     .replace('$CONTENT', md.render(mdfile))
-    .replace('</h2>', `</h2><div class="notice">${SITEWIDE_NOTICE}</div>`)
   await self.writeFile(htmlPath, html)
 }
 

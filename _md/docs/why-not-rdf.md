@@ -54,11 +54,7 @@ paul['web:title'] = 'Paul Frazee'
 paul['dat://websites.com/manifest#title'] = 'Paul Frazee'
 ```
 
-<aside>
-Programmers have to work with schemas! They should be simple and friendly to use.
-</aside>
-
-If we think in terms of records instead of graphs, we end up with objects that are much nicer to use.
+Programmers have to work with schemas! They should be simple and friendly to use. If we think in terms of records instead of graphs, we end up with objects that are much nicer to use.
 
 ```js
 // type="websites.com/manifest"

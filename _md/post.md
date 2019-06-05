@@ -8,13 +8,13 @@
 
 ---
 
-### Metadata
+#### Metadata
 
 |Key|Value|
 |-|-|
 |`type`|`unwalled.garden/post`|
 
-### Example
+#### Example
 
 ```json
 {
@@ -23,7 +23,7 @@
 }
 ```
 
-### Schema
+#### Schema
 
 ```json
 {

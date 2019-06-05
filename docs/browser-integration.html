@@ -61,133 +61,23 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Profiles API</h2>
-<p>Read the “profiles” of sites.</p>
-<hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {profiles} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
-
-<span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> profiles.me()
-<span class="hljs-keyword">await</span> profiles.get(url)
-
-<span class="hljs-comment">// manage</span>
-<span class="hljs-keyword">await</span> profiles.index(url)
+      <main><h2>Browser integration</h2>
+<p><a href="https://beakerbrowser.com">Beaker Browser 0.9</a> implements Unwalled.Garden as part of the browser. It supports a high-level API which is loaded from the <a href="dat://unwalled.garden">dat://unwalled.garden</a> website. These APIs wrap the Dat filesystem and Beaker’s internal indexes.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {posts, follows, reactions, comments} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<span class="hljs-keyword">await</span> follows.add(<span class="hljs-string">'dat://beakerbrowser.com'</span>)
+<span class="hljs-keyword">var</span> feed = <span class="hljs-keyword">await</span> posts.list({<span class="hljs-attr">reverse</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>})
+<span class="hljs-keyword">var</span> post = <span class="hljs-keyword">await</span> posts.add(<span class="hljs-string">'Hello, world!'</span>)
+<span class="hljs-keyword">await</span> comments.add(post.url, <span class="hljs-string">'Great post by me!'</span>)
+<span class="hljs-keyword">await</span> reactions.add(post.url, <span class="hljs-string">'👍'</span>)
 </code></pre>
-<hr>
-<h3>Profile</h3>
-<p>The values returned by profile functions will fit the following object shape:</p>
-<table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td>title</td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td>description</td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td>type</td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>me()</h3>
-<p>Fetch the profile of the current user.</p>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;Profile&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>get(url)</h3>
-<p>Fetch the profile of the specified user.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td><code>string</code></td>
-<td></td>
-<td>Site URL (required)</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;Profile&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>index(url)</h3>
-<p>Index the given site and fetch the resulting profile.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td><code>string</code></td>
-<td></td>
-<td>Site URL (required)</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;Profile&gt;</code></td>
-</tr>
-</tbody>
-</table>
+<p>The browser automatically creates a personal website for the user on first load. The personal site acts as the user profile and is where the user’s content is published.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {profiles} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<span class="hljs-keyword">var</span> me = <span class="hljs-keyword">await</span> profiles.me()
+me.url         <span class="hljs-comment">// 'dat://12cd..ff'</span>
+me.title       <span class="hljs-comment">// 'Bob'</span>
+me.description <span class="hljs-comment">// 'A hacker'</span>
+</code></pre>
+<p>Beaker will track its APIs with the latest Unwalled.Garden standards. More implementations of the APIs will be created as the network matures.</p>
 </main>
     </div>
   </body>

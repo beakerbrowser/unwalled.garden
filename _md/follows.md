@@ -8,19 +8,19 @@
 
 ---
 
-### Notes
+#### Notes
 
 Followed sites MUST not use DNS shortnames. They should be listed by their public key domain.
 
 All followed sites MUST be mounted in the [refs directory](/dir/refs) to enable quick metadata lookups.
 
-### Metadata
+#### Metadata
 
 |Key|Value|
 |-|-|
 |`type`|`unwalled.garden/follows`|
 
-### Example
+#### Example
 
 ```json
 {
@@ -28,7 +28,7 @@ All followed sites MUST be mounted in the [refs directory](/dir/refs) to enable 
 }
 ```
 
-### Schema
+#### Schema
 
 ```json
 {

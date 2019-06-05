@@ -8,7 +8,7 @@
 
 ---
 
-### Metadata
+#### Metadata
 
 |Key|Value|
 |-|-|
@@ -16,7 +16,7 @@
 |`title`|The person's name|
 |`description`|The person's short bio|
 
-### File structure
+#### File structure
 
 |Path|Type|
 |-|-|

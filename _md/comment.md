@@ -8,13 +8,13 @@
 
 ---
 
-### Metadata
+#### Metadata
 
 |Key|Value|
 |-|-|
 |`type`|`unwalled.garden/comment`|
 
-### Examples
+#### Examples
 
 ```json
 {
@@ -33,7 +33,7 @@
 }
 ```
 
-### Schema
+#### Schema
 
 ```json
 {

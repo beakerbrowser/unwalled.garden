@@ -9,10 +9,11 @@ import {search} from 'dat://unwalled.garden/index.js'
 
 // read
 await search.list({
-  query,
-  filters: {type, since, trust},
+  query: {matches, since, types, visibility},
+  sortBy,
   offset,
-  limit
+  limit,
+  reverse
 })
 ```
 

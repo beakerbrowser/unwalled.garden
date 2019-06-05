@@ -5,20 +5,22 @@
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
   </head>
-  <body class="page">
-    <nav>
-      <h1><a href="/">Unwalled.Garden</a></h1>
-      <ul>
+  <body>
+    <h1><a href="/">Unwalled.Garden</a></h1>
+    <div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+    <div class="page">
+      <nav>
+        <ul>
     <li>Docs
       <ul>
         <li><a href="/docs/how-does-it-work">How it works</a></li>
-        <li><a href="/docs/mission">Mission</a></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
           <li><a href="/docs/metadata">Metadata</a></li>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
+        <li><a href="/docs/browser-integration">Browser integration</a></li>
+        <li><a href="/docs/common-fields">Common fields</a></li>
         <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
-        <!-- <li><a href="/docs/examples/one">Example 1</a></li> -->
       </ul>
     </li>
   </ul>
@@ -30,7 +32,6 @@
       <li><a href="/docs/api/posts">Posts</a></li>
       <li><a href="/docs/api/profiles">Profiles</a></li>
       <li><a href="/docs/api/reactions">Reactions</a></li>
-      <li><a href="/docs/api/search">Search</a></li>
     </ul>
   </li>
 </ul>
@@ -43,7 +44,7 @@
       <li><a href="/person">Person</a></li>
       <li><a href="/post">Post</a></li>
       <li><a href="/reaction">Reaction</a></li>
-      <li>dir/<ul>
+      <li>dir<ul>
         <li><a href="/dir/data">Data</a></li>
         <li><a href="/dir/refs">Refs</a></li>
       </ul></li>
@@ -59,29 +60,17 @@
     </ul>
   </li>
 </ul>
-    </nav>
-    <main><h2>How does Unwalled.Garden work?</h2><div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
-<h3>Souped-up RSS</h3>
-<p>Unwalled.Garden is a kind of “Souped up <a href="https://en.wikipedia.org/wiki/RSS">RSS</a>.” Every user has a website; they publish their content as files; they subscribe to each others’ sites; and that’s it!</p>
+      </nav>
+      <main><h2>How does Unwalled.Garden work?</h2>
+<p>Unwalled.Garden is a kind of “Souped up <a href="https://en.wikipedia.org/wiki/RSS">RSS</a>.” Every user has a website, they publish their content as files, and they subscribe to each others’ sites.</p>
 <p>While RSS was primarily for blogging, Unwalled.Garden includes data types for many kinds of use-cases. These data types are spread across many JSON files which have pre-defined schemas.</p>
-<aside>
-The Unwalled.Garden has three principles:
-<ol>
-<li>Every user is a website.</li>
-<li>Every record is a file.</li>
-<li>Users follow each other’s sites to sync their files.</li>
-</ol>
-<p>Everything about the network flows from these principles.</p>
-</aside>
-<h3>Schemas</h3>
-<p>Unwalled.Garden is built for the <a href="https://dat.foundation">Dat protocol</a> (read an <a href="./dat-primer">introduction primer here</a>) but it can be adapted to use HTTP as well.</p>
-<p>The type schemas are simple, obvious, and syntax-free. A “post” record looks like this:</p>
+<p>The schemas are simple, obvious, and syntax-free. A “post” record looks like this:</p>
 <pre><code class="language-json">{
   <span class="hljs-attr">"body"</span>: <span class="hljs-string">"Hello, world!"</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2019-05-21T21:27:45.471Z"</span>
 }
 </code></pre>
-<p>The schema types are stored in <a href="/docs/metadata">metadata fields</a> on files and folders. We identify the types using URLs such as:</p>
+<p>The schema IDs are stored in <a href="/docs/metadata">metadata fields</a> on files and folders. We identify the types using URLs such as:</p>
 <ul>
 <li><a href="/post">unwalled.garden/post</a></li>
 <li><a href="/comment">unwalled.garden/comment</a></li>
@@ -89,41 +78,41 @@ The Unwalled.Garden has three principles:
 <li><a href="/person">unwalled.garden/person</a></li>
 <li>etc</li>
 </ul>
-<p>All files are expected to fall under predefined paths which are typically under <code>.data/unwalled.garden</code>. An example site might look like this:</p>
-<pre><code>URL                                                  | Type
--------------------------------------------------------------------------------
-dat://bob.com                                        | unwalled.garden/person
-dat://bob.com/.data/unwalled.garden                  | unwalled.garden/dir/data
-dat://bob.com/.data/unwalled.garden/posts/hello.json | unwalled.garden/post
-dat://bob.com/.data/unwalled.garden/reactions/1.json | unwalled.garden/reaction
-dat://bob.com/.data/unwalled.garden/comments/1.json  | unwalled.garden/comment
-</code></pre>
-<p>Bob’s site identifies as a <a href="/person">Person</a> and it includes a <a href="/post">Post</a>, <a href="/reaction">Reaction</a>, and <a href="/comment">Comment</a>. A reader will crawl the website looking for these files to sync into its local database.</p>
-<aside>
-JSON files go in pre-defined paths. Clients crawl the sites to find files they're interested in.
-</aside>
-<h3>Browser integration</h3>
-<p><a href="https://beakerbrowser.com">Beaker Browser 0.9</a> implements Unwalled.Garden as part of the browser. It supports a high-level API which is loaded from the <a href="dat://unwalled.garden">dat://unwalled.garden</a> website. These APIs wrap the Dat filesystem and Beaker’s internal indexes.</p>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {posts, reactions, comments} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
-<span class="hljs-keyword">var</span> feed = <span class="hljs-keyword">await</span> posts.query({<span class="hljs-attr">reverse</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>})
-<span class="hljs-keyword">var</span> post = <span class="hljs-keyword">await</span> posts.add(<span class="hljs-string">'Hello, world!'</span>)
-<span class="hljs-keyword">await</span> comments.add(post.url, <span class="hljs-string">'Great post by me!'</span>)
-<span class="hljs-keyword">await</span> reactions.add(post.url, <span class="hljs-string">'👍'</span>)
-</code></pre>
-<p>The browser automatically creates a personal website for the user on first load. The personal site acts as the user profile and is where the user’s content is published.</p>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {profiles, graph} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
-<span class="hljs-keyword">var</span> me = <span class="hljs-keyword">await</span> profiles.getCurrentUser()
-<span class="hljs-keyword">await</span> graph.follow(<span class="hljs-string">'dat://beakerbrowser.com'</span>)
-</code></pre>
-<p>The indexes include full-text search for querying the user’s personal network.</p>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {search} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
-<span class="hljs-keyword">await</span> search.query({
-  <span class="hljs-attr">query</span>: <span class="hljs-string">'Beaker'</span>,
-  <span class="hljs-attr">filters</span>: {<span class="hljs-attr">schemas</span>: <span class="hljs-string">'unwalled.garden/post'</span>}
-})
-</code></pre>
-<p>Beaker will track its APIs with the latest Unwalled.Garden standards. More implementations of the APIs will be created as the network matures.</p>
+<p>All files are placed at predefined paths. An example site might look like this:</p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dat://bob.com</code></td>
+<td><a href="/person">Person</a></td>
+</tr>
+<tr>
+<td><code>dat://bob.com/.data/unwalled.garden</code></td>
+<td><a href="/dir/data">Data directory</a></td>
+</tr>
+<tr>
+<td><code>dat://bob.com/.data/unwalled.garden/posts/hello.json</code></td>
+<td><a href="/post">Post</a></td>
+</tr>
+<tr>
+<td><code>dat://bob.com/.data/unwalled.garden/reactions/1.json</code></td>
+<td><a href="/reaction">Reaction</a></td>
+</tr>
+<tr>
+<td><code>dat://bob.com/.data/unwalled.garden/comments/1.json</code></td>
+<td><a href="/comment">Comment</a></td>
+</tr>
+</tbody>
+</table>
+<p>This site identifies as a <a href="/person">Person</a> and it includes a <a href="/post">Post</a>, <a href="/reaction">Reaction</a>, and <a href="/comment">Comment</a>. A reader will crawl the website looking for these files to sync into its local database.</p>
+<p>Unwalled.Garden is built for the <a href="https://dat.foundation">Dat protocol</a>. Read an <a href="./dat-primer">introduction primer here</a>.</p>
 </main>
+    </div>
   </body>
   <script type="module" src="/assets/admin.js"></script>
 </html>

@@ -8,19 +8,19 @@
 
 ---
 
-### Notes
+#### Notes
 
 Reactions are a more general form of a "like." They have minimal semantic meaning, though the emojis could easily be categorized for sentiment.
 
 The full list of supported emoji code-points can be found in [the schema](./reaction.json).
 
-### Metadata
+#### Metadata
 
 |Key|Value|
 |-|-|
 |`type`|`unwalled.garden/reaction`|
 
-### Example
+#### Example
 
 ```json
 {
@@ -29,7 +29,7 @@ The full list of supported emoji code-points can be found in [the schema](./reac
 }
 ```
 
-### Schema
+#### Schema
 
 ```json
 {

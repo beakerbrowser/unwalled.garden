@@ -9,100 +9,132 @@ import {posts} from 'dat://unwalled.garden/index.js'
 
 // read
 await posts.list({
-  filters: {authors, trust},
+  query: {authors, visibility},
+  sortBy,
   offset,
   limit,
   reverse
 })
-await posts.get(postUrl)
+await posts.get(url)
 
 // write
-await posts.add(body)
-await posts.edit(postUrl, body)
-await posts.delete(postUrl)
+await posts.add(post)
+await posts.edit(url, post)
+await posts.delete(url)
 ```
 
 ---
 
-### `Post`
+### Post
 
-The values returned by posts functions will fit the following object shape:
+The values returned by post functions will fit the following object shape:
 
-  - <var>url</var> `string` <small>The URL of the post.</small>
-  - <var>content</var> `Object`
-    - <var>body</var> `string` <small>The text body of the post. Limited to 280 characters in length.</small>
-  - <var>crawledAt</var> `number` <small>The timestamp of when this post was crawled by the local computer.</small>
-  - <var>createdAt</var> `number` <small>The timestamp of when the post claims it was created.</small>
-  - <var>updatedAt</var> `number` <small>The timestamp of when the post claims it was last updated.</small>
-  - <var>author</var> `Object` <small>The post author's information.</small>
-    - <var>url</var> `string`
-    - <var>title</var> `string`
-    - <var>description</var> `string`
-    - <var>type</var> `string[]`
-
----
-
-### `posts.query([opts])`
-
-Get a list of posts, ordered by the posts' claimed creation dates.
-
-  - <var>opts</var> `Object`
-    - <var>filters</var> `Object`
-      - <var>authors</var> `string|string[]` <small>A URL or set of URLs of authors to filter the listing down to.</small>
-    - <var>offset</var> `number`
-    - <var>limit</var> `number`
-    - <var>reverse</var> `boolean`
-  - Returns `Promise<Post[]>`
-
-By default, all crawled posts will be included in the output. If you want to only show posts by sites that the user follows, use the [graph API](./graph) to get the followed sites and pass their URLs into the <var>authors</var> filter.
+|Attribute|Type|Usage|
+|-|-|-|
+|url|`string`|The URL of the post|
+|body|`string`|The text body of the post|
+|createdAt|`number`|The timestamp of when the post claims it was created|
+|updatedAt|`number`|The timestamp of when the post claims it was last updated|
+|author|`Object`|The post author's information|
+|&emsp;url|`string`||
+|&emsp;title|`string`||
+|&emsp;description|`string`||
+|&emsp;type|`string`||
+|visibility|`string`|The [visibility](/docs/common-fields#visibility) of the post|
 
 ---
 
-### `posts.get(postUrl)`
+### list(opts)
+
+List the posts on the network.
+
+|Param|Type|Default|Usage|
+|-|-|-|-|
+|opts|`Object`|||
+|&emsp;query|`Object`|||
+|&emsp;&emsp;authors|`string|string[]`||Site URLs|
+|&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
+|&emsp;sortBy|`string`|`'createdAt'`|One of: `'createdAt'`|
+|&emsp;offset|`number`|0||
+|&emsp;limit|`number`|||
+|&emsp;reverse|`boolean`|`false`||
+
+|Returns|
+|-|
+|`Promise<Post[]>`|
+
+---
+
+### get(url)
 
 Get an individual post by its URL.
 
-  - <var>postUrl</var> `string` <small>The URL of the post you want to read.</small>
-  - Returns `Promise<Post>`
+|Param|Type|Default|Usage|
+|-|-|-|-|
+|url|`string`||Post URL (required)|
+
+|Returns|
+|-|
+|`Promise<Post>`|
 
 ---
 
-### `posts.add(body)`
+### add(post)
 
 Add a post to the current user's site.
 
-  - <var>body</var> `string` <small>The text body of the post. Limited to 280 characters in length.</small>
-  - Returns `Promise<Post>`
+|Param|Type|Default|Usage|
+|-|-|-|-|
+|post|`string|Object`||If a string, specifies the body (required)|
+|&emsp;body|`string`||The post body (required)|
+|&emsp;visibility|`string`|`'public'`|See [visibility](/docs/common-fields#visibility)|
 
-Example usage:
+|Returns|
+|-|
+|`Promise<Post>`|
+
+#### Example
 
 ```js
-var myPost = await posts.add('Hello, world!')
+await posts.add('Hello, world!')
+await posts.add({body: 'Hello, me!', visibility: 'private'})
 ```
 
 ---
 
-### `posts.edit(postUrl, body)`
+### edit(url, post)
 
 Edit a post on the current user's site.
 
-  - <var>postUrl</var> `string` <small>The URL of the post you want to edit.</small>
-  - <var>body</var> `string` <small>The text body of the post. Limited to 280 characters in length.</small>
-  - Returns `Promise<Post>`
+|Param|Type|Default|Usage|
+|-|-|-|-|
+|url|`string`||The URL of the post you want to edit (required)|
+|post|`string|Object`||If a string, specifies the body (required)|
+|&emsp;body|`string`||The post body (required)|
+|&emsp;visibility|`string`|`'public'`|See [visibility](/docs/common-fields#visibility)|
 
-Example usage:
+|Returns|
+|-|
+|`Promise<Post>`|
+
+#### Example
 
 ```js
-myPost = await posts.add(myPost.url, 'Hello, world!!')
+await posts.edit(myPost.url, 'Hello, world!!')
 ```
 
 ---
 
-### `posts.delete(postUrl)`
+### delete(url)
 
 Delete a post on the current user's site.
 
-  - <var>postUrl</var> `string` <small>The URL of the post you want to delete.</small>
-  - Returns `Promise<void>`
+|Param|Type|Default|Usage|
+|-|-|-|-|
+|url|`string`||The URL of the post you want to delete (required)|
+
+|Returns|
+|-|
+|`Promise<Post>`|
 
 ---

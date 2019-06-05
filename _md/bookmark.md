@@ -8,13 +8,13 @@
 
 ---
 
-### Metadata
+#### Metadata
 
 |Key|Value|
 |-|-|
 |`type`|`unwalled.garden/bookmark`|
 
-### Example
+#### Example
 
 ```json
 {
@@ -26,7 +26,7 @@
 }
 ```
 
-### Schema
+#### Schema
 
 ```json
 {
