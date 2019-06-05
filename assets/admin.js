@@ -147,8 +147,13 @@ async function generateHTML (md, mdPath, htmlPath, layoutHtml) {
   console.debug('Writing', htmlPath)
   let mdfile = await self.readFile(mdPath, 'utf8')
   let html = layoutHtml
+    .replace('$TITLE', `${extractTitle(mdfile)} | Unwalled.Garden`)
     .replace('$CONTENT', md.render(mdfile))
   await self.writeFile(htmlPath, html)
+}
+
+function extractTitle (mdfile) {
+  return mdfile.split('\n')[0].replace('## ', '').replace('`', '(').replace('`', ')')
 }
 
 function joinPath (...args) {
