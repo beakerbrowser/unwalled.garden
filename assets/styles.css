@@ -181,11 +181,11 @@ h1 {
 .card.code {
   display: flex;
   flex-direction: column;
+  border: 0;
 }
 
 .card.code pre {
   flex: 1;
-  background: #fafafa;
   color: #444;
   border: 0;
   white-space: pre;
