@@ -1,3 +1,34 @@
+## Bookmark `unwalled.garden/bookmark`
+
+---
+
+ - File type
+ - **Description**: A saved/shared link to some URL.
+ - **Path**: `/.data/unwalled.garden/bookmarks/*.json`
+
+---
+
+#### Metadata
+
+|Key|Value|
+|-|-|
+|`type`|`unwalled.garden/bookmark`|
+
+#### Example
+
+```json
+{
+  "href": "dat://beakerbrowser.com",
+  "title": "Beaker Browser",
+  "description": "An experimental peer-to-peer Web browser. Built using the dat protocol.",
+  "tags": ["p2p", "web", "dat"],
+  "createdAt": "2018-12-07T02:52:11.947Z"
+}
+```
+
+#### Schema
+
+```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "dat://unwalled.garden/bookmark.json",
@@ -37,3 +68,4 @@
     }
   }
 }
+```

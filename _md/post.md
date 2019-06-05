@@ -1,3 +1,31 @@
+## Post `unwalled.garden/post`
+
+---
+
+ - File type
+ - **Description**: A broadcasted piece of content.
+ - **Path**: `/.data/unwalled.garden/posts/*.json`
+
+---
+
+#### Metadata
+
+|Key|Value|
+|-|-|
+|`type`|`unwalled.garden/post`|
+
+#### Example
+
+```json
+{
+  "body": "Hello, world!",
+  "createdAt": "2018-12-07T02:52:11.947Z"
+}
+```
+
+#### Schema
+
+```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "dat://unwalled.garden/post.json",
@@ -23,3 +51,4 @@
     }
   }
 }
+```
