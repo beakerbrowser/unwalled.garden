@@ -4,6 +4,8 @@
 
 Schemas and APIs for social applications on the Dat Web.
 
+Join us on Freenode at #unwalled.garden.
+
 ## How it works
 
  - Every user has their own Dat website.
