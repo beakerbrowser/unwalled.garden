@@ -220,7 +220,7 @@ h1 {
   z-index: 3;
 }
 
-@media (max-width: 800px) {
+@media only screen and (max-device-width: 640px) {
   .col2,
   .col4 {
     padding: 0 10px;
