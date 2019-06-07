@@ -8,9 +8,11 @@
   </head>
   <body>
     <h1><a href="/">Unwalled.Garden</a></h1>
+    <a class="nav-open"><img src="/assets/hamburger.svg"></a>
     <div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
     <div class="page">
       <nav>
+        <a class="nav-close"><img src="/assets/hamburger.svg"></a>
         <ul>
     <li>Docs
       <ul>
@@ -116,4 +118,12 @@
     </div>
   </body>
   <script type="module" src="/assets/admin.js"></script>
+  <script>
+    document.querySelector('.nav-open').addEventListener('click', e => {
+      document.querySelector('nav').classList.add('show')
+    })
+    document.querySelector('.nav-close').addEventListener('click', e => {
+      document.querySelector('nav').classList.remove('show')
+    })
+  </script>
 </html>

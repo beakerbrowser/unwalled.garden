@@ -201,9 +201,23 @@ h1 {
   margin: 4rem 0;
 }
 
+.nav-open,
+.nav-close {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+}
+
+.nav-close {
+  z-index: 3;
+}
+
 @media (max-width: 800px) {
   .col2,
   .col4 {
+    padding: 0 10px;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -217,6 +231,51 @@ h1 {
   }
   .card.code pre {
     white-space: pre-wrap;
+  }
+
+  .nav-open {
+    display: inline;
+    z-index: 1;
+  }
+
+  .page nav {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: -100%;
+    padding: 10px 50px 10px 20px;
+    background: #fff;
+    font-size: 21px;
+    margin: 0;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    transition: right .1s;
+  }
+  
+  .page nav.show {
+    right: 0;
+  }
+
+  .page nav.show .nav-close {
+    display: inline;
+  }
+
+  .page nav li {
+    margin: 5px 0;
+  }
+
+  main {
+    padding: 0 20px;
+  }
+
+  h1 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .notice {
+    padding-left: 22px;
+    padding-right: 22px;
   }
 }
 
