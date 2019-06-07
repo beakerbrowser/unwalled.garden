@@ -210,6 +210,12 @@ h1 {
   padding: 20px;
 }
 
+.nav-open img,
+.nav-close img {
+  width: 50px;
+  height: 50px;
+}
+
 .nav-close {
   z-index: 3;
 }
@@ -239,10 +245,12 @@ h1 {
   }
 
   .page nav {
+    display: none;
+    grid-template-columns: 1fr 1fr;
     position: absolute;
     z-index: 2;
     top: 0;
-    right: -100%;
+    right: 0;
     padding: 10px 50px 10px 20px;
     background: #fff;
     font-size: 21px;
@@ -253,7 +261,7 @@ h1 {
   }
   
   .page nav.show {
-    right: 0;
+    display: grid;
   }
 
   .page nav.show .nav-close {
