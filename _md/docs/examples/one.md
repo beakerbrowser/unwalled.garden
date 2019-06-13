@@ -29,7 +29,7 @@ class MyApp extends HTMLElement {
   }
 
   async load () {
-    this.posts = await posts.query({reverse: true, limit: 10})
+    this.posts = await posts.list({reverse: true, limit: 10})
     for (let post of this.posts) {
       this.append(this.createPostElement(post))
     }
@@ -41,7 +41,7 @@ class MyApp extends HTMLElement {
       <p><a></a></p>
       <blockquote></blockquote>
     `
-    el.querySelector('blockquote').textContent = post.content.body
+    el.querySelector('blockquote').textContent = post.body
     el.querySelector('a').setAttribute('href', post.author.url)
     el.querySelector('a').textContent = post.author.title
     return el

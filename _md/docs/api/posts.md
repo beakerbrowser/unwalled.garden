@@ -9,7 +9,7 @@ import {posts} from 'dat://unwalled.garden/index.js'
 
 // read
 await posts.list({
-  query: {authors, visibility},
+  filters: {authors, visibility},
   sortBy,
   offset,
   limit,
@@ -33,13 +33,13 @@ The values returned by post functions will fit the following object shape:
 |-|-|-|
 |url|`string`|The URL of the post|
 |body|`string`|The text body of the post|
-|createdAt|`number`|The timestamp of when the post claims it was created|
-|updatedAt|`number`|The timestamp of when the post claims it was last updated|
+|createdAt|`string`|The timestamp of when the post claims it was created|
+|updatedAt|`string`|The timestamp of when the post claims it was last updated|
 |author|`Object`|The post author's information|
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string`||
+|&emsp;type|`string[]`||
 |visibility|`string`|The [visibility](/docs/common-fields#visibility) of the post|
 
 ---
@@ -51,7 +51,7 @@ List the posts on the network.
 |Param|Type|Default|Usage|
 |-|-|-|-|
 |opts|`Object`|||
-|&emsp;query|`Object`|||
+|&emsp;filters|`Object`|||
 |&emsp;&emsp;authors|`string|string[]`||Site URLs|
 |&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
 |&emsp;sortBy|`string`|`'createdAt'`|One of: `'createdAt'`|

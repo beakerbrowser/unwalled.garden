@@ -4,10 +4,10 @@
  * 
  * ## Example usage:
  * 
- * import {posts, graph} from 'dat://unwalled.garden'
+ * import {posts, follows} from 'dat://unwalled.garden/index.js'
  *
- * posts.addPost({content: {body: 'Hello, world!'}})
- * graph.follow('dat://beakerbrowser.com')
+ * posts.add('Hello, world!')
+ * follows.add('dat://beakerbrowser.com')
  *
  * ## What is this?
  * 
@@ -40,5 +40,5 @@ export const bookmarks = navigator.importSystemAPI('bookmarks')
 export const library = navigator.importSystemAPI('library')
 export const search = navigator.importSystemAPI('search')
 export const posts = navigator.importSystemAPI('unwalled-garden-posts')
-export const graph = navigator.importSystemAPI('unwalled-garden-graph')
+export const follows = navigator.importSystemAPI('unwalled-garden-follows')
 export const reactions = navigator.importSystemAPI('unwalled-garden-reactions')

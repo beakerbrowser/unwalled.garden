@@ -71,18 +71,18 @@
 
 <span class="hljs-comment">// read</span>
 <span class="hljs-keyword">await</span> follows.list({
-  <span class="hljs-attr">query</span>: {authors, subjects, visibility},
+  <span class="hljs-attr">filters</span>: {authors, topics, visibility},
   sortBy,
   offset,
   limit,
   reverse
 })
-<span class="hljs-keyword">await</span> follows.get(author, subject)
+<span class="hljs-keyword">await</span> follows.get(author, topic)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> follows.add(subject, {visibility})
-<span class="hljs-keyword">await</span> follows.edit(subject, {visibility})
-<span class="hljs-keyword">await</span> follows.remove(subject)
+<span class="hljs-keyword">await</span> follows.add(topic, {visibility})
+<span class="hljs-keyword">await</span> follows.edit(topic, {visibility})
+<span class="hljs-keyword">await</span> follows.remove(topic)
 </code></pre>
 <hr>
 <h3>Follow</h3>
@@ -118,11 +118,11 @@
 </tr>
 <tr>
 <td> type</var></td>
-<td><code>string</code></td>
+<td><code>string[]</code></td>
 <td></td>
 </tr>
 <tr>
-<td>subject</var></td>
+<td>topic</var></td>
 <td><code>Object</code></td>
 <td>The site being followed</td>
 </tr>
@@ -143,7 +143,7 @@
 </tr>
 <tr>
 <td> type</var></td>
-<td><code>string</code></td>
+<td><code>string[]</code></td>
 <td></td>
 </tr>
 <tr>
@@ -155,7 +155,7 @@
 </table>
 <hr>
 <h3>list(opts)</h3>
-<p>List follows by authors and/or subjects.</p>
+<p>List follows by authors and/or topics.</p>
 <table>
 <thead>
 <tr>
@@ -173,7 +173,7 @@
 <td></td>
 </tr>
 <tr>
-<td> query</td>
+<td> filters</td>
 <td><code>Object</code></td>
 <td></td>
 <td></td>
@@ -185,7 +185,7 @@
 <td>Site URLs</td>
 </tr>
 <tr>
-<td>  subjects</td>
+<td>  topics</td>
 <td><code>string|string[]</code></td>
 <td></td>
 <td>Site URLs</td>
@@ -199,8 +199,8 @@
 <tr>
 <td> sortBy</td>
 <td><code>string</code></td>
-<td><code>'subject'</code></td>
-<td>One of: <code>'subject'</code></td>
+<td><code>'topic'</code></td>
+<td>One of: <code>'topic'</code></td>
 </tr>
 <tr>
 <td> offset</td>
@@ -235,8 +235,8 @@
 </tbody>
 </table>
 <hr>
-<h3>get(author, subject)</h3>
-<p>Get a follow by author and subject.</p>
+<h3>get(author, topic)</h3>
+<p>Get a follow by author and topic.</p>
 <table>
 <thead>
 <tr>
@@ -254,7 +254,7 @@
 <td>Site URL (required)</td>
 </tr>
 <tr>
-<td>subject</td>
+<td>topic</td>
 <td><code>string</code></td>
 <td></td>
 <td>Site URL (required)</td>
@@ -274,7 +274,7 @@
 </tbody>
 </table>
 <hr>
-<h3>add(subject, opts)</h3>
+<h3>add(topic, opts)</h3>
 <p>Add a follow to the current user’s site.</p>
 <table>
 <thead>
@@ -287,7 +287,7 @@
 </thead>
 <tbody>
 <tr>
-<td>subject</td>
+<td>topic</td>
 <td><code>string</code></td>
 <td></td>
 <td>Site URL (required)</td>
@@ -319,7 +319,7 @@
 </tbody>
 </table>
 <hr>
-<h3>edit(subject, opts)</h3>
+<h3>edit(topic, opts)</h3>
 <p>Edit a follow on the current user’s site.</p>
 <table>
 <thead>
@@ -332,7 +332,7 @@
 </thead>
 <tbody>
 <tr>
-<td>subject</td>
+<td>topic</td>
 <td><code>string</code></td>
 <td></td>
 <td>Site URL (required)</td>
@@ -364,7 +364,7 @@
 </tbody>
 </table>
 <hr>
-<h3>remove(subject)</h3>
+<h3>remove(topic)</h3>
 <p>Remove a follow from the current user’s site.</p>
 <table>
 <thead>
@@ -377,7 +377,7 @@
 </thead>
 <tbody>
 <tr>
-<td>subject</td>
+<td>topic</td>
 <td><code>string</code></td>
 <td></td>
 <td>Site URL (required)</td>

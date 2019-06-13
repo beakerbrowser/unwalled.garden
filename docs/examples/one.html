@@ -88,7 +88,7 @@
   }
 
   <span class="hljs-keyword">async</span> load () {
-    <span class="hljs-keyword">this</span>.posts = <span class="hljs-keyword">await</span> posts.query({<span class="hljs-attr">reverse</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>})
+    <span class="hljs-keyword">this</span>.posts = <span class="hljs-keyword">await</span> posts.list({<span class="hljs-attr">reverse</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>})
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> post <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.posts) {
       <span class="hljs-keyword">this</span>.append(<span class="hljs-keyword">this</span>.createPostElement(post))
     }
@@ -100,7 +100,7 @@
       &lt;p&gt;&lt;a&gt;&lt;/a&gt;&lt;/p&gt;
       &lt;blockquote&gt;&lt;/blockquote&gt;
     `</span>
-    el.querySelector(<span class="hljs-string">'blockquote'</span>).textContent = post.content.body
+    el.querySelector(<span class="hljs-string">'blockquote'</span>).textContent = post.body
     el.querySelector(<span class="hljs-string">'a'</span>).setAttribute(<span class="hljs-string">'href'</span>, post.author.url)
     el.querySelector(<span class="hljs-string">'a'</span>).textContent = post.author.title
     <span class="hljs-keyword">return</span> el

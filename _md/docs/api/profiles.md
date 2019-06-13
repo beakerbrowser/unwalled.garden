@@ -26,7 +26,7 @@ The values returned by profile functions will fit the following object shape:
 |url|`string`||
 |title|`string`||
 |description|`string`||
-|type|`string`||
+|type|`string[]`||
 
 ---
 

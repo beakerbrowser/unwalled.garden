@@ -9,14 +9,14 @@ import {reactions} from 'dat://unwalled.garden/index.js'
 
 // read
 await reactions.list({
-  query: {authors, topics},
+  filters: {authors, topics, visiblity},
   sortBy,
   offset,
   limit,
   reverse
 })
 await reactions.tabulate(topic, {
-  query: {authors}
+  filters: {authors, visiblity}
 })
 
 // write
@@ -39,7 +39,7 @@ The values returned by reaction functions will fit the following object shape:
 |&emsp;url</var>|`string`||
 |&emsp;title</var>|`string`||
 |&emsp;description</var>|`string`||
-|&emsp;type</var>|`string`||
+|&emsp;type</var>|`string[]`||
 |visibility</var>|`string`|The [visibility](/docs/common-fields#visibility) of the reaction|
 
 ---
@@ -56,7 +56,7 @@ The values returned by `tabulate()` will fit the following object shape:
 |&emsp;url</var>|`string`||
 |&emsp;title</var>|`string`||
 |&emsp;description</var>|`string`||
-|&emsp;type</var>|`string`||
+|&emsp;type</var>|`string[]`||
 
 ---
 
@@ -67,7 +67,7 @@ List the reactions on the network.
 |Param|Type|Default|Usage|
 |-|-|-|-|
 |opts|`Object`|||
-|&emsp;query|`Object`|||
+|&emsp;filters|`Object`|||
 |&emsp;&emsp;authors|`string|string[]`||Site URLs|
 |&emsp;&emsp;topics|`string|string[]`||URLs|
 |&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
@@ -90,7 +90,7 @@ Tabulate the reactions on a topic.
 |-|-|-|-|
 |topic|`string`||Topic URL (required)|
 |opts|`Object`|||
-|&emsp;query|`Object`|||
+|&emsp;filters|`Object`|||
 |&emsp;&emsp;authors|`string|string[]`||Site URLs|
 |&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
 

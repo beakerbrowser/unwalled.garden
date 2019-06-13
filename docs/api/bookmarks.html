@@ -71,7 +71,7 @@
 
 <span class="hljs-comment">// read</span>
 <span class="hljs-keyword">await</span> bookmarks.list({
-  <span class="hljs-attr">query</span>: {authors, tags, visibility},
+  <span class="hljs-attr">filters</span>: {authors, tags, visibility},
   sortBy,
   offset,
   limit,
@@ -143,7 +143,7 @@
 </tr>
 <tr>
 <td> type</td>
-<td><code>string</code></td>
+<td><code>string[]</code></td>
 <td></td>
 </tr>
 <tr>
@@ -173,7 +173,7 @@
 <td></td>
 </tr>
 <tr>
-<td> query</td>
+<td> filters</td>
 <td><code>Object</code></td>
 <td></td>
 <td></td>

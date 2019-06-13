@@ -9,18 +9,18 @@ import {follows} from 'dat://unwalled.garden/index.js'
 
 // read
 await follows.list({
-  query: {authors, subjects, visibility},
+  filters: {authors, topics, visibility},
   sortBy,
   offset,
   limit,
   reverse
 })
-await follows.get(author, subject)
+await follows.get(author, topic)
 
 // write
-await follows.add(subject, {visibility})
-await follows.edit(subject, {visibility})
-await follows.remove(subject)
+await follows.add(topic, {visibility})
+await follows.edit(topic, {visibility})
+await follows.remove(topic)
 ```
 
 ---
@@ -35,28 +35,28 @@ The values returned by follow functions will fit the following object shape:
 |&emsp;url</var>|`string`||
 |&emsp;title</var>|`string`||
 |&emsp;description</var>|`string`||
-|&emsp;type</var>|`string`||
-|subject</var>|`Object`|The site being followed|
+|&emsp;type</var>|`string[]`||
+|topic</var>|`Object`|The site being followed|
 |&emsp;url</var>|`string`||
 |&emsp;title</var>|`string`||
 |&emsp;description</var>|`string`||
-|&emsp;type</var>|`string`||
+|&emsp;type</var>|`string[]`||
 |visibility</var>|`string`|The [visibility](/docs/common-fields#visibility) of the "follow" record|
 
 ---
 
 ### list(opts)
 
-List follows by authors and/or subjects.
+List follows by authors and/or topics.
 
 |Param|Type|Default|Usage|
 |-|-|-|-|
 |opts|`Object`|||
-|&emsp;query|`Object`|||
+|&emsp;filters|`Object`|||
 |&emsp;&emsp;authors|`string|string[]`||Site URLs|
-|&emsp;&emsp;subjects|`string|string[]`||Site URLs|
+|&emsp;&emsp;topics|`string|string[]`||Site URLs|
 |&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
-|&emsp;sortBy|`string`|`'subject'`|One of: `'subject'`|
+|&emsp;sortBy|`string`|`'topic'`|One of: `'topic'`|
 |&emsp;offset|`number`|0||
 |&emsp;limit|`number`|||
 |&emsp;reverse|`boolean`|`false`||
@@ -67,14 +67,14 @@ List follows by authors and/or subjects.
 
 ---
 
-### get(author, subject)
+### get(author, topic)
 
-Get a follow by author and subject.
+Get a follow by author and topic.
 
 |Param|Type|Default|Usage|
 |-|-|-|-|
 |author|`string`||Site URL (required)|
-|subject|`string`||Site URL (required)|
+|topic|`string`||Site URL (required)|
 
 |Returns|
 |-|
@@ -82,13 +82,13 @@ Get a follow by author and subject.
 
 ---
 
-### add(subject, opts)
+### add(topic, opts)
 
 Add a follow to the current user's site.
 
 |Param|Type|Default|Usage|
 |-|-|-|-|
-|subject|`string`||Site URL (required)|
+|topic|`string`||Site URL (required)|
 |opts|`Object`|||
 |&emsp;[visibility](/docs/common-fields#visibility)|`string`|`'public'`|One of: `'public'`, `'private'`|
 
@@ -98,13 +98,13 @@ Add a follow to the current user's site.
 
 ---
 
-### edit(subject, opts)
+### edit(topic, opts)
 
 Edit a follow on the current user's site.
 
 |Param|Type|Default|Usage|
 |-|-|-|-|
-|subject|`string`||Site URL (required)|
+|topic|`string`||Site URL (required)|
 |opts|`Object`|||
 |&emsp;[visibility](/docs/common-fields#visibility)|`string`|`'public'`|One of: `'public'`, `'private'`|
 
@@ -114,13 +114,13 @@ Edit a follow on the current user's site.
 
 ---
 
-### remove(subject)
+### remove(topic)
 
 Remove a follow from the current user's site.
 
 |Param|Type|Default|Usage|
 |-|-|-|-|
-|subject|`string`||Site URL (required)|
+|topic|`string`||Site URL (required)|
 
 |Returns|
 |-|

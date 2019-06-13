@@ -9,7 +9,7 @@ import {bookmarks} from 'dat://unwalled.garden/index.js'
 
 // read
 await bookmarks.list({
-  query: {authors, tags, visibility},
+  filters: {authors, tags, visibility},
   sortBy,
   offset,
   limit,
@@ -40,7 +40,7 @@ The values returned by bookmark functions will fit the following object shape:
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string`||
+|&emsp;type|`string[]`||
 |visibility|`string`|The [visibility](/docs/common-fields#visibility) of the bookmark|
 
 ---
@@ -52,7 +52,7 @@ List bookmarks on the network.
 |Param|Type|Default|Usage|
 |-|-|-|-|
 |opts|`Object`|||
-|&emsp;query|`Object`|||
+|&emsp;filters|`Object`|||
 |&emsp;&emsp;authors|`string|string[]`||Site URLs|
 |&emsp;&emsp;tags|`string|string[]`|||
 |&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
