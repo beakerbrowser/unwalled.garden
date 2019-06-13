@@ -24,9 +24,9 @@
         </div>
         <div class="card code">
           <pre class="card-section">
-<span class="hljs-keyword">import</span> {posts, graph} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<span class="hljs-keyword">import</span> {posts, follows} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
-<span class="hljs-keyword">await</span> graph.follow(<span class="hljs-string">'dat://beakerbrowser.com'</span>)
+<span class="hljs-keyword">await</span> follows.add(<span class="hljs-string">'dat://beakerbrowser.com'</span>)
 <span class="hljs-keyword">await</span> posts.add(<span class="hljs-string">'Hello, world!'</span>)
 
 <span class="hljs-comment">/*
@@ -41,7 +41,6 @@
       <ul>
         <li><a href="/docs/how-does-it-work">How it works</a></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
-          <li><a href="/docs/metadata">Metadata</a></li>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
         <li><a href="/docs/browser-integration">Browser integration</a></li>

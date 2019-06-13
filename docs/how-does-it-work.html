@@ -18,7 +18,6 @@
       <ul>
         <li><a href="/docs/how-does-it-work">How it works</a></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
-          <li><a href="/docs/metadata">Metadata</a></li>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
         <li><a href="/docs/browser-integration">Browser integration</a></li>
@@ -69,11 +68,12 @@
 <p>While RSS was primarily for blogging, Unwalled.Garden includes data types for many kinds of use-cases. These data types are spread across many JSON files which have pre-defined schemas.</p>
 <p>The schemas are simple, obvious, and syntax-free. A “post” record looks like this:</p>
 <pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/post"</span>,
   <span class="hljs-attr">"body"</span>: <span class="hljs-string">"Hello, world!"</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2019-05-21T21:27:45.471Z"</span>
 }
 </code></pre>
-<p>The schema IDs are stored in <a href="/docs/metadata">metadata fields</a> on files and folders. We identify the types using URLs such as:</p>
+<p>We identify the types using URLs such as:</p>
 <ul>
 <li><a href="/post">unwalled.garden/post</a></li>
 <li><a href="/comment">unwalled.garden/comment</a></li>

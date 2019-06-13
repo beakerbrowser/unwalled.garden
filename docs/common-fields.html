@@ -18,7 +18,6 @@
       <ul>
         <li><a href="/docs/how-does-it-work">How it works</a></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
-          <li><a href="/docs/metadata">Metadata</a></li>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
         <li><a href="/docs/browser-integration">Browser integration</a></li>
@@ -76,7 +75,7 @@
 <li><code>'all'</code> Include both private and public records.</li>
 </ul>
 <h4>How does it work?</h4>
-<p>A user has two Dat hyperdrives: a public and a private. They both possess the <a href="/dir/data">Data directory</a> in roughly the same location. In <a href="https://beakerbrowser.com">Beaker</a>, the private drive acts as the “root” of the user’s filesystem, and the public drive is mounted to <code>/public</code> on the private drive.</p>
+<p>A user has two Dat hyperdrives: a public and a private. They both possess the <a href="/dir/data">Data directory</a> in roughly the same location. In <a href="https://beakerbrowser.com">Beaker</a>, the private drive acts as the “root” of the user’s filesystem, and the public drive is <a href="/docs/mounts">mounted</a> to <code>/public</code> on the private drive.</p>
 <p>The private drive is kept off the network. When <var>visibility</var> is set to <code>'private'</code>, the record is written there. When set to <code>'public'</code>, it’s written to the public drive.</p>
 </main>
     </div>

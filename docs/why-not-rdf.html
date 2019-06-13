@@ -18,7 +18,6 @@
       <ul>
         <li><a href="/docs/how-does-it-work">How it works</a></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
-          <li><a href="/docs/metadata">Metadata</a></li>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
         <li><a href="/docs/browser-integration">Browser integration</a></li>
@@ -66,13 +65,14 @@
       </nav>
       <main><h2>Why not RDF?</h2>
 <p>Schemas should be human-readable, easy to build with, and unambiguous.</p>
-<p>Our solution is to use a standard <code>type</code> metadata string which is a URL. We use a URL because:</p>
+<p>Our solution is to use a standard <code>type</code> field which is a URL. We use a URL because:</p>
 <ol>
 <li>It’s an unambiguous global namespace, and</li>
 <li>Developers can easily find the documentation.</li>
 </ol>
 <p>Here’s an example Unwalled.Garden object:</p>
 <pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/comment"</span>,
   <span class="hljs-attr">"topic"</span>: <span class="hljs-string">"dat://unwalled.garden"</span>,
   <span class="hljs-attr">"body"</span>: <span class="hljs-string">"Why didn't you use RDF!?"</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-07T04:15:44.722Z"</span>
@@ -106,10 +106,10 @@
 paul[<span class="hljs-string">'dat://websites.com/manifest#title'</span>] = <span class="hljs-string">'Paul Frazee'</span>
 </code></pre>
 <p>Programmers have to work with schemas! They should be simple and friendly to use. If we think in terms of records instead of graphs, we end up with objects that are much nicer to use.</p>
-<pre><code class="language-js"><span class="hljs-comment">// type="websites.com/manifest"</span>
-{
-  <span class="hljs-attr">title</span>: <span class="hljs-string">"Paul Frazee"</span>,
-  <span class="hljs-attr">description</span>: <span class="hljs-string">"Beaker guy"</span>
+<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"websites.com/manifest"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Paul Frazee"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Beaker guy"</span>
 }
 </code></pre>
 <p>Which makes our code much cleaner:</p>
@@ -117,11 +117,11 @@ paul[<span class="hljs-string">'dat://websites.com/manifest#title'</span>] = <sp
 paul.description = <span class="hljs-string">'Beaker guy'</span>
 </code></pre>
 <p>If schemas <em>must</em> be combined, only then might we use URL keys:</p>
-<pre><code class="language-js"><span class="hljs-comment">// type="websites.com/manifest"</span>
-{
-  <span class="hljs-attr">title</span>: <span class="hljs-string">"Paul Frazee"</span>,
-  <span class="hljs-attr">description</span>: <span class="hljs-string">"Beaker guy"</span>,
-  <span class="hljs-string">"social.com/follows"</span>: [
+<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"websites.com/manifest"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Paul Frazee"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Beaker guy"</span>,
+  <span class="hljs-attr">"social.com/follows"</span>: [
     <span class="hljs-string">"dat://alice.com"</span>,
     <span class="hljs-string">"dat://bob.com"</span>
   ]

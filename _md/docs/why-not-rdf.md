@@ -2,7 +2,7 @@
 
 Schemas should be human-readable, easy to build with, and unambiguous.
 
-Our solution is to use a standard `type` metadata string which is a URL. We use a URL because:
+Our solution is to use a standard `type` field which is a URL. We use a URL because:
 
  1. It's an unambiguous global namespace, and
  2. Developers can easily find the documentation.
@@ -11,6 +11,7 @@ Here's an example Unwalled.Garden object:
 
 ```json
 {
+  "type": "unwalled.garden/comment",
   "topic": "dat://unwalled.garden",
   "body": "Why didn't you use RDF!?",
   "createdAt": "2018-12-07T04:15:44.722Z"
@@ -56,11 +57,11 @@ paul['dat://websites.com/manifest#title'] = 'Paul Frazee'
 
 Programmers have to work with schemas! They should be simple and friendly to use. If we think in terms of records instead of graphs, we end up with objects that are much nicer to use.
 
-```js
-// type="websites.com/manifest"
+```json
 {
-  title: "Paul Frazee",
-  description: "Beaker guy"
+  "type": "websites.com/manifest",
+  "title": "Paul Frazee",
+  "description": "Beaker guy"
 }
 ```
 
@@ -74,11 +75,11 @@ paul.description = 'Beaker guy'
 If schemas *must* be combined, only then might we use URL keys:
 
 
-```js
-// type="websites.com/manifest"
+```json
 {
-  title: "Paul Frazee",
-  description: "Beaker guy",
+  "type": "websites.com/manifest",
+  "title": "Paul Frazee",
+  "description": "Beaker guy",
   "social.com/follows": [
     "dat://alice.com",
     "dat://bob.com"
