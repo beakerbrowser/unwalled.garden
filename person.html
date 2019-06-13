@@ -71,7 +71,8 @@
 <li><strong>Path</strong>: <code>/</code></li>
 </ul>
 <hr>
-<h4>Metadata</h4>
+<h4>Dat.json fields</h4>
+<p>The <code>/dat.json</code> file has the following fields:</p>
 <table>
 <thead>
 <tr>
@@ -94,6 +95,13 @@
 </tr>
 </tbody>
 </table>
+<p>Example:</p>
+<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: [<span class="hljs-string">"unwalled.garden/person"</span>],
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Alice"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Advocate of the free and open web"</span>,
+}
+</code></pre>
 <h4>File structure</h4>
 <table>
 <thead>
@@ -104,8 +112,8 @@
 </thead>
 <tbody>
 <tr>
-<td><code>/</code></td>
-<td><a href="/person">Person</a></td>
+<td><code>/dat.json</code></td>
+<td>Standard dat.json file</td>
 </tr>
 <tr>
 <td><code>/thumb.(png|jpg|jpeg)</code></td>

@@ -14,12 +14,6 @@ The "Refs" directory contains mounts to Dat sites which a reader might want to a
 
 The names of the mounts MUST be the public key of the mounted site. A DNS shortname can not be used. This is to avoid incorrect DNS mappings.
 
-### Metadata
-
-|Key|Value|
-|-|-|
-|`type`|`unwalled.garden/dir/refs`|
-
 ### File structure
 
 |Path|Type|
