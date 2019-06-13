@@ -8,16 +8,11 @@
 
 ---
 
-#### Metadata
-
-|Key|Value|
-|-|-|
-|`type`|`unwalled.garden/bookmark`|
-
 #### Example
 
 ```json
 {
+  "type": "unwalled.garden/bookmark",
   "href": "dat://beakerbrowser.com",
   "title": "Beaker Browser",
   "description": "An experimental peer-to-peer Web browser. Built using the dat protocol.",
@@ -35,8 +30,13 @@
   "type": "object",
   "title": "Bookmark",
   "description": "A saved/shared link to some URL.",
-  "required": ["href", "title", "createdAt"],
+  "required": ["type", "href", "title", "createdAt"],
   "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "unwalled.garden/bookmark"
+    },
     "href": {
       "type": "string",
       "format": "uri",

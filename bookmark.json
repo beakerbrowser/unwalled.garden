@@ -4,8 +4,13 @@
   "type": "object",
   "title": "Bookmark",
   "description": "A saved/shared link to some URL.",
-  "required": ["href", "title", "createdAt"],
+  "required": ["type", "href", "title", "createdAt"],
   "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "unwalled.garden/bookmark"
+    },
     "href": {
       "type": "string",
       "format": "uri",

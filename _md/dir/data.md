@@ -8,12 +8,6 @@
 
 ---
 
-### Metadata
-
-|Key|Value|
-|-|-|
-|`type`|`unwalled.garden/dir/data`|
-
 ### File structure
 
 |Path|Type|

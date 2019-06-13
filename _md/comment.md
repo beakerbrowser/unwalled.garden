@@ -8,16 +8,11 @@
 
 ---
 
-#### Metadata
-
-|Key|Value|
-|-|-|
-|`type`|`unwalled.garden/comment`|
-
 #### Examples
 
 ```json
 {
+  "type": "unwalled.garden/comment",
   "topic": "dat://beakerbrowser.com/docs",
   "body": "These docs need some work!",
   "createdAt": "2018-12-07T02:52:11.947Z"
@@ -26,6 +21,7 @@
 
 ```json
 {
+  "type": "unwalled.garden/comment",
   "topic": "dat://beakerbrowser.com/docs",
   "replyTo": "dat://bob.com/.data/unwalled.garden/comments/2018-12-07T02:52:11.947Z.json",
   "body": "I think the docs are perfect just the way they are!",
@@ -43,11 +39,17 @@
   "title": "Comment",
   "description": "A text post about some resource.",
   "required": [
+    "type",
     "topic",
     "body",
     "createdAt"
   ],
   "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "unwalled.garden/comment"
+    },
     "topic": {
       "type": "string",
       "description": "What this comment is about",

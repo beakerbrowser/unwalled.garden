@@ -5,11 +5,17 @@
   "title": "Comment",
   "description": "A text post about some resource.",
   "required": [
+    "type",
     "topic",
     "body",
     "createdAt"
   ],
   "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "unwalled.garden/comment"
+    },
     "topic": {
       "type": "string",
       "description": "What this comment is about",

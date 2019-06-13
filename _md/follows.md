@@ -14,16 +14,11 @@ Followed sites MUST not use DNS shortnames. They should be listed by their publi
 
 All followed sites MUST be mounted in the [refs directory](/dir/refs) to enable quick metadata lookups.
 
-#### Metadata
-
-|Key|Value|
-|-|-|
-|`type`|`unwalled.garden/follows`|
-
 #### Example
 
 ```json
 {
+  "type": "unwalled.garden/follows",
   "urls": ["dat://43dfc9f23fdded8cc7c01c71c0702a0529130af0258e7fb30bf5a0a3f73d69b3"]
 }
 ```
@@ -38,9 +33,15 @@ All followed sites MUST be mounted in the [refs directory](/dir/refs) to enable 
   "title": "Follows",
   "description": "A list of data subscriptions.",
   "required": [
+    "type",
     "urls"
   ],
   "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "unwalled.garden/follows"
+    },
     "urls": {
       "type": "array",
       "description": "The followed URLs",

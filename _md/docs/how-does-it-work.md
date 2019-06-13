@@ -8,12 +8,13 @@ The schemas are simple, obvious, and syntax-free. A "post" record looks like thi
 
 ```json
 {
+  "type": "unwalled.garden/post",
   "body": "Hello, world!",
   "createdAt": "2019-05-21T21:27:45.471Z"
 }
 ```
 
-The schema IDs are stored in [metadata fields](/docs/metadata) on files and folders. We identify the types using URLs such as:
+We identify the types using URLs such as:
 
  - [unwalled.garden/post](/post)
  - [unwalled.garden/comment](/comment)
