@@ -135,6 +135,6 @@ Delete a post on the current user's site.
 
 |Returns|
 |-|
-|`Promise<Post>`|
+|`Promise<void>`|
 
 ---
