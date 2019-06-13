@@ -4,8 +4,13 @@
   "type": "object",
   "title": "Post",
   "description": "A broadcasted piece of content.",
-  "required": ["body", "createdAt"],
+  "required": ["type", "body", "createdAt"],
   "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "unwalled.garden/post"
+    },
     "body": {
       "type": "string",
       "description": "The post's text body",

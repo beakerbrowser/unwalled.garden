@@ -5,9 +5,15 @@
   "title": "Follows",
   "description": "A list of data subscriptions.",
   "required": [
+    "type",
     "urls"
   ],
   "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "unwalled.garden/follows"
+    },
     "urls": {
       "type": "array",
       "description": "The followed URLs",

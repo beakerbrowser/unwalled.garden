@@ -75,23 +75,9 @@
 <h4>Notes</h4>
 <p>Followed sites MUST not use DNS shortnames. They should be listed by their public key domain.</p>
 <p>All followed sites MUST be mounted in the <a href="/dir/refs">refs directory</a> to enable quick metadata lookups.</p>
-<h4>Metadata</h4>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>type</code></td>
-<td><code>unwalled.garden/follows</code></td>
-</tr>
-</tbody>
-</table>
 <h4>Example</h4>
 <pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/follows"</span>,
   <span class="hljs-attr">"urls"</span>: [<span class="hljs-string">"dat://43dfc9f23fdded8cc7c01c71c0702a0529130af0258e7fb30bf5a0a3f73d69b3"</span>]
 }
 </code></pre>
@@ -103,9 +89,15 @@
   <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Follows"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A list of data subscriptions."</span>,
   <span class="hljs-attr">"required"</span>: [
+    <span class="hljs-string">"type"</span>,
     <span class="hljs-string">"urls"</span>
   ],
   <span class="hljs-attr">"properties"</span>: {
+    <span class="hljs-attr">"type"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The object's type"</span>,
+      <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/follows"</span>
+    },
     <span class="hljs-attr">"urls"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"array"</span>,
       <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The followed URLs"</span>,

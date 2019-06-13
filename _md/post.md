@@ -8,16 +8,11 @@
 
 ---
 
-#### Metadata
-
-|Key|Value|
-|-|-|
-|`type`|`unwalled.garden/post`|
-
 #### Example
 
 ```json
 {
+  "type": "unwalled.garden/post",
   "body": "Hello, world!",
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
@@ -32,8 +27,13 @@
   "type": "object",
   "title": "Post",
   "description": "A broadcasted piece of content.",
-  "required": ["body", "createdAt"],
+  "required": ["type", "body", "createdAt"],
   "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "unwalled.garden/post"
+    },
     "body": {
       "type": "string",
       "description": "The post's text body",

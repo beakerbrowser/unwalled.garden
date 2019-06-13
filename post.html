@@ -72,23 +72,9 @@
 <li><strong>Path</strong>: <code>/.data/unwalled.garden/posts/*.json</code></li>
 </ul>
 <hr>
-<h4>Metadata</h4>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>type</code></td>
-<td><code>unwalled.garden/post</code></td>
-</tr>
-</tbody>
-</table>
 <h4>Example</h4>
 <pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/post"</span>,
   <span class="hljs-attr">"body"</span>: <span class="hljs-string">"Hello, world!"</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-07T02:52:11.947Z"</span>
 }
@@ -100,8 +86,13 @@
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
   <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Post"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A broadcasted piece of content."</span>,
-  <span class="hljs-attr">"required"</span>: [<span class="hljs-string">"body"</span>, <span class="hljs-string">"createdAt"</span>],
+  <span class="hljs-attr">"required"</span>: [<span class="hljs-string">"type"</span>, <span class="hljs-string">"body"</span>, <span class="hljs-string">"createdAt"</span>],
   <span class="hljs-attr">"properties"</span>: {
+    <span class="hljs-attr">"type"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The object's type"</span>,
+      <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/post"</span>
+    },
     <span class="hljs-attr">"body"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
       <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The post's text body"</span>,

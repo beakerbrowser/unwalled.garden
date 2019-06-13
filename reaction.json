@@ -5,10 +5,16 @@
   "title": "Reaction",
   "description": "An emoji annotation on some resource.",
   "required": [
+    "type",
     "topic",
     "emojis"
   ],
   "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "unwalled.garden/reaction"
+    },
     "topic": {
       "type": "string",
       "description": "What this reaction is about",

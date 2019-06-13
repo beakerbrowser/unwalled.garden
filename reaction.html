@@ -75,23 +75,9 @@
 <h4>Notes</h4>
 <p>Reactions are a more general form of a “like.” They have minimal semantic meaning, though the emojis could easily be categorized for sentiment.</p>
 <p>The full list of supported emoji code-points can be found in <a href="./reaction.json">the schema</a>.</p>
-<h4>Metadata</h4>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>type</code></td>
-<td><code>unwalled.garden/reaction</code></td>
-</tr>
-</tbody>
-</table>
 <h4>Example</h4>
 <pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/reaction"</span>,
   <span class="hljs-attr">"topic"</span>: <span class="hljs-string">"dat://beakerbrowser.com/"</span>,
   <span class="hljs-attr">"emojis"</span>: [<span class="hljs-string">"👍"</span>, <span class="hljs-string">"🔥"</span>]
 }
@@ -104,10 +90,16 @@
   <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Reaction"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"An emoji annotation on some resource."</span>,
   <span class="hljs-attr">"required"</span>: [
+    <span class="hljs-string">"type"</span>,
     <span class="hljs-string">"topic"</span>,
     <span class="hljs-string">"emojis"</span>
   ],
   <span class="hljs-attr">"properties"</span>: {
+    <span class="hljs-attr">"type"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The object's type"</span>,
+      <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/reaction"</span>
+    },
     <span class="hljs-attr">"topic"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
       <span class="hljs-attr">"description"</span>: <span class="hljs-string">"What this reaction is about"</span>,
