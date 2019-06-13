@@ -21,7 +21,7 @@ You can think of it as a souped-up RSS: users publish records as files on their 
 
 The rules for governance are as follows:
 
- 1. Open [issues](/issues) or [pull requests](/pulls) to discuss changes, problems, and ideas.
+ 1. Open [issues](https://github.com/beakerbrowser/unwalled.garden/issues) or [pull requests](https://github.com/beakerbrowser/unwalled.garden/pulls) to discuss changes, problems, and ideas.
  2. Pull requests should be made to the `develop` branch.
  3. As unwalled.garden is a decentralized network, breaking changes are not allowed.
  4. All PRs require the BDFL's final approval before merging.
