@@ -1,6 +1,6 @@
 ## Follows API
 
-Read and create follow relationships between sites.
+Follows are subscriptions to sites. Following a site causes the user to download and see their content.
 
 ---
 

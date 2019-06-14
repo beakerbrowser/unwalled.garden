@@ -1,6 +1,6 @@
 ## Posts API
 
-Read and create broadcasted content. Posts are typically integrated into a feed UI.
+Posts are blurbs of content that's broadcasted on a feed. They're sometimes known as "status updates." The character limit is 1,000,000 characters.
 
 ---
 
@@ -18,8 +18,8 @@ await posts.list({
 await posts.get(url)
 
 // write
-await posts.add(post)
-await posts.edit(url, post)
+await posts.add({body, visibility})
+await posts.edit(url, {body, visibility})
 await posts.delete(url)
 ```
 

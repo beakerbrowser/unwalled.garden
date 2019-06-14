@@ -1,6 +1,6 @@
 ## Comments API
 
-Read and create threaded comments on various topics.
+Comments are replies to content around the Web. They are threaded (meaning that all comments can reply to all other comments, forming a tree). Any URL can be the topic of a comment.
 
 ---
 
@@ -24,8 +24,8 @@ await comments.thread(topic, {
 await comments.get(url)
 
 // write
-await comments.add(topic, comment)
-await comments.edit(url, comment)
+await comments.add(topic, {body, replyTo, visibility})
+await comments.edit(url, {body, replyTo, visibility})
 await comments.delete(url)
 ```
 

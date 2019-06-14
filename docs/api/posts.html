@@ -65,7 +65,7 @@
 </ul>
       </nav>
       <main><h2>Posts API</h2>
-<p>Read and create broadcasted content. Posts are typically integrated into a feed UI.</p>
+<p>Posts are blurbs of content that’s broadcasted on a feed. They’re sometimes known as “status updates.” The character limit is 1,000,000 characters.</p>
 <hr>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> {posts} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
@@ -80,8 +80,8 @@
 <span class="hljs-keyword">await</span> posts.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> posts.add(post)
-<span class="hljs-keyword">await</span> posts.edit(url, post)
+<span class="hljs-keyword">await</span> posts.add({body, visibility})
+<span class="hljs-keyword">await</span> posts.edit(url, {body, visibility})
 <span class="hljs-keyword">await</span> posts.delete(url)
 </code></pre>
 <hr>

@@ -1,6 +1,6 @@
 ## Reactions API
 
-Read and create "reaction" emojis which are attached to content on the Web.
+Reactions are emojis which can be attached to any arbitrary URL (the "topic"). They're similar to "likes" but much more general.
 
 ---
 

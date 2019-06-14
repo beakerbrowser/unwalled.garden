@@ -1,6 +1,6 @@
 ## Profiles API
 
-Read the "profiles" of sites.
+The profiles API fetches descriptions of users. It's used to fetch the local user's profile. It can also be used to trigger an indexing of the content of a site that's not followed by the user.
 
 ---
 

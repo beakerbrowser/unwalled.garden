@@ -1,6 +1,6 @@
 ## Bookmarks API
 
-Read and create bookmarks for links around the Web.
+Bookmarks are links which you have saved and will want to reference in the future.
 
 ---
 

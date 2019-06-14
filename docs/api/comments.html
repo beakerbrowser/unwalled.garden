@@ -65,7 +65,7 @@
 </ul>
       </nav>
       <main><h2>Comments API</h2>
-<p>Read and create threaded comments on various topics.</p>
+<p>Comments are replies to content around the Web. They are threaded (meaning that all comments can reply to all other comments, forming a tree). Any URL can be the topic of a comment.</p>
 <hr>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> {comments} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
@@ -86,8 +86,8 @@
 <span class="hljs-keyword">await</span> comments.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> comments.add(topic, comment)
-<span class="hljs-keyword">await</span> comments.edit(url, comment)
+<span class="hljs-keyword">await</span> comments.add(topic, {body, replyTo, visibility})
+<span class="hljs-keyword">await</span> comments.edit(url, {body, replyTo, visibility})
 <span class="hljs-keyword">await</span> comments.delete(url)
 </code></pre>
 <hr>
