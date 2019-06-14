@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Reactions API | Unwalled.Garden</title>
+    <title>Discussions API | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -66,30 +66,30 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Reactions API</h2>
-<p>Read and create “reaction” emojis which are attached to content on the Web.</p>
+      <main><h2>Discussions API</h2>
+<p>Discussions are forum posts. They include a title and (optionally) a body and/or link.</p>
+<p>All discussions are categorized under a “forum” field. This is similar to how Reddit posts are categorized under subreddits. You can list discussions by their forum or list discussions for all forums.</p>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {reactions} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {discussions} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> reactions.list({
-  <span class="hljs-attr">filters</span>: {authors, topics, visiblity},
+<span class="hljs-keyword">await</span> discussions.list({
+  <span class="hljs-attr">filters</span>: {authors, forums, visibility},
   sortBy,
   offset,
   limit,
   reverse
 })
-<span class="hljs-keyword">await</span> reactions.tabulate(topic, {
-  <span class="hljs-attr">filters</span>: {authors, visiblity}
-})
+<span class="hljs-keyword">await</span> discussions.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> reactions.add(topic, emoji)
-<span class="hljs-keyword">await</span> reactions.delete(topic, emoji)
+<span class="hljs-keyword">await</span> discussions.add({forum, title, body, href, visibility})
+<span class="hljs-keyword">await</span> discussions.edit(url, {forum, title, body, href, visibility})
+<span class="hljs-keyword">await</span> discussions.delete(url)
 </code></pre>
 <hr>
-<h3>Reaction</h3>
-<p>The values returned by reaction functions will fit the following object shape:</p>
+<h3>Discussion</h3>
+<p>The values returned by most discussion functions will fit the following object shape:</p>
 <table>
 <thead>
 <tr>
@@ -102,102 +102,73 @@
 <tr>
 <td>url</td>
 <td><code>string</code></td>
-<td>The URL of the reaction record</td>
+<td>The URL of the discussion</td>
 </tr>
 <tr>
-<td>topic</td>
+<td>forum</td>
 <td><code>string</code></td>
-<td>The URL that the reaction is attached to</td>
+<td>The forum that the discussion is in</td>
 </tr>
 <tr>
-<td>emojis</td>
-<td><code>string[]</code></td>
-<td>The emojis in the reaction</td>
+<td>title</td>
+<td><code>string</code></td>
+<td>The title of the discussion</td>
 </tr>
 <tr>
-<td>author</var></td>
+<td>body</td>
+<td><code>string</code></td>
+<td>The text body of the discussion</td>
+</tr>
+<tr>
+<td>href</td>
+<td><code>string</code></td>
+<td>The URL linked to by the discussion</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td><code>string</code></td>
+<td>The timestamp of when the discussion claims it was created</td>
+</tr>
+<tr>
+<td>updatedAt</td>
+<td><code>string</code></td>
+<td>The timestamp of when the discussion claims it was last updated</td>
+</tr>
+<tr>
+<td>author</td>
 <td><code>Object</code></td>
-<td>The site that authored the reaction</td>
+<td>The discussion author’s information</td>
 </tr>
 <tr>
-<td> url</var></td>
+<td> url</td>
 <td><code>string</code></td>
 <td></td>
 </tr>
 <tr>
-<td> title</var></td>
+<td> title</td>
 <td><code>string</code></td>
 <td></td>
 </tr>
 <tr>
-<td> description</var></td>
+<td> description</td>
 <td><code>string</code></td>
 <td></td>
 </tr>
 <tr>
-<td> type</var></td>
+<td> type</td>
 <td><code>string[]</code></td>
 <td></td>
 </tr>
 <tr>
-<td>visibility</var></td>
+<td>visibility</td>
 <td><code>string</code></td>
-<td>The <a href="/docs/common-fields#visibility">visibility</a> of the reaction</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>TabulatedReaction</h3>
-<p>The values returned by <code>tabulate()</code> will fit the following object shape:</p>
-<table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>topic</td>
-<td><code>string</code></td>
-<td>The URL that the reaction is attached to</td>
-</tr>
-<tr>
-<td>emoji</td>
-<td><code>string</code></td>
-<td>The emoji in the reaction</td>
-</tr>
-<tr>
-<td>authors</var></td>
-<td><code>Object[]</code></td>
-<td>The sites that authored the reaction</td>
-</tr>
-<tr>
-<td> url</var></td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> title</var></td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> description</var></td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> type</var></td>
-<td><code>string[]</code></td>
-<td></td>
+<td>The <a href="/docs/common-fields#visibility">visibility</a> of the discussion</td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h3>list(opts)</h3>
-<p>List the reactions on the network.</p>
+<p>List the discussions on the network.</p>
 <table>
 <thead>
 <tr>
@@ -227,10 +198,10 @@
 <td>Site URLs</td>
 </tr>
 <tr>
-<td>  topics</td>
+<td>  forums</td>
 <td><code>string|string[]</code></td>
 <td></td>
-<td>URLs</td>
+<td>Forum names</td>
 </tr>
 <tr>
 <td>  visibility</td>
@@ -272,13 +243,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Reaction[]&gt;</code></td>
+<td><code>Promise&lt;Discussion[]&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>tabulate(topic, opts)</h3>
-<p>Tabulate the reactions on a topic.</p>
+<h3>get(url)</h3>
+<p>Get an individual discussion by its URL.</p>
 <table>
 <thead>
 <tr>
@@ -290,33 +261,72 @@
 </thead>
 <tbody>
 <tr>
-<td>topic</td>
+<td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>Topic URL (required)</td>
+<td>Discussion URL (required)</td>
 </tr>
+</tbody>
+</table>
+<table>
+<thead>
 <tr>
-<td>opts</td>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise&lt;Discussion&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>add(discussion)</h3>
+<p>Add a discussion to the current user’s site.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>discussion</td>
 <td><code>Object</code></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td> filters</td>
-<td><code>Object</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>  authors</td>
-<td><code>string|string[]</code></td>
-<td></td>
-<td>Site URLs</td>
-</tr>
-<tr>
-<td>  visibility</td>
+<td> forum</td>
 <td><code>string</code></td>
-<td><code>'all'</code></td>
+<td></td>
+<td>The forum to categorize the discussion under (required)</td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td></td>
+<td>The discussion title (required)</td>
+</tr>
+<tr>
+<td> body</td>
+<td><code>string</code></td>
+<td></td>
+<td>The discussion body</td>
+</tr>
+<tr>
+<td> href</td>
+<td><code>string</code></td>
+<td></td>
+<td>The discussion link URL</td>
+</tr>
+<tr>
+<td> visibility</td>
+<td><code>string</code></td>
+<td><code>'public'</code></td>
 <td>See <a href="/docs/common-fields#visibility">visibility</a></td>
 </tr>
 </tbody>
@@ -329,13 +339,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;TabulatedReaction[]&gt;</code></td>
+<td><code>Promise&lt;Discussion&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>add(topic, emoji)</h3>
-<p>Add a reaction emoji to the current user’s site. The visibility of the reaction will be copied from the target topic’s record.</p>
+<h3>edit(url, discussion)</h3>
+<p>Edit a discussion on the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -347,16 +357,40 @@
 </thead>
 <tbody>
 <tr>
-<td>topic</td>
+<td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>Topic URL (required)</td>
+<td>The URL of the discussion you want to edit (required)</td>
 </tr>
 <tr>
-<td>emoji</td>
+<td> forum</td>
 <td><code>string</code></td>
 <td></td>
-<td>The emoji to add</td>
+<td>The forum to categorize the discussion under (required)</td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td></td>
+<td>The discussion title (required)</td>
+</tr>
+<tr>
+<td> body</td>
+<td><code>string</code></td>
+<td></td>
+<td>The discussion body</td>
+</tr>
+<tr>
+<td> href</td>
+<td><code>string</code></td>
+<td></td>
+<td>The discussion link URL</td>
+</tr>
+<tr>
+<td> visibility</td>
+<td><code>string</code></td>
+<td><code>'public'</code></td>
+<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
 </tr>
 </tbody>
 </table>
@@ -368,13 +402,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Reaction&gt;</code></td>
+<td><code>Promise&lt;Discussion&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>remove(topic, emoji)</h3>
-<p>Remove a reaction emoji from the current user’s site.</p>
+<h3>delete(url)</h3>
+<p>Delete a discussion on the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -386,16 +420,10 @@
 </thead>
 <tbody>
 <tr>
-<td>topic</td>
+<td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>Topic URL (required)</td>
-</tr>
-<tr>
-<td>emoji</td>
-<td><code>string</code></td>
-<td></td>
-<td>The emoji to remove</td>
+<td>The URL of the discussion you want to delete (required)</td>
 </tr>
 </tbody>
 </table>
@@ -407,10 +435,11 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Reaction&gt;</code></td>
+<td><code>Promise&lt;void&gt;</code></td>
 </tr>
 </tbody>
 </table>
+<hr>
 </main>
     </div>
   </body>

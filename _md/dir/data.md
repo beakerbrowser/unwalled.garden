@@ -14,6 +14,7 @@
 |-|-|
 |`/bookmarks/*.json`|[Bookmark](/bookmark)|
 |`/comments/*.json`|[Comment](/comment)|
+|`/discussions/*.json`|[Discussion](/discussion)|
 |`/follows.json`|[Follows](/follows)|
 |`/posts/*.json`|[Post](/post)|
 |`/reactions/*.json`|[Reaction](/reaction)|
