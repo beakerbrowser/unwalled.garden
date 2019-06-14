@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Reactions API | Unwalled.Garden</title>
+    <title>Actions API | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -66,30 +66,75 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Reactions API</h2>
-<p>Reactions are emojis which can be attached to any arbitrary URL (the “topic”). They’re similar to “likes” but much more general.</p>
+      <main><h2>Actions API</h2>
+<p>Actions are events which describe something that was done by the user. They are intentionally generic! They’re meant to give applications a simple primitive for describing user activity.</p>
+<p>The <code>action</code> field may be any alphanumeric string. Here are some suggested values:</p>
+<ul>
+<li>Browsing
+<ul>
+<li><code>&quot;installed&quot;</code></li>
+<li><code>&quot;listened&quot;</code></li>
+<li><code>&quot;read&quot;</code></li>
+<li><code>&quot;used&quot;</code></li>
+<li><code>&quot;visited&quot;</code></li>
+<li><code>&quot;watched&quot;</code></li>
+</ul>
+</li>
+<li>Commerce
+<ul>
+<li><code>&quot;bought&quot;</code></li>
+<li><code>&quot;donatedTo&quot;</code></li>
+<li><code>&quot;preordered&quot;</code></li>
+<li><code>&quot;rented&quot;</code></li>
+<li><code>&quot;sold&quot;</code></li>
+</ul>
+</li>
+<li>Creation
+<ul>
+<li><code>&quot;created&quot;</code></li>
+<li><code>&quot;removed&quot;</code></li>
+<li><code>&quot;updated&quot;</code></li>
+</ul>
+</li>
+<li>Locations
+<ul>
+<li><code>&quot;arrived&quot;</code></li>
+<li><code>&quot;checkedin&quot;</code></li>
+<li><code>&quot;departed&quot;</code></li>
+</ul>
+</li>
+<li>Transfer
+<ul>
+<li><code>&quot;borrowed&quot;</code></li>
+<li><code>&quot;gave&quot;</code></li>
+<li><code>&quot;lent&quot;</code></li>
+<li><code>&quot;received&quot;</code></li>
+<li><code>&quot;returned&quot;</code></li>
+<li><code>&quot;took&quot;</code></li>
+</ul>
+</li>
+</ul>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {reactions} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {actions} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> reactions.list({
-  <span class="hljs-attr">filters</span>: {authors, topics, visiblity},
+<span class="hljs-keyword">await</span> actions.list({
+  <span class="hljs-attr">filters</span>: {actions, authors, topics, visiblity},
   sortBy,
   offset,
   limit,
   reverse
 })
-<span class="hljs-keyword">await</span> reactions.tabulate(topic, {
-  <span class="hljs-attr">filters</span>: {authors, visiblity}
-})
+<span class="hljs-keyword">await</span> actions.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> reactions.add(topic, emoji)
-<span class="hljs-keyword">await</span> reactions.delete(topic, emoji)
+<span class="hljs-keyword">await</span> actions.add({topic, action, visibility})
+<span class="hljs-keyword">await</span> actions.edit(url, {action, topic, visibility})
+<span class="hljs-keyword">await</span> actions.delete(url)
 </code></pre>
 <hr>
-<h3>Reaction</h3>
-<p>The values returned by reaction functions will fit the following object shape:</p>
+<h3>Action</h3>
+<p>The values returned by action functions will fit the following object shape:</p>
 <table>
 <thead>
 <tr>
@@ -102,22 +147,22 @@
 <tr>
 <td>url</td>
 <td><code>string</code></td>
-<td>The URL of the reaction record</td>
+<td>The URL of the action record</td>
 </tr>
 <tr>
 <td>topic</td>
 <td><code>string</code></td>
-<td>The URL that the reaction is attached to</td>
+<td>The URL that the action was taken on</td>
 </tr>
 <tr>
-<td>emojis</td>
-<td><code>string[]</code></td>
-<td>The emojis in the reaction</td>
+<td>action</td>
+<td><code>string</code></td>
+<td>The ID of the action taken</td>
 </tr>
 <tr>
 <td>author</var></td>
 <td><code>Object</code></td>
-<td>The site that authored the reaction</td>
+<td>The site that authored the action</td>
 </tr>
 <tr>
 <td> url</var></td>
@@ -147,57 +192,8 @@
 </tbody>
 </table>
 <hr>
-<h3>TabulatedReaction</h3>
-<p>The values returned by <code>tabulate()</code> will fit the following object shape:</p>
-<table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>topic</td>
-<td><code>string</code></td>
-<td>The URL that the reaction is attached to</td>
-</tr>
-<tr>
-<td>emoji</td>
-<td><code>string</code></td>
-<td>The emoji in the reaction</td>
-</tr>
-<tr>
-<td>authors</var></td>
-<td><code>Object[]</code></td>
-<td>The sites that authored the reaction</td>
-</tr>
-<tr>
-<td> url</var></td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> title</var></td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> description</var></td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> type</var></td>
-<td><code>string[]</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<hr>
 <h3>list(opts)</h3>
-<p>List the reactions on the network.</p>
+<p>List the actions on the network.</p>
 <table>
 <thead>
 <tr>
@@ -219,6 +215,12 @@
 <td><code>Object</code></td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>  actions</td>
+<td><code>string|string[]</code></td>
+<td></td>
+<td>Action IDs</td>
 </tr>
 <tr>
 <td>  authors</td>
@@ -272,13 +274,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Reaction[]&gt;</code></td>
+<td><code>Promise&lt;Action[]&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>tabulate(topic, opts)</h3>
-<p>Tabulate the reactions on a topic.</p>
+<h3>get(url)</h3>
+<p>Get an individual action by its URL.</p>
 <table>
 <thead>
 <tr>
@@ -290,33 +292,60 @@
 </thead>
 <tbody>
 <tr>
-<td>topic</td>
+<td>url</td>
+<td><code>string</code></td>
+<td></td>
+<td>Action URL (required)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise&lt;Action&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>add(action)</h3>
+<p>Add an action to the current user’s site.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>action</td>
+<td><code>Object</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> topic</td>
 <td><code>string</code></td>
 <td></td>
 <td>Topic URL (required)</td>
 </tr>
 <tr>
-<td>opts</td>
-<td><code>Object</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td> filters</td>
-<td><code>Object</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>  authors</td>
-<td><code>string|string[]</code></td>
-<td></td>
-<td>Site URLs</td>
-</tr>
-<tr>
-<td>  visibility</td>
+<td> action</td>
 <td><code>string</code></td>
-<td><code>'all'</code></td>
+<td></td>
+<td>The action taken (required)</td>
+</tr>
+<tr>
+<td> visibility</td>
+<td><code>string</code></td>
+<td><code>'public'</code></td>
 <td>See <a href="/docs/common-fields#visibility">visibility</a></td>
 </tr>
 </tbody>
@@ -329,13 +358,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;TabulatedReaction[]&gt;</code></td>
+<td><code>Promise&lt;Action&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>add(topic, emoji)</h3>
-<p>Add a reaction emoji to the current user’s site. The visibility of the reaction will be copied from the target topic’s record.</p>
+<h3>edit(url, action)</h3>
+<p>Edit an action on the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -347,16 +376,28 @@
 </thead>
 <tbody>
 <tr>
-<td>topic</td>
+<td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>Topic URL (required)</td>
+<td>The URL of the action you want to edit (required)</td>
 </tr>
 <tr>
-<td>emoji</td>
+<td> topic</td>
 <td><code>string</code></td>
 <td></td>
-<td>The emoji to add</td>
+<td>Topic URL</td>
+</tr>
+<tr>
+<td> action</td>
+<td><code>string</code></td>
+<td></td>
+<td>The action taken</td>
+</tr>
+<tr>
+<td> visibility</td>
+<td><code>string</code></td>
+<td><code>'public'</code></td>
+<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
 </tr>
 </tbody>
 </table>
@@ -368,13 +409,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Reaction&gt;</code></td>
+<td><code>Promise&lt;Action&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>remove(topic, emoji)</h3>
-<p>Remove a reaction emoji from the current user’s site.</p>
+<h3>delete(url)</h3>
+<p>Remove an action from the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -386,16 +427,10 @@
 </thead>
 <tbody>
 <tr>
-<td>topic</td>
+<td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>Topic URL (required)</td>
-</tr>
-<tr>
-<td>emoji</td>
-<td><code>string</code></td>
-<td></td>
-<td>The emoji to remove</td>
+<td>The URL of the action you want to delete (required)</td>
 </tr>
 </tbody>
 </table>
@@ -407,7 +442,7 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Reaction&gt;</code></td>
+<td><code>Promise&lt;void&gt;</code></td>
 </tr>
 </tbody>
 </table>

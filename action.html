@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Post (unwalled.garden/post) | Unwalled.Garden</title>
+    <title>Action (unwalled.garden/action) | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -66,49 +66,102 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Post <code>unwalled.garden/post</code></h2>
+      <main><h2>Action <code>unwalled.garden/action</code></h2>
 <hr>
 <ul>
 <li>File type</li>
-<li><strong>Description</strong>: A broadcasted piece of content.</li>
-<li><strong>Path</strong>: <code>/.data/unwalled.garden/posts/*.json</code></li>
+<li><strong>Description</strong>: An action taken on some resource.</li>
+<li><strong>Path</strong>: <code>/.data/unwalled.garden/actions/*.json</code></li>
 </ul>
 <hr>
-<h4>Example</h4>
+<h4>Notes:</h4>
+<p>The <code>action</code> field may be any alphanumeric string. Here are some suggested values:</p>
+<ul>
+<li>Browsing
+<ul>
+<li><code>&quot;installed&quot;</code></li>
+<li><code>&quot;listened&quot;</code></li>
+<li><code>&quot;read&quot;</code></li>
+<li><code>&quot;used&quot;</code></li>
+<li><code>&quot;visited&quot;</code></li>
+<li><code>&quot;watched&quot;</code></li>
+</ul>
+</li>
+<li>Commerce
+<ul>
+<li><code>&quot;bought&quot;</code></li>
+<li><code>&quot;donatedTo&quot;</code></li>
+<li><code>&quot;preordered&quot;</code></li>
+<li><code>&quot;rented&quot;</code></li>
+<li><code>&quot;sold&quot;</code></li>
+</ul>
+</li>
+<li>Creation
+<ul>
+<li><code>&quot;created&quot;</code></li>
+<li><code>&quot;removed&quot;</code></li>
+<li><code>&quot;updated&quot;</code></li>
+</ul>
+</li>
+<li>Locations
+<ul>
+<li><code>&quot;arrived&quot;</code></li>
+<li><code>&quot;checkedin&quot;</code></li>
+<li><code>&quot;departed&quot;</code></li>
+</ul>
+</li>
+<li>Transfer
+<ul>
+<li><code>&quot;borrowed&quot;</code></li>
+<li><code>&quot;gave&quot;</code></li>
+<li><code>&quot;lent&quot;</code></li>
+<li><code>&quot;received&quot;</code></li>
+<li><code>&quot;returned&quot;</code></li>
+<li><code>&quot;took&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h4>Examples</h4>
 <pre><code class="language-json">{
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/post"</span>,
-  <span class="hljs-attr">"body"</span>: <span class="hljs-string">"Hello, world!"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/action"</span>,
+  <span class="hljs-attr">"topic"</span>: <span class="hljs-string">"dat://beakerbrowser.com/docs"</span>,
+  <span class="hljs-attr">"action"</span>: <span class="hljs-string">"visited"</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-07T02:52:11.947Z"</span>
 }
 </code></pre>
 <h4>Schema</h4>
 <pre><code class="language-json">{
   <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/draft-07/schema#"</span>,
-  <span class="hljs-attr">"$id"</span>: <span class="hljs-string">"dat://unwalled.garden/post.json"</span>,
+  <span class="hljs-attr">"$id"</span>: <span class="hljs-string">"dat://unwalled.garden/action.json"</span>,
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
-  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Post"</span>,
-  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A broadcasted piece of content."</span>,
-  <span class="hljs-attr">"required"</span>: [<span class="hljs-string">"type"</span>, <span class="hljs-string">"body"</span>, <span class="hljs-string">"createdAt"</span>],
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Action"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"An action taken on some resource."</span>,
+  <span class="hljs-attr">"required"</span>: [
+    <span class="hljs-string">"type"</span>,
+    <span class="hljs-string">"topic"</span>,
+    <span class="hljs-string">"action"</span>,
+    <span class="hljs-string">"createdAt"</span>
+  ],
   <span class="hljs-attr">"properties"</span>: {
     <span class="hljs-attr">"type"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The object's type"</span>,
-      <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/post"</span>
+      <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/action"</span>
     },
-    <span class="hljs-attr">"body"</span>: {
+    <span class="hljs-attr">"topic"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The post's text body"</span>,
-      <span class="hljs-attr">"maxLength"</span>: <span class="hljs-number">1000000</span>
+      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"uri"</span>
+    },
+    <span class="hljs-attr">"action"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"pattern"</span>: <span class="hljs-string">"^[A-Za-z][A-Za-z0-9-_?]*$"</span>
     },
     <span class="hljs-attr">"createdAt"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"date-time"</span>,
-      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The time of this post's creation"</span>
+      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"date-time"</span>
     },
     <span class="hljs-attr">"updatedAt"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"date-time"</span>,
-      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The time of this post's last edit"</span>
+      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"date-time"</span>
     }
   }
 }

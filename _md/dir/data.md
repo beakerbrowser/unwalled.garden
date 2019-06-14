@@ -12,6 +12,7 @@
 
 |Path|Type|
 |-|-|
+|`/actions/*.json`|[Action](/action)|
 |`/bookmarks/*.json`|[Bookmark](/bookmark)|
 |`/comments/*.json`|[Comment](/comment)|
 |`/follows.json`|[Follows](/follows)|
