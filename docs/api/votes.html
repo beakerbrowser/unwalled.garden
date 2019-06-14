@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Posts API | Unwalled.Garden</title>
+    <title>Votes API | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -72,29 +72,30 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Posts API</h2>
-<p>Posts are blurbs of content that’s broadcasted on a feed. They’re sometimes known as “status updates.” The character limit is 1,000,000 characters.</p>
+      <main><h2>Votes API</h2>
+<p>Votes are up/down judgments on resources around the Web. They can be set to 1 (upvote) or -1 (downvote).</p>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {posts} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {votes} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> posts.list({
-  <span class="hljs-attr">filters</span>: {authors, visibility},
+<span class="hljs-keyword">await</span> votes.list({
+  <span class="hljs-attr">filters</span>: {authors, topics, visiblity},
   sortBy,
   offset,
   limit,
   reverse
 })
-<span class="hljs-keyword">await</span> posts.get(url)
+<span class="hljs-keyword">await</span> votes.tabulate(topic, {
+  <span class="hljs-attr">filters</span>: {authors, visiblity}
+})
+<span class="hljs-keyword">await</span> votes.get(author, topic)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> posts.add({body, ext, visibility})
-<span class="hljs-keyword">await</span> posts.edit(url, {body, ext, visibility})
-<span class="hljs-keyword">await</span> posts.remove(url)
+<span class="hljs-keyword">await</span> votes.set(topic, vote, {visiblity})
 </code></pre>
 <hr>
-<h3>Post</h3>
-<p>The values returned by post functions will fit the following object shape:</p>
+<h3>Vote</h3>
+<p>The values returned by vote functions will fit the following object shape:</p>
 <table>
 <thead>
 <tr>
@@ -107,27 +108,22 @@
 <tr>
 <td>url</td>
 <td><code>string</code></td>
-<td>The URL of the post</td>
+<td>The URL of the vote record</td>
 </tr>
 <tr>
-<td>body</td>
+<td>topic</td>
 <td><code>string</code></td>
-<td>The text body of the post</td>
+<td>The URL that the vote is attached to</td>
 </tr>
 <tr>
-<td>createdAt</td>
-<td><code>string</code></td>
-<td>The timestamp of when the post claims it was created</td>
-</tr>
-<tr>
-<td>updatedAt</td>
-<td><code>string</code></td>
-<td>The timestamp of when the post claims it was last updated</td>
+<td>vote</td>
+<td><code>number</code></td>
+<td>The value of the vote</td>
 </tr>
 <tr>
 <td>author</td>
 <td><code>Object</code></td>
-<td>The post author’s information</td>
+<td>The site that authored the vote</td>
 </tr>
 <tr>
 <td> url</td>
@@ -150,20 +146,94 @@
 <td></td>
 </tr>
 <tr>
-<td>ext</td>
-<td><code>Object</code></td>
-<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
-</tr>
-<tr>
 <td>visibility</td>
 <td><code>string</code></td>
-<td>The <a href="/docs/common-fields#visibility">visibility</a> of the post</td>
+<td>The <a href="/docs/common-fields#visibility">visibility</a> of the vote</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>TabulatedVotes</h3>
+<p>The values returned by <code>tabulate()</code> will fit the following object shape:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>topic</td>
+<td><code>string</code></td>
+<td>The URL that the votes are attached to</td>
+</tr>
+<tr>
+<td>upvotes</td>
+<td><code>number</code></td>
+<td>The number of upvotes</td>
+</tr>
+<tr>
+<td>upvoters</td>
+<td><code>Object[]</code></td>
+<td>The sites that upvoted the site</td>
+</tr>
+<tr>
+<td> url</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> description</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> type</td>
+<td><code>string[]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>downvotes</td>
+<td><code>number</code></td>
+<td>The number of downvotes</td>
+</tr>
+<tr>
+<td>downvoters</td>
+<td><code>Object[]</code></td>
+<td>The sites that downvoted the site</td>
+</tr>
+<tr>
+<td> url</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> description</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> type</td>
+<td><code>string[]</code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h3>list(opts)</h3>
-<p>List the posts on the network.</p>
+<p>List the votes on the network.</p>
 <table>
 <thead>
 <tr>
@@ -191,6 +261,12 @@
 <td><code>string|string[]</code></td>
 <td></td>
 <td>Site URLs</td>
+</tr>
+<tr>
+<td>  topics</td>
+<td><code>string|string[]</code></td>
+<td></td>
+<td>URLs</td>
 </tr>
 <tr>
 <td>  visibility</td>
@@ -232,13 +308,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Post[]&gt;</code></td>
+<td><code>Promise&lt;Vote[]&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>get(url)</h3>
-<p>Get an individual post by its URL.</p>
+<h3>tabulate(topic, opts)</h3>
+<p>Tabulate the votes on a topic.</p>
 <table>
 <thead>
 <tr>
@@ -250,60 +326,33 @@
 </thead>
 <tbody>
 <tr>
-<td>url</td>
+<td>topic</td>
 <td><code>string</code></td>
 <td></td>
-<td>Post URL (required)</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;Post&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>add(post)</h3>
-<p>Add a post to the current user’s site.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>post</td>
-<td><code>string|Object</code></td>
-<td></td>
-<td>If a string, specifies the body (required)</td>
+<td>Topic URL (required)</td>
 </tr>
 <tr>
-<td> body</td>
-<td><code>string</code></td>
-<td></td>
-<td>The post body (required)</td>
-</tr>
-<tr>
-<td> ext</td>
+<td>opts</td>
 <td><code>Object</code></td>
 <td></td>
-<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
+<td></td>
 </tr>
 <tr>
-<td> visibility</td>
+<td> filters</td>
+<td><code>Object</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>  authors</td>
+<td><code>string|string[]</code></td>
+<td></td>
+<td>Site URLs</td>
+</tr>
+<tr>
+<td>  visibility</td>
 <td><code>string</code></td>
-<td><code>'public'</code></td>
+<td><code>'all'</code></td>
 <td>See <a href="/docs/common-fields#visibility">visibility</a></td>
 </tr>
 </tbody>
@@ -316,17 +365,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Post&gt;</code></td>
+<td><code>Promise&lt;TabulatedVotes&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<h4>Example</h4>
-<pre><code class="language-js"><span class="hljs-keyword">await</span> posts.add(<span class="hljs-string">'Hello, world!'</span>)
-<span class="hljs-keyword">await</span> posts.add({<span class="hljs-attr">body</span>: <span class="hljs-string">'Hello, me!'</span>, <span class="hljs-attr">visibility</span>: <span class="hljs-string">'private'</span>})
-</code></pre>
 <hr>
-<h3>edit(url, post)</h3>
-<p>Edit a post on the current user’s site.</p>
+<h3>get(author, topic)</h3>
+<p>Get a vote by author and topic.</p>
 <table>
 <thead>
 <tr>
@@ -338,34 +383,67 @@
 </thead>
 <tbody>
 <tr>
-<td>url</td>
+<td>author</td>
 <td><code>string</code></td>
 <td></td>
-<td>The URL of the post you want to edit (required)</td>
+<td>Site URL (required)</td>
 </tr>
 <tr>
-<td>post</td>
-<td><code>string|Object</code></td>
-<td></td>
-<td>If a string, specifies the body (required)</td>
-</tr>
-<tr>
-<td> body</td>
+<td>topic</td>
 <td><code>string</code></td>
 <td></td>
-<td>The post body (required)</td>
+<td>Site URL (required)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise&lt;Vote&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>set(topic, vote, opts)</h3>
+<p>Set the user’s vote on the topic.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>topic</td>
+<td><code>string</code></td>
+<td></td>
+<td>Topic URL (required)</td>
 </tr>
 <tr>
-<td> ext</td>
+<td>vote</td>
+<td><code>number</code></td>
+<td></td>
+<td>The vote value, must be <code>-1</code>, <code>0</code>, or <code>1</code></td>
+</tr>
+<tr>
+<td>opts</td>
 <td><code>Object</code></td>
 <td></td>
-<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
+<td></td>
 </tr>
 <tr>
-<td> visibility</td>
+<td> <a href="/docs/common-fields#visibility">visibility</a></td>
 <td><code>string</code></td>
 <td><code>'public'</code></td>
-<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
+<td>One of: <code>'public'</code>, <code>'private'</code></td>
 </tr>
 </tbody>
 </table>
@@ -377,47 +455,10 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Post&gt;</code></td>
+<td><code>Promise&lt;Vote&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<h4>Example</h4>
-<pre><code class="language-js"><span class="hljs-keyword">await</span> posts.edit(myPost.url, <span class="hljs-string">'Hello, world!!'</span>)
-</code></pre>
-<hr>
-<h3>remove(url)</h3>
-<p>Delete a post on the current user’s site.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td><code>string</code></td>
-<td></td>
-<td>The URL of the post you want to remove (required)</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;void&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
 </main>
     </div>
   </body>
