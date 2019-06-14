@@ -16,12 +16,14 @@
         <ul>
     <li>Docs
       <ul>
-        <li><a href="/docs/how-does-it-work">How it works</a></li>
+        <li><a href="/docs/how-does-it-work">How it works</a><ul>
+          <li><a href="/docs/common-fields">Common fields</a></li>
+          <li><a href="/docs/how-to-extend-schemas">Extending schemas</a></li>
+          <li><a href="/docs/browser-integration">Browser integration</a></li>
+        </ul></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
-        <li><a href="/docs/browser-integration">Browser integration</a></li>
-        <li><a href="/docs/common-fields">Common fields</a></li>
         <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
       </ul>
     </li>
@@ -86,8 +88,8 @@
 <span class="hljs-keyword">await</span> comments.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> comments.add(topic, {body, replyTo, visibility})
-<span class="hljs-keyword">await</span> comments.edit(url, {body, replyTo, visibility})
+<span class="hljs-keyword">await</span> comments.add(topic, {body, replyTo, ext, visibility})
+<span class="hljs-keyword">await</span> comments.edit(url, {body, replyTo, ext, visibility})
 <span class="hljs-keyword">await</span> comments.delete(url)
 </code></pre>
 <hr>
@@ -156,6 +158,11 @@
 <td> type</td>
 <td><code>string[]</code></td>
 <td></td>
+</tr>
+<tr>
+<td>ext</td>
+<td><code>Object</code></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
 </tr>
 <tr>
 <td>visibility</td>
@@ -240,6 +247,11 @@
 <td> type</td>
 <td><code>string[]</code></td>
 <td></td>
+</tr>
+<tr>
+<td>ext</td>
+<td><code>Object</code></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
 </tr>
 <tr>
 <td>visibility</td>
@@ -477,6 +489,12 @@
 <td>The URL of the comment being replied to</td>
 </tr>
 <tr>
+<td> ext</td>
+<td><code>Object</code></td>
+<td></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
+</tr>
+<tr>
 <td> visibility</td>
 <td><code>string</code></td>
 <td><code>'public'</code></td>
@@ -536,6 +554,12 @@
 <td><code>string</code></td>
 <td></td>
 <td>The URL of the comment being replied to</td>
+</tr>
+<tr>
+<td> ext</td>
+<td><code>Object</code></td>
+<td></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
 </tr>
 <tr>
 <td> visibility</td>

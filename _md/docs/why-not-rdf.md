@@ -72,7 +72,7 @@ paul.title = 'Paul Frazee'
 paul.description = 'Beaker guy'
 ```
 
-If schemas *must* be combined, only then might we use URL keys:
+If schemas *must* be combined, only then might we use URL keys (see [How to extend the schemas](/docs/how-to-extend-schemas)):
 
 
 ```json
@@ -80,10 +80,11 @@ If schemas *must* be combined, only then might we use URL keys:
   "type": "websites.com/manifest",
   "title": "Paul Frazee",
   "description": "Beaker guy",
-  "social.com/follows": [
-    "dat://alice.com",
-    "dat://bob.com"
-  ]
+  "ext": {
+    "social.com/follows": {
+      "urls": ["dat://alice.com", "dat://bob.com"]
+    }
+  }
 }
 ```
 

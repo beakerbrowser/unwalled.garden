@@ -16,12 +16,14 @@
         <ul>
     <li>Docs
       <ul>
-        <li><a href="/docs/how-does-it-work">How it works</a></li>
+        <li><a href="/docs/how-does-it-work">How it works</a><ul>
+          <li><a href="/docs/common-fields">Common fields</a></li>
+          <li><a href="/docs/how-to-extend-schemas">Extending schemas</a></li>
+          <li><a href="/docs/browser-integration">Browser integration</a></li>
+        </ul></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
-        <li><a href="/docs/browser-integration">Browser integration</a></li>
-        <li><a href="/docs/common-fields">Common fields</a></li>
         <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
       </ul>
     </li>
@@ -80,8 +82,8 @@
 <span class="hljs-keyword">await</span> posts.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> posts.add({body, visibility})
-<span class="hljs-keyword">await</span> posts.edit(url, {body, visibility})
+<span class="hljs-keyword">await</span> posts.add({body, ext, visibility})
+<span class="hljs-keyword">await</span> posts.edit(url, {body, ext, visibility})
 <span class="hljs-keyword">await</span> posts.delete(url)
 </code></pre>
 <hr>
@@ -140,6 +142,11 @@
 <td> type</td>
 <td><code>string[]</code></td>
 <td></td>
+</tr>
+<tr>
+<td>ext</td>
+<td><code>Object</code></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
 </tr>
 <tr>
 <td>visibility</td>
@@ -282,6 +289,12 @@
 <td>The post body (required)</td>
 </tr>
 <tr>
+<td> ext</td>
+<td><code>Object</code></td>
+<td></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
+</tr>
+<tr>
 <td> visibility</td>
 <td><code>string</code></td>
 <td><code>'public'</code></td>
@@ -335,6 +348,12 @@
 <td><code>string</code></td>
 <td></td>
 <td>The post body (required)</td>
+</tr>
+<tr>
+<td> ext</td>
+<td><code>Object</code></td>
+<td></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
 </tr>
 <tr>
 <td> visibility</td>
