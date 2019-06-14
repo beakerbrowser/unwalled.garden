@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Comments API | Unwalled.Garden</title>
+    <title>Sitelists API | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -66,35 +66,34 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Comments API</h2>
-<p>Comments are replies to content around the Web. They are threaded (meaning that all comments can reply to all other comments, forming a tree). Any URL can be the topic of a comment.</p>
+      <main><h2>Sitelists API</h2>
+<p>Sitelists are collections of sites. They can be used to share recommended follows, recommended apps, employee lists, and more.</p>
+<p>In addition to a title and description, sitelists have a <code>name</code> which determines the filename of the sitelist. A site cannot publish two sitelists with the same name.</p>
+<p>A sitelist should only include links to sites (not to files or pages).</p>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {comments} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {sitelists} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> comments.list({
-  <span class="hljs-attr">filters</span>: {authors, topics, visibility},
+<span class="hljs-keyword">await</span> sitelists.list({
+  <span class="hljs-attr">filters</span>: {authors, visibility},
   sortBy,
   offset,
   limit,
   reverse
 })
-<span class="hljs-keyword">await</span> comments.thread(topic, {
-  <span class="hljs-attr">filters</span>: {authors, visibility},
-  parent,
-  depth,
-  sortBy
-})
-<span class="hljs-keyword">await</span> comments.get(url)
+<span class="hljs-keyword">await</span> sitelists.get(author, name)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> comments.add(topic, {body, replyTo, visibility})
-<span class="hljs-keyword">await</span> comments.edit(url, {body, replyTo, visibility})
-<span class="hljs-keyword">await</span> comments.delete(url)
+<span class="hljs-keyword">await</span> sitelists.add({name, title, description, ext, visibility})
+<span class="hljs-keyword">await</span> sitelists.edit(name, {name, title, description, ext, visibility})
+<span class="hljs-keyword">await</span> sitelists.remove(name)
+<span class="hljs-keyword">await</span> sitelists.addSite(name, {url, title, description, type, ext})
+<span class="hljs-keyword">await</span> sitelists.editSite(name, url, {url, title, description, type, ext})
+<span class="hljs-keyword">await</span> sitelists.removeSite(name, url)
 </code></pre>
 <hr>
-<h3>Comment</h3>
-<p>The values returned by most comment functions will fit the following object shape:</p>
+<h3>SiteList</h3>
+<p>The values returned by sitelist functions will fit the following object shape:</p>
 <table>
 <thead>
 <tr>
@@ -107,37 +106,42 @@
 <tr>
 <td>url</td>
 <td><code>string</code></td>
-<td>The URL of the comment</td>
+<td>The URL of the sitelist</td>
 </tr>
 <tr>
-<td>topic</td>
+<td>name</td>
 <td><code>string</code></td>
-<td>The URL of the comment topic</td>
+<td>The name of the sitelist</td>
 </tr>
 <tr>
-<td>replyTo</td>
+<td>title</td>
 <td><code>string</code></td>
-<td>The URL of the parent comment</td>
+<td>The title of the sitelist</td>
 </tr>
 <tr>
-<td>body</td>
+<td>description</td>
 <td><code>string</code></td>
-<td>The text body of the comment</td>
+<td>The description of the sitelist</td>
+</tr>
+<tr>
+<td>sites</td>
+<td><code>SiteListItem[]</code></td>
+<td>The sites in the sitelist</td>
 </tr>
 <tr>
 <td>createdAt</td>
 <td><code>string</code></td>
-<td>The timestamp of when the comment claims it was created</td>
+<td>The timestamp of when the sitelist claims it was created</td>
 </tr>
 <tr>
 <td>updatedAt</td>
 <td><code>string</code></td>
-<td>The timestamp of when the comment claims it was last updated</td>
+<td>The timestamp of when the sitelist claims it was last updated</td>
 </tr>
 <tr>
 <td>author</td>
 <td><code>Object</code></td>
-<td>The comment author’s information</td>
+<td>The site that authored the sitelist</td>
 </tr>
 <tr>
 <td> url</td>
@@ -160,15 +164,20 @@
 <td></td>
 </tr>
 <tr>
+<td>ext</td>
+<td><code>Object</code></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
+</tr>
+<tr>
 <td>visibility</td>
 <td><code>string</code></td>
-<td>The <a href="/docs/common-fields#visibility">visibility</a> of the comment</td>
+<td>The <a href="/docs/common-fields#visibility">visibility</a> of the sitelist record</td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>ThreadComment</h3>
-<p>The values returned by the <code>thread()</code> function will fit the following object shape:</p>
+<h3>SiteListItem</h3>
+<p>The <code>SiteList</code> includes an array of sites objects that fit this shape:</p>
 <table>
 <thead>
 <tr>
@@ -181,78 +190,33 @@
 <tr>
 <td>url</td>
 <td><code>string</code></td>
-<td>The URL of the comment</td>
+<td>The URL of the site</td>
 </tr>
 <tr>
-<td>topic</td>
+<td>title</td>
 <td><code>string</code></td>
-<td>The URL of the comment topic</td>
+<td>The title of the site</td>
 </tr>
 <tr>
-<td>replyTo</td>
+<td>description</td>
 <td><code>string</code></td>
-<td>The URL of the parent comment</td>
+<td>The description of the site</td>
 </tr>
 <tr>
-<td>replies</td>
-<td><code>ThreadComment[]</code></td>
-<td>The replies to the comment</td>
-</tr>
-<tr>
-<td>hasReplies</td>
-<td><code>boolean</code></td>
-<td>Does the comment have replies?</td>
-</tr>
-<tr>
-<td>body</td>
-<td><code>string</code></td>
-<td>The text body of the comment</td>
-</tr>
-<tr>
-<td>createdAt</td>
-<td><code>string</code></td>
-<td>The timestamp of when the comment claims it was created</td>
-</tr>
-<tr>
-<td>updatedAt</td>
-<td><code>string</code></td>
-<td>The timestamp of when the comment claims it was last updated</td>
-</tr>
-<tr>
-<td>author</td>
-<td><code>Object</code></td>
-<td>The comment author’s information</td>
-</tr>
-<tr>
-<td> url</td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> title</td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> description</td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> type</td>
+<td>type</td>
 <td><code>string[]</code></td>
-<td></td>
+<td>The type of the site</td>
 </tr>
 <tr>
-<td>visibility</td>
-<td><code>string</code></td>
-<td>The <a href="/docs/common-fields#visibility">visibility</a> of the comment</td>
+<td>ext</td>
+<td><code>Object</code></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h3>list(opts)</h3>
-<p>List the comments on the network.</p>
+<p>List sitelists on the network.</p>
 <table>
 <thead>
 <tr>
@@ -282,12 +246,6 @@
 <td>Site URLs</td>
 </tr>
 <tr>
-<td>  topics</td>
-<td><code>string|string[]</code></td>
-<td></td>
-<td>URLs</td>
-</tr>
-<tr>
 <td>  visibility</td>
 <td><code>string</code></td>
 <td><code>'all'</code></td>
@@ -296,8 +254,8 @@
 <tr>
 <td> sortBy</td>
 <td><code>string</code></td>
-<td><code>'createdAt'</code></td>
-<td>One of: <code>'createdAt'</code></td>
+<td><code>'topic'</code></td>
+<td>One of: <code>'topic'</code></td>
 </tr>
 <tr>
 <td> offset</td>
@@ -327,13 +285,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Comment[]&gt;</code></td>
+<td><code>Promise&lt;SiteList[]&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>thread(topic, opts)</h3>
-<p>Fetch the comment thread on a given topic.</p>
+<h3>get(author, name)</h3>
+<p>Get a sitelist by author and name.</p>
 <table>
 <thead>
 <tr>
@@ -345,144 +303,148 @@
 </thead>
 <tbody>
 <tr>
-<td>topic</td>
+<td>author</td>
 <td><code>string</code></td>
 <td></td>
-<td>URL (required)</td>
+<td>Site URL (required)</td>
 </tr>
 <tr>
-<td>opts</td>
+<td>name</td>
+<td><code>string</code></td>
+<td></td>
+<td>Sitelist name (required)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise&lt;SiteList&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>add(sitelist)</h3>
+<p>Add a sitelist to the current user’s site.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sitelist</td>
 <td><code>Object</code></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td> filters</td>
+<td> name</td>
+<td><code>string</code></td>
+<td></td>
+<td>The sitelist name (required)</td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td></td>
+<td>The sitelist title</td>
+</tr>
+<tr>
+<td> description</td>
+<td><code>string</code></td>
+<td></td>
+<td>The sitelist description</td>
+</tr>
+<tr>
+<td> ext</td>
+<td><code>Object</code></td>
+<td></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
+</tr>
+<tr>
+<td> <a href="/docs/common-fields#visibility">visibility</a></td>
+<td><code>string</code></td>
+<td><code>'public'</code></td>
+<td>One of: <code>'public'</code>, <code>'private'</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise&lt;SiteList&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>edit(name, sitelist)</h3>
+<p>Edit a sitelist on the current user’s site.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>string</code></td>
+<td></td>
+<td>The sitelist name (required)</td>
+</tr>
+<tr>
+<td>sitelist</td>
 <td><code>Object</code></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>  authors</td>
-<td><code>string|string[]</code></td>
-<td></td>
-<td>Site URLs</td>
-</tr>
-<tr>
-<td>  visibility</td>
-<td><code>string</code></td>
-<td><code>'all'</code></td>
-<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
-</tr>
-<tr>
-<td> parent</td>
+<td> name</td>
 <td><code>string</code></td>
 <td></td>
-<td>The URL of comment in the thread</td>
+<td>The sitelist name</td>
 </tr>
 <tr>
-<td> depth</td>
-<td><code>number</code></td>
-<td></td>
-<td>A limit on the depth to recurse down the comment tree</td>
-</tr>
-<tr>
-<td> sortBy</td>
-<td><code>string</code></td>
-<td><code>'createdAt'</code></td>
-<td>One of: <code>'createdAt'</code></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;ThreadComment[]&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<p>If <code>depth</code> is specified, the <code>ThreadComment</code> objects at the depth limit will not have <code>replies</code> populated even if there are replies. You can check <code>hasReplies</code> to see if there are replies which were not fetched.</p>
-<p>You can specify the <code>parent</code> parameter to fetch a subtree of the thread.</p>
-<hr>
-<h3>get(url)</h3>
-<p>Get an individual comment by its URL.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
+<td> title</td>
 <td><code>string</code></td>
 <td></td>
-<td>Comment URL (required)</td>
+<td>The sitelist title</td>
 </tr>
-</tbody>
-</table>
-<table>
-<thead>
 <tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;Comment&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>add(topic, comment)</h3>
-<p>Add a comment to the current user’s site.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>topic</td>
+<td> description</td>
 <td><code>string</code></td>
 <td></td>
-<td>Topic URL (required)</td>
+<td>The sitelist description</td>
 </tr>
 <tr>
-<td>comment</td>
-<td><code>string|Object</code></td>
+<td> ext</td>
+<td><code>Object</code></td>
 <td></td>
-<td>If a string, specifies the body (required)</td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
 </tr>
 <tr>
-<td> body</td>
-<td><code>string</code></td>
-<td></td>
-<td>The comment body (required)</td>
-</tr>
-<tr>
-<td> replyTo</td>
-<td><code>string</code></td>
-<td></td>
-<td>The URL of the comment being replied to</td>
-</tr>
-<tr>
-<td> visibility</td>
+<td> <a href="/docs/common-fields#visibility">visibility</a></td>
 <td><code>string</code></td>
 <td><code>'public'</code></td>
-<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
+<td>One of: <code>'public'</code>, <code>'private'</code></td>
 </tr>
 </tbody>
 </table>
@@ -494,17 +456,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Comment&gt;</code></td>
+<td><code>Promise&lt;SiteList&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<h4>Example</h4>
-<pre><code class="language-js"><span class="hljs-keyword">await</span> comments.add(<span class="hljs-string">'dat://unwalled.garden'</span>, <span class="hljs-string">'What a great site!'</span>)
-<span class="hljs-keyword">await</span> comments.add(<span class="hljs-string">'dat://unwalled.garden'</span>, {<span class="hljs-attr">body</span>: <span class="hljs-string">'TODO: read this later'</span>, <span class="hljs-attr">visibility</span>: <span class="hljs-string">'private'</span>})
-</code></pre>
 <hr>
-<h3>edit(url, comment)</h3>
-<p>Edit a comment on the current user’s site.</p>
+<h3>remove(name)</h3>
+<p>Remove a sitelist from the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -516,70 +474,10 @@
 </thead>
 <tbody>
 <tr>
-<td>url</td>
+<td>name</td>
 <td><code>string</code></td>
 <td></td>
-<td>The URL of the comment you want to edit (required)</td>
-</tr>
-<tr>
-<td>comment</td>
-<td><code>string|Object</code></td>
-<td></td>
-<td>If a string, specifies the body (required)</td>
-</tr>
-<tr>
-<td> body</td>
-<td><code>string</code></td>
-<td></td>
-<td>The comment body (required)</td>
-</tr>
-<tr>
-<td> replyTo</td>
-<td><code>string</code></td>
-<td></td>
-<td>The URL of the comment being replied to</td>
-</tr>
-<tr>
-<td> visibility</td>
-<td><code>string</code></td>
-<td><code>'public'</code></td>
-<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;Comment&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h4>Example</h4>
-<pre><code class="language-js"><span class="hljs-keyword">await</span> comments.edit(myComment.url, <span class="hljs-string">'Hello, world!!'</span>)
-</code></pre>
-<hr>
-<h3>delete(url)</h3>
-<p>Delete a comment on the current user’s site.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td><code>string</code></td>
-<td></td>
-<td>The URL of the comment you want to delete (required)</td>
+<td>The sitelist name (required)</td>
 </tr>
 </tbody>
 </table>
@@ -596,6 +494,188 @@
 </tbody>
 </table>
 <hr>
+<h3>addSite(name, site)</h3>
+<p>Add a site to a sitelist on the current user’s site.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>string</code></td>
+<td></td>
+<td>The sitelist name (required)</td>
+</tr>
+<tr>
+<td>site</td>
+<td><code>Object</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> url</td>
+<td><code>string</code></td>
+<td></td>
+<td>The site URL (required)</td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td></td>
+<td>The site title</td>
+</tr>
+<tr>
+<td> description</td>
+<td><code>string</code></td>
+<td></td>
+<td>The site description</td>
+</tr>
+<tr>
+<td> type</td>
+<td><code>string[]</code></td>
+<td></td>
+<td>The site type</td>
+</tr>
+<tr>
+<td> ext</td>
+<td><code>Object</code></td>
+<td></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise&lt;SiteList&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>editSite(name, url, site)</h3>
+<p>Edit a site in a sitelist on the current user’s site.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>string</code></td>
+<td></td>
+<td>The sitelist name (required)</td>
+</tr>
+<tr>
+<td>url</td>
+<td><code>string</code></td>
+<td></td>
+<td>The site URL (required)</td>
+</tr>
+<tr>
+<td>site</td>
+<td><code>Object</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> url</td>
+<td><code>string</code></td>
+<td></td>
+<td>The site URL</td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td></td>
+<td>The site title</td>
+</tr>
+<tr>
+<td> description</td>
+<td><code>string</code></td>
+<td></td>
+<td>The site description</td>
+</tr>
+<tr>
+<td> type</td>
+<td><code>string[]</code></td>
+<td></td>
+<td>The site type</td>
+</tr>
+<tr>
+<td> ext</td>
+<td><code>Object</code></td>
+<td></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise&lt;SiteList&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>removeSite(name, site)</h3>
+<p>Remove a site from a sitelist on the current user’s site.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>string</code></td>
+<td></td>
+<td>The sitelist name (required)</td>
+</tr>
+<tr>
+<td>url</td>
+<td><code>string</code></td>
+<td></td>
+<td>The site URL (required)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise&lt;SiteList&gt;</code></td>
+</tr>
+</tbody>
+</table>
 </main>
     </div>
   </body>
