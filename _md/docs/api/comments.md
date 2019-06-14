@@ -24,8 +24,8 @@ await comments.thread(topic, {
 await comments.get(url)
 
 // write
-await comments.add(topic, {body, replyTo, visibility})
-await comments.edit(url, {body, replyTo, visibility})
+await comments.add(topic, {body, replyTo, ext, visibility})
+await comments.edit(url, {body, replyTo, ext, visibility})
 await comments.delete(url)
 ```
 
@@ -48,6 +48,7 @@ The values returned by most comment functions will fit the following object shap
 |&emsp;title|`string`||
 |&emsp;description|`string`||
 |&emsp;type|`string[]`||
+|ext|`Object`|The [extension](/docs/how-to-extend-schemas) object|
 |visibility|`string`|The [visibility](/docs/common-fields#visibility) of the comment|
 
 ---
@@ -71,6 +72,7 @@ The values returned by the `thread()` function will fit the following object sha
 |&emsp;title|`string`||
 |&emsp;description|`string`||
 |&emsp;type|`string[]`||
+|ext|`Object`|The [extension](/docs/how-to-extend-schemas) object|
 |visibility|`string`|The [visibility](/docs/common-fields#visibility) of the comment|
 
 ---
@@ -146,6 +148,7 @@ Add a comment to the current user's site.
 |comment|`string|Object`||If a string, specifies the body (required)|
 |&emsp;body|`string`||The comment body (required)|
 |&emsp;replyTo|`string`||The URL of the comment being replied to|
+|&emsp;ext|`Object`||The [extension](/docs/how-to-extend-schemas) object|
 |&emsp;visibility|`string`|`'public'`|See [visibility](/docs/common-fields#visibility)|
 
 |Returns|
@@ -171,6 +174,7 @@ Edit a comment on the current user's site.
 |comment|`string|Object`||If a string, specifies the body (required)|
 |&emsp;body|`string`||The comment body (required)|
 |&emsp;replyTo|`string`||The URL of the comment being replied to|
+|&emsp;ext|`Object`||The [extension](/docs/how-to-extend-schemas) object|
 |&emsp;visibility|`string`|`'public'`|See [visibility](/docs/common-fields#visibility)|
 
 |Returns|

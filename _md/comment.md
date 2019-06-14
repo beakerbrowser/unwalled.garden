@@ -64,6 +64,9 @@
       "type": "string",
       "description": "The post's text content"
     },
+    "ext" {
+      "type": "object"
+    },
     "createdAt": {
       "type": "string",
       "format": "date-time",

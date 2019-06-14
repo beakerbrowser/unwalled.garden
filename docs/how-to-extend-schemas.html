@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <title>How to extend the schemas | Unwalled.Garden</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/assets/syntax.css">
+  </head>
+  <body>
+    <h1><a href="/">Unwalled.Garden</a></h1>
+    <a class="nav-open"><img src="/assets/hamburger.svg"></a>
+    <div class="notice">Status: DRAFT. Part of the upcoming <a href="https://beakerbrowser.com">Beaker Browser</a> 0.9 release.</div>
+    <div class="page">
+      <nav>
+        <a class="nav-close"><img src="/assets/hamburger.svg"></a>
+        <ul>
+    <li>Docs
+      <ul>
+        <li><a href="/docs/how-does-it-work">How it works</a><ul>
+          <li><a href="/docs/common-fields">Common fields</a></li>
+          <li><a href="/docs/how-to-extend-schemas">Extending schemas</a></li>
+          <li><a href="/docs/browser-integration">Browser integration</a></li>
+        </ul></li>
+        <li><a href="/docs/dat-primer">Dat protocol</a><ul>
+          <li><a href="/docs/mounts">Mounts</a></li>
+        </ul></li>
+        <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
+      </ul>
+    </li>
+  </ul>
+<ul>
+  <li>APIs
+    <ul>
+      <li><a href="/docs/api/bookmarks">Bookmarks</a></li>
+      <li><a href="/docs/api/comments">Comments</a></li>
+      <li><a href="/docs/api/follows">Follows</a></li>
+      <li><a href="/docs/api/posts">Posts</a></li>
+      <li><a href="/docs/api/profiles">Profiles</a></li>
+      <li><a href="/docs/api/reactions">Reactions</a></li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>Schemas
+    <ul>
+      <li><a href="/bookmark">Bookmark</a></li>
+      <li><a href="/comment">Comment</a></li>
+      <li><a href="/follows">Follows</a></li>
+      <li><a href="/person">Person</a></li>
+      <li><a href="/post">Post</a></li>
+      <li><a href="/reaction">Reaction</a></li>
+      <li>dir<ul>
+        <li><a href="/dir/data">Data</a></li>
+        <li><a href="/dir/refs">Refs</a></li>
+      </ul></li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>Links
+    <ul>
+      <li><a href="https://github.com/beakerbrowser/unwalled.garden">Github Repo</a></li>
+      <li><a href="https://beakerbrowser.com">Beaker Browser</a></li>
+      <li><a href="https://dat.foundation">Dat protocol</a></li>
+    </ul>
+  </li>
+</ul>
+      </nav>
+      <main><h2>How to extend the schemas</h2>
+<p>Sometimes the core schemas just ain’t enough. Maybe you want to make a forum app that embeds polls in the discussions? Or maybe you want to add tags to your comments? There are lots of reasons that you might want to extend the schema.</p>
+<p>To handle this, we decided to create a standard process for “extensions.”</p>
+<h3>The ext object</h3>
+<p>Every schema has an optional <code>ext</code> object to contain all extensions. Here’s an example which adds tags to a <a href="/comment">Comment</a>:</p>
+<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/comment"</span>,
+  <span class="hljs-attr">"topic"</span>: <span class="hljs-string">"dat://beakerbrowser.com/docs"</span>,
+  <span class="hljs-attr">"body"</span>: <span class="hljs-string">"These docs need some work!"</span>,
+  <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-07T02:52:11.947Z"</span>,
+  <span class="hljs-attr">"ext"</span>: {
+    <span class="hljs-attr">"my-personal-schemas.com/tags"</span>: {
+      <span class="hljs-attr">"tags"</span>: [<span class="hljs-string">"feedback"</span>, <span class="hljs-string">"criticism"</span>]
+    }
+  }
+}
+</code></pre>
+<p>The <code>ext</code> object should fit the following form:</p>
+<pre><code class="language-js">ext: {
+  [schemaUrl]: <span class="hljs-built_in">Object</span>
+}
+</code></pre>
+<p>The <code>schemaUrl</code> key behaves like the <code>type</code> field in the standard schemas. It indicates where documentation for the extension object can be found. The extension <code>Object</code> is entirely up to you, but it should be an object (not just a string or number).</p>
+<h3>A word of warning</h3>
+<p>Your extensions will not be universally supported, so you should think carefully about how other applications will interact with them.</p>
+<p>Here’s an example of how an extension could fail to work as expected:</p>
+<ul>
+<li>You add a “subfeed” extension to the <a href="/post">Post</a> schema. Your idea is, if the post has a subfeed, it goes into the subfeed instead of showing on the main feed.</li>
+<li>You build your app to respect the subfeed extension and everything seems well…</li>
+<li>…But then you try another app and see that the subfeed posts are still in the main feed!</li>
+</ul>
+<p>What happened here? Well, apps will ignore extensions that they don’t understand. This can create surprising interactions if you’re not careful.</p>
+<p>If your extension has to be understood by other apps to work correctly, then the extension won’t work.</p>
+<h3>FAQ</h3>
+<h4>Do I have to use a schema URL?</h4>
+<p>Yes! If you don’t use a URL to identify your extension’s schema, then it’s possible that your extension will conflict with other peoples’ extensions. For instance, what if everybody used <code>&quot;tags&quot;</code> to identify their tags extension, but half of them differed? You’d run into tons of conflicting data.</p>
+<h4>Do I have to publish the schema documentation?</h4>
+<p>It’s a good idea but it’s not required. So long as you control the URL, you can use it.</p>
+<h4>Why use the ext field? Why not just make any change I want?</h4>
+<p>The entire purpose of schemas is to ensure compatibility between applications. If developers make arbitrary changes, their changes could start to conflict in subtle ways. By using the <code>ext</code> object, we ensure that extensions will never collide.</p>
+</main>
+    </div>
+  </body>
+  <script type="module" src="/assets/admin.js"></script>
+  <script>
+    document.querySelector('.nav-open').addEventListener('click', e => {
+      document.querySelector('nav').classList.add('show')
+    })
+    document.querySelector('.nav-close').addEventListener('click', e => {
+      document.querySelector('nav').classList.remove('show')
+    })
+  </script>
+</html>

@@ -18,8 +18,8 @@ await bookmarks.list({
 await bookmarks.get(author, href)
 
 // write
-await bookmarks.add({href, title, description, tags, visibility})
-await bookmarks.edit(href, {href, title, description, tags, visibility})
+await bookmarks.add({href, title, description, tags, ext, visibility})
+await bookmarks.edit(href, {href, title, description, tags, ext, visibility})
 await bookmarks.remove(href)
 ```
 
@@ -41,6 +41,7 @@ The values returned by bookmark functions will fit the following object shape:
 |&emsp;title|`string`||
 |&emsp;description|`string`||
 |&emsp;type|`string[]`||
+|ext|`Object`|The [extension](/docs/how-to-extend-schemas) object|
 |visibility|`string`|The [visibility](/docs/common-fields#visibility) of the bookmark|
 
 ---
@@ -93,6 +94,7 @@ Add a bookmark to the current user's site.
 |&emsp;title|`string`||The bookmark title (required)|
 |&emsp;description|`string`||The bookmark description|
 |&emsp;tags|`string[]`||The bookmark tags|
+|&emsp;ext|`Object`||The [extension](/docs/how-to-extend-schemas) object|
 |&emsp;visibility|`string`|`'private'`|See [visibility](/docs/common-fields#visibility)|
 
 |Returns|
@@ -113,6 +115,7 @@ Edit a bookmark on the current user's site.
 |&emsp;title|`string`||The bookmark title (required)|
 |&emsp;description|`string`||The bookmark description|
 |&emsp;tags|`string[]`||The bookmark tags|
+|&emsp;ext|`Object`||The [extension](/docs/how-to-extend-schemas) object|
 |&emsp;visibility|`string`|`'private'`|See [visibility](/docs/common-fields#visibility)|
 
 |Returns|

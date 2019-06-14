@@ -18,8 +18,8 @@ await posts.list({
 await posts.get(url)
 
 // write
-await posts.add({body, visibility})
-await posts.edit(url, {body, visibility})
+await posts.add({body, ext, visibility})
+await posts.edit(url, {body, ext, visibility})
 await posts.delete(url)
 ```
 
@@ -40,6 +40,7 @@ The values returned by post functions will fit the following object shape:
 |&emsp;title|`string`||
 |&emsp;description|`string`||
 |&emsp;type|`string[]`||
+|ext|`Object`|The [extension](/docs/how-to-extend-schemas) object|
 |visibility|`string`|The [visibility](/docs/common-fields#visibility) of the post|
 
 ---
@@ -87,6 +88,7 @@ Add a post to the current user's site.
 |-|-|-|-|
 |post|`string|Object`||If a string, specifies the body (required)|
 |&emsp;body|`string`||The post body (required)|
+|&emsp;ext|`Object`||The [extension](/docs/how-to-extend-schemas) object|
 |&emsp;visibility|`string`|`'public'`|See [visibility](/docs/common-fields#visibility)|
 
 |Returns|
@@ -111,6 +113,7 @@ Edit a post on the current user's site.
 |url|`string`||The URL of the post you want to edit (required)|
 |post|`string|Object`||If a string, specifies the body (required)|
 |&emsp;body|`string`||The post body (required)|
+|&emsp;ext|`Object`||The [extension](/docs/how-to-extend-schemas) object|
 |&emsp;visibility|`string`|`'public'`|See [visibility](/docs/common-fields#visibility)|
 
 |Returns|

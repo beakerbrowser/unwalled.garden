@@ -16,12 +16,14 @@
         <ul>
     <li>Docs
       <ul>
-        <li><a href="/docs/how-does-it-work">How it works</a></li>
+        <li><a href="/docs/how-does-it-work">How it works</a><ul>
+          <li><a href="/docs/common-fields">Common fields</a></li>
+          <li><a href="/docs/how-to-extend-schemas">Extending schemas</a></li>
+          <li><a href="/docs/browser-integration">Browser integration</a></li>
+        </ul></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
-        <li><a href="/docs/browser-integration">Browser integration</a></li>
-        <li><a href="/docs/common-fields">Common fields</a></li>
         <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
       </ul>
     </li>
@@ -117,15 +119,16 @@ paul[<span class="hljs-string">'dat://websites.com/manifest#title'</span>] = <sp
 <pre><code class="language-js">paul.title = <span class="hljs-string">'Paul Frazee'</span>
 paul.description = <span class="hljs-string">'Beaker guy'</span>
 </code></pre>
-<p>If schemas <em>must</em> be combined, only then might we use URL keys:</p>
+<p>If schemas <em>must</em> be combined, only then might we use URL keys (see <a href="/docs/how-to-extend-schemas">How to extend the schemas</a>):</p>
 <pre><code class="language-json">{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"websites.com/manifest"</span>,
   <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Paul Frazee"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Beaker guy"</span>,
-  <span class="hljs-attr">"social.com/follows"</span>: [
-    <span class="hljs-string">"dat://alice.com"</span>,
-    <span class="hljs-string">"dat://bob.com"</span>
-  ]
+  <span class="hljs-attr">"ext"</span>: {
+    <span class="hljs-attr">"social.com/follows"</span>: {
+      <span class="hljs-attr">"urls"</span>: [<span class="hljs-string">"dat://alice.com"</span>, <span class="hljs-string">"dat://bob.com"</span>]
+    }
+  }
 }
 </code></pre>
 <p>The Unwalled.Garden philosophy about RDF is <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI (You Ain’t Gonna Need It)</a>. We see RDF’s complexity as a turn-off to developers and something we should try to avoid if we can.</p>

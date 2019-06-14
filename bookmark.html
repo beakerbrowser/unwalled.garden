@@ -16,12 +16,14 @@
         <ul>
     <li>Docs
       <ul>
-        <li><a href="/docs/how-does-it-work">How it works</a></li>
+        <li><a href="/docs/how-does-it-work">How it works</a><ul>
+          <li><a href="/docs/common-fields">Common fields</a></li>
+          <li><a href="/docs/how-to-extend-schemas">Extending schemas</a></li>
+          <li><a href="/docs/browser-integration">Browser integration</a></li>
+        </ul></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
           <li><a href="/docs/mounts">Mounts</a></li>
         </ul></li>
-        <li><a href="/docs/browser-integration">Browser integration</a></li>
-        <li><a href="/docs/common-fields">Common fields</a></li>
         <li><a href="/docs/why-not-rdf">Why not RDF?</a></li>
       </ul>
     </li>
@@ -84,46 +86,49 @@
 </code></pre>
 <h4>Schema</h4>
 <pre><code class="language-json">{
-  <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/draft-07/schema#"</span>,
-  <span class="hljs-attr">"$id"</span>: <span class="hljs-string">"dat://unwalled.garden/bookmark.json"</span>,
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
-  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Bookmark"</span>,
-  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A saved/shared link to some URL."</span>,
-  <span class="hljs-attr">"required"</span>: [<span class="hljs-string">"type"</span>, <span class="hljs-string">"href"</span>, <span class="hljs-string">"title"</span>, <span class="hljs-string">"createdAt"</span>],
-  <span class="hljs-attr">"properties"</span>: {
-    <span class="hljs-attr">"type"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The object's type"</span>,
-      <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/bookmark"</span>
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "dat://unwalled.garden/bookmark.json",
+  "type": "object",
+  "title": "Bookmark",
+  "description": "A saved/shared link to some URL.",
+  "required": ["type", "href", "title", "createdAt"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "unwalled.garden/bookmark"
     },
-    <span class="hljs-attr">"href"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"uri"</span>,
-      <span class="hljs-attr">"maxLength"</span>: <span class="hljs-number">10000</span>
+    "href": {
+      "type": "string",
+      "format": "uri",
+      "maxLength": 10000
     },
-    <span class="hljs-attr">"title"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"maxLength"</span>: <span class="hljs-number">280</span>
+    "title": {
+      "type": "string",
+      "maxLength": 280
     },
-    <span class="hljs-attr">"description"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"maxLength"</span>: <span class="hljs-number">560</span>
+    "description": {
+      "type": "string",
+      "maxLength": 560
     },
-    <span class="hljs-attr">"tags"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"array"</span>,
-      <span class="hljs-attr">"items"</span>: {
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-        <span class="hljs-attr">"maxLength"</span>: <span class="hljs-number">100</span>,
-        <span class="hljs-attr">"pattern"</span>: <span class="hljs-string">"^[A-Za-z][A-Za-z0-9-_?]*$"</span>
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 100,
+        "pattern": "^[A-Za-z][A-Za-z0-9-_?]*$"
       }
     },
-    <span class="hljs-attr">"createdAt"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"date-time"</span>
+    "ext" {
+      "type": "object"
     },
-    <span class="hljs-attr">"updatedAt"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"date-time"</span>
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
     }
   }
 }
