@@ -13,7 +13,7 @@
 ```json
 {
   "type": "unwalled.garden/vote",
-  "topic": "dat://unwalled.garden/vote",
+  "topic": "dat://beakerbrowser.com",
   "vote": 1,
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
