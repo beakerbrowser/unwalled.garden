@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Comments API | Unwalled.Garden</title>
+    <title>Media API | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -68,35 +68,105 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Comments API</h2>
-<p>Comments are replies to content around the Web. They are threaded (meaning that all comments can reply to all other comments, forming a tree). Any URL can be the topic of a comment.</p>
+      <main><h2>Media API</h2>
+<p>Media is content that’s published on the Web: blogposts, gifs, videos, songs, podcasts, news articles, documents, and more. It is a generic mechanism for publishing creative works.</p>
+<p>Media is categorized by a <code>subtype</code> URL. Unwalled.Garden defines the following subtypes:</p>
+<style>
+  table code,
+  table a {
+    white-space: nowrap;
+  }
+</style>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>URL</th>
+<th>File types</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code id="blogpost">blogpost</code></td>
+<td><a href="/media#blogpost">unwalled.garden/media#blogpost</a></td>
+<td>Web pages such as html or markdown.</td>
+</tr>
+<tr>
+<td><code id="document">document</code></td>
+<td><a href="/media#document">unwalled.garden/media#document</a></td>
+<td>Documents such as txt, pdf, docx, html, or markdown.</td>
+</tr>
+<tr>
+<td><code id="ebook">ebook</code></td>
+<td><a href="/media#ebook">unwalled.garden/media#ebook</a></td>
+<td>Ebooks such as txt, pdf, docx, html, or markdown.</td>
+</tr>
+<tr>
+<td><code id="file">file</code></td>
+<td><a href="/media#file">unwalled.garden/media#file</a></td>
+<td>Any.</td>
+</tr>
+<tr>
+<td><code id="gif">gif</code></td>
+<td><a href="/media#gif">unwalled.garden/media#gif</a></td>
+<td>Silent animated images or videos such as gif, webm, or mp4.</td>
+</tr>
+<tr>
+<td><code id="image">image</code></td>
+<td><a href="/media#image">unwalled.garden/media#image</a></td>
+<td>Images such as gif, png, or jpeg.</td>
+</tr>
+<tr>
+<td><code id="news-article">news-article</code></td>
+<td><a href="/media#news-article">unwalled.garden/media#news-article</a></td>
+<td>Web pages such as html or markdown.</td>
+</tr>
+<tr>
+<td><code id="page">page</code></td>
+<td><a href="/media#page">unwalled.garden/media#page</a></td>
+<td>Web pages such as html or markdown.</td>
+</tr>
+<tr>
+<td><code id="podcast-episode">podcast-episode</code></td>
+<td><a href="/media#podcast-episode">unwalled.garden/media#podcast-episode</a></td>
+<td>Audio such as webm, ogg, mp3, and wav.</td>
+</tr>
+<tr>
+<td><code id="song">song</code></td>
+<td><a href="/media#song">unwalled.garden/media#song</a></td>
+<td>Audio such as webm, ogg, mp3, and wav.</td>
+</tr>
+<tr>
+<td><code id="video">video</code></td>
+<td><a href="/media#video">unwalled.garden/media#video</a></td>
+<td>Videos such as webm and mp4.</td>
+</tr>
+</tbody>
+</table>
+<p>Applications are encouraged to use <a href="/docs/how-to-extend-schemas">extensions</a> to add custom information about the media.</p>
+<h3>Notes</h3>
+<p>Media records are a way for sites to publish content. They should not be used for internal housekeeping. For instance, if a user embeds a gif into their media, the app should not also create a media record for the gif.</p>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {comments} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {media} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> comments.list({
-  <span class="hljs-attr">filters</span>: {authors, topics, visibility},
+<span class="hljs-keyword">await</span> media.list({
+  <span class="hljs-attr">filters</span>: {authors, subtypes, hrefs, visibility},
   sortBy,
   offset,
   limit,
   reverse
 })
-<span class="hljs-keyword">await</span> comments.thread(topic, {
-  <span class="hljs-attr">filters</span>: {authors, visibility},
-  parent,
-  depth,
-  sortBy
-})
-<span class="hljs-keyword">await</span> comments.get(url)
+<span class="hljs-keyword">await</span> media.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> comments.add(topic, {body, replyTo, ext, visibility})
-<span class="hljs-keyword">await</span> comments.edit(url, {body, replyTo, ext, visibility})
-<span class="hljs-keyword">await</span> comments.delete(url)
+<span class="hljs-keyword">await</span> media.add({subtype, href, title, ext, visibility})
+<span class="hljs-keyword">await</span> media.edit(url, {subtype, href, title, ext, visibility})
+<span class="hljs-keyword">await</span> media.remove(url)
 </code></pre>
 <hr>
-<h3>Comment</h3>
-<p>The values returned by most comment functions will fit the following object shape:</p>
+<h3>Media</h3>
+<p>The values returned by media functions will fit the following object shape:</p>
 <table>
 <thead>
 <tr>
@@ -109,37 +179,42 @@
 <tr>
 <td>url</td>
 <td><code>string</code></td>
-<td>The URL of the comment</td>
+<td>The URL of the media record</td>
 </tr>
 <tr>
-<td>topic</td>
+<td>subtype</td>
 <td><code>string</code></td>
-<td>The URL of the comment topic</td>
+<td>The subtype URL of the media</td>
 </tr>
 <tr>
-<td>replyTo</td>
+<td>href</td>
 <td><code>string</code></td>
-<td>The URL of the parent comment</td>
+<td>The URL of the media’s content</td>
 </tr>
 <tr>
-<td>body</td>
+<td>title</td>
 <td><code>string</code></td>
-<td>The text body of the comment</td>
+<td>The title of the media</td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>string</code></td>
+<td>The description of the media</td>
 </tr>
 <tr>
 <td>createdAt</td>
 <td><code>string</code></td>
-<td>The timestamp of when the comment claims it was created</td>
+<td>The timestamp of when the media claims it was created</td>
 </tr>
 <tr>
 <td>updatedAt</td>
 <td><code>string</code></td>
-<td>The timestamp of when the comment claims it was last updated</td>
+<td>The timestamp of when the media claims it was last updated</td>
 </tr>
 <tr>
 <td>author</td>
 <td><code>Object</code></td>
-<td>The comment author’s information</td>
+<td>The media author’s information</td>
 </tr>
 <tr>
 <td> url</td>
@@ -169,102 +244,13 @@
 <tr>
 <td>visibility</td>
 <td><code>string</code></td>
-<td>The <a href="/docs/common-fields#visibility">visibility</a> of the comment</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>ThreadComment</h3>
-<p>The values returned by the <code>thread()</code> function will fit the following object shape:</p>
-<table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td><code>string</code></td>
-<td>The URL of the comment</td>
-</tr>
-<tr>
-<td>topic</td>
-<td><code>string</code></td>
-<td>The URL of the comment topic</td>
-</tr>
-<tr>
-<td>replyTo</td>
-<td><code>string</code></td>
-<td>The URL of the parent comment</td>
-</tr>
-<tr>
-<td>replies</td>
-<td><code>ThreadComment[]</code></td>
-<td>The replies to the comment</td>
-</tr>
-<tr>
-<td>hasReplies</td>
-<td><code>boolean</code></td>
-<td>Does the comment have replies?</td>
-</tr>
-<tr>
-<td>body</td>
-<td><code>string</code></td>
-<td>The text body of the comment</td>
-</tr>
-<tr>
-<td>createdAt</td>
-<td><code>string</code></td>
-<td>The timestamp of when the comment claims it was created</td>
-</tr>
-<tr>
-<td>updatedAt</td>
-<td><code>string</code></td>
-<td>The timestamp of when the comment claims it was last updated</td>
-</tr>
-<tr>
-<td>author</td>
-<td><code>Object</code></td>
-<td>The comment author’s information</td>
-</tr>
-<tr>
-<td> url</td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> title</td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> description</td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> type</td>
-<td><code>string[]</code></td>
-<td></td>
-</tr>
-<tr>
-<td>ext</td>
-<td><code>Object</code></td>
-<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
-</tr>
-<tr>
-<td>visibility</td>
-<td><code>string</code></td>
-<td>The <a href="/docs/common-fields#visibility">visibility</a> of the comment</td>
+<td>The <a href="/docs/common-fields#visibility">visibility</a> of the media</td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h3>list(opts)</h3>
-<p>List the comments on the network.</p>
+<p>List the media on the network.</p>
 <table>
 <thead>
 <tr>
@@ -294,10 +280,16 @@
 <td>Site URLs</td>
 </tr>
 <tr>
-<td>  topics</td>
+<td>  subtypes</td>
 <td><code>string|string[]</code></td>
 <td></td>
-<td>URLs</td>
+<td>Subtype URLs</td>
+</tr>
+<tr>
+<td>  hrefs</td>
+<td><code>string|string[]</code></td>
+<td></td>
+<td>Media content URLs</td>
 </tr>
 <tr>
 <td>  visibility</td>
@@ -339,90 +331,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Comment[]&gt;</code></td>
+<td><code>Promise&lt;Media[]&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<hr>
-<h3>thread(topic, opts)</h3>
-<p>Fetch the comment thread on a given topic.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>topic</td>
-<td><code>string</code></td>
-<td></td>
-<td>URL (required)</td>
-</tr>
-<tr>
-<td>opts</td>
-<td><code>Object</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td> filters</td>
-<td><code>Object</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>  authors</td>
-<td><code>string|string[]</code></td>
-<td></td>
-<td>Site URLs</td>
-</tr>
-<tr>
-<td>  visibility</td>
-<td><code>string</code></td>
-<td><code>'all'</code></td>
-<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
-</tr>
-<tr>
-<td> parent</td>
-<td><code>string</code></td>
-<td></td>
-<td>The URL of comment in the thread</td>
-</tr>
-<tr>
-<td> depth</td>
-<td><code>number</code></td>
-<td></td>
-<td>A limit on the depth to recurse down the comment tree</td>
-</tr>
-<tr>
-<td> sortBy</td>
-<td><code>string</code></td>
-<td><code>'createdAt'</code></td>
-<td>One of: <code>'createdAt'</code></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;ThreadComment[]&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<p>If <code>depth</code> is specified, the <code>ThreadComment</code> objects at the depth limit will not have <code>replies</code> populated even if there are replies. You can check <code>hasReplies</code> to see if there are replies which were not fetched.</p>
-<p>You can specify the <code>parent</code> parameter to fetch a subtree of the thread.</p>
 <hr>
 <h3>get(url)</h3>
-<p>Get an individual comment by its URL.</p>
+<p>Get an individual media item by its URL.</p>
 <table>
 <thead>
 <tr>
@@ -437,7 +352,7 @@
 <td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>Comment URL (required)</td>
+<td>Media URL (required)</td>
 </tr>
 </tbody>
 </table>
@@ -449,13 +364,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Comment&gt;</code></td>
+<td><code>Promise&lt;Media&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>add(topic, comment)</h3>
-<p>Add a comment to the current user’s site.</p>
+<h3>add(media)</h3>
+<p>Add a media item to the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -467,28 +382,34 @@
 </thead>
 <tbody>
 <tr>
-<td>topic</td>
-<td><code>string</code></td>
-<td></td>
-<td>Topic URL (required)</td>
-</tr>
-<tr>
-<td>comment</td>
+<td>media</td>
 <td><code>string|Object</code></td>
 <td></td>
-<td>If a string, specifies the body (required)</td>
+<td></td>
 </tr>
 <tr>
-<td> body</td>
+<td> subtype</td>
 <td><code>string</code></td>
 <td></td>
-<td>The comment body (required)</td>
+<td>The media subtype (required)</td>
 </tr>
 <tr>
-<td> replyTo</td>
+<td> href</td>
 <td><code>string</code></td>
 <td></td>
-<td>The URL of the comment being replied to</td>
+<td>The media content URL (required)</td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td></td>
+<td>The media title (required)</td>
+</tr>
+<tr>
+<td> description</td>
+<td><code>string</code></td>
+<td></td>
+<td>The media description</td>
 </tr>
 <tr>
 <td> ext</td>
@@ -512,17 +433,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Comment&gt;</code></td>
+<td><code>Promise&lt;Media&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<h4>Example</h4>
-<pre><code class="language-js"><span class="hljs-keyword">await</span> comments.add(<span class="hljs-string">'dat://unwalled.garden'</span>, <span class="hljs-string">'What a great site!'</span>)
-<span class="hljs-keyword">await</span> comments.add(<span class="hljs-string">'dat://unwalled.garden'</span>, {<span class="hljs-attr">body</span>: <span class="hljs-string">'TODO: read this later'</span>, <span class="hljs-attr">visibility</span>: <span class="hljs-string">'private'</span>})
-</code></pre>
 <hr>
-<h3>edit(url, comment)</h3>
-<p>Edit a comment on the current user’s site.</p>
+<h3>edit(url, media)</h3>
+<p>Edit a media item on the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -537,25 +454,37 @@
 <td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>The URL of the comment you want to edit (required)</td>
+<td>The URL of the media you want to edit (required)</td>
 </tr>
 <tr>
-<td>comment</td>
+<td>media</td>
 <td><code>string|Object</code></td>
 <td></td>
-<td>If a string, specifies the body (required)</td>
+<td></td>
 </tr>
 <tr>
-<td> body</td>
+<td> subtype</td>
 <td><code>string</code></td>
 <td></td>
-<td>The comment body (required)</td>
+<td>The media subtype</td>
 </tr>
 <tr>
-<td> replyTo</td>
+<td> href</td>
 <td><code>string</code></td>
 <td></td>
-<td>The URL of the comment being replied to</td>
+<td>The media content URL</td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td></td>
+<td>The media title</td>
+</tr>
+<tr>
+<td> description</td>
+<td><code>string</code></td>
+<td></td>
+<td>The media description</td>
 </tr>
 <tr>
 <td> ext</td>
@@ -579,16 +508,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Comment&gt;</code></td>
+<td><code>Promise&lt;Media&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<h4>Example</h4>
-<pre><code class="language-js"><span class="hljs-keyword">await</span> comments.edit(myComment.url, <span class="hljs-string">'Hello, world!!'</span>)
-</code></pre>
 <hr>
 <h3>delete(url)</h3>
-<p>Delete a comment on the current user’s site.</p>
+<p>Delete a media item on the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -603,7 +529,7 @@
 <td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>The URL of the comment you want to delete (required)</td>
+<td>The URL of the media you want to delete (required)</td>
 </tr>
 </tbody>
 </table>
@@ -619,7 +545,6 @@
 </tr>
 </tbody>
 </table>
-<hr>
 </main>
     </div>
   </body>
