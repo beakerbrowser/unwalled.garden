@@ -38,7 +38,7 @@ import {media} from 'dat://unwalled.garden/index.js'
 
 // read
 await media.list({
-  filters: {authors, subtypes, hrefs, visibility},
+  filters: {authors, hrefs, subtypes, tags, visibility},
   sortBy,
   offset,
   limit,
@@ -47,8 +47,8 @@ await media.list({
 await media.get(url)
 
 // write
-await media.add({subtype, href, title, ext, visibility})
-await media.edit(url, {subtype, href, title, ext, visibility})
+await media.add({subtype, href, title, description, tags, ext, visibility})
+await media.edit(url, {subtype, href, title, description, tags, ext, visibility})
 await media.remove(url)
 ```
 
@@ -65,6 +65,7 @@ The values returned by media functions will fit the following object shape:
 |href|`string`|The URL of the media's content|
 |title|`string`|The title of the media|
 |description|`string`|The description of the media|
+|tags|`string[]`|The tags of the media|
 |createdAt|`string`|The timestamp of when the media claims it was created|
 |updatedAt|`string`|The timestamp of when the media claims it was last updated|
 |author|`Object`|The media author's information|
@@ -86,8 +87,9 @@ List the media on the network.
 |opts|`Object`|||
 |&emsp;filters|`Object`|||
 |&emsp;&emsp;authors|`string|string[]`||Site URLs|
-|&emsp;&emsp;subtypes|`string|string[]`||Subtype URLs|
 |&emsp;&emsp;hrefs|`string|string[]`||Media content URLs|
+|&emsp;&emsp;subtypes|`string|string[]`||Subtype URLs|
+|&emsp;&emsp;tags|`string|string[]`||Tag strings|
 |&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
 |&emsp;sortBy|`string`|`'createdAt'`|One of: `'createdAt'`|
 |&emsp;offset|`number`|0||
@@ -125,6 +127,7 @@ Add a media item to the current user's site.
 |&emsp;href|`string`||The media content URL (required)|
 |&emsp;title|`string`||The media title (required)|
 |&emsp;description|`string`||The media description|
+|&emsp;tags|`string[]`||The media tags|
 |&emsp;ext|`Object`||The [extension](/docs/how-to-extend-schemas) object|
 |&emsp;visibility|`string`|`'public'`|See [visibility](/docs/common-fields#visibility)|
 
@@ -146,6 +149,7 @@ Edit a media item on the current user's site.
 |&emsp;href|`string`||The media content URL|
 |&emsp;title|`string`||The media title|
 |&emsp;description|`string`||The media description|
+|&emsp;tags|`string[]`||The media tags|
 |&emsp;ext|`Object`||The [extension](/docs/how-to-extend-schemas) object|
 |&emsp;visibility|`string`|`'public'`|See [visibility](/docs/common-fields#visibility)|
 

@@ -151,7 +151,7 @@
 
 <span class="hljs-comment">// read</span>
 <span class="hljs-keyword">await</span> media.list({
-  <span class="hljs-attr">filters</span>: {authors, subtypes, hrefs, visibility},
+  <span class="hljs-attr">filters</span>: {authors, hrefs, subtypes, tags, visibility},
   sortBy,
   offset,
   limit,
@@ -160,8 +160,8 @@
 <span class="hljs-keyword">await</span> media.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> media.add({subtype, href, title, ext, visibility})
-<span class="hljs-keyword">await</span> media.edit(url, {subtype, href, title, ext, visibility})
+<span class="hljs-keyword">await</span> media.add({subtype, href, title, description, tags, ext, visibility})
+<span class="hljs-keyword">await</span> media.edit(url, {subtype, href, title, description, tags, ext, visibility})
 <span class="hljs-keyword">await</span> media.remove(url)
 </code></pre>
 <hr>
@@ -200,6 +200,11 @@
 <td>description</td>
 <td><code>string</code></td>
 <td>The description of the media</td>
+</tr>
+<tr>
+<td>tags</td>
+<td><code>string[]</code></td>
+<td>The tags of the media</td>
 </tr>
 <tr>
 <td>createdAt</td>
@@ -280,16 +285,22 @@
 <td>Site URLs</td>
 </tr>
 <tr>
+<td>  hrefs</td>
+<td><code>string|string[]</code></td>
+<td></td>
+<td>Media content URLs</td>
+</tr>
+<tr>
 <td>  subtypes</td>
 <td><code>string|string[]</code></td>
 <td></td>
 <td>Subtype URLs</td>
 </tr>
 <tr>
-<td>  hrefs</td>
+<td>  tags</td>
 <td><code>string|string[]</code></td>
 <td></td>
-<td>Media content URLs</td>
+<td>Tag strings</td>
 </tr>
 <tr>
 <td>  visibility</td>
@@ -412,6 +423,12 @@
 <td>The media description</td>
 </tr>
 <tr>
+<td> tags</td>
+<td><code>string[]</code></td>
+<td></td>
+<td>The media tags</td>
+</tr>
+<tr>
 <td> ext</td>
 <td><code>Object</code></td>
 <td></td>
@@ -485,6 +502,12 @@
 <td><code>string</code></td>
 <td></td>
 <td>The media description</td>
+</tr>
+<tr>
+<td> tags</td>
+<td><code>string[]</code></td>
+<td></td>
+<td>The media tags</td>
 </tr>
 <tr>
 <td> ext</td>

@@ -22,6 +22,7 @@ Media is defined by a `subtype` URL. Unwalled garden includes a [set of useful s
   "subtype": "unwalled.garden/media#gif",
   "href": "dat://alice.com/images/angry-cat.gif",
   "title": "Bosco the angry cat",
+  "tags": ["cats", "aww"],
   "createdAt": "2018-12-07T02:52:11.947Z"
 }
 ```
@@ -82,6 +83,14 @@ Media is defined by a `subtype` URL. Unwalled garden includes a [set of useful s
     },
     "description": {
       "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 100,
+        "pattern": "^[A-Za-z][A-Za-z0-9-_?]*$"
+      }
     },
     "createdAt": {
       "type": "string",

@@ -85,6 +85,7 @@
   <span class="hljs-attr">"subtype"</span>: <span class="hljs-string">"unwalled.garden/media#gif"</span>,
   <span class="hljs-attr">"href"</span>: <span class="hljs-string">"dat://alice.com/images/angry-cat.gif"</span>,
   <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Bosco the angry cat"</span>,
+  <span class="hljs-attr">"tags"</span>: [<span class="hljs-string">"cats"</span>, <span class="hljs-string">"aww"</span>],
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-07T02:52:11.947Z"</span>
 }
 </code></pre>
@@ -192,6 +193,14 @@
     },
     <span class="hljs-attr">"description"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+    },
+    <span class="hljs-attr">"tags"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"array"</span>,
+      <span class="hljs-attr">"items"</span>: {
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+        <span class="hljs-attr">"maxLength"</span>: <span class="hljs-number">100</span>,
+        <span class="hljs-attr">"pattern"</span>: <span class="hljs-string">"^[A-Za-z][A-Za-z0-9-_?]*$"</span>
+      }
     },
     <span class="hljs-attr">"createdAt"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
