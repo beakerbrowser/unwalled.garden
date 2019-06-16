@@ -63,7 +63,7 @@ The values returned by the `thread()` function will fit the following object sha
 |topic|`string`|The URL of the comment topic|
 |replyTo|`string`|The URL of the parent comment|
 |replies|`ThreadComment[]`|The replies to the comment|
-|hasReplies|`boolean`|Does the comment have replies?|
+|replyCount|`number`|Number of replies to the comment|
 |body|`string`|The text body of the comment|
 |createdAt|`string`|The timestamp of when the comment claims it was created|
 |updatedAt|`string`|The timestamp of when the comment claims it was last updated|
@@ -118,7 +118,7 @@ Fetch the comment thread on a given topic.
 |-|
 |`Promise<ThreadComment[]>`|
 
-If `depth` is specified, the `ThreadComment` objects at the depth limit will not have `replies` populated even if there are replies. You can check `hasReplies` to see if there are replies which were not fetched.
+If `depth` is specified, the `ThreadComment` objects at the depth limit will not have `replies` populated even if there are replies. You can check `replyCount` to see if there are additional replies which were not fetched.
 
 You can specify the `parent` parameter to fetch a subtree of the thread.
 

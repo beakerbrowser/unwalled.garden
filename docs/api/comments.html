@@ -204,9 +204,9 @@
 <td>The replies to the comment</td>
 </tr>
 <tr>
-<td>hasReplies</td>
-<td><code>boolean</code></td>
-<td>Does the comment have replies?</td>
+<td>replyCount</td>
+<td><code>number</code></td>
+<td>Number of replies to the comment</td>
 </tr>
 <tr>
 <td>body</td>
@@ -416,7 +416,7 @@
 </tr>
 </tbody>
 </table>
-<p>If <code>depth</code> is specified, the <code>ThreadComment</code> objects at the depth limit will not have <code>replies</code> populated even if there are replies. You can check <code>hasReplies</code> to see if there are replies which were not fetched.</p>
+<p>If <code>depth</code> is specified, the <code>ThreadComment</code> objects at the depth limit will not have <code>replies</code> populated even if there are replies. You can check <code>replyCount</code> to see if there are additional replies which were not fetched.</p>
 <p>You can specify the <code>parent</code> parameter to fetch a subtree of the thread.</p>
 <hr>
 <h3>get(url)</h3>
