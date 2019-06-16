@@ -113,6 +113,7 @@ Fetch the comment thread on a given topic.
 |&emsp;parent|`string`||The URL of comment in the thread|
 |&emsp;depth|`number`||A limit on the depth to recurse down the comment tree|
 |&emsp;sortBy|`string`|`'createdAt'`|One of: `'createdAt'`|
+|&emsp;reverse|`boolean`|`false`||
 
 |Returns|
 |-|
