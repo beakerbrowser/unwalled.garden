@@ -74,15 +74,13 @@
 <li><strong>Path</strong>: <code>/.data/unwalled.garden/discussions/*.json</code></li>
 </ul>
 <hr>
-<h4>Notes</h4>
-<p>The <code>forum</code> field determines how the discussions are grouped. (It is similar to a subreddit name.) It can be any string but it must be provided.</p>
 <h4>Example</h4>
 <pre><code class="language-json">{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/discussion"</span>,
-  <span class="hljs-attr">"forum"</span>: <span class="hljs-string">"decentralized-web"</span>,
   <span class="hljs-attr">"title"</span>: <span class="hljs-string">"What do you think about the Dat protocol?"</span>,
   <span class="hljs-attr">"body"</span>: <span class="hljs-string">"You can find out about it at www.datprotocol.com. It seems cool to me!"</span>,
   <span class="hljs-attr">"href"</span>: <span class="hljs-string">"dat://www.datprotocol.com"</span>,
+  <span class="hljs-attr">"tags"</span>: [<span class="hljs-string">"tech"</span>, <span class="hljs-string">"p2p"</span>],
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-07T02:52:11.947Z"</span>
 }
 </code></pre>
@@ -93,16 +91,12 @@
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
   <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Discussion"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A forum discussion."</span>,
-  <span class="hljs-attr">"required"</span>: [<span class="hljs-string">"type"</span>, <span class="hljs-string">"forum"</span>, <span class="hljs-string">"title"</span>, <span class="hljs-string">"createdAt"</span>],
+  <span class="hljs-attr">"required"</span>: [<span class="hljs-string">"type"</span>, <span class="hljs-string">"title"</span>, <span class="hljs-string">"createdAt"</span>],
   <span class="hljs-attr">"properties"</span>: {
     <span class="hljs-attr">"type"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
       <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The object's type"</span>,
       <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/discussion"</span>
-    },
-    <span class="hljs-attr">"forum"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"maxLength"</span>: <span class="hljs-number">280</span>
     },
     <span class="hljs-attr">"title"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
@@ -115,6 +109,14 @@
     <span class="hljs-attr">"href"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
       <span class="hljs-attr">"format"</span>: <span class="hljs-string">"uri"</span>
+    },
+    <span class="hljs-attr">"tags"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"array"</span>,
+      <span class="hljs-attr">"items"</span>: {
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+        <span class="hljs-attr">"maxLength"</span>: <span class="hljs-number">100</span>,
+        <span class="hljs-attr">"pattern"</span>: <span class="hljs-string">"^[A-Za-z][A-Za-z0-9-_?]*$"</span>
+      }
     },
     <span class="hljs-attr">"createdAt"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,

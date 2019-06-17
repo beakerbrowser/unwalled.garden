@@ -67,14 +67,13 @@
 </ul>
       </nav>
       <main><h2>Discussions API</h2>
-<p>Discussions are forum posts. They include a title and (optionally) a body and/or link.</p>
-<p>All discussions are categorized under a “forum” field. This is similar to how Reddit posts are categorized under subreddits. You can list discussions by their forum or list discussions for all forums.</p>
+<p>Discussions are forum posts. They include a title and (optionally) a body, link, and tags.</p>
 <hr>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> {discussions} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-comment">// read</span>
 <span class="hljs-keyword">await</span> discussions.list({
-  <span class="hljs-attr">filters</span>: {authors, forums, visibility},
+  <span class="hljs-attr">filters</span>: {authors, tags, visibility},
   sortBy,
   offset,
   limit,
@@ -83,8 +82,8 @@
 <span class="hljs-keyword">await</span> discussions.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> discussions.add({forum, title, body, href, visibility})
-<span class="hljs-keyword">await</span> discussions.edit(url, {forum, title, body, href, visibility})
+<span class="hljs-keyword">await</span> discussions.add({title, body, href, tags, visibility})
+<span class="hljs-keyword">await</span> discussions.edit(url, {title, body, href, tags, visibility})
 <span class="hljs-keyword">await</span> discussions.delete(url)
 </code></pre>
 <hr>
@@ -105,11 +104,6 @@
 <td>The URL of the discussion</td>
 </tr>
 <tr>
-<td>forum</td>
-<td><code>string</code></td>
-<td>The forum that the discussion is in</td>
-</tr>
-<tr>
 <td>title</td>
 <td><code>string</code></td>
 <td>The title of the discussion</td>
@@ -123,6 +117,11 @@
 <td>href</td>
 <td><code>string</code></td>
 <td>The URL linked to by the discussion</td>
+</tr>
+<tr>
+<td>tags</td>
+<td><code>string[]</code></td>
+<td>The discussion tags</td>
 </tr>
 <tr>
 <td>createdAt</td>
@@ -198,10 +197,10 @@
 <td>Site URLs</td>
 </tr>
 <tr>
-<td>  forums</td>
+<td>  tags</td>
 <td><code>string|string[]</code></td>
 <td></td>
-<td>Forum names</td>
+<td></td>
 </tr>
 <tr>
 <td>  visibility</td>
@@ -300,12 +299,6 @@
 <td></td>
 </tr>
 <tr>
-<td> forum</td>
-<td><code>string</code></td>
-<td></td>
-<td>The forum to categorize the discussion under (required)</td>
-</tr>
-<tr>
 <td> title</td>
 <td><code>string</code></td>
 <td></td>
@@ -322,6 +315,12 @@
 <td><code>string</code></td>
 <td></td>
 <td>The discussion link URL</td>
+</tr>
+<tr>
+<td> tags</td>
+<td><code>string[]</code></td>
+<td></td>
+<td>The discussion tags</td>
 </tr>
 <tr>
 <td> visibility</td>
@@ -363,16 +362,10 @@
 <td>The URL of the discussion you want to edit (required)</td>
 </tr>
 <tr>
-<td> forum</td>
-<td><code>string</code></td>
-<td></td>
-<td>The forum to categorize the discussion under (required)</td>
-</tr>
-<tr>
 <td> title</td>
 <td><code>string</code></td>
 <td></td>
-<td>The discussion title (required)</td>
+<td>The discussion title</td>
 </tr>
 <tr>
 <td> body</td>
@@ -385,6 +378,12 @@
 <td><code>string</code></td>
 <td></td>
 <td>The discussion link URL</td>
+</tr>
+<tr>
+<td> tags</td>
+<td><code>string[]</code></td>
+<td></td>
+<td>The discussion tags</td>
 </tr>
 <tr>
 <td> visibility</td>
