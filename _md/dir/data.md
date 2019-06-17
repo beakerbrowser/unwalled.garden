@@ -19,5 +19,5 @@
 |`/media/*.json`|[Media](/media)|
 |`/posts/*.json`|[Post](/post)|
 |`/reactions/*.json`|[Reaction](/reaction)|
-|`/userlists/*.json`|[Userlist](/userlist)|
+|`/sitelists/*.json`|[Sitelist](/sitelist)|
 |`/votes/*.json`|[Vote](/vote)|
