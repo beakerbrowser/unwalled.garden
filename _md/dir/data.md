@@ -19,3 +19,4 @@
 |`/posts/*.json`|[Post](/post)|
 |`/reactions/*.json`|[Reaction](/reaction)|
 |`/userlists/*.json`|[Userlist](/userlist)|
+|`/votes/*.json`|[Vote](/vote)|
