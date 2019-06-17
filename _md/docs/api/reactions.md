@@ -21,7 +21,7 @@ await reactions.tabulate(topic, {
 
 // write
 await reactions.add(topic, emoji)
-await reactions.delete(topic, emoji)
+await reactions.remove(topic, emoji)
 ```
 
 ---

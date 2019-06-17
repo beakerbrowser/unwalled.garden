@@ -84,7 +84,7 @@
 <span class="hljs-comment">// write</span>
 <span class="hljs-keyword">await</span> posts.add({body, ext, visibility})
 <span class="hljs-keyword">await</span> posts.edit(url, {body, ext, visibility})
-<span class="hljs-keyword">await</span> posts.delete(url)
+<span class="hljs-keyword">await</span> posts.remove(url)
 </code></pre>
 <hr>
 <h3>Post</h3>
@@ -379,7 +379,7 @@
 <pre><code class="language-js"><span class="hljs-keyword">await</span> posts.edit(myPost.url, <span class="hljs-string">'Hello, world!!'</span>)
 </code></pre>
 <hr>
-<h3>delete(url)</h3>
+<h3>remove(url)</h3>
 <p>Delete a post on the current user’s site.</p>
 <table>
 <thead>
@@ -395,7 +395,7 @@
 <td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>The URL of the post you want to delete (required)</td>
+<td>The URL of the post you want to remove (required)</td>
 </tr>
 </tbody>
 </table>

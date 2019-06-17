@@ -20,7 +20,7 @@ await posts.get(url)
 // write
 await posts.add({body, ext, visibility})
 await posts.edit(url, {body, ext, visibility})
-await posts.delete(url)
+await posts.remove(url)
 ```
 
 ---
@@ -128,13 +128,13 @@ await posts.edit(myPost.url, 'Hello, world!!')
 
 ---
 
-### delete(url)
+### remove(url)
 
 Delete a post on the current user's site.
 
 |Param|Type|Default|Usage|
 |-|-|-|-|
-|url|`string`||The URL of the post you want to delete (required)|
+|url|`string`||The URL of the post you want to remove (required)|
 
 |Returns|
 |-|

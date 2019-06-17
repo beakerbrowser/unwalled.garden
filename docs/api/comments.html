@@ -90,7 +90,7 @@
 <span class="hljs-comment">// write</span>
 <span class="hljs-keyword">await</span> comments.add(topic, {body, replyTo, ext, visibility})
 <span class="hljs-keyword">await</span> comments.edit(url, {body, replyTo, ext, visibility})
-<span class="hljs-keyword">await</span> comments.delete(url)
+<span class="hljs-keyword">await</span> comments.remove(url)
 </code></pre>
 <hr>
 <h3>Comment</h3>
@@ -591,7 +591,7 @@
 <pre><code class="language-js"><span class="hljs-keyword">await</span> comments.edit(myComment.url, <span class="hljs-string">'Hello, world!!'</span>)
 </code></pre>
 <hr>
-<h3>delete(url)</h3>
+<h3>remove(url)</h3>
 <p>Delete a comment on the current user’s site.</p>
 <table>
 <thead>
@@ -607,7 +607,7 @@
 <td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>The URL of the comment you want to delete (required)</td>
+<td>The URL of the comment you want to remove (required)</td>
 </tr>
 </tbody>
 </table>

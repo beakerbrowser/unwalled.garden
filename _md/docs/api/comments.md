@@ -26,7 +26,7 @@ await comments.get(url)
 // write
 await comments.add(topic, {body, replyTo, ext, visibility})
 await comments.edit(url, {body, replyTo, ext, visibility})
-await comments.delete(url)
+await comments.remove(url)
 ```
 
 ---
@@ -190,13 +190,13 @@ await comments.edit(myComment.url, 'Hello, world!!')
 
 ---
 
-### delete(url)
+### remove(url)
 
 Delete a comment on the current user's site.
 
 |Param|Type|Default|Usage|
 |-|-|-|-|
-|url|`string`||The URL of the comment you want to delete (required)|
+|url|`string`||The URL of the comment you want to remove (required)|
 
 |Returns|
 |-|
