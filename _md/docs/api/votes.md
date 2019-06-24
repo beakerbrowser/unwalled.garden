@@ -35,6 +35,8 @@ The values returned by vote functions will fit the following object shape:
 |url|`string`|The URL of the vote record|
 |topic|`string`|The URL that the vote is attached to|
 |vote|`number`|The value of the vote|
+|createdAt|`string`|The timestamp of when the vote claims it was created|
+|updatedAt|`string`|The timestamp of when the vote claims it was last updated|
 |author|`Object`|The site that authored the vote|
 |&emsp;url|`string`||
 |&emsp;title|`string`||
