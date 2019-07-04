@@ -35,10 +35,10 @@
  * browser directly. By having consumers import from this wrapper, we left
  * open the possibility that these APIs could move into userland.
  */
-export const profiles = navigator.importSystemAPI('profiles')
 export const bookmarks = navigator.importSystemAPI('bookmarks')
 export const library = navigator.importSystemAPI('library')
 export const search = navigator.importSystemAPI('search')
+export const profiles = navigator.importSystemAPI('unwalled-garden-profiles')
 export const follows = navigator.importSystemAPI('unwalled-garden-follows')
 export const posts = navigator.importSystemAPI('unwalled-garden-posts')
 export const discussions = navigator.importSystemAPI('unwalled-garden-discussions')
