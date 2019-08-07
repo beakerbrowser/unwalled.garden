@@ -10,16 +10,19 @@
 
 #### Notes
 
-Followed sites MUST not use DNS shortnames. They should be listed by their public key domain.
+Followed sites may use their public key domains or DNS shortnames.
 
-All followed sites MUST be mounted in the [refs directory](/dir/refs) to enable quick metadata lookups.
+All followed sites should be mounted in the [refs directory](/dir/refs) to enable quick metadata lookups.
 
 #### Example
 
 ```json
 {
   "type": "unwalled.garden/follows",
-  "urls": ["dat://43dfc9f23fdded8cc7c01c71c0702a0529130af0258e7fb30bf5a0a3f73d69b3"]
+  "urls": [
+    "dat://pfrazee.com",
+    "dat://43dfc9f23fdded8cc7c01c71c0702a0529130af0258e7fb30bf5a0a3f73d69b3"
+  ]
 }
 ```
 
