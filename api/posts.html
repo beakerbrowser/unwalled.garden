@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Reactions API | Unwalled.Garden</title>
+    <title>Posts API | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -31,24 +31,13 @@
 <ul>
   <li>APIs
     <ul>
-      <li>Social<ul>
-        <li><a href="/docs/api/follows">Follows</a></li>
-        <li><a href="/docs/api/profiles">Profiles</a></li>
-      </ul></li>
-      <li>Content<ul>
-        <li><a href="/docs/api/discussions">Discussions</a></li>
-        <li><a href="/docs/api/media">Media</a></li>
-        <li><a href="/docs/api/posts">Posts</a></li>
-      </ul></li>
-      <li>Collections<ul>
-        <li><a href="/docs/api/bookmarks">Bookmarks</a></li>
-        <li><a href="/docs/api/sitelists">Sitelists</a></li>
-      </ul></li>
-      <li>Annotations<ul>
-        <li><a href="/docs/api/comments">Comments</a></li>
-        <li><a href="/docs/api/reactions">Reactions</a></li>
-        <li><a href="/docs/api/votes">Votes</a></li>
-      </ul></li>
+      <li><a href="/api/bookmarks">Bookmarks</a></li>
+      <li><a href="/api/comments">Comments</a></li>
+      <li><a href="/api/follows">Follows</a></li>
+      <li><a href="/api/profiles">Profiles</a></li>
+      <li><a href="/api/posts">Posts</a></li>
+      <li><a href="/api/reactions">Reactions</a></li>
+      <li><a href="/api/votes">Votes</a></li>
     </ul>
   </li>
 </ul>
@@ -57,13 +46,10 @@
     <ul>
       <li><a href="/bookmark">Bookmark</a></li>
       <li><a href="/comment">Comment</a></li>
-      <li><a href="/discussion">Discussion</a></li>
       <li><a href="/follows">Follows</a></li>
-      <li><a href="/media">Media</a></li>
       <li><a href="/person">Person</a></li>
       <li><a href="/post">Post</a></li>
       <li><a href="/reaction">Reaction</a></li>
-      <li><a href="/sitelist">Sitelist</a></li>
       <li><a href="/vote">Vote</a></li>
       <li>dir<ul>
         <li><a href="/dir/data">Data</a></li>
@@ -82,30 +68,29 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Reactions API</h2>
-<p>Reactions are emojis which can be attached to any arbitrary URL (the “topic”). They’re similar to “likes” but much more general.</p>
+      <main><h2>Posts API</h2>
+<p>Posts are blurbs of content that’s broadcasted on a feed. They’re sometimes known as “status updates.” The character limit is 1,000,000 characters.</p>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {reactions} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {posts} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> reactions.list({
-  <span class="hljs-attr">filters</span>: {authors, topics, visiblity},
+<span class="hljs-keyword">await</span> posts.list({
+  <span class="hljs-attr">filters</span>: {authors, visibility},
   sortBy,
   offset,
   limit,
   reverse
 })
-<span class="hljs-keyword">await</span> reactions.tabulate(topic, {
-  <span class="hljs-attr">filters</span>: {authors, visiblity}
-})
+<span class="hljs-keyword">await</span> posts.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> reactions.add(topic, emoji)
-<span class="hljs-keyword">await</span> reactions.remove(topic, emoji)
+<span class="hljs-keyword">await</span> posts.add({body, ext, visibility})
+<span class="hljs-keyword">await</span> posts.edit(url, {body, ext, visibility})
+<span class="hljs-keyword">await</span> posts.remove(url)
 </code></pre>
 <hr>
-<h3>Reaction</h3>
-<p>The values returned by reaction functions will fit the following object shape:</p>
+<h3>Post</h3>
+<p>The values returned by post functions will fit the following object shape:</p>
 <table>
 <thead>
 <tr>
@@ -118,102 +103,63 @@
 <tr>
 <td>url</td>
 <td><code>string</code></td>
-<td>The URL of the reaction record</td>
+<td>The URL of the post</td>
 </tr>
 <tr>
-<td>topic</td>
+<td>body</td>
 <td><code>string</code></td>
-<td>The URL that the reaction is attached to</td>
+<td>The text body of the post</td>
 </tr>
 <tr>
-<td>emojis</td>
-<td><code>string[]</code></td>
-<td>The emojis in the reaction</td>
+<td>createdAt</td>
+<td><code>string</code></td>
+<td>The timestamp of when the post claims it was created</td>
 </tr>
 <tr>
-<td>author</var></td>
+<td>updatedAt</td>
+<td><code>string</code></td>
+<td>The timestamp of when the post claims it was last updated</td>
+</tr>
+<tr>
+<td>author</td>
 <td><code>Object</code></td>
-<td>The site that authored the reaction</td>
+<td>The post author’s information</td>
 </tr>
 <tr>
-<td> url</var></td>
+<td> url</td>
 <td><code>string</code></td>
 <td></td>
 </tr>
 <tr>
-<td> title</var></td>
+<td> title</td>
 <td><code>string</code></td>
 <td></td>
 </tr>
 <tr>
-<td> description</var></td>
+<td> description</td>
 <td><code>string</code></td>
 <td></td>
 </tr>
 <tr>
-<td> type</var></td>
+<td> type</td>
 <td><code>string[]</code></td>
 <td></td>
 </tr>
 <tr>
-<td>visibility</var></td>
+<td>ext</td>
+<td><code>Object</code></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
+</tr>
+<tr>
+<td>visibility</td>
 <td><code>string</code></td>
-<td>The <a href="/docs/common-fields#visibility">visibility</a> of the reaction</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>TabulatedReaction</h3>
-<p>The values returned by <code>tabulate()</code> will fit the following object shape:</p>
-<table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>topic</td>
-<td><code>string</code></td>
-<td>The URL that the reaction is attached to</td>
-</tr>
-<tr>
-<td>emoji</td>
-<td><code>string</code></td>
-<td>The emoji in the reaction</td>
-</tr>
-<tr>
-<td>authors</var></td>
-<td><code>Object[]</code></td>
-<td>The sites that authored the reaction</td>
-</tr>
-<tr>
-<td> url</var></td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> title</var></td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> description</var></td>
-<td><code>string</code></td>
-<td></td>
-</tr>
-<tr>
-<td> type</var></td>
-<td><code>string[]</code></td>
-<td></td>
+<td>The <a href="/docs/common-fields#visibility">visibility</a> of the post</td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h3>list(opts)</h3>
-<p>List the reactions on the network.</p>
+<p>List the posts on the network.</p>
 <table>
 <thead>
 <tr>
@@ -241,12 +187,6 @@
 <td><code>string|string[]</code></td>
 <td></td>
 <td>Site URLs</td>
-</tr>
-<tr>
-<td>  topics</td>
-<td><code>string|string[]</code></td>
-<td></td>
-<td>URLs</td>
 </tr>
 <tr>
 <td>  visibility</td>
@@ -288,13 +228,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Reaction[]&gt;</code></td>
+<td><code>Promise&lt;Post[]&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>tabulate(topic, opts)</h3>
-<p>Tabulate the reactions on a topic.</p>
+<h3>get(url)</h3>
+<p>Get an individual post by its URL.</p>
 <table>
 <thead>
 <tr>
@@ -306,33 +246,60 @@
 </thead>
 <tbody>
 <tr>
-<td>topic</td>
+<td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>Topic URL (required)</td>
+<td>Post URL (required)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise&lt;Post&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>add(post)</h3>
+<p>Add a post to the current user’s site.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>post</td>
+<td><code>string|Object</code></td>
+<td></td>
+<td>If a string, specifies the body (required)</td>
 </tr>
 <tr>
-<td>opts</td>
-<td><code>Object</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td> filters</td>
-<td><code>Object</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>  authors</td>
-<td><code>string|string[]</code></td>
-<td></td>
-<td>Site URLs</td>
-</tr>
-<tr>
-<td>  visibility</td>
+<td> body</td>
 <td><code>string</code></td>
-<td><code>'all'</code></td>
+<td></td>
+<td>The post body (required)</td>
+</tr>
+<tr>
+<td> ext</td>
+<td><code>Object</code></td>
+<td></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
+</tr>
+<tr>
+<td> visibility</td>
+<td><code>string</code></td>
+<td><code>'public'</code></td>
 <td>See <a href="/docs/common-fields#visibility">visibility</a></td>
 </tr>
 </tbody>
@@ -345,13 +312,17 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;TabulatedReaction[]&gt;</code></td>
+<td><code>Promise&lt;Post&gt;</code></td>
 </tr>
 </tbody>
 </table>
+<h4>Example</h4>
+<pre><code class="language-js"><span class="hljs-keyword">await</span> posts.add(<span class="hljs-string">'Hello, world!'</span>)
+<span class="hljs-keyword">await</span> posts.add({<span class="hljs-attr">body</span>: <span class="hljs-string">'Hello, me!'</span>, <span class="hljs-attr">visibility</span>: <span class="hljs-string">'private'</span>})
+</code></pre>
 <hr>
-<h3>add(topic, emoji)</h3>
-<p>Add a reaction emoji to the current user’s site. The visibility of the reaction will be copied from the target topic’s record.</p>
+<h3>edit(url, post)</h3>
+<p>Edit a post on the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -363,16 +334,34 @@
 </thead>
 <tbody>
 <tr>
-<td>topic</td>
+<td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>Topic URL (required)</td>
+<td>The URL of the post you want to edit (required)</td>
 </tr>
 <tr>
-<td>emoji</td>
+<td>post</td>
+<td><code>string|Object</code></td>
+<td></td>
+<td>If a string, specifies the body (required)</td>
+</tr>
+<tr>
+<td> body</td>
 <td><code>string</code></td>
 <td></td>
-<td>The emoji to add</td>
+<td>The post body (required)</td>
+</tr>
+<tr>
+<td> ext</td>
+<td><code>Object</code></td>
+<td></td>
+<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
+</tr>
+<tr>
+<td> visibility</td>
+<td><code>string</code></td>
+<td><code>'public'</code></td>
+<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
 </tr>
 </tbody>
 </table>
@@ -384,13 +373,16 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Reaction&gt;</code></td>
+<td><code>Promise&lt;Post&gt;</code></td>
 </tr>
 </tbody>
 </table>
+<h4>Example</h4>
+<pre><code class="language-js"><span class="hljs-keyword">await</span> posts.edit(myPost.url, <span class="hljs-string">'Hello, world!!'</span>)
+</code></pre>
 <hr>
-<h3>remove(topic, emoji)</h3>
-<p>Remove a reaction emoji from the current user’s site.</p>
+<h3>remove(url)</h3>
+<p>Delete a post on the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -402,16 +394,10 @@
 </thead>
 <tbody>
 <tr>
-<td>topic</td>
+<td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>Topic URL (required)</td>
-</tr>
-<tr>
-<td>emoji</td>
-<td><code>string</code></td>
-<td></td>
-<td>The emoji to remove</td>
+<td>The URL of the post you want to remove (required)</td>
 </tr>
 </tbody>
 </table>
@@ -423,10 +409,11 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Reaction&gt;</code></td>
+<td><code>Promise&lt;void&gt;</code></td>
 </tr>
 </tbody>
 </table>
+<hr>
 </main>
     </div>
   </body>

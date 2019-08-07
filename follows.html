@@ -31,24 +31,13 @@
 <ul>
   <li>APIs
     <ul>
-      <li>Social<ul>
-        <li><a href="/docs/api/follows">Follows</a></li>
-        <li><a href="/docs/api/profiles">Profiles</a></li>
-      </ul></li>
-      <li>Content<ul>
-        <li><a href="/docs/api/discussions">Discussions</a></li>
-        <li><a href="/docs/api/media">Media</a></li>
-        <li><a href="/docs/api/posts">Posts</a></li>
-      </ul></li>
-      <li>Collections<ul>
-        <li><a href="/docs/api/bookmarks">Bookmarks</a></li>
-        <li><a href="/docs/api/sitelists">Sitelists</a></li>
-      </ul></li>
-      <li>Annotations<ul>
-        <li><a href="/docs/api/comments">Comments</a></li>
-        <li><a href="/docs/api/reactions">Reactions</a></li>
-        <li><a href="/docs/api/votes">Votes</a></li>
-      </ul></li>
+      <li><a href="/api/bookmarks">Bookmarks</a></li>
+      <li><a href="/api/comments">Comments</a></li>
+      <li><a href="/api/follows">Follows</a></li>
+      <li><a href="/api/profiles">Profiles</a></li>
+      <li><a href="/api/posts">Posts</a></li>
+      <li><a href="/api/reactions">Reactions</a></li>
+      <li><a href="/api/votes">Votes</a></li>
     </ul>
   </li>
 </ul>
@@ -57,13 +46,10 @@
     <ul>
       <li><a href="/bookmark">Bookmark</a></li>
       <li><a href="/comment">Comment</a></li>
-      <li><a href="/discussion">Discussion</a></li>
       <li><a href="/follows">Follows</a></li>
-      <li><a href="/media">Media</a></li>
       <li><a href="/person">Person</a></li>
       <li><a href="/post">Post</a></li>
       <li><a href="/reaction">Reaction</a></li>
-      <li><a href="/sitelist">Sitelist</a></li>
       <li><a href="/vote">Vote</a></li>
       <li>dir<ul>
         <li><a href="/dir/data">Data</a></li>
@@ -91,12 +77,15 @@
 </ul>
 <hr>
 <h4>Notes</h4>
-<p>Followed sites MUST not use DNS shortnames. They should be listed by their public key domain.</p>
-<p>All followed sites MUST be mounted in the <a href="/dir/refs">refs directory</a> to enable quick metadata lookups.</p>
+<p>Followed sites may use their public key domains or DNS shortnames.</p>
+<p>All followed sites should be mounted in the <a href="/dir/refs">refs directory</a> to enable quick metadata lookups.</p>
 <h4>Example</h4>
 <pre><code class="language-json">{
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/follows"</span>,
-  <span class="hljs-attr">"urls"</span>: [<span class="hljs-string">"dat://43dfc9f23fdded8cc7c01c71c0702a0529130af0258e7fb30bf5a0a3f73d69b3"</span>]
+  <span class="hljs-attr">"urls"</span>: [
+    <span class="hljs-string">"dat://pfrazee.com"</span>,
+    <span class="hljs-string">"dat://43dfc9f23fdded8cc7c01c71c0702a0529130af0258e7fb30bf5a0a3f73d69b3"</span>
+  ]
 }
 </code></pre>
 <h4>Schema</h4>

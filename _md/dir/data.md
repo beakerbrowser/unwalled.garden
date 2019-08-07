@@ -14,10 +14,7 @@
 |-|-|
 |`/bookmarks/*.json`|[Bookmark](/bookmark)|
 |`/comments/*.json`|[Comment](/comment)|
-|`/discussions/*.json`|[Discussion](/discussion)|
 |`/follows.json`|[Follows](/follows)|
-|`/media/*.json`|[Media](/media)|
 |`/posts/*.json`|[Post](/post)|
 |`/reactions/*.json`|[Reaction](/reaction)|
-|`/sitelists/*.json`|[Sitelist](/sitelist)|
 |`/votes/*.json`|[Vote](/vote)|

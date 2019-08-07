@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Bookmarks API | Unwalled.Garden</title>
+    <title>Votes API | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -31,24 +31,13 @@
 <ul>
   <li>APIs
     <ul>
-      <li>Social<ul>
-        <li><a href="/docs/api/follows">Follows</a></li>
-        <li><a href="/docs/api/profiles">Profiles</a></li>
-      </ul></li>
-      <li>Content<ul>
-        <li><a href="/docs/api/discussions">Discussions</a></li>
-        <li><a href="/docs/api/media">Media</a></li>
-        <li><a href="/docs/api/posts">Posts</a></li>
-      </ul></li>
-      <li>Collections<ul>
-        <li><a href="/docs/api/bookmarks">Bookmarks</a></li>
-        <li><a href="/docs/api/sitelists">Sitelists</a></li>
-      </ul></li>
-      <li>Annotations<ul>
-        <li><a href="/docs/api/comments">Comments</a></li>
-        <li><a href="/docs/api/reactions">Reactions</a></li>
-        <li><a href="/docs/api/votes">Votes</a></li>
-      </ul></li>
+      <li><a href="/api/bookmarks">Bookmarks</a></li>
+      <li><a href="/api/comments">Comments</a></li>
+      <li><a href="/api/follows">Follows</a></li>
+      <li><a href="/api/profiles">Profiles</a></li>
+      <li><a href="/api/posts">Posts</a></li>
+      <li><a href="/api/reactions">Reactions</a></li>
+      <li><a href="/api/votes">Votes</a></li>
     </ul>
   </li>
 </ul>
@@ -57,13 +46,10 @@
     <ul>
       <li><a href="/bookmark">Bookmark</a></li>
       <li><a href="/comment">Comment</a></li>
-      <li><a href="/discussion">Discussion</a></li>
       <li><a href="/follows">Follows</a></li>
-      <li><a href="/media">Media</a></li>
       <li><a href="/person">Person</a></li>
       <li><a href="/post">Post</a></li>
       <li><a href="/reaction">Reaction</a></li>
-      <li><a href="/sitelist">Sitelist</a></li>
       <li><a href="/vote">Vote</a></li>
       <li>dir<ul>
         <li><a href="/dir/data">Data</a></li>
@@ -82,29 +68,30 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Bookmarks API</h2>
-<p>Bookmarks are links which you have saved and will want to reference in the future.</p>
+      <main><h2>Votes API</h2>
+<p>Votes are up/down judgments on resources around the Web. They can be set to 1 (upvote) or -1 (downvote).</p>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {bookmarks} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {votes} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> bookmarks.list({
-  <span class="hljs-attr">filters</span>: {authors, tags, visibility},
+<span class="hljs-keyword">await</span> votes.list({
+  <span class="hljs-attr">filters</span>: {authors, topics, visiblity},
   sortBy,
   offset,
   limit,
   reverse
 })
-<span class="hljs-keyword">await</span> bookmarks.get(author, href)
+<span class="hljs-keyword">await</span> votes.tabulate(topic, {
+  <span class="hljs-attr">filters</span>: {authors, visiblity}
+})
+<span class="hljs-keyword">await</span> votes.get(author, topic)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> bookmarks.add({href, title, description, tags, ext, visibility})
-<span class="hljs-keyword">await</span> bookmarks.edit(href, {href, title, description, tags, ext, visibility})
-<span class="hljs-keyword">await</span> bookmarks.remove(href)
+<span class="hljs-keyword">await</span> votes.set(topic, vote, {visiblity})
 </code></pre>
 <hr>
-<h3>Bookmark</h3>
-<p>The values returned by bookmark functions will fit the following object shape:</p>
+<h3>Vote</h3>
+<p>The values returned by vote functions will fit the following object shape:</p>
 <table>
 <thead>
 <tr>
@@ -115,34 +102,34 @@
 </thead>
 <tbody>
 <tr>
-<td>href</td>
+<td>url</td>
 <td><code>string</code></td>
-<td>The bookmark URL</td>
+<td>The URL of the vote record</td>
 </tr>
 <tr>
-<td>title</td>
+<td>topic</td>
 <td><code>string</code></td>
-<td>The bookmark title</td>
+<td>The URL that the vote is attached to</td>
 </tr>
 <tr>
-<td>description</td>
-<td><code>string</code></td>
-<td>The bookmark description</td>
-</tr>
-<tr>
-<td>tags</td>
-<td><code>string[]</code></td>
-<td>The bookmark tags</td>
+<td>vote</td>
+<td><code>number</code></td>
+<td>The value of the vote</td>
 </tr>
 <tr>
 <td>createdAt</td>
-<td><code>number</code></td>
-<td>The timestamp of when the bookmark claims it was created</td>
+<td><code>string</code></td>
+<td>The timestamp of when the vote claims it was created</td>
+</tr>
+<tr>
+<td>updatedAt</td>
+<td><code>string</code></td>
+<td>The timestamp of when the vote claims it was last updated</td>
 </tr>
 <tr>
 <td>author</td>
 <td><code>Object</code></td>
-<td>The site that authored the bookmark</td>
+<td>The site that authored the vote</td>
 </tr>
 <tr>
 <td> url</td>
@@ -165,20 +152,94 @@
 <td></td>
 </tr>
 <tr>
-<td>ext</td>
-<td><code>Object</code></td>
-<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
-</tr>
-<tr>
 <td>visibility</td>
 <td><code>string</code></td>
-<td>The <a href="/docs/common-fields#visibility">visibility</a> of the bookmark</td>
+<td>The <a href="/docs/common-fields#visibility">visibility</a> of the vote</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>TabulatedVotes</h3>
+<p>The values returned by <code>tabulate()</code> will fit the following object shape:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>topic</td>
+<td><code>string</code></td>
+<td>The URL that the votes are attached to</td>
+</tr>
+<tr>
+<td>upvotes</td>
+<td><code>number</code></td>
+<td>The number of upvotes</td>
+</tr>
+<tr>
+<td>upvoters</td>
+<td><code>Object[]</code></td>
+<td>The sites that upvoted the site</td>
+</tr>
+<tr>
+<td> url</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> description</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> type</td>
+<td><code>string[]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>downvotes</td>
+<td><code>number</code></td>
+<td>The number of downvotes</td>
+</tr>
+<tr>
+<td>downvoters</td>
+<td><code>Object[]</code></td>
+<td>The sites that downvoted the site</td>
+</tr>
+<tr>
+<td> url</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> description</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td> type</td>
+<td><code>string[]</code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h3>list(opts)</h3>
-<p>List bookmarks on the network.</p>
+<p>List the votes on the network.</p>
 <table>
 <thead>
 <tr>
@@ -208,10 +269,10 @@
 <td>Site URLs</td>
 </tr>
 <tr>
-<td>  tags</td>
+<td>  topics</td>
 <td><code>string|string[]</code></td>
 <td></td>
-<td></td>
+<td>URLs</td>
 </tr>
 <tr>
 <td>  visibility</td>
@@ -222,8 +283,8 @@
 <tr>
 <td> sortBy</td>
 <td><code>string</code></td>
-<td><code>'title'</code></td>
-<td>One of: <code>'title'</code>, <code>'createdAt'</code></td>
+<td><code>'createdAt'</code></td>
+<td>One of: <code>'createdAt'</code></td>
 </tr>
 <tr>
 <td> offset</td>
@@ -253,13 +314,70 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Bookmark[]&gt;</code></td>
+<td><code>Promise&lt;Vote[]&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>get(author, href)</h3>
-<p>Get a bookmark by author and href.</p>
+<h3>tabulate(topic, opts)</h3>
+<p>Tabulate the votes on a topic.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>topic</td>
+<td><code>string</code></td>
+<td></td>
+<td>Topic URL (required)</td>
+</tr>
+<tr>
+<td>opts</td>
+<td><code>Object</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> filters</td>
+<td><code>Object</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>  authors</td>
+<td><code>string|string[]</code></td>
+<td></td>
+<td>Site URLs</td>
+</tr>
+<tr>
+<td>  visibility</td>
+<td><code>string</code></td>
+<td><code>'all'</code></td>
+<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise&lt;TabulatedVotes&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>get(author, topic)</h3>
+<p>Get a vote by author and topic.</p>
 <table>
 <thead>
 <tr>
@@ -277,7 +395,7 @@
 <td>Site URL (required)</td>
 </tr>
 <tr>
-<td>href</td>
+<td>topic</td>
 <td><code>string</code></td>
 <td></td>
 <td>Site URL (required)</td>
@@ -292,13 +410,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Bookmark&gt;</code></td>
+<td><code>Promise&lt;Vote&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>add(bookmark)</h3>
-<p>Add a bookmark to the current user’s site.</p>
+<h3>set(topic, vote, opts)</h3>
+<p>Set the user’s vote on the topic.</p>
 <table>
 <thead>
 <tr>
@@ -310,46 +428,28 @@
 </thead>
 <tbody>
 <tr>
-<td>bookmark</td>
+<td>topic</td>
+<td><code>string</code></td>
+<td></td>
+<td>Topic URL (required)</td>
+</tr>
+<tr>
+<td>vote</td>
+<td><code>number</code></td>
+<td></td>
+<td>The vote value, must be <code>-1</code>, <code>0</code>, or <code>1</code></td>
+</tr>
+<tr>
+<td>opts</td>
 <td><code>Object</code></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td> href</td>
+<td> <a href="/docs/common-fields#visibility">visibility</a></td>
 <td><code>string</code></td>
-<td></td>
-<td>The bookmark URL (required)</td>
-</tr>
-<tr>
-<td> title</td>
-<td><code>string</code></td>
-<td></td>
-<td>The bookmark title (required)</td>
-</tr>
-<tr>
-<td> description</td>
-<td><code>string</code></td>
-<td></td>
-<td>The bookmark description</td>
-</tr>
-<tr>
-<td> tags</td>
-<td><code>string[]</code></td>
-<td></td>
-<td>The bookmark tags</td>
-</tr>
-<tr>
-<td> ext</td>
-<td><code>Object</code></td>
-<td></td>
-<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
-</tr>
-<tr>
-<td> visibility</td>
-<td><code>string</code></td>
-<td><code>'private'</code></td>
-<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
+<td><code>'public'</code></td>
+<td>One of: <code>'public'</code>, <code>'private'</code></td>
 </tr>
 </tbody>
 </table>
@@ -361,115 +461,7 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Bookmark&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>edit(href, bookmark)</h3>
-<p>Edit a bookmark on the current user’s site.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>href</td>
-<td><code>string</code></td>
-<td></td>
-<td>The bookmark URL (required)</td>
-</tr>
-<tr>
-<td>bookmark</td>
-<td><code>Object</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td> href</td>
-<td><code>string</code></td>
-<td></td>
-<td>The bookmark URL (required)</td>
-</tr>
-<tr>
-<td> title</td>
-<td><code>string</code></td>
-<td></td>
-<td>The bookmark title (required)</td>
-</tr>
-<tr>
-<td> description</td>
-<td><code>string</code></td>
-<td></td>
-<td>The bookmark description</td>
-</tr>
-<tr>
-<td> tags</td>
-<td><code>string[]</code></td>
-<td></td>
-<td>The bookmark tags</td>
-</tr>
-<tr>
-<td> ext</td>
-<td><code>Object</code></td>
-<td></td>
-<td>The <a href="/docs/how-to-extend-schemas">extension</a> object</td>
-</tr>
-<tr>
-<td> visibility</td>
-<td><code>string</code></td>
-<td><code>'private'</code></td>
-<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;Bookmark&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>remove(href)</h3>
-<p>Remove a bookmark from the current user’s site.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>href</td>
-<td><code>string</code></td>
-<td></td>
-<td>The bookmark URL (required)</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;void&gt;</code></td>
+<td><code>Promise&lt;Vote&gt;</code></td>
 </tr>
 </tbody>
 </table>
