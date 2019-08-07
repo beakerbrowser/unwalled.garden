@@ -18,7 +18,6 @@
       <ul>
         <li><a href="/docs/how-does-it-work">How it works</a><ul>
           <li><a href="/docs/common-fields">Common fields</a></li>
-          <li><a href="/docs/how-to-extend-schemas">Extending schemas</a></li>
           <li><a href="/docs/browser-integration">Browser integration</a></li>
         </ul></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
@@ -94,49 +93,46 @@
 </code></pre>
 <h4>Schema</h4>
 <pre><code class="language-json">{
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "dat://unwalled.garden/comment.json",
-  "type": "object",
-  "title": "Comment",
-  "description": "A text post about some resource.",
-  "required": [
-    "type",
-    "topic",
-    "body",
-    "createdAt"
+  <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/draft-07/schema#"</span>,
+  <span class="hljs-attr">"$id"</span>: <span class="hljs-string">"dat://unwalled.garden/comment.json"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Comment"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A text post about some resource."</span>,
+  <span class="hljs-attr">"required"</span>: [
+    <span class="hljs-string">"type"</span>,
+    <span class="hljs-string">"topic"</span>,
+    <span class="hljs-string">"body"</span>,
+    <span class="hljs-string">"createdAt"</span>
   ],
-  "properties": {
-    "type": {
-      "type": "string",
-      "description": "The object's type",
-      "const": "unwalled.garden/comment"
+  <span class="hljs-attr">"properties"</span>: {
+    <span class="hljs-attr">"type"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The object's type"</span>,
+      <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/comment"</span>
     },
-    "topic": {
-      "type": "string",
-      "description": "What this comment is about",
-      "format": "uri"
+    <span class="hljs-attr">"topic"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"What this comment is about"</span>,
+      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"uri"</span>
     },
-    "replyTo": {
-      "type": "string",
-      "description": "What this comment is replying to",
-      "format": "uri"
+    <span class="hljs-attr">"replyTo"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"What this comment is replying to"</span>,
+      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"uri"</span>
     },
-    "body": {
-      "type": "string",
-      "description": "The post's text content"
+    <span class="hljs-attr">"body"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The post's text content"</span>
     },
-    "ext" {
-      "type": "object"
+    <span class="hljs-attr">"createdAt"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"date-time"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The time of this post's creation"</span>
     },
-    "createdAt": {
-      "type": "string",
-      "format": "date-time",
-      "description": "The time of this post's creation"
-    },
-    "updatedAt": {
-      "type": "string",
-      "format": "date-time",
-      "description": "The time of this post's last edit"
+    <span class="hljs-attr">"updatedAt"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"date-time"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The time of this post's last edit"</span>
     }
   }
 }

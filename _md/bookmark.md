@@ -58,9 +58,6 @@
         "pattern": "^[A-Za-z][A-Za-z0-9-_?]*$"
       }
     },
-    "ext" {
-      "type": "object"
-    },
     "createdAt": {
       "type": "string",
       "format": "date-time"
