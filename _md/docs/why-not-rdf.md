@@ -72,20 +72,4 @@ paul.title = 'Paul Frazee'
 paul.description = 'Beaker guy'
 ```
 
-If schemas *must* be combined, only then might we use URL keys (see [How to extend the schemas](/docs/how-to-extend-schemas)):
-
-
-```json
-{
-  "type": "websites.com/manifest",
-  "title": "Paul Frazee",
-  "description": "Beaker guy",
-  "ext": {
-    "social.com/follows": {
-      "urls": ["dat://alice.com", "dat://bob.com"]
-    }
-  }
-}
-```
-
 The Unwalled.Garden philosophy about RDF is [YAGNI (You Ain't Gonna Need It)](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it). We see RDF's complexity as a turn-off to developers and something we should try to avoid if we can.

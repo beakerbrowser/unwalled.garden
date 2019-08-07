@@ -39,9 +39,6 @@
       "description": "The post's text body",
       "maxLength": 1000000
     },
-    "ext" {
-      "type": "object"
-    },
     "createdAt": {
       "type": "string",
       "format": "date-time",
