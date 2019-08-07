@@ -12,9 +12,9 @@
 
 |Path|Type|
 |-|-|
-|`/bookmarks/*.json`|[Bookmark](/bookmark)|
-|`/comments/*.json`|[Comment](/comment)|
-|`/follows.json`|[Follows](/follows)|
-|`/posts/*.json`|[Post](/post)|
-|`/reactions/*.json`|[Reaction](/reaction)|
-|`/votes/*.json`|[Vote](/vote)|
+|`/.data/unwalled.garden/bookmarks/*.json`|[Bookmark](/bookmark)|
+|`/.data/unwalled.garden/comments/*.json`|[Comment](/comment)|
+|`/.data/unwalled.garden/follows.json`|[Follows](/follows)|
+|`/.data/unwalled.garden/posts/*.json`|[Post](/post)|
+|`/.data/unwalled.garden/reactions/*.json`|[Reaction](/reaction)|
+|`/.data/unwalled.garden/votes/*.json`|[Vote](/vote)|

@@ -18,7 +18,6 @@
       <ul>
         <li><a href="/docs/how-does-it-work">How it works</a><ul>
           <li><a href="/docs/common-fields">Common fields</a></li>
-          <li><a href="/docs/how-to-extend-schemas">Extending schemas</a></li>
           <li><a href="/docs/browser-integration">Browser integration</a></li>
         </ul></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
@@ -77,20 +76,32 @@
 </ul>
 <hr>
 <h3>Notes</h3>
-<p>The “Refs” directory contains mounts to Dat sites which a reader might want to access in order to render content. It should contain mounts to all <a href="/follows">followed sites</a>.</p>
-<p>The names of the mounts MUST be the public key of the mounted site. A DNS shortname can not be used. This is to avoid incorrect DNS mappings.</p>
+<p>The “Refs” directory contains mounts to referenced Dat sites.</p>
+<p>The <code>follows</code> folder is used by the <a href="/follows">follows record</a> as a way to give fast access to the <code>dat.json</code> of followed users.</p>
+<p>The <code>authored</code> folder acts as a listing of sites published by a <a href="/person">person</a>. Readers can create a list of published sites by reading the <code>dat.json</code> of each mounted dat. (There is no JSON record of authored sites; just this .refs directory.)</p>
+<p>The <code>authors</code> folder lists the authors of a non-person site.</p>
+<p>Readers should confirm authorship of sites by looking for the bidirectional authors/authored mounts: the author will be mounted in the <code>.ref/authors</code> of the site, while the site will be listed in the <code>.ref/authored</code> of the author. If this bidirectional mount does not exist, no authorship information should be displayed to the user as it might be a false claim of authorship.</p>
+<p>The names of the mounts must be the public key of the mounted site. A DNS shortname can not be used. This is to avoid incorrect DNS mappings.</p>
 <h3>File structure</h3>
 <table>
 <thead>
 <tr>
 <th>Path</th>
-<th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>*</code></td>
-<td>Mount to a Dat hyperdrive.</td>
+<td><code>/.refs/follows/*</code></td>
+<td>Mounts pointing to all followed sites.</td>
+</tr>
+<tr>
+<td><code>/.refs/authored/*</code></td>
+<td>Mounts pointing to all published sites.</td>
+</tr>
+<tr>
+<td><code>/.refs/authors/*</code></td>
+<td>Mounts pointing to the authors of a site.</td>
 </tr>
 </tbody>
 </table>
