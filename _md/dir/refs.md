@@ -20,7 +20,7 @@ The `authors` folder lists the authors of a non-person site.
 
 Readers should confirm authorship of sites by looking for the bidirectional authors/authored mounts: the author will be mounted in the `.ref/authors` of the site, while the site will be listed in the `.ref/authored` of the author. If this bidirectional mount does not exist, no authorship information should be displayed to the user as it might be a false claim of authorship.
 
-The names of the mounts must be the public key of the mounted site. A DNS shortname can not be used. This is to avoid incorrect DNS mappings.
+The names of the mounts in the `.ref` folders can be user-friendly shortnames. Readers should read the mount target field to find specific sites.
 
 ### File structure
 
