@@ -34,7 +34,7 @@
       <li><a href="/api/comments">Comments</a></li>
       <li><a href="/api/follows">Follows</a></li>
       <li><a href="/api/profiles">Profiles</a></li>
-      <li><a href="/api/posts">Posts</a></li>
+      <li><a href="/api/statuses">Statuses</a></li>
       <li><a href="/api/reactions">Reactions</a></li>
       <li><a href="/api/votes">Votes</a></li>
     </ul>
@@ -47,7 +47,7 @@
       <li><a href="/comment">Comment</a></li>
       <li><a href="/follows">Follows</a></li>
       <li><a href="/person">Person</a></li>
-      <li><a href="/post">Post</a></li>
+      <li><a href="/status">Status</a></li>
       <li><a href="/reaction">Reaction</a></li>
       <li><a href="/vote">Vote</a></li>
       <li>dir<ul>
@@ -70,16 +70,16 @@
       <main><h2>How does Unwalled.Garden work?</h2>
 <p>Unwalled.Garden is a kind of “Souped up <a href="https://en.wikipedia.org/wiki/RSS">RSS</a>.” Every user has a website, they publish their content as files, and they subscribe to each others’ sites.</p>
 <p>While RSS was primarily for blogging, Unwalled.Garden includes data types for many kinds of use-cases. These data types are spread across many JSON files which have pre-defined schemas.</p>
-<p>The schemas are simple, obvious, and syntax-free. A “post” record looks like this:</p>
+<p>The schemas are simple, obvious, and syntax-free. A “status” record looks like this:</p>
 <pre><code class="language-json">{
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/post"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/status"</span>,
   <span class="hljs-attr">"body"</span>: <span class="hljs-string">"Hello, world!"</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2019-05-21T21:27:45.471Z"</span>
 }
 </code></pre>
 <p>We identify the types using URLs such as:</p>
 <ul>
-<li><a href="/post">unwalled.garden/post</a></li>
+<li><a href="/status">unwalled.garden/status</a></li>
 <li><a href="/comment">unwalled.garden/comment</a></li>
 <li><a href="/reaction">unwalled.garden/reaction</a></li>
 <li><a href="/person">unwalled.garden/person</a></li>
@@ -103,8 +103,8 @@
 <td><a href="/dir/data">Data directory</a></td>
 </tr>
 <tr>
-<td><code>dat://bob.com/.data/unwalled.garden/posts/hello.json</code></td>
-<td><a href="/post">Post</a></td>
+<td><code>dat://bob.com/.data/unwalled.garden/statuses/hello.json</code></td>
+<td><a href="/status">Status</a></td>
 </tr>
 <tr>
 <td><code>dat://bob.com/.data/unwalled.garden/reactions/1.json</code></td>
@@ -116,7 +116,7 @@
 </tr>
 </tbody>
 </table>
-<p>This site identifies as a <a href="/person">Person</a> and it includes a <a href="/post">Post</a>, <a href="/reaction">Reaction</a>, and <a href="/comment">Comment</a>. A reader will crawl the website looking for these files to sync into its local database.</p>
+<p>This site identifies as a <a href="/person">Person</a> and it includes a <a href="/status">Status</a>, <a href="/reaction">Reaction</a>, and <a href="/comment">Comment</a>. A reader will crawl the website looking for these files to sync into its local database.</p>
 <p>Unwalled.Garden is built for the <a href="https://dat.foundation">Dat protocol</a>. Read an <a href="./dat-primer">introduction primer here</a>.</p>
 </main>
     </div>
