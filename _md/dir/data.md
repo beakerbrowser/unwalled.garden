@@ -15,6 +15,6 @@
 |`/.data/unwalled.garden/bookmarks/*.json`|[Bookmark](/bookmark)|
 |`/.data/unwalled.garden/comments/*.json`|[Comment](/comment)|
 |`/.data/unwalled.garden/follows.json`|[Follows](/follows)|
-|`/.data/unwalled.garden/posts/*.json`|[Post](/post)|
+|`/.data/unwalled.garden/statuses/*.json`|[Status](/status)|
 |`/.data/unwalled.garden/reactions/*.json`|[Reaction](/reaction)|
 |`/.data/unwalled.garden/votes/*.json`|[Vote](/vote)|

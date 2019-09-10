@@ -4,9 +4,9 @@
  * 
  * ## Example usage:
  * 
- * import {posts, follows} from 'dat://unwalled.garden/index.js'
+ * import {statuses, follows} from 'dat://unwalled.garden/index.js'
  *
- * posts.add('Hello, world!')
+ * statuses.add('Hello, world!')
  * follows.add('dat://beakerbrowser.com')
  *
  * ## What is this?
@@ -40,7 +40,6 @@ export const library = navigator.importSystemAPI('library')
 export const search = navigator.importSystemAPI('search')
 export const profiles = navigator.importSystemAPI('unwalled-garden-profiles')
 export const follows = navigator.importSystemAPI('unwalled-garden-follows')
-export const posts = navigator.importSystemAPI('unwalled-garden-posts')
-export const discussions = navigator.importSystemAPI('unwalled-garden-discussions')
+export const statuses = navigator.importSystemAPI('unwalled-garden-statuses')
 export const comments = navigator.importSystemAPI('unwalled-garden-comments')
 export const reactions = navigator.importSystemAPI('unwalled-garden-reactions')
