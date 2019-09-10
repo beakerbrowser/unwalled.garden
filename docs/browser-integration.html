@@ -74,7 +74,7 @@
 <span class="hljs-keyword">var</span> feed = <span class="hljs-keyword">await</span> statuses.list({<span class="hljs-attr">reverse</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>})
 <span class="hljs-keyword">var</span> status = <span class="hljs-keyword">await</span> statuses.add(<span class="hljs-string">'Hello, world!'</span>)
 <span class="hljs-keyword">await</span> comments.add(status.url, <span class="hljs-string">'Great post by me!'</span>)
-<span class="hljs-keyword">await</span> reactions.add(status.url, <span class="hljs-string">'👍'</span>)
+<span class="hljs-keyword">await</span> reactions.add(status.url, <span class="hljs-string">'like'</span>)
 </code></pre>
 <p>The browser automatically creates a personal website for the user on first load. The personal site acts as the user profile and is where the user’s content is published.</p>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> {profiles} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
