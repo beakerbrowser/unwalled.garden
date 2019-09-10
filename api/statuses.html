@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Posts API | Unwalled.Garden</title>
+    <title>Statuses API | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -34,7 +34,7 @@
       <li><a href="/api/comments">Comments</a></li>
       <li><a href="/api/follows">Follows</a></li>
       <li><a href="/api/profiles">Profiles</a></li>
-      <li><a href="/api/posts">Posts</a></li>
+      <li><a href="/api/statuses">Statuses</a></li>
       <li><a href="/api/reactions">Reactions</a></li>
       <li><a href="/api/votes">Votes</a></li>
     </ul>
@@ -47,7 +47,7 @@
       <li><a href="/comment">Comment</a></li>
       <li><a href="/follows">Follows</a></li>
       <li><a href="/person">Person</a></li>
-      <li><a href="/post">Post</a></li>
+      <li><a href="/status">Status</a></li>
       <li><a href="/reaction">Reaction</a></li>
       <li><a href="/vote">Vote</a></li>
       <li>dir<ul>
@@ -67,29 +67,29 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Posts API</h2>
-<p>Posts are blurbs of content that’s broadcasted on a feed. They’re sometimes known as “status updates.” The character limit is 1,000,000 characters.</p>
+      <main><h2>Statuses API</h2>
+<p>Statuses are blurbs of content that’s broadcasted on a feed. They’re sometimes known as “status updates.” The character limit is 1,000,000 characters.</p>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {posts} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> {statuses} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> posts.list({
+<span class="hljs-keyword">await</span> statuses.list({
   <span class="hljs-attr">filters</span>: {authors, visibility},
   sortBy,
   offset,
   limit,
   reverse
 })
-<span class="hljs-keyword">await</span> posts.get(url)
+<span class="hljs-keyword">await</span> statuses.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> posts.add({body, visibility})
-<span class="hljs-keyword">await</span> posts.edit(url, {body, visibility})
-<span class="hljs-keyword">await</span> posts.remove(url)
+<span class="hljs-keyword">await</span> statuses.add({body, visibility})
+<span class="hljs-keyword">await</span> statuses.edit(url, {body, visibility})
+<span class="hljs-keyword">await</span> statuses.remove(url)
 </code></pre>
 <hr>
-<h3>Post</h3>
-<p>The values returned by post functions will fit the following object shape:</p>
+<h3>Status</h3>
+<p>The values returned by status functions will fit the following object shape:</p>
 <table>
 <thead>
 <tr>
@@ -102,27 +102,27 @@
 <tr>
 <td>url</td>
 <td><code>string</code></td>
-<td>The URL of the post</td>
+<td>The URL of the status</td>
 </tr>
 <tr>
 <td>body</td>
 <td><code>string</code></td>
-<td>The text body of the post</td>
+<td>The text body of the status</td>
 </tr>
 <tr>
 <td>createdAt</td>
 <td><code>string</code></td>
-<td>The timestamp of when the post claims it was created</td>
+<td>The timestamp of when the status claims it was created</td>
 </tr>
 <tr>
 <td>updatedAt</td>
 <td><code>string</code></td>
-<td>The timestamp of when the post claims it was last updated</td>
+<td>The timestamp of when the status claims it was last updated</td>
 </tr>
 <tr>
 <td>author</td>
 <td><code>Object</code></td>
-<td>The post author’s information</td>
+<td>The status author’s information</td>
 </tr>
 <tr>
 <td> url</td>
@@ -147,13 +147,13 @@
 <tr>
 <td>visibility</td>
 <td><code>string</code></td>
-<td>The <a href="/docs/common-fields#visibility">visibility</a> of the post</td>
+<td>The <a href="/docs/common-fields#visibility">visibility</a> of the status</td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h3>list(opts)</h3>
-<p>List the posts on the network.</p>
+<p>List the statuses on the network.</p>
 <table>
 <thead>
 <tr>
@@ -222,13 +222,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Post[]&gt;</code></td>
+<td><code>Promise&lt;Status[]&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h3>get(url)</h3>
-<p>Get an individual post by its URL.</p>
+<p>Get an individual status by its URL.</p>
 <table>
 <thead>
 <tr>
@@ -243,7 +243,7 @@
 <td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>Post URL (required)</td>
+<td>Status URL (required)</td>
 </tr>
 </tbody>
 </table>
@@ -255,13 +255,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Post&gt;</code></td>
+<td><code>Promise&lt;Status&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>add(post)</h3>
-<p>Add a post to the current user’s site.</p>
+<h3>add(status)</h3>
+<p>Add a status to the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -273,7 +273,7 @@
 </thead>
 <tbody>
 <tr>
-<td>post</td>
+<td>status</td>
 <td><code>string|Object</code></td>
 <td></td>
 <td>If a string, specifies the body (required)</td>
@@ -282,7 +282,7 @@
 <td> body</td>
 <td><code>string</code></td>
 <td></td>
-<td>The post body (required)</td>
+<td>The status body (required)</td>
 </tr>
 <tr>
 <td> visibility</td>
@@ -300,17 +300,17 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Post&gt;</code></td>
+<td><code>Promise&lt;Status&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <h4>Example</h4>
-<pre><code class="language-js"><span class="hljs-keyword">await</span> posts.add(<span class="hljs-string">'Hello, world!'</span>)
-<span class="hljs-keyword">await</span> posts.add({<span class="hljs-attr">body</span>: <span class="hljs-string">'Hello, me!'</span>, <span class="hljs-attr">visibility</span>: <span class="hljs-string">'private'</span>})
+<pre><code class="language-js"><span class="hljs-keyword">await</span> statuses.add(<span class="hljs-string">'Hello, world!'</span>)
+<span class="hljs-keyword">await</span> statuses.add({<span class="hljs-attr">body</span>: <span class="hljs-string">'Hello, me!'</span>, <span class="hljs-attr">visibility</span>: <span class="hljs-string">'private'</span>})
 </code></pre>
 <hr>
-<h3>edit(url, post)</h3>
-<p>Edit a post on the current user’s site.</p>
+<h3>edit(url, status)</h3>
+<p>Edit a status on the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -325,10 +325,10 @@
 <td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>The URL of the post you want to edit (required)</td>
+<td>The URL of the status you want to edit (required)</td>
 </tr>
 <tr>
-<td>post</td>
+<td>status</td>
 <td><code>string|Object</code></td>
 <td></td>
 <td>If a string, specifies the body (required)</td>
@@ -337,7 +337,7 @@
 <td> body</td>
 <td><code>string</code></td>
 <td></td>
-<td>The post body (required)</td>
+<td>The status body (required)</td>
 </tr>
 <tr>
 <td> visibility</td>
@@ -355,16 +355,16 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Post&gt;</code></td>
+<td><code>Promise&lt;Status&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <h4>Example</h4>
-<pre><code class="language-js"><span class="hljs-keyword">await</span> posts.edit(myPost.url, <span class="hljs-string">'Hello, world!!'</span>)
+<pre><code class="language-js"><span class="hljs-keyword">await</span> statuses.edit(myStatus.url, <span class="hljs-string">'Hello, world!!'</span>)
 </code></pre>
 <hr>
 <h3>remove(url)</h3>
-<p>Delete a post on the current user’s site.</p>
+<p>Delete a status on the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -379,7 +379,7 @@
 <td>url</td>
 <td><code>string</code></td>
 <td></td>
-<td>The URL of the post you want to remove (required)</td>
+<td>The URL of the status you want to remove (required)</td>
 </tr>
 </tbody>
 </table>

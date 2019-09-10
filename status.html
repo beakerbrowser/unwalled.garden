@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Post (unwalled.garden/post) | Unwalled.Garden</title>
+    <title>Status (unwalled.garden/status) | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -34,7 +34,7 @@
       <li><a href="/api/comments">Comments</a></li>
       <li><a href="/api/follows">Follows</a></li>
       <li><a href="/api/profiles">Profiles</a></li>
-      <li><a href="/api/posts">Posts</a></li>
+      <li><a href="/api/statuses">Statuses</a></li>
       <li><a href="/api/reactions">Reactions</a></li>
       <li><a href="/api/votes">Votes</a></li>
     </ul>
@@ -47,7 +47,7 @@
       <li><a href="/comment">Comment</a></li>
       <li><a href="/follows">Follows</a></li>
       <li><a href="/person">Person</a></li>
-      <li><a href="/post">Post</a></li>
+      <li><a href="/status">Status</a></li>
       <li><a href="/reaction">Reaction</a></li>
       <li><a href="/vote">Vote</a></li>
       <li>dir<ul>
@@ -67,17 +67,17 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Post <code>unwalled.garden/post</code></h2>
+      <main><h2>Status <code>unwalled.garden/status</code></h2>
 <hr>
 <ul>
 <li>File type</li>
 <li><strong>Description</strong>: A broadcasted piece of content.</li>
-<li><strong>Path</strong>: <code>/.data/unwalled.garden/posts/*.json</code></li>
+<li><strong>Path</strong>: <code>/.data/unwalled.garden/statuses/*.json</code></li>
 </ul>
 <hr>
 <h4>Example</h4>
 <pre><code class="language-json">{
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/post"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/status"</span>,
   <span class="hljs-attr">"body"</span>: <span class="hljs-string">"Hello, world!"</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-07T02:52:11.947Z"</span>
 }
@@ -85,31 +85,31 @@
 <h4>Schema</h4>
 <pre><code class="language-json">{
   <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/draft-07/schema#"</span>,
-  <span class="hljs-attr">"$id"</span>: <span class="hljs-string">"dat://unwalled.garden/post.json"</span>,
+  <span class="hljs-attr">"$id"</span>: <span class="hljs-string">"dat://unwalled.garden/status.json"</span>,
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
-  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Post"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Status"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A broadcasted piece of content."</span>,
   <span class="hljs-attr">"required"</span>: [<span class="hljs-string">"type"</span>, <span class="hljs-string">"body"</span>, <span class="hljs-string">"createdAt"</span>],
   <span class="hljs-attr">"properties"</span>: {
     <span class="hljs-attr">"type"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
       <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The object's type"</span>,
-      <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/post"</span>
+      <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/status"</span>
     },
     <span class="hljs-attr">"body"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The post's text body"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The status's text body"</span>,
       <span class="hljs-attr">"maxLength"</span>: <span class="hljs-number">1000000</span>
     },
     <span class="hljs-attr">"createdAt"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
       <span class="hljs-attr">"format"</span>: <span class="hljs-string">"date-time"</span>,
-      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The time of this post's creation"</span>
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The time of this status's creation"</span>
     },
     <span class="hljs-attr">"updatedAt"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
       <span class="hljs-attr">"format"</span>: <span class="hljs-string">"date-time"</span>,
-      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The time of this post's last edit"</span>
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The time of this status's last edit"</span>
     }
   }
 }

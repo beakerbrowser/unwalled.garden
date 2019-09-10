@@ -9,7 +9,7 @@ Join us on Freenode at #unwalled.garden.
 ## How it works
 
  - Every user has their own Dat website.
- - Users publish posts, comments, and other kinds of content on their sites.
+ - Users publish statuses, comments, and other kinds of content on their sites.
  - Users follow each other to sync their content.
  - Follows are public, creating a social graph.
 
