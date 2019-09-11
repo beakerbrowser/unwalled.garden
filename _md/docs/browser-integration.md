@@ -8,7 +8,7 @@ await follows.add('dat://beakerbrowser.com')
 var feed = await statuses.list({reverse: true, limit: 10})
 var status = await statuses.add('Hello, world!')
 await comments.add(status.url, 'Great post by me!')
-await reactions.add(status.url, '👍')
+await reactions.add(status.url, 'like')
 ```
 
 The browser automatically creates a personal website for the user on first load. The personal site acts as the user profile and is where the user's content is published.

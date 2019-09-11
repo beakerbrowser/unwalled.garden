@@ -1,6 +1,8 @@
 ## Reactions API
 
-Reactions are emojis which can be attached to any arbitrary URL (the "topic"). They're similar to "likes" but much more general.
+Reactions are words or short phrases which can be attached to any arbitrary URL (the "topic"). They're similar to "likes" but much more general.
+
+Each reaction is constrained to 20 lowercase english letters.
 
 ---
 
@@ -20,8 +22,8 @@ await reactions.tabulate(topic, {
 })
 
 // write
-await reactions.add(topic, emoji)
-await reactions.remove(topic, emoji)
+await reactions.add(topic, phrase)
+await reactions.remove(topic, phrase)
 ```
 
 ---
@@ -34,7 +36,7 @@ The values returned by reaction functions will fit the following object shape:
 |-|-|-|
 |url|`string`|The URL of the reaction record|
 |topic|`string`|The URL that the reaction is attached to|
-|emojis|`string[]`|The emojis in the reaction|
+|phrases|`string[]`|The phrases in the reaction|
 |author</var>|`Object`|The site that authored the reaction|
 |&emsp;url</var>|`string`||
 |&emsp;title</var>|`string`||
@@ -51,7 +53,7 @@ The values returned by `tabulate()` will fit the following object shape:
 |Attribute|Type|Usage|
 |-|-|-|
 |topic|`string`|The URL that the reaction is attached to|
-|emoji|`string`|The emoji in the reaction|
+|phrase|`string`|The phrase in the reaction|
 |authors</var>|`Object[]`|The sites that authored the reaction|
 |&emsp;url</var>|`string`||
 |&emsp;title</var>|`string`||
@@ -100,14 +102,14 @@ Tabulate the reactions on a topic.
 
 ---
 
-### add(topic, emoji)
+### add(topic, phrase)
 
-Add a reaction emoji to the current user's site. The visibility of the reaction will be copied from the target topic's record.
+Add a reaction phrase to the current user's site. The visibility of the reaction will be copied from the target topic's record.
 
 |Param|Type|Default|Usage|
 |-|-|-|-|
 |topic|`string`||Topic URL (required)|
-|emoji|`string`||The emoji to add|
+|phrase|`string`||The phrase to add|
 
 |Returns|
 |-|
@@ -115,14 +117,14 @@ Add a reaction emoji to the current user's site. The visibility of the reaction 
 
 ---
 
-### remove(topic, emoji)
+### remove(topic, phrase)
 
-Remove a reaction emoji from the current user's site.
+Remove a reaction phrase from the current user's site.
 
 |Param|Type|Default|Usage|
 |-|-|-|-|
 |topic|`string`||Topic URL (required)|
-|emoji|`string`||The emoji to remove|
+|phrase|`string`||The phrase to remove|
 
 |Returns|
 |-|

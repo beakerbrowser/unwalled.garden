@@ -68,7 +68,8 @@
 </ul>
       </nav>
       <main><h2>Reactions API</h2>
-<p>Reactions are emojis which can be attached to any arbitrary URL (the “topic”). They’re similar to “likes” but much more general.</p>
+<p>Reactions are words or short phrases which can be attached to any arbitrary URL (the “topic”). They’re similar to “likes” but much more general.</p>
+<p>Each reaction is constrained to 20 lowercase english letters.</p>
 <hr>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> {reactions} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
@@ -85,8 +86,8 @@
 })
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> reactions.add(topic, emoji)
-<span class="hljs-keyword">await</span> reactions.remove(topic, emoji)
+<span class="hljs-keyword">await</span> reactions.add(topic, phrase)
+<span class="hljs-keyword">await</span> reactions.remove(topic, phrase)
 </code></pre>
 <hr>
 <h3>Reaction</h3>
@@ -111,9 +112,9 @@
 <td>The URL that the reaction is attached to</td>
 </tr>
 <tr>
-<td>emojis</td>
+<td>phrases</td>
 <td><code>string[]</code></td>
-<td>The emojis in the reaction</td>
+<td>The phrases in the reaction</td>
 </tr>
 <tr>
 <td>author</var></td>
@@ -165,9 +166,9 @@
 <td>The URL that the reaction is attached to</td>
 </tr>
 <tr>
-<td>emoji</td>
+<td>phrase</td>
 <td><code>string</code></td>
-<td>The emoji in the reaction</td>
+<td>The phrase in the reaction</td>
 </tr>
 <tr>
 <td>authors</var></td>
@@ -335,8 +336,8 @@
 </tbody>
 </table>
 <hr>
-<h3>add(topic, emoji)</h3>
-<p>Add a reaction emoji to the current user’s site. The visibility of the reaction will be copied from the target topic’s record.</p>
+<h3>add(topic, phrase)</h3>
+<p>Add a reaction phrase to the current user’s site. The visibility of the reaction will be copied from the target topic’s record.</p>
 <table>
 <thead>
 <tr>
@@ -354,10 +355,10 @@
 <td>Topic URL (required)</td>
 </tr>
 <tr>
-<td>emoji</td>
+<td>phrase</td>
 <td><code>string</code></td>
 <td></td>
-<td>The emoji to add</td>
+<td>The phrase to add</td>
 </tr>
 </tbody>
 </table>
@@ -374,8 +375,8 @@
 </tbody>
 </table>
 <hr>
-<h3>remove(topic, emoji)</h3>
-<p>Remove a reaction emoji from the current user’s site.</p>
+<h3>remove(topic, phrase)</h3>
+<p>Remove a reaction phrase from the current user’s site.</p>
 <table>
 <thead>
 <tr>
@@ -393,10 +394,10 @@
 <td>Topic URL (required)</td>
 </tr>
 <tr>
-<td>emoji</td>
+<td>phrase</td>
 <td><code>string</code></td>
 <td></td>
-<td>The emoji to remove</td>
+<td>The phrase to remove</td>
 </tr>
 </tbody>
 </table>
