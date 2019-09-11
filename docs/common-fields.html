@@ -37,6 +37,7 @@
       <li><a href="/api/statuses">Statuses</a></li>
       <li><a href="/api/reactions">Reactions</a></li>
       <li><a href="/api/votes">Votes</a></li>
+      <li><a href="/api/websites">Websites</a></li>
     </ul>
   </li>
 </ul>
@@ -46,6 +47,7 @@
       <li><a href="/bookmark">Bookmark</a></li>
       <li><a href="/comment">Comment</a></li>
       <li><a href="/follows">Follows</a></li>
+      <li><a href="/links">Links</a></li>
       <li><a href="/person">Person</a></li>
       <li><a href="/status">Status</a></li>
       <li><a href="/reaction">Reaction</a></li>
@@ -69,18 +71,19 @@
       </nav>
       <main><h2>Common fields</h2>
 <h3><span id="visibility">visibility</span></h3>
-<p>The <var>visibility</var> field indicates who will be given access to the record. It currently has two possible values:</p>
+<p>The <var>visibility</var> field indicates who will be given access to some information. It currently has three possible values:</p>
 <ul>
-<li><code>'private'</code> The record is only accessible on the local user’s devices. It is not shared with anyone.</li>
-<li><code>'public'</code> The record is published publicly and can be accessed by anyone.</li>
+<li><code>'private'</code> The info is only accessible on the local user’s devices. It is not shared with anyone.</li>
+<li><code>'unlisted'</code> The info is accessible on the network by anyone but has not been published on the author’s site.</li>
+<li><code>'public'</code> The info is published publicly and can be accessed by anyone.</li>
 </ul>
 <p>When used as a query parameter, the field can also have the following value:</p>
 <ul>
-<li><code>'all'</code> Include both private and public records.</li>
+<li><code>'all'</code> Include all kinds of records.</li>
 </ul>
 <h4>How does it work?</h4>
 <p>A user has two Dat hyperdrives: a public and a private. They both possess the <a href="/dir/data">Data directory</a> in roughly the same location. In <a href="https://beakerbrowser.com">Beaker</a>, the private drive acts as the “root” of the user’s filesystem, and the public drive is <a href="/docs/mounts">mounted</a> to <code>/public</code> on the private drive.</p>
-<p>The private drive is kept off the network. When <var>visibility</var> is set to <code>'private'</code>, the record is written there. When set to <code>'public'</code>, it’s written to the public drive.</p>
+<p>The private drive is kept off the network. When <var>visibility</var> is set to <code>'private'</code>, the record is written there. When set to <code>'public'</code>, it’s written to the public drive. The <code>'unlisted'</code> value typically applies to separate dats that the user has created (such as <a href="/api/websites">Websites</a>).</p>
 </main>
     </div>
   </body>
