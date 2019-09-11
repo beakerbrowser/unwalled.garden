@@ -24,10 +24,10 @@
         </div>
         <div class="card code">
           <pre class="card-section">
-<span class="hljs-keyword">import</span> {posts, follows} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<span class="hljs-keyword">import</span> {statuses, follows} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-keyword">await</span> follows.add(<span class="hljs-string">'dat://beakerbrowser.com'</span>)
-<span class="hljs-keyword">await</span> posts.add(<span class="hljs-string">'Hello, world!'</span>)
+<span class="hljs-keyword">await</span> statuses.add(<span class="hljs-string">'Hello, world!'</span>)
 
 <span class="hljs-comment">/*
  The API wraps the filesystem
@@ -60,6 +60,7 @@
       <li><a href="/api/statuses">Statuses</a></li>
       <li><a href="/api/reactions">Reactions</a></li>
       <li><a href="/api/votes">Votes</a></li>
+      <li><a href="/api/websites">Websites</a></li>
     </ul>
   </li>
 </ul>
@@ -69,6 +70,7 @@
       <li><a href="/bookmark">Bookmark</a></li>
       <li><a href="/comment">Comment</a></li>
       <li><a href="/follows">Follows</a></li>
+      <li><a href="/links">Links</a></li>
       <li><a href="/person">Person</a></li>
       <li><a href="/status">Status</a></li>
       <li><a href="/reaction">Reaction</a></li>
@@ -103,10 +105,6 @@
         <div>
           <h3>Can unwalled.garden be used with HTTP?</h3>
           <p>There are no technical barriers to using HTTP, but we haven't completed that implementation yet. We currently use the <a href="https://dat.foundation">Dat protocol</a> because it allows users to publish websites from their own device using p2p networking.</p>
-        </div>
-        <div>
-          <h3>Can I use my own schemas?</h3>
-          <p>Schemas are identified by URLs and so it will be possible for other namespaces to interoperate with unwalled.garden.</p>
         </div>
         <div>
           <h3>Can I add schemas to Unwalled.Garden?</h3>

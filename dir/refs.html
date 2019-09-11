@@ -37,6 +37,7 @@
       <li><a href="/api/statuses">Statuses</a></li>
       <li><a href="/api/reactions">Reactions</a></li>
       <li><a href="/api/votes">Votes</a></li>
+      <li><a href="/api/websites">Websites</a></li>
     </ul>
   </li>
 </ul>
@@ -46,6 +47,7 @@
       <li><a href="/bookmark">Bookmark</a></li>
       <li><a href="/comment">Comment</a></li>
       <li><a href="/follows">Follows</a></li>
+      <li><a href="/links">Links</a></li>
       <li><a href="/person">Person</a></li>
       <li><a href="/status">Status</a></li>
       <li><a href="/reaction">Reaction</a></li>
@@ -78,9 +80,6 @@
 <h3>Notes</h3>
 <p>The “Refs” directory contains mounts to referenced Dat sites.</p>
 <p>The <code>follows</code> folder is used by the <a href="/follows">follows record</a> as a way to give fast access to the <code>dat.json</code> of followed users.</p>
-<p>The <code>authored</code> folder acts as a listing of sites published by a <a href="/person">person</a>. Readers can create a list of published sites by reading the <code>dat.json</code> of each mounted dat. (There is no JSON record of authored sites; just this .refs directory.)</p>
-<p>The <code>authors</code> folder lists the authors of a non-person site.</p>
-<p>Readers should confirm authorship of sites by looking for the bidirectional authors/authored mounts: the author will be mounted in the <code>.ref/authors</code> of the site, while the site will be listed in the <code>.ref/authored</code> of the author. If this bidirectional mount does not exist, no authorship information should be displayed to the user as it might be a false claim of authorship.</p>
 <p>The names of the mounts in the <code>.ref</code> folders can be user-friendly shortnames. Readers should read the mount target field to find specific sites.</p>
 <h3>File structure</h3>
 <table>
@@ -94,14 +93,6 @@
 <tr>
 <td><code>/.refs/follows/*</code></td>
 <td>Mounts pointing to all followed sites.</td>
-</tr>
-<tr>
-<td><code>/.refs/authored/*</code></td>
-<td>Mounts pointing to all published sites.</td>
-</tr>
-<tr>
-<td><code>/.refs/authors/*</code></td>
-<td>Mounts pointing to the authors of a site.</td>
 </tr>
 </tbody>
 </table>

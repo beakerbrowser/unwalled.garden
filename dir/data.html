@@ -37,6 +37,7 @@
       <li><a href="/api/statuses">Statuses</a></li>
       <li><a href="/api/reactions">Reactions</a></li>
       <li><a href="/api/votes">Votes</a></li>
+      <li><a href="/api/websites">Websites</a></li>
     </ul>
   </li>
 </ul>
@@ -46,6 +47,7 @@
       <li><a href="/bookmark">Bookmark</a></li>
       <li><a href="/comment">Comment</a></li>
       <li><a href="/follows">Follows</a></li>
+      <li><a href="/links">Links</a></li>
       <li><a href="/person">Person</a></li>
       <li><a href="/status">Status</a></li>
       <li><a href="/reaction">Reaction</a></li>
@@ -72,7 +74,7 @@
 <ul>
 <li>Folder type</li>
 <li><strong>Description</strong>: Contains the unwalled.garden record files.</li>
-<li><strong>Path</strong>: <code>/.data/unwalled.garden</code></li>
+<li><strong>Path</strong>: <code>/.data</code></li>
 </ul>
 <hr>
 <h3>File structure</h3>
@@ -85,28 +87,51 @@
 </thead>
 <tbody>
 <tr>
-<td><code>/.data/unwalled.garden/bookmarks/*.json</code></td>
+<td><code>/.data/bookmarks/*.json</code></td>
 <td><a href="/bookmark">Bookmark</a></td>
 </tr>
 <tr>
-<td><code>/.data/unwalled.garden/comments/*.json</code></td>
+<td><code>/.data/comments/*.json</code></td>
 <td><a href="/comment">Comment</a></td>
 </tr>
 <tr>
-<td><code>/.data/unwalled.garden/follows.json</code></td>
+<td><code>/.data/follows.json</code></td>
 <td><a href="/follows">Follows</a></td>
 </tr>
 <tr>
-<td><code>/.data/unwalled.garden/statuses/*.json</code></td>
+<td><code>/.data/statuses/*.json</code></td>
 <td><a href="/status">Status</a></td>
 </tr>
 <tr>
-<td><code>/.data/unwalled.garden/reactions/*.json</code></td>
+<td><code>/.data/reactions/*.json</code></td>
 <td><a href="/reaction">Reaction</a></td>
 </tr>
 <tr>
-<td><code>/.data/unwalled.garden/votes/*.json</code></td>
+<td><code>/.data/thumbs</code></td>
+<td>Images (Thumbnails)</td>
+</tr>
+<tr>
+<td><code>/.data/votes/*.json</code></td>
 <td><a href="/vote">Vote</a></td>
+</tr>
+<tr>
+<td><code>/.data/websites.json</code></td>
+<td><a href="/links">Links</a></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>thumbs</code> folder includes the following structure:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/.data/thumbs/websites/*.(png|jpg|jpeg)</code></td>
+<td>For website records</td>
 </tr>
 </tbody>
 </table>

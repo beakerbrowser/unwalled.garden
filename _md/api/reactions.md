@@ -37,12 +37,12 @@ The values returned by reaction functions will fit the following object shape:
 |url|`string`|The URL of the reaction record|
 |topic|`string`|The URL that the reaction is attached to|
 |phrases|`string[]`|The phrases in the reaction|
-|author</var>|`Object`|The site that authored the reaction|
-|&emsp;url</var>|`string`||
-|&emsp;title</var>|`string`||
-|&emsp;description</var>|`string`||
-|&emsp;type</var>|`string[]`||
-|visibility</var>|`string`|The [visibility](/docs/common-fields#visibility) of the reaction|
+|author|`Object`|The site that authored the reaction|
+|&emsp;url|`string`||
+|&emsp;title|`string`||
+|&emsp;description|`string`||
+|&emsp;type|`string[]`||
+|visibility|`string`|The [visibility](/docs/common-fields#visibility) of the reaction|
 
 ---
 
@@ -54,11 +54,11 @@ The values returned by `tabulate()` will fit the following object shape:
 |-|-|-|
 |topic|`string`|The URL that the reaction is attached to|
 |phrase|`string`|The phrase in the reaction|
-|authors</var>|`Object[]`|The sites that authored the reaction|
-|&emsp;url</var>|`string`||
-|&emsp;title</var>|`string`||
-|&emsp;description</var>|`string`||
-|&emsp;type</var>|`string[]`||
+|authors|`Object[]`|The sites that authored the reaction|
+|&emsp;url|`string`||
+|&emsp;title|`string`||
+|&emsp;description|`string`||
+|&emsp;type|`string[]`||
 
 ---
 
