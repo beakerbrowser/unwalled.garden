@@ -31,17 +31,17 @@ The values returned by follow functions will fit the following object shape:
 
 |Attribute|Type|Usage|
 |-|-|-|
-|author</var>|`Object`|The site doing the following|
-|&emsp;url</var>|`string`||
-|&emsp;title</var>|`string`||
-|&emsp;description</var>|`string`||
-|&emsp;type</var>|`string[]`||
-|topic</var>|`Object`|The site being followed|
-|&emsp;url</var>|`string`||
-|&emsp;title</var>|`string`||
-|&emsp;description</var>|`string`||
-|&emsp;type</var>|`string[]`||
-|visibility</var>|`string`|The [visibility](/docs/common-fields#visibility) of the "follow" record|
+|author|`Object`|The site doing the following|
+|&emsp;url|`string`||
+|&emsp;title|`string`||
+|&emsp;description|`string`||
+|&emsp;type|`string[]`||
+|topic|`Object`|The site being followed|
+|&emsp;url|`string`||
+|&emsp;title|`string`||
+|&emsp;description|`string`||
+|&emsp;type|`string[]`||
+|visibility|`string`|The [visibility](/docs/common-fields#visibility) of the "follow" record|
 
 ---
 
