@@ -33,11 +33,11 @@
       <li><a href="/api/bookmarks">Bookmarks</a></li>
       <li><a href="/api/comments">Comments</a></li>
       <li><a href="/api/follows">Follows</a></li>
+      <li><a href="/api/library">Library</a></li>
       <li><a href="/api/profiles">Profiles</a></li>
       <li><a href="/api/statuses">Statuses</a></li>
       <li><a href="/api/reactions">Reactions</a></li>
       <li><a href="/api/votes">Votes</a></li>
-      <li><a href="/api/websites">Websites</a></li>
     </ul>
   </li>
 </ul>
@@ -70,7 +70,7 @@
 </ul>
       </nav>
       <main><h2>Browser integration</h2>
-<p><a href="https://beakerbrowser.com">Beaker Browser 0.9</a> implements Unwalled.Garden as part of the browser. It supports a high-level API which is loaded from the <a href="dat://unwalled.garden">dat://unwalled.garden</a> website. These APIs wrap the Dat filesystem and Beaker’s internal indexes.</p>
+<p><a href="https://beakerbrowser.com">Beaker Browser 0.9</a> implements Unwalled.Garden as part of the browser. It supports a high-level API which is loaded from the <a href="dat://unwalled.garden">dat://unwalled.garden</a> dat. These APIs wrap the Dat filesystem and Beaker’s internal indexes.</p>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> {statuses, follows, reactions, comments} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 <span class="hljs-keyword">await</span> follows.add(<span class="hljs-string">'dat://beakerbrowser.com'</span>)
 <span class="hljs-keyword">var</span> feed = <span class="hljs-keyword">await</span> statuses.list({<span class="hljs-attr">reverse</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>})
@@ -78,7 +78,7 @@
 <span class="hljs-keyword">await</span> comments.add(status.url, <span class="hljs-string">'Great post by me!'</span>)
 <span class="hljs-keyword">await</span> reactions.add(status.url, <span class="hljs-string">'like'</span>)
 </code></pre>
-<p>The browser automatically creates a personal website for the user on first load. The personal site acts as the user profile and is where the user’s content is published.</p>
+<p>The browser automatically creates a personal dat for the user on first load. The personal site acts as the user profile and is where the user’s content is published.</p>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> {profiles} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 <span class="hljs-keyword">var</span> me = <span class="hljs-keyword">await</span> profiles.me()
 me.url         <span class="hljs-comment">// 'dat://12cd..ff'</span>

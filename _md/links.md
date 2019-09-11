@@ -10,7 +10,7 @@
 #### Notes
 
 This is a general-purpose schema that can be used in a number of different contexts.
-For example, the [Websites API](/api/websites) uses it to list published websites at `/.data/websites.json`.
+For example, the [Library API](/api/dat) uses it to list published websites at `/.data/websites.json`.
 
 #### Example
 
