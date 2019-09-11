@@ -34,6 +34,5 @@ Example:
 |-|-|
 |`/dat.json`|Standard dat.json file|
 |`/thumb.(png|jpg|jpeg)`|Profile picture|
-|`/.data/unwalled.garden`|[Data directory](/dir/data)|
-|`/.refs/follows`|[Refs "followed sites" directory](/dir/refs)|
-|`/.refs/authored`|[Refs "authored sites" directory](/dir/refs)|
+|`/.data`|[Data directory](/dir/data)|
+|`/.refs`|[Refs directory](/dir/refs)|

@@ -27,10 +27,10 @@ All files are placed at predefined paths. An example site might look like this:
 |URL|Type|
 |-|-|
 |`dat://bob.com`|[Person](/person)|
-|`dat://bob.com/.data/unwalled.garden`|[Data directory](/dir/data)
-|`dat://bob.com/.data/unwalled.garden/statuses/hello.json`|[Status](/status)
-|`dat://bob.com/.data/unwalled.garden/reactions/1.json`|[Reaction](/reaction)
-|`dat://bob.com/.data/unwalled.garden/comments/1.json`|[Comment](/comment)
+|`dat://bob.com/.data`|[Data directory](/dir/data)
+|`dat://bob.com/.data/statuses/hello.json`|[Status](/status)
+|`dat://bob.com/.data/reactions/1.json`|[Reaction](/reaction)
+|`dat://bob.com/.data/comments/1.json`|[Comment](/comment)
 
 This site identifies as a [Person](/person) and it includes a [Status](/status), [Reaction](/reaction), and [Comment](/comment). A reader will crawl the website looking for these files to sync into its local database.
 
