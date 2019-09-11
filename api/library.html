@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Discussions API | Unwalled.Garden</title>
+    <title>Library API | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -18,7 +18,6 @@
       <ul>
         <li><a href="/docs/how-does-it-work">How it works</a><ul>
           <li><a href="/docs/common-fields">Common fields</a></li>
-          <li><a href="/docs/how-to-extend-schemas">Extending schemas</a></li>
           <li><a href="/docs/browser-integration">Browser integration</a></li>
         </ul></li>
         <li><a href="/docs/dat-primer">Dat protocol</a><ul>
@@ -34,8 +33,9 @@
       <li><a href="/api/bookmarks">Bookmarks</a></li>
       <li><a href="/api/comments">Comments</a></li>
       <li><a href="/api/follows">Follows</a></li>
+      <li><a href="/api/library">Library</a></li>
       <li><a href="/api/profiles">Profiles</a></li>
-      <li><a href="/api/posts">Posts</a></li>
+      <li><a href="/api/statuses">Statuses</a></li>
       <li><a href="/api/reactions">Reactions</a></li>
       <li><a href="/api/votes">Votes</a></li>
     </ul>
@@ -47,8 +47,9 @@
       <li><a href="/bookmark">Bookmark</a></li>
       <li><a href="/comment">Comment</a></li>
       <li><a href="/follows">Follows</a></li>
+      <li><a href="/links">Links</a></li>
       <li><a href="/person">Person</a></li>
-      <li><a href="/post">Post</a></li>
+      <li><a href="/status">Status</a></li>
       <li><a href="/reaction">Reaction</a></li>
       <li><a href="/vote">Vote</a></li>
       <li>dir<ul>
@@ -68,29 +69,26 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Discussions API</h2>
-<p>Discussions are forum posts. They include a title and (optionally) a body, link, and tags.</p>
+      <main><h2>Library API</h2>
+<p>An API for dats that have been saved locally and/or published on the network.</p>
 <hr>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> {discussions} <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> { library } <span class="hljs-keyword">from</span> <span class="hljs-string">'dat://unwalled.garden/index.js'</span>
 
 <span class="hljs-comment">// read</span>
-<span class="hljs-keyword">await</span> discussions.list({
-  <span class="hljs-attr">filters</span>: {authors, tags, visibility},
+<span class="hljs-keyword">await</span> library.list({
+  <span class="hljs-attr">filters</span>: {authors, types, hrefs, isSaved, isHosting, visibility},
   sortBy,
   offset,
   limit,
   reverse
 })
-<span class="hljs-keyword">await</span> discussions.get(url)
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> discussions.add({title, body, href, tags, visibility})
-<span class="hljs-keyword">await</span> discussions.edit(url, {title, body, href, tags, visibility})
-<span class="hljs-keyword">await</span> discussions.delete(url)
+<span class="hljs-keyword">await</span> library.configure(href, {isSaved, isHosting, visibility})
 </code></pre>
 <hr>
-<h3>Discussion</h3>
-<p>The values returned by most discussion functions will fit the following object shape:</p>
+<h3>LibraryDat</h3>
+<p>The values returned by library functions will fit the following object shape:</p>
 <table>
 <thead>
 <tr>
@@ -101,44 +99,9 @@
 </thead>
 <tbody>
 <tr>
-<td>url</td>
-<td><code>string</code></td>
-<td>The URL of the discussion</td>
-</tr>
-<tr>
-<td>title</td>
-<td><code>string</code></td>
-<td>The title of the discussion</td>
-</tr>
-<tr>
-<td>body</td>
-<td><code>string</code></td>
-<td>The text body of the discussion</td>
-</tr>
-<tr>
-<td>href</td>
-<td><code>string</code></td>
-<td>The URL linked to by the discussion</td>
-</tr>
-<tr>
-<td>tags</td>
-<td><code>string[]</code></td>
-<td>The discussion tags</td>
-</tr>
-<tr>
-<td>createdAt</td>
-<td><code>string</code></td>
-<td>The timestamp of when the discussion claims it was created</td>
-</tr>
-<tr>
-<td>updatedAt</td>
-<td><code>string</code></td>
-<td>The timestamp of when the discussion claims it was last updated</td>
-</tr>
-<tr>
 <td>author</td>
 <td><code>Object</code></td>
-<td>The discussion author’s information</td>
+<td>The site that published the dat record (not necessarily the author of the dat)</td>
 </tr>
 <tr>
 <td> url</td>
@@ -161,15 +124,55 @@
 <td></td>
 </tr>
 <tr>
+<td>dat</td>
+<td><code>Object</code></td>
+<td>Information about the dat</td>
+</tr>
+<tr>
+<td> url</td>
+<td><code>string</code></td>
+<td>The URL of the dat</td>
+</tr>
+<tr>
+<td> title</td>
+<td><code>string</code></td>
+<td>The title of the dat</td>
+</tr>
+<tr>
+<td> description</td>
+<td><code>string</code></td>
+<td>The description of the dat</td>
+</tr>
+<tr>
+<td> type</td>
+<td><code>string[]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>isSaved</td>
+<td><code>boolean</code></td>
+<td>Has the local user saved the dat? <strong>(private)</strong></td>
+</tr>
+<tr>
+<td>isHosting</td>
+<td><code>boolean</code></td>
+<td>Is the local user hosting the dat? <strong>(private)</strong></td>
+</tr>
+<tr>
 <td>visibility</td>
 <td><code>string</code></td>
-<td>The <a href="/docs/common-fields#visibility">visibility</a> of the discussion</td>
+<td>The <a href="/docs/common-fields#visibility">visibility</a> of the dat and its record</td>
 </tr>
 </tbody>
 </table>
+<p>The fields marked <strong>(private)</strong> will only show on the local user’s records.</p>
+<hr>
+<h3>Notes</h3>
+<p>The canonical record of a saved dat is stored privately. If the visibility is “public” then a link-entry will also be added to the <a href="/links">public Links record</a> which matches the dat’s type. For instance, a “website” dat will be listed in <code>/.data/websites.json</code>.</p>
+<p>Thumbnails of published dats should be published at <code>/.data/thumbs/</code> using the domain name as the filename.</p>
 <hr>
 <h3>list(opts)</h3>
-<p>List the discussions on the network.</p>
+<p>List dats by that are saved locally or published by authors.</p>
 <table>
 <thead>
 <tr>
@@ -196,13 +199,31 @@
 <td>  authors</td>
 <td><code>string|string[]</code></td>
 <td></td>
-<td>Site URLs</td>
+<td>Author-site URLs</td>
 </tr>
 <tr>
-<td>  tags</td>
+<td>  types</td>
 <td><code>string|string[]</code></td>
 <td></td>
+<td>Dat types</td>
+</tr>
+<tr>
+<td>  hrefs</td>
+<td><code>string|string[]</code></td>
 <td></td>
+<td>Dat URLs</td>
+</tr>
+<tr>
+<td>  isSaved</td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Has the local user saved the dat?</td>
+</tr>
+<tr>
+<td>  isHosting</td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Is the local user hosting the dat?</td>
 </tr>
 <tr>
 <td>  visibility</td>
@@ -213,8 +234,8 @@
 <tr>
 <td> sortBy</td>
 <td><code>string</code></td>
-<td><code>'createdAt'</code></td>
-<td>One of: <code>'createdAt'</code></td>
+<td><code>'topic'</code></td>
+<td>One of: <code>'topic'</code></td>
 </tr>
 <tr>
 <td> offset</td>
@@ -244,13 +265,13 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Promise&lt;Discussion[]&gt;</code></td>
+<td><code>Promise&lt;LibraryDat[]&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h3>get(url)</h3>
-<p>Get an individual discussion by its URL.</p>
+<h3>configure(href, opts)</h3>
+<p>Configure a dat in the local user’s library.</p>
 <table>
 <thead>
 <tr>
@@ -262,169 +283,34 @@
 </thead>
 <tbody>
 <tr>
-<td>url</td>
+<td>href</td>
 <td><code>string</code></td>
 <td></td>
-<td>Discussion URL (required)</td>
+<td>Dat URL (required)</td>
 </tr>
-</tbody>
-</table>
-<table>
-<thead>
 <tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;Discussion&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>add(discussion)</h3>
-<p>Add a discussion to the current user’s site.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>discussion</td>
+<td>opts</td>
 <td><code>Object</code></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td> title</td>
+<td> isSaved</td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Save the dat to the local user’s library?</td>
+</tr>
+<tr>
+<td> isHosting</td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Host the dat using the local user’s devices?</td>
+</tr>
+<tr>
+<td> <a href="/docs/common-fields#visibility">visibility</a></td>
 <td><code>string</code></td>
 <td></td>
-<td>The discussion title (required)</td>
-</tr>
-<tr>
-<td> body</td>
-<td><code>string</code></td>
-<td></td>
-<td>The discussion body</td>
-</tr>
-<tr>
-<td> href</td>
-<td><code>string</code></td>
-<td></td>
-<td>The discussion link URL</td>
-</tr>
-<tr>
-<td> tags</td>
-<td><code>string[]</code></td>
-<td></td>
-<td>The discussion tags</td>
-</tr>
-<tr>
-<td> visibility</td>
-<td><code>string</code></td>
-<td><code>'public'</code></td>
-<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;Discussion&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>edit(url, discussion)</h3>
-<p>Edit a discussion on the current user’s site.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td><code>string</code></td>
-<td></td>
-<td>The URL of the discussion you want to edit (required)</td>
-</tr>
-<tr>
-<td> title</td>
-<td><code>string</code></td>
-<td></td>
-<td>The discussion title</td>
-</tr>
-<tr>
-<td> body</td>
-<td><code>string</code></td>
-<td></td>
-<td>The discussion body</td>
-</tr>
-<tr>
-<td> href</td>
-<td><code>string</code></td>
-<td></td>
-<td>The discussion link URL</td>
-</tr>
-<tr>
-<td> tags</td>
-<td><code>string[]</code></td>
-<td></td>
-<td>The discussion tags</td>
-</tr>
-<tr>
-<td> visibility</td>
-<td><code>string</code></td>
-<td><code>'public'</code></td>
-<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Promise&lt;Discussion&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3>delete(url)</h3>
-<p>Delete a discussion on the current user’s site.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td><code>string</code></td>
-<td></td>
-<td>The URL of the discussion you want to delete (required)</td>
+<td>One of: <code>'public'</code>, <code>'unlisted'</code>, <code>'private'</code></td>
 </tr>
 </tbody>
 </table>
@@ -440,7 +326,6 @@
 </tr>
 </tbody>
 </table>
-<hr>
 </main>
     </div>
   </body>

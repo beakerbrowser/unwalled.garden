@@ -33,11 +33,11 @@
       <li><a href="/api/bookmarks">Bookmarks</a></li>
       <li><a href="/api/comments">Comments</a></li>
       <li><a href="/api/follows">Follows</a></li>
+      <li><a href="/api/library">Library</a></li>
       <li><a href="/api/profiles">Profiles</a></li>
       <li><a href="/api/statuses">Statuses</a></li>
       <li><a href="/api/reactions">Reactions</a></li>
       <li><a href="/api/votes">Votes</a></li>
-      <li><a href="/api/websites">Websites</a></li>
     </ul>
   </li>
 </ul>
@@ -107,7 +107,7 @@
 <td><a href="/reaction">Reaction</a></td>
 </tr>
 <tr>
-<td><code>/.data/thumbs</code></td>
+<td><code>/.data/thumbs/*.(png|jpg|jpeg)</code></td>
 <td>Images (Thumbnails)</td>
 </tr>
 <tr>
@@ -117,21 +117,6 @@
 <tr>
 <td><code>/.data/websites.json</code></td>
 <td><a href="/links">Links</a></td>
-</tr>
-</tbody>
-</table>
-<p>The <code>thumbs</code> folder includes the following structure:</p>
-<table>
-<thead>
-<tr>
-<th>Path</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>/.data/thumbs/websites/*.(png|jpg|jpeg)</code></td>
-<td>For website records</td>
 </tr>
 </tbody>
 </table>
