@@ -41,7 +41,7 @@ The values returned by reaction functions will fit the following object shape:
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string[]`||
+|&emsp;type|`string`||
 |visibility|`string`|The [visibility](/docs/common-fields#visibility) of the reaction|
 
 ---
@@ -58,7 +58,7 @@ The values returned by `tabulate()` will fit the following object shape:
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string[]`||
+|&emsp;type|`string`||
 
 ---
 

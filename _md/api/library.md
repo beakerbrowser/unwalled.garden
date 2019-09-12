@@ -36,16 +36,17 @@ The values returned by library functions will fit the following object shape:
 |Attribute|Type|Usage|
 |-|-|-|
 |key|`string`|The key of the dat|
+|url|`string`|The url of the dat|
 |author|`Object`|The dat that published the dat record (not necessarily the author of the dat)|
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string[]`||
+|&emsp;type|`string`||
 |&emsp;isOwner|`boolean`|Is the local user the owner of the author dat?|
 |meta|`Object`|Information about the dat|
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string[]`||
+|&emsp;type|`string`||
 |&emsp;mtime|`number`|The timestamp of the last observed change to the dat|
 |&emsp;size|`number`|The local size of the dat in bytes|
 |&emsp;author|`url`|The url of the author of this dat|

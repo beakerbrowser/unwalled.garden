@@ -41,7 +41,7 @@ The values returned by vote functions will fit the following object shape:
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string[]`||
+|&emsp;type|`string`||
 |visibility|`string`|The [visibility](/docs/common-fields#visibility) of the vote|
 
 ---
@@ -58,13 +58,13 @@ The values returned by `tabulate()` will fit the following object shape:
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string[]`||
+|&emsp;type|`string`||
 |downvotes|`number`|The number of downvotes|
 |downvoters|`Object[]`|The sites that downvoted the site|
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string[]`||
+|&emsp;type|`string`||
 
 ---
 

@@ -22,7 +22,7 @@ Example:
 
 ```json
 {
-  "type": ["unwalled.garden/person"],
+  "type": "unwalled.garden/person",
   "title": "Alice",
   "description": "Advocate of the free and open web",
 }

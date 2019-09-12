@@ -50,7 +50,7 @@ The values returned by most comment functions will fit the following object shap
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string[]`||
+|&emsp;type|`string`||
 |visibility|`string`|The [visibility](/docs/common-fields#visibility) of the comment|
 
 ---
@@ -73,7 +73,7 @@ The values returned by the `thread()` function will fit the following object sha
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string[]`||
+|&emsp;type|`string`||
 |visibility|`string`|The [visibility](/docs/common-fields#visibility) of the comment|
 
 ---

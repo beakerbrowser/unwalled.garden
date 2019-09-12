@@ -65,10 +65,7 @@
             "type": "string"
           },
           "type": {
-            "type": ["string", "array"],
-            "items": {
-              "type": "string"
-            }
+            "type": "string"
           }
         }
       }

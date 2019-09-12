@@ -37,12 +37,12 @@ The values returned by follow functions will fit the following object shape:
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string[]`||
+|&emsp;type|`string`||
 |topic|`Object`|The site being followed|
 |&emsp;url|`string`||
 |&emsp;title|`string`||
 |&emsp;description|`string`||
-|&emsp;type|`string[]`||
+|&emsp;type|`string`||
 |visibility|`string`|The [visibility](/docs/common-fields#visibility) of the "follow" record|
 
 ---
