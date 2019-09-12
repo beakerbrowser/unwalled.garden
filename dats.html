@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Links (unwalled.garden/links) | Unwalled.Garden</title>
+    <title>Dats (unwalled.garden/dats) | Unwalled.Garden</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/syntax.css">
@@ -69,28 +69,28 @@
   </li>
 </ul>
       </nav>
-      <main><h2>Links <code>unwalled.garden/links</code></h2>
+      <main><h2>Dats <code>unwalled.garden/dats</code></h2>
 <hr>
 <ul>
 <li>File type</li>
-<li><strong>Description</strong>: A list of links.</li>
+<li><strong>Description</strong>: A list of dats.</li>
+<li><strong>Path</strong>: <code>/.data/dats.json</code></li>
 </ul>
 <hr>
-<h4>Notes</h4>
-<p>This is a general-purpose schema that can be used in a number of different contexts.<br>
-For example, the <a href="/api/dat">Library API</a> uses it to list published websites at <code>/.data/websites.json</code>.</p>
 <h4>Example</h4>
 <pre><code class="language-json">{
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/links"</span>,
-  <span class="hljs-attr">"links"</span>: [
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/dats"</span>,
+  <span class="hljs-attr">"dats"</span>: [
     {
-      <span class="hljs-attr">"href"</span>: <span class="hljs-string">"dat://pfrazee.com"</span>,
+      <span class="hljs-attr">"key"</span>:  <span class="hljs-string">"0529130af0258e7fb30bf5a0a3f73d69b343dfc9f23fdded8cc7c01c71c0702a"</span>,
       <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Paul Frazee"</span>,
       <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Beaker guy"</span>,
+      <span class="hljs-attr">"type"</span>: [<span class="hljs-string">"unwalled.garden/person"</span>]
     },
     {
-      <span class="hljs-attr">"href"</span>: <span class="hljs-string">"dat://43dfc9f23fdded8cc7c01c71c0702a0529130af0258e7fb30bf5a0a3f73d69b3"</span>,
-      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Unwalled Garden"</span>
+      <span class="hljs-attr">"key"</span>: <span class="hljs-string">"43dfc9f23fdded8cc7c01c71c0702a0529130af0258e7fb30bf5a0a3f73d69b3"</span>,
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Unwalled Garden"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"unwalled.garden/website"</span>
     }
   ]
 }
@@ -98,35 +98,41 @@ For example, the <a href="/api/dat">Library API</a> uses it to list published we
 <h4>Schema</h4>
 <pre><code class="language-json">{
   <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/draft-07/schema#"</span>,
-  <span class="hljs-attr">"$id"</span>: <span class="hljs-string">"dat://unwalled.garden/links.json"</span>,
+  <span class="hljs-attr">"$id"</span>: <span class="hljs-string">"dat://unwalled.garden/dats.json"</span>,
   <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
-  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Links"</span>,
-  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A list of links."</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Dats"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A list of dats."</span>,
   <span class="hljs-attr">"required"</span>: [
     <span class="hljs-string">"type"</span>,
-    <span class="hljs-string">"links"</span>
+    <span class="hljs-string">"dats"</span>
   ],
   <span class="hljs-attr">"properties"</span>: {
     <span class="hljs-attr">"type"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
       <span class="hljs-attr">"description"</span>: <span class="hljs-string">"The object's type"</span>,
-      <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/links"</span>
+      <span class="hljs-attr">"const"</span>: <span class="hljs-string">"unwalled.garden/dats"</span>
     },
-    <span class="hljs-attr">"links"</span>: {
+    <span class="hljs-attr">"dats"</span>: {
       <span class="hljs-attr">"type"</span>: <span class="hljs-string">"array"</span>,
       <span class="hljs-attr">"items"</span>: {
         <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
-        <span class="hljs-attr">"required"</span>: [<span class="hljs-string">"href"</span>],
+        <span class="hljs-attr">"required"</span>: [<span class="hljs-string">"key"</span>],
         <span class="hljs-attr">"properties"</span>: {
-          <span class="hljs-attr">"href"</span>: {
+          <span class="hljs-attr">"key"</span>: {
             <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
-            <span class="hljs-attr">"format"</span>: <span class="hljs-string">"uri"</span>
+            <span class="hljs-attr">"pattern"</span>: <span class="hljs-string">"^[0-9a-f]{64}$"</span>
           },
           <span class="hljs-attr">"title"</span>: {
             <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
           },
           <span class="hljs-attr">"description"</span>: {
             <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+          },
+          <span class="hljs-attr">"type"</span>: {
+            <span class="hljs-attr">"type"</span>: [<span class="hljs-string">"string"</span>, <span class="hljs-string">"array"</span>],
+            <span class="hljs-attr">"items"</span>: {
+              <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+            }
           }
         }
       }

@@ -1,34 +1,40 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "dat://unwalled.garden/links.json",
+  "$id": "dat://unwalled.garden/dats.json",
   "type": "object",
-  "title": "Links",
-  "description": "A list of links.",
+  "title": "Dats",
+  "description": "A list of dats.",
   "required": [
     "type",
-    "links"
+    "dats"
   ],
   "properties": {
     "type": {
       "type": "string",
       "description": "The object's type",
-      "const": "unwalled.garden/links"
+      "const": "unwalled.garden/dats"
     },
-    "links": {
+    "dats": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["href"],
+        "required": ["key"],
         "properties": {
-          "href": {
+          "key": {
             "type": "string",
-            "format": "uri"
+            "pattern": "^[0-9a-f]{64}$"
           },
           "title": {
             "type": "string"
           },
           "description": {
             "type": "string"
+          },
+          "type": {
+            "type": ["string", "array"],
+            "items": {
+              "type": "string"
+            }
           }
         }
       }

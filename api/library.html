@@ -76,7 +76,14 @@
 
 <span class="hljs-comment">// read</span>
 <span class="hljs-keyword">await</span> library.list({
-  <span class="hljs-attr">filters</span>: {authors, types, hrefs, isSaved, isHosting, visibility},
+  authors,
+  types,
+  keys,
+  isSaved,
+  isHosting,
+  visibility,
+  forkOf,
+  isOwner,
   sortBy,
   offset,
   limit,
@@ -84,7 +91,7 @@
 })
 
 <span class="hljs-comment">// write</span>
-<span class="hljs-keyword">await</span> library.configure(href, {isSaved, isHosting, visibility})
+<span class="hljs-keyword">await</span> library.configure(key, {isSaved, isHosting, visibility})
 </code></pre>
 <hr>
 <h3>LibraryDat</h3>
@@ -99,9 +106,14 @@
 </thead>
 <tbody>
 <tr>
+<td>key</td>
+<td><code>string</code></td>
+<td>The key of the dat</td>
+</tr>
+<tr>
 <td>author</td>
 <td><code>Object</code></td>
-<td>The site that published the dat record (not necessarily the author of the dat)</td>
+<td>The dat that published the dat record (not necessarily the author of the dat)</td>
 </tr>
 <tr>
 <td> url</td>
@@ -124,24 +136,24 @@
 <td></td>
 </tr>
 <tr>
-<td>dat</td>
+<td> isOwner</td>
+<td><code>boolean</code></td>
+<td>Is the local user the owner of the author dat?</td>
+</tr>
+<tr>
+<td>meta</td>
 <td><code>Object</code></td>
 <td>Information about the dat</td>
 </tr>
 <tr>
-<td> url</td>
-<td><code>string</code></td>
-<td>The URL of the dat</td>
-</tr>
-<tr>
 <td> title</td>
 <td><code>string</code></td>
-<td>The title of the dat</td>
+<td></td>
 </tr>
 <tr>
 <td> description</td>
 <td><code>string</code></td>
-<td>The description of the dat</td>
+<td></td>
 </tr>
 <tr>
 <td> type</td>
@@ -149,14 +161,44 @@
 <td></td>
 </tr>
 <tr>
+<td> mtime</td>
+<td><code>number</code></td>
+<td>The timestamp of the last observed change to the dat</td>
+</tr>
+<tr>
+<td> size</td>
+<td><code>number</code></td>
+<td>The local size of the dat in bytes</td>
+</tr>
+<tr>
+<td> author</td>
+<td><code>url</code></td>
+<td>The url of the author of this dat</td>
+</tr>
+<tr>
+<td> forkOf</td>
+<td><code>url</code></td>
+<td>The url of the dat this dat is forked from</td>
+</tr>
+<tr>
+<td> isOwner</td>
+<td><code>boolean</code></td>
+<td>Is the local user the owner of the dat?</td>
+</tr>
+<tr>
 <td>isSaved</td>
 <td><code>boolean</code></td>
-<td>Has the local user saved the dat? <strong>(private)</strong></td>
+<td>Has the local user saved the dat?</td>
+</tr>
+<tr>
+<td>savedAt</td>
+<td><code>number</code></td>
+<td>The timestamp of when the dat was saved to the local user’s library</td>
 </tr>
 <tr>
 <td>isHosting</td>
 <td><code>boolean</code></td>
-<td>Is the local user hosting the dat? <strong>(private)</strong></td>
+<td>Is the local user hosting the dat?</td>
 </tr>
 <tr>
 <td>visibility</td>
@@ -165,11 +207,10 @@
 </tr>
 </tbody>
 </table>
-<p>The fields marked <strong>(private)</strong> will only show on the local user’s records.</p>
 <hr>
 <h3>Notes</h3>
-<p>The canonical record of a saved dat is stored privately. If the visibility is “public” then a link-entry will also be added to the <a href="/links">public Links record</a> which matches the dat’s type. For instance, a “website” dat will be listed in <code>/.data/websites.json</code>.</p>
-<p>Thumbnails of published dats should be published at <code>/.data/thumbs/</code> using the domain name as the filename.</p>
+<p>The canonical record of a saved dat is stored privately. If the visibility is “public” then a link-entry will also be added to the <a href="/dats">public dats record</a>.</p>
+<p>Thumbnails of published dats should be published at <code>/.data/thumbs/</code> using the key as the filename.</p>
 <hr>
 <h3>list(opts)</h3>
 <p>List dats by that are saved locally or published by authors.</p>
@@ -190,46 +231,52 @@
 <td></td>
 </tr>
 <tr>
-<td> filters</td>
-<td><code>Object</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>  authors</td>
+<td> authors</td>
 <td><code>string|string[]</code></td>
 <td></td>
-<td>Author-site URLs</td>
+<td>Filter by author URLs</td>
 </tr>
 <tr>
-<td>  types</td>
+<td> types</td>
 <td><code>string|string[]</code></td>
 <td></td>
-<td>Dat types</td>
+<td>Filter by dat types</td>
 </tr>
 <tr>
-<td>  hrefs</td>
+<td> keys</td>
 <td><code>string|string[]</code></td>
 <td></td>
-<td>Dat URLs</td>
+<td>Filter by dat keys</td>
 </tr>
 <tr>
-<td>  isSaved</td>
+<td> isSaved</td>
 <td><code>boolean</code></td>
 <td></td>
-<td>Has the local user saved the dat?</td>
+<td>Filter by: Has the local user saved the dat?</td>
 </tr>
 <tr>
-<td>  isHosting</td>
+<td> isHosting</td>
 <td><code>boolean</code></td>
 <td></td>
-<td>Is the local user hosting the dat?</td>
+<td>Filter by: Is the local user hosting the dat?</td>
 </tr>
 <tr>
-<td>  visibility</td>
+<td> visibility</td>
 <td><code>string</code></td>
 <td><code>'all'</code></td>
-<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
+<td>Filter by this visibility. See <a href="/docs/common-fields#visibility">visibility</a></td>
+</tr>
+<tr>
+<td> forkOf</td>
+<td><code>string</code></td>
+<td></td>
+<td>Filter by: Only forks of this URL</td>
+</tr>
+<tr>
+<td> isOwner</td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Filter by: Is the local user the owner of the dat?</td>
 </tr>
 <tr>
 <td> sortBy</td>
@@ -270,7 +317,7 @@
 </tbody>
 </table>
 <hr>
-<h3>configure(href, opts)</h3>
+<h3>configure(key, opts)</h3>
 <p>Configure a dat in the local user’s library.</p>
 <table>
 <thead>
@@ -283,10 +330,10 @@
 </thead>
 <tbody>
 <tr>
-<td>href</td>
+<td>key</td>
 <td><code>string</code></td>
 <td></td>
-<td>Dat URL (required)</td>
+<td>Dat key (required)</td>
 </tr>
 <tr>
 <td>opts</td>

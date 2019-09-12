@@ -9,7 +9,8 @@ import {statuses} from 'dat://unwalled.garden/index.js'
 
 // read
 await statuses.list({
-  filters: {authors, visibility},
+  authors,
+  visibility,
   sortBy,
   offset,
   limit,
@@ -51,9 +52,8 @@ List the statuses on the network.
 |Param|Type|Default|Usage|
 |-|-|-|-|
 |opts|`Object`|||
-|&emsp;filters|`Object`|||
-|&emsp;&emsp;authors|`string|string[]`||Site URLs|
-|&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
+|&emsp;authors|`string|string[]`||Filter by author URLs|
+|&emsp;visibility|`string`|`'all'`|Filter by visibility. See [visibility](/docs/common-fields#visibility)|
 |&emsp;sortBy|`string`|`'createdAt'`|One of: `'createdAt'`|
 |&emsp;offset|`number`|0||
 |&emsp;limit|`number`|||

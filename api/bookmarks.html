@@ -76,7 +76,9 @@
 
 <span class="hljs-comment">// read</span>
 <span class="hljs-keyword">await</span> bookmarks.list({
-  <span class="hljs-attr">filters</span>: {authors, tags, visibility},
+  authors,
+  tags,
+  visibility,
   sortBy,
   offset,
   limit,
@@ -178,28 +180,22 @@
 <td></td>
 </tr>
 <tr>
-<td> filters</td>
-<td><code>Object</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>  authors</td>
+<td> authors</td>
 <td><code>string|string[]</code></td>
 <td></td>
-<td>Site URLs</td>
+<td>Filter by author URLs</td>
 </tr>
 <tr>
-<td>  tags</td>
+<td> tags</td>
 <td><code>string|string[]</code></td>
 <td></td>
-<td></td>
+<td>Filter by tags</td>
 </tr>
 <tr>
-<td>  visibility</td>
+<td> visibility</td>
 <td><code>string</code></td>
 <td><code>'all'</code></td>
-<td>See <a href="/docs/common-fields#visibility">visibility</a></td>
+<td>Filter by this visibility. See <a href="/docs/common-fields#visibility">visibility</a></td>
 </tr>
 <tr>
 <td> sortBy</td>

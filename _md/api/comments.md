@@ -9,14 +9,17 @@ import {comments} from 'dat://unwalled.garden/index.js'
 
 // read
 await comments.list({
-  filters: {authors, topics, visibility},
+  authors,
+  topics,
+  visibility,
   sortBy,
   offset,
   limit,
   reverse
 })
 await comments.thread(topic, {
-  filters: {authors, visibility},
+  authors,
+  visibility,
   parent,
   depth,
   sortBy
@@ -82,10 +85,9 @@ List the comments on the network.
 |Param|Type|Default|Usage|
 |-|-|-|-|
 |opts|`Object`|||
-|&emsp;filters|`Object`|||
-|&emsp;&emsp;authors|`string|string[]`||Site URLs|
-|&emsp;&emsp;topics|`string|string[]`||URLs|
-|&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
+|&emsp;authors|`string|string[]`||Filter by author URLs|
+|&emsp;topics|`string|string[]`||Filter by topic URLs|
+|&emsp;visibility|`string`|`'all'`|Filter by this visibility. See [visibility](/docs/common-fields#visibility)|
 |&emsp;sortBy|`string`|`'createdAt'`|One of: `'createdAt'`|
 |&emsp;offset|`number`|0||
 |&emsp;limit|`number`|||
@@ -105,9 +107,8 @@ Fetch the comment thread on a given topic.
 |-|-|-|-|
 |topic|`string`||URL (required)|
 |opts|`Object`|||
-|&emsp;filters|`Object`|||
-|&emsp;&emsp;authors|`string|string[]`||Site URLs|
-|&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
+|&emsp;authors|`string|string[]`||Filter by author URLs|
+|&emsp;visibility|`string`|`'all'`|Filter by this visibility. See [visibility](/docs/common-fields#visibility)|
 |&emsp;parent|`string`||The URL of comment in the thread|
 |&emsp;depth|`number`||A limit on the depth to recurse down the comment tree|
 |&emsp;sortBy|`string`|`'createdAt'`|One of: `'createdAt'`|

@@ -9,7 +9,9 @@ import {bookmarks} from 'dat://unwalled.garden/index.js'
 
 // read
 await bookmarks.list({
-  filters: {authors, tags, visibility},
+  authors,
+  tags,
+  visibility,
   sortBy,
   offset,
   limit,
@@ -52,10 +54,9 @@ List bookmarks on the network.
 |Param|Type|Default|Usage|
 |-|-|-|-|
 |opts|`Object`|||
-|&emsp;filters|`Object`|||
-|&emsp;&emsp;authors|`string|string[]`||Site URLs|
-|&emsp;&emsp;tags|`string|string[]`|||
-|&emsp;&emsp;visibility|`string`|`'all'`|See [visibility](/docs/common-fields#visibility)|
+|&emsp;authors|`string|string[]`||Filter by author URLs|
+|&emsp;tags|`string|string[]`||Filter by tags|
+|&emsp;visibility|`string`|`'all'`|Filter by this visibility. See [visibility](/docs/common-fields#visibility)|
 |&emsp;sortBy|`string`|`'title'`|One of: `'title'`, `'createdAt'`|
 |&emsp;offset|`number`|0||
 |&emsp;limit|`number`|||
